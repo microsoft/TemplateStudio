@@ -63,7 +63,7 @@ namespace Microsoft.Templates.VsEmulator.NewProject
 
         public void Initialize()
         {
-            Location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "source", "repos");
+            Location = "/";
 
             SetName();
 
@@ -72,7 +72,7 @@ namespace Microsoft.Templates.VsEmulator.NewProject
 
         public static (string name, string solutionName, string location) GetNewProjectInfo()
         {
-            var location = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "source", "repos");
+            var location = "/";
             var validator = new List<Validator>() { new FolderNameValidator(location) };
             var name = NamingService.Infer(DefaultName, validator);
             return (name, name, location);

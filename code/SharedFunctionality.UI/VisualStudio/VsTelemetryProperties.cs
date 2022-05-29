@@ -6,7 +6,7 @@ namespace Microsoft.Templates.UI.VisualStudio
 {
     public class VsTelemetryProperties
     {
-        public const string Prefix = "Wts.";
+        public const string Prefix = "TS.";
 
         public static string Pages { get; private set; } = Prefix + "Pages";
 

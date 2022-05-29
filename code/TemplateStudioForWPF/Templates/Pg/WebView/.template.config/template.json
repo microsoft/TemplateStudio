@@ -24,21 +24,21 @@
     "ts.licenses": "[Microsoft.Toolkit.Wpf.UI.Controls.WebView](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)",
     "ts.dependencies": "ts.WPF.Feat.SystemService"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": "ViewModels/wts.ItemNameViewModel.cs"
+      "path": "ViewModels/ts.ItemNameViewModel.cs"
     },
     {
-      "path": "Views/wts.ItemNamePage.xaml"
+      "path": "Views/ts.ItemNamePage.xaml"
     },
     {
-      "path": "Views/wts.ItemNamePage.xaml.cs"
+      "path": "Views/ts.ItemNamePage.xaml.cs"
     }
   ],
   "symbols": {
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },

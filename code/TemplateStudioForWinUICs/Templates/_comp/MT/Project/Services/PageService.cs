@@ -11,7 +11,7 @@ namespace Param_RootNamespace.Services
 {
     public class PageService : IPageService
     {
-        private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
+        private readonly Dictionary<string, Type> _pages = new();
 
         public PageService()
         {

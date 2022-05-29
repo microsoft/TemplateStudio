@@ -693,11 +693,11 @@
     <comment>Error message for unable to set default solution configuration.</comment>
   </data>
   <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
-    <value>The name cannot end with 'Page' as this will be automatically added. [More info about naming.]({0}WTSNaming.md)</value>
+    <value>The name cannot end with 'Page' as this will be automatically added. [More info about naming.]({0}naming.md)</value>
     <comment>Validation error message: Wrong Page Suffix</comment>
   </data>
   <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
-    <value>Note that 'Page' will be added to the end of the specified name. [More info about naming.]({0}WTSNaming.md)</value>
+    <value>Note that 'Page' will be added to the end of the specified name. [More info about naming.]({0}naming.md)</value>
     <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
@@ -1410,5 +1410,9 @@ See the final result: {2}
   </data>
   <data name="TemplateStudioForWinUI" xml:space="preserve">
     <value>Template Studio for WinUI</value>
+  </data>
+  <data name="TemplateGroup_Deployment" xml:space="preserve">
+    <value>Deployment</value>
+    <comment>Group header for Deployment</comment>
   </data>
 </root>

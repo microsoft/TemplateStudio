@@ -22,7 +22,7 @@
         </ResourceDictionary>
     </Page.Resources>-->
 
-    <Grid Style="{StaticResource WtsGridMainPage}">
+    <Grid Style="{StaticResource TSGridMainPage}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
@@ -37,16 +37,16 @@
                 Grid.Row="0"
                 Text="{x:Static res:StringRes.TemplateSelectionTitle}"
                 Margin="{StaticResource Margin_L_LeftRight_M2_Top}"
-                Style="{StaticResource WtsTextBlockSectionTitle}" />
-            <ScrollViewer Grid.Row="1" Style="{StaticResource WtsScrollViewer}">
+                Style="{StaticResource TSTextBlockSectionTitle}" />
+            <ScrollViewer Grid.Row="1" Style="{StaticResource TSScrollViewer}">
                 <ItemsControl
                     Focusable="False"
                     ItemsSource="{Binding TemplateSelection.Groups}"
-                    ItemTemplate="{StaticResource WtsNewItemGroupTemplatePageFeature}" />
+                    ItemTemplate="{StaticResource TSNewItemGroupTemplatePageFeature}" />
             </ScrollViewer>
         </Grid>
-        <Grid Grid.Column="1" Style="{StaticResource WtsGridSectionDividerVertical}" />
-        <ScrollViewer Grid.Column="2" Style="{StaticResource WtsScrollViewer}">
+        <Grid Grid.Column="1" Style="{StaticResource TSGridSectionDividerVertical}" />
+        <ScrollViewer Grid.Column="2" Style="{StaticResource TSScrollViewer}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
@@ -54,17 +54,17 @@
                 </Grid.RowDefinitions>
                 <StackPanel>
                     <TextBlock
-                        Style="{StaticResource WtsTextBlockSectionTitle}"
+                        Style="{StaticResource TSTextBlockSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftTopRight}"
                         Text="{x:Static res:StringRes.NewItemTemplateDetailsTitle}" />
                     <TextBlock
                         Text="{x:Static res:StringRes.NewItemTemplateDetailsNameSectionTitle}"
-                        Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                        Style="{StaticResource TSTextBlockSubSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}" />
                     <Grid>
                         <Grid Style="{Binding TemplateSelection.HasErrors, Converter={StaticResource SavedTemplateGridConverter}}"/>
                         <TextBox
-                            Style="{StaticResource WtsTextBoxStyle}"
+                            Style="{StaticResource TSTextBoxStyle}"
                             Text="{Binding TemplateSelection.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Margin="16,12,26,12"
                             Visibility="{Binding TemplateSelection.NameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
@@ -78,49 +78,49 @@
                         </TextBox>
                         <TextBlock
                             Text="{Binding TemplateSelection.Name, Mode=OneWay}"
-                            Style="{StaticResource WtsTextBlockSavedTemplateName}"
+                            Style="{StaticResource TSTextBlockSavedTemplateName}"
                             Margin="23,17,16,17"
                             Visibility="{Binding TemplateSelection.NameEditable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
                     </Grid>
                     <StackPanel Visibility="{Binding TemplateSelection.Dependencies, Converter={StaticResource HasItemsVisibilityConverter}}">
                         <TextBlock
-                            Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                            Style="{StaticResource TSTextBlockSubSectionTitle}"
                             Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
                             Text="{x:Static res:StringRes.NewItemTemplateDetailsDependenciesSectionTitle}" />
                             <ItemsControl
-                            Style="{StaticResource WtsItemsControl}"
+                            Style="{StaticResource TSItemsControl}"
                             ItemsSource="{Binding TemplateSelection.Dependencies}"
                             Margin="20,4,4,4"
-                            ItemTemplate="{StaticResource WtsItemTemplateDependency}" />
+                            ItemTemplate="{StaticResource TSItemTemplateDependency}" />
                     </StackPanel>
                     <StackPanel Visibility="{Binding TemplateSelection.Licenses, Converter={StaticResource HasItemsVisibilityConverter}}">
                         <TextBlock
-                            Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                            Style="{StaticResource TSTextBlockSubSectionTitle}"
                             Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
                             Text="{x:Static res:StringRes.NewItemTemplateDetailsLicensesSectionTitle}" />
                         <ItemsControl
-                            Style="{StaticResource WtsItemsControl}"
+                            Style="{StaticResource TSItemsControl}"
                             ItemsSource="{Binding TemplateSelection.Licenses}"
                             Margin="20,4,4,4"
-                            ItemTemplate="{StaticResource WtsItemTemplateLicense}" />
+                            ItemTemplate="{StaticResource TSItemTemplateLicense}" />
 
                     </StackPanel>
                     <TextBlock
-                        Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                        Style="{StaticResource TSTextBlockSubSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
                         Text="{x:Static res:StringRes.ProjectDetailsAboutSectionTitle}" />
                     <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
-                        <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
-                            <TextBlock Text="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
+                        <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
+                            <TextBlock Text="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource TSTextBlockHyperlinkAbout}" />
                         </Hyperlink>
                     </TextBlock>
                     <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
-                            <Hyperlink Style="{StaticResource WtsHyperlink}" Command="{Binding WizardStatus.CreateIssueCommand}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
-                                <TextBlock Text="{x:Static res:StringRes.ProjectDetailsAboutSectionIssuesLink}" Style="{StaticResource WtsTextBlockHyperlinkAbout}" />
+                            <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding WizardStatus.CreateIssueCommand}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
+                                <TextBlock Text="{x:Static res:StringRes.ProjectDetailsAboutSectionIssuesLink}" Style="{StaticResource TSTextBlockHyperlinkAbout}" />
                             </Hyperlink>
                         </TextBlock>
                     <TextBox
-                        Style="{StaticResource WtsTextBoxVersion}"
+                        Style="{StaticResource TSTextBoxVersion}"
                         Margin="{StaticResource Margin_M1_LeftRight_S_Top}"
                         Text="{Binding WizardStatus.Versions}"
                         AutomationProperties.Name="{Binding Text, RelativeSource={RelativeSource Self}}"/>
@@ -133,10 +133,10 @@
                             Margin="{StaticResource Margin_M2_LeftRight_S_TopBottom}"
                             Visibility="{Binding BreakingChangesErrors, Converter={StaticResource HasItemsVisibilityConverter}}">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="{StaticResource WtsIconWarning}"
-                                    Style="{StaticResource WtsBreakingChangesImageIcon}" />
+                                <Image Source="{StaticResource TSIconWarning}"
+                                    Style="{StaticResource TSBreakingChangesImageIcon}" />
                                 <TextBlock
-                                    Style="{StaticResource WtsTextBlockSubSectionTitle}"
+                                    Style="{StaticResource TSTextBlockSubSectionTitle}"
                                     Margin="{StaticResource Margin_XS_Left}"
                                     VerticalAlignment="Bottom"
                                     Text="{x:Static res:StringRes.BreakingChanges}" />
@@ -146,9 +146,9 @@
                                 Margin="{StaticResource Margin_M_Top}"
                                 Text="{x:Static res:StringRes.BreakingChangesDialogMessage}" />
                             <ItemsControl
-                                Style="{StaticResource WtsItemsControl}"
+                                Style="{StaticResource TSItemsControl}"
                                 ItemsSource="{Binding BreakingChangesErrors}"
-                                ItemTemplate="{StaticResource WtsItemTemplateBreakingChanges}" />
+                                ItemTemplate="{StaticResource TSItemTemplateBreakingChanges}" />
                         </StackPanel>
                     </Border>
                     <!--<Button

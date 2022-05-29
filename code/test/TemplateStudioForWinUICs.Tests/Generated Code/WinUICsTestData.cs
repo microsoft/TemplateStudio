@@ -19,20 +19,23 @@ namespace TemplateStudioForWinUICs.Tests
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Feature.ThemeSelection\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.AddBackCommand\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.AddCommandNS\.template.config\template.json" };
-             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.AddIocNS\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.AddViewModel\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.AddViewModelDetail\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.Settings.Packaged\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.Settings.Unpackaged\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.WebView\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project\.template.config\template.json" };
-             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.BlankAdvanced\.template.config\template.json" };
+             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.Blank\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.MenuBar\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.MenuBar.AddNavViewItem\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.MenuBar.AddNavViewItem.Settings\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.SplitView\.template.config\template.json" };
-             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.SplitView.AddNavViewItem\.template.config\template.json" };
+             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.SplitView.AddNavViewItem.Blank\.template.config\template.json" };
+             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.SplitView.AddNavViewItem.ContentGrid\.template.config\template.json" };
+             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.SplitView.AddNavViewItem.DataGrid\.template.config\template.json" };
+             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.SplitView.AddNavViewItem.ListDetails\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.SplitView.AddNavViewItem.Settings\.template.config\template.json" };
+             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.SplitView.AddNavViewItem.WebView\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.AddTitle.Blank\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.AddTitle.ContentGrid\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.AddTitle.DataGrid\.template.config\template.json" };
@@ -43,7 +46,6 @@ namespace TemplateStudioForWinUICs.Tests
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.ListDetail.SplitView\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.SplitView.AddHeaderModeMinimal\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.SplitView.AddHeaderModeNever\.template.config\template.json" };
-             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Page.UWP.AddClickMeButton\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\_shared\Proj.Core.Platforms\.template.config\template.json" };
         }
     }

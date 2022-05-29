@@ -578,7 +578,7 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <comment>Validation error message: Empty</comment>
   </data>
   <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
-    <value>Ad adının sonunda "Page" olamaz çünkü bu değer otomatik olarak eklenecektir. [Adlandırma hakkında daha fazla bilgi edinin.]({0}WTSNaming.md)</value>
+    <value>Ad adının sonunda "Page" olamaz çünkü bu değer otomatik olarak eklenecektir. [Adlandırma hakkında daha fazla bilgi edinin.]({0}naming.md)</value>
     <comment>Validation error message: Wrong Page Suffix</comment>
   </data>
   <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">

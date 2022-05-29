@@ -16,8 +16,8 @@ namespace Microsoft.UI.Test.ProjectTests
     [Trait("Group", "Minimum")]
     public class NewWinUICsProjectTest : IClassFixture<WinUICsPlatformTemplatesFixture>
     {
-        private const string DefaultProjectType = "Blank";
-        private const string DefaultFramework = "None";
+        private const string DefaultProjectType = "SplitView";
+        private const string DefaultFramework = "MVVMToolkit";
 
         public NewWinUICsProjectTest(WinUICsPlatformTemplatesFixture fixture)
         {
@@ -55,7 +55,7 @@ namespace Microsoft.UI.Test.ProjectTests
             var userSelection = viewModel.UserSelection.GetUserSelection();
             Assert.Equal(DefaultProjectType, userSelection.Context.ProjectType);
             Assert.Equal(DefaultFramework, userSelection.Context.FrontEndFramework);
-            Assert.Empty(userSelection.Pages);
+            Assert.True(userSelection.Pages.Count == 1 && userSelection.Pages[0].TemplateId.Equals("ts.WinUI.Page.Blank"));
             Assert.Empty(userSelection.Services);
             Assert.Empty(userSelection.Testing);
         }

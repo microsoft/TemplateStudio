@@ -15,12 +15,12 @@
       "ts.version": "1.0.0",
       "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == MenuBar & ts.type == page & identity == ts.WinUI.Page.Settings"
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "Param_ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],
     "symbols": {
-      "wts.rootNamespace": {
+      "ts.rootNamespace": {
         "type": "parameter",
         "replaces": "Param_RootNamespace"
       }

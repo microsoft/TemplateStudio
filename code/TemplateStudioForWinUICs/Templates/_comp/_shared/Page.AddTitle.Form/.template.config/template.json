@@ -13,14 +13,14 @@
     "ts.type": "composition",
     "ts.platform" : "WinUI",
     "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projectType == BlankAdvanced|MenuBar & groupidentity == ts.WinUI.Page.Form"
+    "ts.compositionFilter": "$projectType == Blank|MenuBar & groupidentity == ts.WinUI.Page.Form"
   },
-    "sourceName": "wts.ItemName",
+    "sourceName": "Param_ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],
     "symbols": {
-      "wts.rootNamespace": {
+      "ts.rootNamespace": {
         "type": "parameter",
         "replaces": "Param_RootNamespace"
       }

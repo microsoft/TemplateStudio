@@ -6,7 +6,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 {
     public class TelemetryEvents
     {
-        public const string Prefix = "Wts";
+        public const string Prefix = "TS";
 
         public static string ProjectGen { get; private set; } = Prefix + "ProjectGen";
 

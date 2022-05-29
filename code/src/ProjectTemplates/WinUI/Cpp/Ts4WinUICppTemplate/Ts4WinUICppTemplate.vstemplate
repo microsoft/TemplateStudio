@@ -13,15 +13,14 @@
 		<ProvideDefaultName>true</ProvideDefaultName>
 		<LanguageTag>XAML</LanguageTag>
 		<PlatformTag>Windows</PlatformTag>
-		<ProjectTypeTag>WINUI</ProjectTypeTag>
 		<ProjectTypeTag>desktop</ProjectTypeTag>
+		<ProjectTypeTag>WinUI</ProjectTypeTag>
 	</TemplateData>
 	<TemplateContent>
 		<CustomParameters>
 			<CustomParameter Name="$ts.platform$" Value="WinUI"/>
 			<CustomParameter Name="$ts.language$" Value="C++"/>
-			<CustomParameter Name="$ts.category$" Value="TemplateStudio4"/>
-			<CustomParameter Name="$ts.version$" Value="2.1.0"/>
+			<CustomParameter Name="$ts.category$" Value="TemplateStudio"/>
 			<CustomParameter Name="$ts.requiredversion$" Value="17.0"/>
 			<CustomParameter Name="$ts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.ManagedDesktop|Microsoft.VisualStudio.Workload.NativeDesktop"/>
 		</CustomParameters>

@@ -23,7 +23,7 @@
     "ts.rightClickEnabled":"true",
     "ts.dependencies":"ts.WPF.Feat.PersistAndRestore"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
@@ -43,11 +43,11 @@
     }
   ],
   "symbols": {
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName"
     }

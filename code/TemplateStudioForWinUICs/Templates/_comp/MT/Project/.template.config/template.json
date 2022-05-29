@@ -18,7 +18,7 @@
       "ts.licenses": "[Microsoft.Extensions.DependencyInjection](https://licenses.nuget.org/MIT)|[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
 
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "Param_ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
       {
@@ -53,11 +53,11 @@
       }
     ],
     "symbols": {
-      "wts.rootNamespace": {
+      "ts.rootNamespace": {
         "type": "parameter",
         "replaces": "Param_RootNamespace"
       },
-      "wts.homePageName": {
+      "ts.homePageName": {
         "type":"parameter",
         "replaces":"Param_HomeName"
       }

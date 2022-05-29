@@ -15,8 +15,8 @@
         }
 //^^
 //{[{
-        private void OnMenuFilewts.ItemName(object sender, RoutedEventArgs e)
-            => _rightPaneService.OpenInRightPane(typeof(wts.ItemNamePage));
+        private void OnMenuFilets.ItemName(object sender, RoutedEventArgs e)
+            => _rightPaneService.OpenInRightPane(typeof(ts.ItemNamePage));
 //}]}
 
         public event PropertyChangedEventHandler PropertyChanged;

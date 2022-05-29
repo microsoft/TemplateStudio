@@ -13,67 +13,61 @@
     "language": "C#",
     "type": "project",
     "ts.type": "project",
-    "ts.projecttype": "BlankAdvanced|SplitView|MenuBar",
+    "ts.projecttype": "Blank|SplitView|MenuBar",
     "ts.frontendframework": "MVVMToolkit",
     "ts.platform": "WinUI",
     "ts.appmodel": "Desktop",
     "ts.outputToParent": "true",
     "ts.version": "1.0.0",
     "ts.displayOrder": "0",
-    "ts.licenses": "[Microsoft.WindowsAppSDK](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.0.1/License)"
+    "ts.licenses": "[Microsoft.WindowsAppSDK](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.1-preview3/License)"
   },
-  "sourceName": "wts.ProjectName",
+  "sourceName": "Param_ProjectName",
   "preferNameDirectory": true,
   "guids": ["378ed3d7-d630-4039-8b8e-93310ba6b05e"],
-  "PrimaryOutputs": [
-    { "path": "wts.ProjectName/wts.ProjectName.csproj" },
-    { "path": "wts.ProjectName.Core/wts.ProjectName.Core.csproj" }
-  ],
+    "PrimaryOutputs": [
+        { "path": "Param_ProjectName/Param_ProjectName.csproj" },
+        { "path": "Param_ProjectName.Core/Param_ProjectName.Core.csproj" }
+    ],
   "symbols": {
-    "wts.projectName":
+    "ts.projectName":
     {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.userName":
+    "ts.userName":
     {
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_UserName"
     },
-    "wts.wizardVersion":
+    "ts.wizardVersion":
     {
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_Wizard.Version"
     },
-    "wts.templatesVersion":
-    {
-      "type": "parameter",
-      "dataType": "string",
-      "replaces": "Param_Templates.Version"
-    },
-    "wts.generationProjectType":
+    "ts.generationProjectType":
     {
       "type": "parameter",
       "replaces": "Param_ProjectType"
     },
-    "wts.generationFrontEndFramework":
+    "ts.generationFrontEndFramework":
     {
       "type": "parameter",
       "replaces": "Param_Framework"
     },
-    "wts.generationPlatform":
+    "ts.generationPlatform":
     {
       "type": "parameter",
       "replaces": "Param_Platform"
     },
-    "wts.generation.appmodel":
+    "ts.generation.appmodel":
     {
       "type": "parameter",
       "replaces": "Param_AppModel"
@@ -101,7 +95,7 @@
         "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
         "args": {
             "packageId": "Microsoft.WindowsAppSDK",
-            "version": "1.0.1",
+            "version": "1.1-preview3",
             "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
         },
         "continueOnError": true

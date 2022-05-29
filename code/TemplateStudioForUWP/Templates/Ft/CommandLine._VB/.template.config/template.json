@@ -38,22 +38,22 @@
     }
   ],
   "symbols":{
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.safeprojectName": {
+    "ts.safeprojectName": {
       "type": "generated",
       "generator": "regex",
       "dataType": "string",
       "replaces": "SafeProjectName",
       "parameters": {
-          "source": "wts.projectName",
+          "source": "ts.projectName",
           "steps": [
               {
                   "regex": "([-_,@! (£)+=])",

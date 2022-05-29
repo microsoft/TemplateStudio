@@ -107,8 +107,8 @@ namespace Microsoft.Templates.Test.UWP.Wack
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                 && t.GetFrontEndFrameworkList().Contains(framework)
-                && !t.GroupIdentity.StartsWith("wts.Feat.BackgroundTask", StringComparison.Ordinal)
-                && !t.GroupIdentity.StartsWith("wts.Service.Identity", StringComparison.Ordinal)
+                && !t.GroupIdentity.StartsWith("ts.Feat.BackgroundTask", StringComparison.Ordinal)
+                && !t.GroupIdentity.StartsWith("ts.Service.Identity", StringComparison.Ordinal)
                 & !t.GroupIdentity.Contains("Test")
                 & !t.GroupIdentity.Contains("WinAppDriver")
                 & !t.GroupIdentity.Contains("WebApi")
@@ -130,7 +130,7 @@ namespace Microsoft.Templates.Test.UWP.Wack
             bool templateSelector(ITemplateInfo t) => t.GetTemplateType().IsItemTemplate()
                      && (t.GetProjectTypeList().Contains(projectType) || t.GetProjectTypeList().Contains(All))
                      && t.GetFrontEndFrameworkList().Contains(framework)
-                     && (t.GroupIdentity.StartsWith("wts.Feat.BackgroundTask", StringComparison.Ordinal))
+                     && (t.GroupIdentity.StartsWith("ts.Feat.BackgroundTask", StringComparison.Ordinal))
                      && t.GetPlatform() == platform
                      && !t.GetIsHidden();
 

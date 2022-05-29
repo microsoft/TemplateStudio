@@ -23,7 +23,7 @@
       "ts.export.onNavigatedToParams": "object parameter",
       "ts.export.onNavigatedFromParams": ""
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],

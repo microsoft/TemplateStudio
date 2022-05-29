@@ -16,7 +16,7 @@
       "ts.compositionOrder": "0",
       "ts.compositionFilter": "$projectType == Blank & $frontendframework == MVVMToolkit & ts.type == project"
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
       {
@@ -30,7 +30,7 @@
       }
     ],
     "symbols": {
-      "wts.rootNamespace": {
+      "ts.rootNamespace": {
         "type": "parameter",
         "replaces": "Param_RootNamespace"
       },

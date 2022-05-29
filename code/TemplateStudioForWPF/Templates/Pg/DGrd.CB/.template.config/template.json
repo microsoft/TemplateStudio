@@ -24,23 +24,23 @@
     "ts.outputToParent": "true",
     "ts.dependencies": "ts.WPF.Feat.SampleData"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml"
+      "path": "Param_ProjectName/Views/ts.ItemNamePage.xaml"
     },
     {
-      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml.cs"
+      "path": "Param_ProjectName/Views/ts.ItemNamePage.xaml.cs"
     }
   ],
   "symbols": {
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     }

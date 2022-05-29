@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
 <!--{[{-->
-    <data name="wts.ItemNameListDescription" xml:space="preserve">
+    <data name="ts.ItemNameListDescription" xml:space="preserve">
 		    <value>Sample Orders</value>
     </data>
 <!--}]}-->

@@ -3,8 +3,8 @@
 <!--^^-->
 <!--{[{-->
         <Fluent:BackstageTabItem
-            Tag="wts.ItemName"
-            Header="{x:Static properties:Resources.ShellPageRibbonBackstageTabwts.ItemNameHeader}" />
+            Tag="ts.ItemName"
+            Header="{x:Static properties:Resources.ShellPageRibbonBackstageTabts.ItemNameHeader}" />
 <!--}]}-->
     </Fluent:BackstageTabControl>
 </Fluent:Backstage>

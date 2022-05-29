@@ -16,15 +16,9 @@
       "ts.compositionOrder": "0",
       "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == MenuBar & ts.type == project"
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "Param_ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
-      {
-        "path": "Contracts/Services/IRightPaneService.cs"
-      },
-      {
-        "path": "Services/RightPaneService.cs"
-      },
       {
         "path": "ViewModels/ShellViewModel.cs"
       },
@@ -36,7 +30,7 @@
       }
     ],
     "symbols": {
-      "wts.rootNamespace": {
+      "ts.rootNamespace": {
         "type": "parameter",
         "replaces": "Param_RootNamespace"
       }

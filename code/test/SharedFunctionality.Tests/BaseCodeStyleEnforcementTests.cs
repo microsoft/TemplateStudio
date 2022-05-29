@@ -22,7 +22,7 @@ namespace Microsoft.Templates.Test
             var filesNeedsToUseThis = new List<string>()
             {
                 "ContentGridViewDetailPage.xaml.cs",
-                @"Pg\CGrid\Param_ProjectName\Views\wts.ItemNameDetailPage.xaml.cs",
+                @"Pg\CGrid\Param_ProjectName\Views\Param_ItemNameDetailPage.xaml.cs",
             };
             var result = CodeIsNotUsed("this.", ".cs", filesNeedsToUseThis);
 

@@ -21,7 +21,7 @@
       "ts.compositionFilter": "$appmodel == Desktop & ts.type == project",
       "ts.licenses": "[StyleCop.Analyzers](https://licenses.nuget.org/Apache-2.0)"
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "Param_ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
       {
@@ -29,12 +29,12 @@
       }
     ],
     "symbols": {
-      "wts.projectName": {
+      "ts.projectName": {
         "type": "parameter",
         "replaces": "Param_ProjectName",
         "fileRename": "Param_ProjectName"
       },
-      "wts.rootNamespace": {
+      "ts.rootNamespace": {
         "type": "parameter",
         "replaces": "Param_RootNamespace"
       }
@@ -46,7 +46,7 @@
         "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
         "args": {
           "packageId": "StyleCop.Analyzers",
-          "version": "1.1.118",
+          "version": "1.2.0-beta.435",
           "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
         },
         "continueOnError": true

@@ -2,11 +2,6 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "この基本的なページは、アプリを構築するための空白のキャンバスです。"
-  },
-  {
-    "name": "BlankAdvanced",
-    "displayName": "Blank Advanced",
     "summary": "ナビゲーション フレームと基本的なサービスとスタイルが含まれています。"
   },
   {

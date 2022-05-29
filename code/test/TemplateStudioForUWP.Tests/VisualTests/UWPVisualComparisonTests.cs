@@ -101,7 +101,7 @@ namespace Microsoft.Templates.Test.UWP.Build
         {
             switch (pageName)
             {
-                case "wts.Page.Settings":
+                case "ts.Page.Settings":
                     // Exclude the area at the end of the app name and also covering the version number
                     switch (projectType)
                     {
@@ -208,11 +208,11 @@ namespace Microsoft.Templates.Test.UWP.Build
 
             var noClickCount = 0;
 
-            if (page == "wts.Page.Map")
+            if (page == "ts.Page.Map")
             {
                 noClickCount = 1;
             }
-            else if (page == "wts.Page.Camera")
+            else if (page == "ts.Page.Camera")
             {
                 noClickCount = 2;
             }
@@ -270,11 +270,11 @@ namespace Microsoft.Templates.Test.UWP.Build
 
             var noClickCount = 0;
 
-            if (page == "wts.Page.Map")
+            if (page == "ts.Page.Map")
             {
                 noClickCount = 1;
             }
-            else if (page == "wts.Page.Camera")
+            else if (page == "ts.Page.Camera")
             {
                 noClickCount = 2;
             }

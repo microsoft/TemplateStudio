@@ -1,0 +1,40 @@
+name: $(date:yyyyMMdd)$(rev:.r)
+
+trigger: none
+
+pr: none
+
+schedules:
+- cron: 0 5 * * *
+  branches:
+    include:
+    - main
+
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: refs/heads/main
+
+variables:
+- name: NUGET.PLUGIN.HANDSHAKE.TIMEOUT.IN.SECONDS
+  value: 20
+- name: NUGET.PLUGIN.REQUEST.TIMEOUT.IN.SECONDS
+  value: 20
+
+jobs:
+- template: templates/shared.yml
+  parameters:
+    Moniker: UI
+    FrameworkDirectory: .
+    BuildConfiguration: DebugALL
+    BuildPlatform: Any CPU
+    Group: Build
+    
+- template: templates/shared.yml
+  parameters:
+    Moniker: Core
+    FrameworkDirectory: net472
+    BuildConfiguration: DebugALL
+    BuildPlatform: Any CPU
+    Group: Build

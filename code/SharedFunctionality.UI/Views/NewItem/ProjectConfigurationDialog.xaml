@@ -42,13 +42,13 @@
         </ResourceDictionary>
     </Window.Resources>-->
 
-    <Grid Style="{StaticResource WtsGridBasePage}">
+    <Grid Style="{StaticResource TSGridBasePage}">
         <Grid.Resources>
             <DataTemplate x:Key="MetadataDisplayNameTemplate">
-                <TextBlock Text="{Binding DisplayName}" Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}" />
+                <TextBlock Text="{Binding DisplayName}" Style="{StaticResource TSTextBlockProjectConfigurationDescriptionStyle}" />
             </DataTemplate>
             <DataTemplate x:Key="SimpleDisplayNameTemplate">
-                <TextBlock Text="{Binding}" Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}"/>
+                <TextBlock Text="{Binding}" Style="{StaticResource TSTextBlockProjectConfigurationDescriptionStyle}"/>
             </DataTemplate>
         </Grid.Resources>
         <Grid.RowDefinitions>
@@ -63,74 +63,74 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{Binding Title}" Style="{StaticResource WtsTextBlockDialogTitle}" />
-            <TextBlock Grid.Row="1" Text="{Binding Description}" Style="{StaticResource WtsTextBlockDialogDescription}" Margin="{StaticResource Margin_M_Top}"/>
+            <TextBlock Grid.Row="0" Text="{Binding Title}" Style="{StaticResource TSTextBlockDialogTitle}" />
+            <TextBlock Grid.Row="1" Text="{Binding Description}" Style="{StaticResource TSTextBlockDialogDescription}" Margin="{StaticResource Margin_M_Top}"/>
 
 
             <StackPanel  Grid.Row="2">
                 <TextBlock
                     Text="{x:Static res:StringRes.ProjectConfigurationSelectPlatform}"
                     Margin="{StaticResource Margin_L_Top}"
-                    Style="{StaticResource WtsTextBlockProjectConfigurationComboBoxHeaderStyle}" />
+                    Style="{StaticResource TSTextBlockProjectConfigurationComboBoxHeaderStyle}" />
                 <ComboBox
                     ItemsSource="{Binding Platforms}"
                     SelectedItem="{Binding SelectedPlatform, Mode=TwoWay}"
                     Margin="{StaticResource Margin_S_Top}"
                     ItemTemplate="{StaticResource SimpleDisplayNameTemplate}"
-                    Style="{StaticResource WtsComboBoxStyle}"
+                    Style="{StaticResource TSComboBoxStyle}"
                     AutomationProperties.Name="{x:Static res:StringRes.ProjectConfigurationSelectPlatform}" />
                 <TextBlock
                     Text="{x:Static res:StringRes.ProjectConfigurationSelectAppModel}"
                     Margin="{StaticResource Margin_L_Top}"
                     Visibility="{Binding IsWinUISelected, Converter={StaticResource BoolToVisibilityConverter}}"
-                    Style="{StaticResource WtsTextBlockProjectConfigurationComboBoxHeaderStyle}" />
+                    Style="{StaticResource TSTextBlockProjectConfigurationComboBoxHeaderStyle}" />
                 <ComboBox
                     ItemsSource="{Binding AppModels}"
                     SelectedItem="{Binding SelectedAppModel, Mode=TwoWay}"
                     Margin="{StaticResource Margin_S_Top}"
                     ItemTemplate="{StaticResource SimpleDisplayNameTemplate}"
-                    Style="{StaticResource WtsComboBoxStyle}"
+                    Style="{StaticResource TSComboBoxStyle}"
                     Visibility="{Binding IsWinUISelected, Converter={StaticResource BoolToVisibilityConverter}}"
                     AutomationProperties.Name="{x:Static res:StringRes.ProjectConfigurationSelectAppModel}" />
                 <TextBlock
                     Text="{x:Static res:StringRes.ProjectConfigurationSelectProjectType}"
                     Margin="{StaticResource Margin_M_Top}"
-                    Style="{StaticResource WtsTextBlockProjectConfigurationComboBoxHeaderStyle}" />
+                    Style="{StaticResource TSTextBlockProjectConfigurationComboBoxHeaderStyle}" />
                 <ComboBox
                     ItemsSource="{Binding ProjectTypes}"
                     SelectedItem="{Binding SelectedProjectType, Mode=TwoWay}"
                     Margin="{StaticResource Margin_S_TopBottom}"
                     ItemTemplate="{StaticResource MetadataDisplayNameTemplate}"
-                    Style="{StaticResource WtsComboBoxStyle}"
+                    Style="{StaticResource TSComboBoxStyle}"
                     AutomationProperties.Name="{x:Static res:StringRes.ProjectConfigurationSelectProjectType}"/>
                 <TextBlock
                     Text="{Binding SelectedProjectType.Summary}"
                     Margin="{StaticResource Margin_S_Bottom}"
-                    Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}"/>
+                    Style="{StaticResource TSTextBlockProjectConfigurationDescriptionStyle}"/>
 
                 <TextBlock
                     Text="{x:Static res:StringRes.ProjectConfigurationSelectFramework}"
                     Margin="{StaticResource Margin_M_Top}"
-                    Style="{StaticResource WtsTextBlockProjectConfigurationComboBoxHeaderStyle}"/>
+                    Style="{StaticResource TSTextBlockProjectConfigurationComboBoxHeaderStyle}"/>
                 <ComboBox
                     ItemsSource="{Binding Frameworks}"
                     SelectedItem="{Binding SelectedFramework, Mode=TwoWay}"
                     Margin="{StaticResource Margin_S_TopBottom}"
                     ItemTemplate="{StaticResource MetadataDisplayNameTemplate}"
-                    Style="{StaticResource WtsComboBoxStyle}"
+                    Style="{StaticResource TSComboBoxStyle}"
                     AutomationProperties.Name="{x:Static res:StringRes.ProjectConfigurationSelectFramework}" />
                 <TextBlock
                     Text="{Binding SelectedFramework.Summary}"
                     Margin="{StaticResource Margin_S_Bottom}"
-                    Style="{StaticResource WtsTextBlockProjectConfigurationDescriptionStyle}"/>
+                    Style="{StaticResource TSTextBlockProjectConfigurationDescriptionStyle}"/>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="1" Style="{StaticResource WtsGridMainFooter}">
+        <Grid Grid.Row="1" Style="{StaticResource TSGridMainFooter}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_LeftTopRightBottom}">
-                <Button Style="{StaticResource WtsButtonFinish}" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding AcceptCommand}" />
-                <Button Style="{StaticResource WtsButton}" Content="{x:Static res:StringRes.ButtonCancel}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" />
+                <Button Style="{StaticResource TSButtonFinish}" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding AcceptCommand}" />
+                <Button Style="{StaticResource TSButton}" Content="{x:Static res:StringRes.ButtonCancel}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" />
             </StackPanel>
         </Grid>
-        <Button Style="{StaticResource WtsButtonCloseWindow}" Command="{Binding CancelCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" />
+        <Button Style="{StaticResource TSButtonCloseWindow}" Command="{Binding CancelCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" />
     </Grid>
 </Window>

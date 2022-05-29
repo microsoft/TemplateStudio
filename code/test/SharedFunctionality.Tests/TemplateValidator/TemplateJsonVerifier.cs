@@ -159,7 +159,7 @@ namespace TemplateValidator
                 "configtype", "configvalue",
                 "pagetype",
                 "canExecuteChangedMethodName",
-                "wts.generation.appmodel",
+                "ts.generation.appmodel",
             };
 
             foreach (var symbol in template.Symbols)
@@ -184,49 +184,49 @@ namespace TemplateValidator
                         VerifyTypeTagValue(tag, results);
                         break;
                     case "ts.type":
-                        VerifyWtsTypeTagValue(tag, results);
-                        VerifyWtsTypeFeatureMultipleInstancesRule(tag, template, results);
+                        VerifyTSTypeTagValue(tag, results);
+                        VerifyTSTypeFeatureMultipleInstancesRule(tag, template, results);
                         break;
                     case "ts.order":
-                        VerifyWtsOrderTagValue(results);
+                        VerifyTSOrderTagValue(results);
                         break;
                     case "ts.displayOrder":
-                        VerifyWtsDisplayOrderTagValue(tag, results);
+                        VerifyTSDisplayOrderTagValue(tag, results);
                         break;
                     case "ts.compositionOrder":
-                        VerifyWtsCompositionOrderTagValue(tag, results);
+                        VerifyTSCompositionOrderTagValue(tag, results);
                         break;
                     case "ts.frontendframework":
                     case "ts.backendframework":
-                        VerifyWtsFrameworkTagValue(tag, results);
+                        VerifyTSFrameworkTagValue(tag, results);
                         break;
                     case "ts.projecttype":
-                        VerifyWtsProjecttypeTagValue(tag, results);
+                        VerifyTSProjecttypeTagValue(tag, results);
                         break;
                     case "ts.platform":
                         VerifyPlatformTagValue(tag, results);
                         break;
                     case "ts.version":
-                        VerifyWtsVersionTagValue(tag, results);
+                        VerifyTSVersionTagValue(tag, results);
                         break;
                     case "ts.genGroup":
-                        VerifyWtsGengroupTagValue(tag, results);
+                        VerifyTSGengroupTagValue(tag, results);
                         break;
                     case "ts.rightClickEnabled":
-                        VerifyWtsRightclickenabledTagValue(tag, results);
+                        VerifyTSRightclickenabledTagValue(tag, results);
                         break;
                     case "ts.compositionFilter":
-                        VerifyWtsCompositionFilterTagValue(tag, results);
-                        VerifyWtsCompositionFilterLogic(template, tag, results);
+                        VerifyTSCompositionFilterTagValue(tag, results);
+                        VerifyTSCompositionFilterLogic(template, tag, results);
                         break;
                     case "ts.licenses":
-                        VerifyWtsLicensesTagValue(tag, results);
+                        VerifyTSLicensesTagValue(tag, results);
                         break;
                     case "ts.group":
-                        VerifyWtsGroupTagValue(tag, results);
+                        VerifyTSGroupTagValue(tag, results);
                         break;
                     case "ts.multipleInstance":
-                        VerifyWtsMultipleinstanceTagValue(tag, results);
+                        VerifyTSMultipleinstanceTagValue(tag, results);
                         break;
                     case "ts.dependencies":
                         // This value is checked with the TemplateFolderVerifier
@@ -237,19 +237,19 @@ namespace TemplateValidator
                     case "ts.exclusions":
                     // This value is checked with the TemplateFolderVerifier
                     case "ts.defaultInstance":
-                        VerifyWtsDefaultinstanceTagValue(tag, results);
+                        VerifyTSDefaultinstanceTagValue(tag, results);
                         break;
                     case "ts.isHidden":
-                        VerifyWtsIshiddenTagValue(tag, results);
+                        VerifyTSIshiddenTagValue(tag, results);
                         break;
                     case "ts.isGroupExclusiveSelection":
-                        VerifyWtsWtsIsGroupExclusiveSelectionTagValue(tag, results);
+                        VerifyTSIsGroupExclusiveSelectionTagValue(tag, results);
                         break;
                     case "ts.telemName":
-                        VerifyWtsTelemNameTagValue(tag, results);
+                        VerifyTSTelemNameTagValue(tag, results);
                         break;
                     case "ts.outputToParent":
-                        VerifyWtsOutputToParentTagValue(tag, results);
+                        VerifyTSOutputToParentTagValue(tag, results);
                         break;
                     case "ts.requiredVsWorkload":
                         VerifyRequiredVsWorkloadTagValue(tag, results);
@@ -261,34 +261,34 @@ namespace TemplateValidator
                         VerifyRequiredVersionsTagValue(tag, results);
                         break;
                     case "ts.export.baseclass":
-                        VerifyWtsExportBaseclassTagValue(tag, results);
+                        VerifyTSExportBaseclassTagValue(tag, results);
                         break;
                     case "ts.export.setter":
-                        VerifyWtsExportSetterTagValue(tag, results);
+                        VerifyTSExportSetterTagValue(tag, results);
                         break;
                     case "ts.export.configtype":
-                        VerifyWtsExportConfigTypeTagValue(tag, results);
+                        VerifyTSExportConfigTypeTagValue(tag, results);
                         break;
                     case "ts.export.configvalue":
-                        VerifyWtsExportConfigValueTagValue(tag, results);
+                        VerifyTSExportConfigValueTagValue(tag, results);
                         break;
                     case "ts.export.commandclass":
-                        VerifyWtsExportCommandClassTagValue(tag, results);
+                        VerifyTSExportCommandClassTagValue(tag, results);
                         break;
                     case "ts.export.pagetype":
-                        VerifyWtsExportPageTypeTagValue(tag, results);
+                        VerifyTSExportPageTypeTagValue(tag, results);
                         break;
                     case "ts.export.canExecuteChangedMethodName":
-                        VerifyWtsExportCanExecuteChangedMethodNameTagValue(tag, results);
+                        VerifyTSExportCanExecuteChangedMethodNameTagValue(tag, results);
                         break;
                     case "ts.export.onNavigatedToParams":
-                        VerifyWtsExportOnNavigatedToParamsTagValue(tag, results);
+                        VerifyTSExportOnNavigatedToParamsTagValue(tag, results);
                         break;
                     case "ts.export.onNavigatedFromParams":
-                        VerifyWtsExportOnNavigatedFromParamsTagValue(tag, results);
+                        VerifyTSExportOnNavigatedFromParamsTagValue(tag, results);
                         break;
                     case "ts.appmodel":
-                        VerifyWtsAppModelTagValue(tag, results);
+                        VerifyTSAppModelTagValue(tag, results);
                         break;
                     default:
                         results.Add($"Unknown tag '{tag.Key}' specified in the file.");
@@ -302,7 +302,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsOutputToParentTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSOutputToParentTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!BoolStrings.Contains(tag.Value))
             {
@@ -310,7 +310,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsTelemNameTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSTelemNameTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (string.IsNullOrWhiteSpace(tag.Value))
             {
@@ -326,7 +326,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsIshiddenTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSIshiddenTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!BoolStrings.Contains(tag.Value))
             {
@@ -334,7 +334,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsWtsIsGroupExclusiveSelectionTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSIsGroupExclusiveSelectionTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!BoolStrings.Contains(tag.Value))
             {
@@ -342,7 +342,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsExportBaseclassTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSExportBaseclassTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!new[] { "Observable", "ObservableObject", "ViewModelBase", "INotifyPropertyChanged", "Screen", "PropertyChangedBase", "BindableBase", "ObservableRecipient" }.Contains(tag.Value))
             {
@@ -350,7 +350,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsExportSetterTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSExportSetterTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!new[] { "Set", "SetProperty" }.Contains(tag.Value))
             {
@@ -358,7 +358,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsExportConfigTypeTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSExportConfigTypeTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!new[] { "IOptions<AppConfig>", "AppConfig" }.Contains(tag.Value))
             {
@@ -366,7 +366,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsExportConfigValueTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSExportConfigValueTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!new[] { "appConfig.Value", "appConfig" }.Contains(tag.Value))
             {
@@ -374,7 +374,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsExportCommandClassTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSExportCommandClassTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!new[] { "RelayCommand", "DelegateCommand" }.Contains(tag.Value))
             {
@@ -382,7 +382,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsExportPageTypeTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSExportPageTypeTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!new[] { "Page", "UserControl" }.Contains(tag.Value))
             {
@@ -390,7 +390,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsExportCanExecuteChangedMethodNameTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSExportCanExecuteChangedMethodNameTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!new[] { "OnCanExecuteChanged", "RaiseCanExecuteChanged", "NotifyCanExecuteChanged" }.Contains(tag.Value))
             {
@@ -398,7 +398,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsExportOnNavigatedToParamsTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSExportOnNavigatedToParamsTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!new[] { "object parameter", "NavigationContext navigationContext" }.Contains(tag.Value))
             {
@@ -406,7 +406,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsExportOnNavigatedFromParamsTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSExportOnNavigatedFromParamsTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!new[] { string.Empty, "NavigationContext navigationContext" }.Contains(tag.Value))
             {
@@ -414,7 +414,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsAppModelTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSAppModelTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!new[] { "all", "Desktop", "Uwp" }.Contains(tag.Value))
             {
@@ -422,7 +422,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsDefaultinstanceTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSDefaultinstanceTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (string.IsNullOrWhiteSpace(tag.Value))
             {
@@ -430,7 +430,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsMultipleinstanceTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSMultipleinstanceTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!BoolStrings.Contains(tag.Value))
             {
@@ -438,7 +438,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsGroupTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSGroupTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!new[] { "Analytics", "BackgroundWork", "UserInteraction", "ApplicationLifecycle", "ApplicationLaunching", "ConnectedExperiences", "Identity", "Testing", "Data", "Tools", "Packaging" }.Contains(tag.Value))
             {
@@ -446,7 +446,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsLicensesTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSLicensesTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             // Allow for multiple pipe separated links
             var values = tag.Value.Split('|');
@@ -461,7 +461,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsCompositionFilterTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSCompositionFilterTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             try
             {
@@ -473,7 +473,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsCompositionFilterLogic(ValidationTemplateInfo template, KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSCompositionFilterLogic(ValidationTemplateInfo template, KeyValuePair<string, string> tag, List<string> results)
         {
             // Ensure VB templates refer to VB identities
             if (template.TagsCollection["language"] == ProgrammingLanguages.VisualBasic)
@@ -486,7 +486,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsRightclickenabledTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSRightclickenabledTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!BoolStrings.Contains(tag.Value))
             {
@@ -494,7 +494,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsGengroupTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSGengroupTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!int.TryParse(tag.Value, out int ignoredGetGroupResult))
             {
@@ -502,7 +502,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsVersionTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSVersionTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!new Regex(@"^\d{1,2}.\d{1,2}.\d{1,2}$").IsMatch(tag.Value))
             {
@@ -511,13 +511,13 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsProjecttypeTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSProjecttypeTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             // This is only used in the configuration of the project
             // This tag may contain a single value or multiple ones separated by the pipe character
             foreach (var projectType in tag.Value.Split('|'))
             {
-                if (!new[] { "Blank", "BlankAdvanced", "SplitView", "TabbedNav", "MenuBar", "all" }.Contains(projectType))
+                if (!new[] { "Blank", "SplitView", "TabbedNav", "MenuBar", "all" }.Contains(projectType))
                 {
                     results.Add($"Invalid value '{tag.Value}' specified in the ts.projecttype tag.");
                 }
@@ -530,7 +530,7 @@ namespace TemplateValidator
 
         private static string[] AllFrameworks { get; } = new[] { "CodeBehind", "Prism", "MVVMToolkit" };
 
-        private static void VerifyWtsFrameworkTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSFrameworkTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             // This tag may contain a single value or multiple ones separated by the pipe character
             if (tag.Value != "all")
@@ -570,12 +570,12 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsOrderTagValue(List<string> results)
+        private static void VerifyTSOrderTagValue(List<string> results)
         {
             results.Add($"The ts.order tag is no longer supported. Please use the ts.displayOrder or the ts.compositionOrder tag.");
         }
 
-        private static void VerifyWtsDisplayOrderTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSDisplayOrderTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!int.TryParse(tag.Value, out int ignoredOrderResult))
             {
@@ -583,7 +583,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsCompositionOrderTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSCompositionOrderTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!int.TryParse(tag.Value, out int ignoredOrderResult))
             {
@@ -591,7 +591,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsTypeTagValue(KeyValuePair<string, string> tag, List<string> results)
+        private static void VerifyTSTypeTagValue(KeyValuePair<string, string> tag, List<string> results)
         {
             if (!new[] { "composition", "page", "feature", "service", "testing" }.Contains(tag.Value))
             {
@@ -599,7 +599,7 @@ namespace TemplateValidator
             }
         }
 
-        private static void VerifyWtsTypeFeatureMultipleInstancesRule(KeyValuePair<string, string> tag, ValidationTemplateInfo template, List<string> results)
+        private static void VerifyTSTypeFeatureMultipleInstancesRule(KeyValuePair<string, string> tag, ValidationTemplateInfo template, List<string> results)
         {
             if ("feature".Equals(tag.Value, StringComparison.Ordinal))
             {

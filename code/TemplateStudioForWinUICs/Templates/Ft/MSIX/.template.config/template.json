@@ -8,7 +8,7 @@
   "shortName": "MSIX Packaging",
   "groupIdentity": "ts.WinUI.Feat.MSIXPackaging",
   "identity": "ts.WinUI.Feat.MSIXPackaging",
-  "description": "Allows packages creation for side-loading or distribution via Microsoft Store.",
+  "description": "Package with MSIX for sideloading or distribution via the Microsoft Store.",
   "tags": {
     "language": "C#",
     "type": "project",
@@ -19,61 +19,55 @@
     "ts.appmodel": "Desktop",
     "ts.version": "1.0.0",
     "ts.genGroup": "0",
-    "ts.group": "Packaging",
+    "ts.group": "Deployment",
     "ts.displayOrder": "1",
     "ts.defaultInstance": "MSIX Packaging",
     "ts.multipleInstance": "false",
     "ts.rightClickEnabled": "false"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "Param_ItemName",
   "preferNameDirectory": true,
   "guids": ["07ad151b-a614-4a13-aef0-5378d3f98e67"],
   "PrimaryOutputs": [
   ],
   "symbols": {
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.userName":
+    "ts.userName":
     {
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_UserName"
     },
-    "wts.wizardVersion":
+    "ts.wizardVersion":
     {
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_Wizard.Version"
     },
-    "wts.templatesVersion":
-    {
-      "type": "parameter",
-      "dataType": "string",
-      "replaces": "Param_Templates.Version"
-    },
-    "wts.generationProjectType":
+    "ts.generationProjectType":
     {
       "type": "parameter",
       "replaces": "Param_ProjectType"
     },
-    "wts.generationFrontEndFramework":
+    "ts.generationFrontEndFramework":
     {
       "type": "parameter",
       "replaces": "Param_Framework"
     },
-    "wts.generationPlatform":
+    "ts.generationPlatform":
     {
       "type": "parameter",
       "replaces": "Param_Platform"
     },
-    "wts.generation.appmodel":
+    "ts.generation.appmodel":
     {
       "type": "parameter",
       "replaces": "Param_AppModel"

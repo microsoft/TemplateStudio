@@ -1,0 +1,11 @@
+﻿<Page
+    Style="{StaticResource PageStyle}">
+    <ScrollViewer>
+        <StackPanel
+            MaxWidth="650">
+<!--{[{-->
+            <TextBlock x:Uid="Param_ItemName_Title" Style="{StaticResource PageTitleStyle}" />
+<!--}]}-->
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -16,13 +16,13 @@
     "ts.outputToParent": "true",
     "ts.compositionFilter": "identity == ts.WPF.Feat.MSIXPackaging & $feature == ts.WPF.Feat.ToastNotifications"
   },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "guids": ["5b23992e-eb23-4f0b-88bf-52a7527620f4"],
     "PrimaryOutputs": [
     ],
     "symbols": {
-      "wts.projectName": {
+      "ts.projectName": {
         "type": "parameter",
         "replaces": "Param_ProjectName",
         "fileRename": "Param_ProjectName"

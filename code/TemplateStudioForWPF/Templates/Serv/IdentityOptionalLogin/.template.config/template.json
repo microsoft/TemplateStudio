@@ -27,7 +27,7 @@
     "ts.rightClickEnabled":"false",
     "ts.licenses": "[Microsoft.Identity.Client](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/blob/master/LICENSE)|[Microsoft.Extensions.Http](https://github.com/dotnet/extensions/blob/master/LICENSE.txt)"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
@@ -38,7 +38,7 @@
     }
   ],
   "symbols": {
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },

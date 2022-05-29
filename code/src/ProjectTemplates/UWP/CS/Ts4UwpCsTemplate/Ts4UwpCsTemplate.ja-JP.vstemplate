@@ -9,7 +9,7 @@
 		<ProjectType>CSharp</ProjectType>
 		<LanguageTag>csharp</LanguageTag>
 		<SortOrder>10</SortOrder>
-		<TemplateID>61f19320-3820-4efd-a3e8-e1b1cca3352f</TemplateID>
+        <TemplateID>4EB69C1D-F03A-4842-9466-7A33EBB84528</TemplateID>
 		<CreateNewFolder>true</CreateNewFolder>
 		<DefaultName>App</DefaultName>
 		<ProvideDefaultName>true</ProvideDefaultName>
@@ -24,7 +24,6 @@
 			<CustomParameter Name="$ts.platform$" Value="Uwp"/>
 			<CustomParameter Name="$ts.language$" Value="C#"/>
 			<CustomParameter Name="$ts.category$" Value="TemplateStudio"/>
-			<CustomParameter Name="$ts.version$" Value="5.0"/>
 			<CustomParameter Name="$ts.requiredversion$" Value="17.0"/>
 			<CustomParameter Name="$ts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.Universal"/>
 		</CustomParameters>

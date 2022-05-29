@@ -118,7 +118,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                 });
 
             var genParams = new Dictionary<string, string>();
-            genParams.Add("wts.projectName", "TestProject");
+            genParams.Add(GenParams.ProjectName, "TestProject");
 
             var mergePostAction = new AddSdkReferencesToContextPostAction(templateName, postAction, genParams, destPath);
             mergePostAction.Execute();

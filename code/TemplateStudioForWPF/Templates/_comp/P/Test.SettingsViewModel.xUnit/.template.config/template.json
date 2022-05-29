@@ -17,18 +17,18 @@
     "ts.compositionFilter": "$frontendframework == Prism & $testing == ts.WPF.Testing.UnitTests.App.xUnit & $page == ts.WPF.Page.Settings",
     "ts.compositionOrder" : "1"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     { "path": "Param_ProjectName.Tests.xUnit/SettingsViewModelTests.cs" }
   ],
   "symbols": {
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     }

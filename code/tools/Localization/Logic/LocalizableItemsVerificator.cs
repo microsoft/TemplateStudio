@@ -50,8 +50,8 @@ namespace Localization
             Execute(VerifyTemplateFeatures, "Verifying template features");
             Execute(VerifyTemplateServices, "Verifying template services");
             Execute(VerifyTemplateTesting, "Verifying template testing");
-            Execute(VerifyWtsProjectTypes, "Verifying project types");
-            Execute(VerifyWtsFrameworks, "Verifying project frameworks");
+            Execute(VerifyTSProjectTypes, "Verifying project types");
+            Execute(VerifyTSFrameworks, "Verifying project frameworks");
             Execute(VerifyResourceFiles, "Verifying resources");
 
             return _verificationResult;
@@ -101,14 +101,14 @@ namespace Localization
             VerifyTemplateItem(Routes.TemplatesTestingPatternPath);
         }
 
-        private void VerifyWtsProjectTypes()
+        private void VerifyTSProjectTypes()
         {
-            VerifyWtsItem(Routes.WtsProjectTypes);
+            VerifyTSItem(Routes.WtsProjectTypes);
         }
 
-        private void VerifyWtsFrameworks()
+        private void VerifyTSFrameworks()
         {
-            VerifyWtsItem(Routes.WtsFrameworks);
+            VerifyTSItem(Routes.WtsFrameworks);
         }
 
         private void VerifyResourceFiles()
@@ -173,7 +173,7 @@ namespace Localization
             }
         }
 
-        private void VerifyWtsItem(string wtsTemplateName)
+        private void VerifyTSItem(string wtsTemplateName)
         {
             var fileName = string.Concat(wtsTemplateName, ".json");
             foreach (string platform in Routes.TemplatesPlatforms)

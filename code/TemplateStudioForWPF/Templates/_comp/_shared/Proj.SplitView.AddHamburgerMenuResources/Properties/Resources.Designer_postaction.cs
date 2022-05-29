@@ -1,14 +1,16 @@
-﻿public class Resources {
-//^^
-//{[{
+﻿    public class Resources {
+        //^^
+        //{[{
 
-    /// <summary>
-    ///   Looks up a localized string similar to wts.ItemName.
-    /// </summary>
-    public static string Shellwts.ItemNamePage {
-        get {
-            return ResourceManager.GetString("Shellwts.ItemNamePage", resourceCulture);
+        /// <summary>
+        ///   Looks up a localized string similar to ts.ItemName.
+        /// </summary>
+        public static string Shellts.ItemNamePage
+        {
+            get
+            {
+                return ResourceManager.GetString("Shellts.ItemNamePage", resourceCulture);
+            }
         }
+        //}]}
     }
-//}]}
-}

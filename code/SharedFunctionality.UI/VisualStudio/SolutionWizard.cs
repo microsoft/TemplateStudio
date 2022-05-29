@@ -56,14 +56,12 @@ namespace Microsoft.Templates.UI.VisualStudio
             _platform = _replacementsDictionary.SafeGet("$ts.platform$");
             _appModel = _replacementsDictionary.SafeGet("$ts.appmodel$");
             _language = _replacementsDictionary.SafeGet("$ts.language$");
-            var templateVersion = _replacementsDictionary.SafeGet("$ts.version$");
 
-            TelemetryService.Current.TemplateVersion = templateVersion;
             TelemetryService.Current.WizardVersion = GenContext.GetWizardVersionFromAssembly().ToString();
 
             if (GenContext.CurrentLanguage != _language || GenContext.CurrentPlatform != _platform)
             {
-                GenContext.Bootstrap(new VsixTemplatesSource(string.Empty, platform: _platform), new VsGenShell(), _platform, _language, templateVersion);
+                GenContext.Bootstrap(new VsixTemplatesSource(string.Empty, platform: _platform), new VsGenShell(), _platform, _language);
             }
         }
 

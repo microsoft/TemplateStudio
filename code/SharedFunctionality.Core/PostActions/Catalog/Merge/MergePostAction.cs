@@ -55,7 +55,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             if (!result.Success)
             {
-                HandleLineNotFound(originalFilePath, result.ErrorLine);
+                HandleLineNotFound(originalFilePath, result.ErrorLine, result.ErrorLineNumber);
                 return;
             }
 
@@ -139,15 +139,17 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             HandleFailedMergePostActions(relativeFilePath, MergeFailureType.FileNotFound, suffix, errorMessage);
         }
 
-        protected void HandleLineNotFound(string originalFilePath, string errorLine)
+        protected void HandleLineNotFound(string originalFilePath, string errorLine, int errorLineNumber)
         {
+            var formattedErrorLine = $"({errorLineNumber})'{errorLine}'";
+
             if (Config.FailOnError)
             {
-                throw new InvalidDataException(string.Format(StringRes.MergeLineNotFoundExceptionMessage, errorLine, originalFilePath, RelatedTemplate));
+                throw new InvalidDataException(string.Format(StringRes.MergeLineNotFoundExceptionMessage, formattedErrorLine, originalFilePath, RelatedTemplate));
             }
 
             var relativeFilePath = originalFilePath.GetPathRelativeToGenerationParentPath();
-            var errorMessage = string.Format(StringRes.FailedMergePostActionLineNotFound, errorLine.Trim(), relativeFilePath, RelatedTemplate);
+            var errorMessage = string.Format(StringRes.FailedMergePostActionLineNotFound, formattedErrorLine, relativeFilePath, RelatedTemplate);
 
             HandleFailedMergePostActions(relativeFilePath, MergeFailureType.LineNotFound, MergeConfiguration.Suffix, errorMessage);
         }

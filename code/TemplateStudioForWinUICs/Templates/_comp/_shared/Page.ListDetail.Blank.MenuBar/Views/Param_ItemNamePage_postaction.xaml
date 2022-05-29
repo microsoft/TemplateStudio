@@ -1,0 +1,13 @@
+﻿<Page
+    mc:Ignorable="d">
+
+    <Grid x:Name="ContentArea">
+        <controls:ListDetailsView
+            x:Uid="Param_ItemName"
+            x:Name="ListDetailsViewControl"
+<!--{[{-->
+            BackButtonBehavior="Inline"
+<!--}]}-->
+            ViewStateChanged="OnViewStateChanged"/>
+    </Grid>
+</Page>

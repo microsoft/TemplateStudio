@@ -35,7 +35,7 @@ To address this, we will be splitting up the single extension into multiple exte
 
 By splitting up the extensions like this, you will only need to install the workloads that you need to create the projects you care about.
 
-As part of this change, we will also be removing "Windows" from the extension names as shown above. We have seen requests for Windows Template Studio support for other frameworks like [MAUI](https://github.com/microsoft/TemplateStudio/issues/4117) and [Uno](https://github.com/microsoft/TemplateStudio/issues/2658) that are not Windows-specific. While we're not committing to supporting these frameworks right now, removing "Windows" from the extension name better facilitates that in the future, and the additional "for &lt;FRAMEWORK&gt;" qualifier we are adding to the name by splitting up the extension makes it clear what platform you are targeting. To align with the new naming convention, we have renamed the repository from microsoft/TemplateStudio to microsoft/TemplateStudio. Links to the old repository name should redirect to the new name.
+As part of this change, we will also be removing "Windows" from the extension names as shown above. We have seen requests for Windows Template Studio support for other frameworks like [MAUI](https://github.com/microsoft/TemplateStudio/issues/4117) and [Uno](https://github.com/microsoft/TemplateStudio/issues/2658) that are not Windows-specific. While we're not committing to supporting these frameworks right now, removing "Windows" from the extension name better facilitates that in the future, and the additional "for &lt;FRAMEWORK&gt;" qualifier we are adding to the name by splitting up the extension makes it clear what platform you are targeting. To align with the new naming convention, we have renamed the repository from microsoft/WindowsTemplateStudio to microsoft/TemplateStudio. Links to the old repository name should redirect to the new name.
 
 ## Updating WinUI and WPF templates to .NET 6.0
 
@@ -63,7 +63,14 @@ We will be refactoring and optimizing our CI pipelines to support the new multi-
 
 DISCLAIMER: The roadmap is subject to change.
 
+## Upcoming releases
+- [5.1 - June 2022](https://github.com/microsoft/TemplateStudio/milestone/34)
+  - UX refresh aligned with latest WinUI 3 design guidelines
+  - Update to Windows App SDK 1.1 and add Self-Contained Deployment
+  - Improved code style and CA fixes
+
 ## Past releases
+- [5.0 - April 2022](https://github.com/microsoft/TemplateStudio/releases/tag/v5.0)
 - [4.1 - June 2021](https://github.com/microsoft/TemplateStudio/milestone/32)
 - [4.0 - June 2021](https://github.com/microsoft/TemplateStudio/milestone/31)
 - [3.10 - May 2021](https://github.com/microsoft/TemplateStudio/issues?q=is%3Aissue+milestone%3A3.10)

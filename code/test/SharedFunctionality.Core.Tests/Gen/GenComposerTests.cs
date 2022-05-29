@@ -205,7 +205,7 @@ namespace Microsoft.Templates.Core.Test.Gen
 
             AssertBasicParameters(genQueue, context);
 
-            var property = new KeyValuePair<string, string>("wts.generation.pb1", "value1");
+            var property = new KeyValuePair<string, string>("ts.generation.pb1", "value1");
 
             Assert.True(genQueue.Where(g => g.Name == "ProjectTemplatePropertyBag").All(g => g.Parameters.Contains(property)));
         }
@@ -224,7 +224,6 @@ namespace Microsoft.Templates.Core.Test.Gen
             // Check project params
             var userName = new KeyValuePair<string, string>(GenParams.Username, Environment.UserName);
             var wizardVersion = new KeyValuePair<string, string>(GenParams.WizardVersion, string.Concat("v", GenContext.ToolBox.WizardVersion));
-            var templatesVersion = new KeyValuePair<string, string>(GenParams.TemplatesVersion, string.Concat("v", GenContext.ToolBox.TemplatesVersion));
             var projectType = new KeyValuePair<string, string>(GenParams.ProjectType, context.ProjectType);
             var frontentFramework = new KeyValuePair<string, string>(GenParams.FrontEndFramework, context.FrontEndFramework);
             var platform = new KeyValuePair<string, string>(GenParams.Platform, context.Platform);
@@ -234,9 +233,6 @@ namespace Microsoft.Templates.Core.Test.Gen
 
             Assert.True(genQueue.Where(g => g.Template.GetTemplateOutputType() == TemplateOutputType.Project).All(g => g.Parameters.Contains(wizardVersion)));
             Assert.True(genQueue.Where(g => g.Template.GetTemplateOutputType() == TemplateOutputType.Item).All(g => !g.Parameters.Contains(wizardVersion)));
-
-            Assert.True(genQueue.Where(g => g.Template.GetTemplateOutputType() == TemplateOutputType.Project).All(g => g.Parameters.Contains(templatesVersion)));
-            Assert.True(genQueue.Where(g => g.Template.GetTemplateOutputType() == TemplateOutputType.Item).All(g => !g.Parameters.Contains(templatesVersion)));
 
             Assert.True(genQueue.Where(g => g.Template.GetTemplateOutputType() == TemplateOutputType.Project).All(g => g.Parameters.Contains(projectType)));
             Assert.True(genQueue.Where(g => g.Template.GetTemplateOutputType() == TemplateOutputType.Item).All(g => !g.Parameters.Contains(projectType)));

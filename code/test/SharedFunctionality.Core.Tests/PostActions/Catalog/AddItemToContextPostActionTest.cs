@@ -61,7 +61,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             var genParams = new Dictionary<string, string>
             {
-                { "wts.projectName", "Project" },
+                { GenParams.ProjectName, "Project" },
             };
 
             var mergePostAction = new AddItemToContextPostAction(templateName, testPrimaryOutputs, genParams, destPath);

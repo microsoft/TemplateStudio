@@ -2,27 +2,19 @@
 {
     public class ShellViewModel : ObservableRecipient
     {
-        private bool _isBackEnabled;
-        private object _selected;
+        private ICommand _menuFileExitCommand;
 //{[{
-        private ICommand _menuFilewts.ItemNameCommand;
+        private ICommand _menuParam_ItemNameCommand;
 //}]}
-        public ICommand MenuFileExitCommand => _menuFileExitCommand ?? (_menuFileExitCommand = new RelayCommand(OnMenuFileExit));
+        public ICommand MenuFileExitCommand => _menuFileExitCommand ??= new RelayCommand(OnMenuFileExit);
 //{[{
 
-        public ICommand MenuFilewts.ItemNameCommand => _menuFilewts.ItemNameCommand ?? (_menuFilewts.ItemNameCommand = new RelayCommand(OnMenuFilewts.ItemName));
+        public ICommand MenuParam_ItemNameCommand => _menuParam_ItemNameCommand ??= new RelayCommand(OnMenuParam_ItemName);
 //}]}
-        public ShellViewModel(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
-        {
-//^^
-//{[{
-            RightPaneService = rightPaneService;
-//}]}
-        }
-//^^
+        private void OnMenuFileExit() => Application.Current.Exit();
 //{[{
 
-        private void OnMenuFilewts.ItemName() => RightPaneService.OpenInRightPane(typeof(wts.ItemNameViewModel).FullName);
+        private void OnMenuParam_ItemName() => NavigationService.NavigateTo(typeof(Param_ItemNameViewModel).FullName);
 //}]}
     }
 }

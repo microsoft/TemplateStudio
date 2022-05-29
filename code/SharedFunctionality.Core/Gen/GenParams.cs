@@ -6,16 +6,15 @@ namespace Microsoft.Templates.Core.Gen
 {
     public class GenParams
     {
-        public const string Username = "wts.userName";
-        public const string RootNamespace = "wts.rootNamespace";
-        public const string WizardVersion = "wts.wizardVersion";
-        public const string TemplatesVersion = "wts.templatesVersion";
-        public const string HomePageName = "wts.homePageName";
-        public const string ProjectType = "wts.generationProjectType";
-        public const string FrontEndFramework = "wts.generationFrontEndFramework";
-        public const string BackEndFramework = "wts.generationBackEndFramework";
-        public const string Platform = "wts.generationPlatform";
-        public const string GenerationPropertiesPrefix = "wts.generation";
-        public const string ProjectName = "wts.projectName";
+        public const string Username = "ts.userName";
+        public const string RootNamespace = "ts.rootNamespace";
+        public const string WizardVersion = "ts.wizardVersion";
+        public const string HomePageName = "ts.homePageName";
+        public const string ProjectType = "ts.generationProjectType";
+        public const string FrontEndFramework = "ts.generationFrontEndFramework";
+        public const string BackEndFramework = "ts.generationBackEndFramework";
+        public const string Platform = "ts.generationPlatform";
+        public const string GenerationPropertiesPrefix = "ts.generation";
+        public const string ProjectName = "ts.projectName";
     }
 }

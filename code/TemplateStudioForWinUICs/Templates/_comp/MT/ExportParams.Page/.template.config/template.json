@@ -16,7 +16,7 @@
       "ts.compositionFilter": "$frontendframework == MVVMToolkit & ts.type == page",
       "ts.export.baseclass": "ObservableRecipient"
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "Param_ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],

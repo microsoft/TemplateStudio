@@ -1,3 +1,5 @@
-﻿Dieses Basisprojekt ist ein leerer Zeichenbereich, in dem Sie Ihre App erstellen können.
+﻿Dieser Projekttyp stellt eine Ordnerstruktur bereit, mit den wichtigsten Ordner für Dienste, Stile, Ansichten und ViewModels.
 
-Es stellt kein Gerüst bereit und überlässt alles Weitere Ihnen.
+Es bietet auch einen minimalen Satz von Stilen, Schriftgrößen und Dickenwerten, die Sie verwenden können, um Ihren App-Stil zu erstellen.
+
+Dieser Projekttyp umfasst auch grundlegende Dienste für die Aktivierung und Navigation. Beim Starten der Anwendung wird die Navigation zur Startseite mit diesen Diensten durchgeführt.

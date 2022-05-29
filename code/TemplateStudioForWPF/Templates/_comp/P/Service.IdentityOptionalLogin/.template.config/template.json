@@ -16,12 +16,12 @@
     "ts.compositionFilter": "$frontendframework == Prism & groupidentity == ts.WPF.Service.IdentityOptionalLogin",
     "ts.licenses": "[Prism.Container.Extensions](https://github.com/dansiegel/Prism.Container.Extensions/blob/master/LICENSE)"
   },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],
     "symbols": {
-      "wts.rootNamespace": {
+      "ts.rootNamespace": {
         "type": "parameter",
         "replaces": "Param_RootNamespace"
       },

@@ -1621,7 +1621,7 @@ namespace Microsoft.Templates.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The name cannot end with &apos;Page&apos; as this will be automatically added. [More info about naming.]({0}WTSNaming.md).
+        ///   Looks up a localized string similar to The name cannot end with &apos;Page&apos; as this will be automatically added. [More info about naming.]({0}naming.md).
         /// </summary>
         public static string NotificationValidationError_PageSuffix {
             get {
@@ -1657,7 +1657,7 @@ namespace Microsoft.Templates.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Note that &apos;Page&apos; will be added to the end of the specified name. [More info about naming.]({0}WTSNaming.md).
+        ///   Looks up a localized string similar to Note that &apos;Page&apos; will be added to the end of the specified name. [More info about naming.]({0}naming.md).
         /// </summary>
         public static string NotificationValidationWarning_ViewSuffix {
             get {
@@ -2542,6 +2542,15 @@ namespace Microsoft.Templates.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deployment.
+        /// </summary>
+        public static string TemplateGroup_Deployment {
+            get {
+                return ResourceManager.GetString("TemplateGroup_Deployment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Identity (choose one).
         /// </summary>
         public static string TemplateGroup_Identity {
@@ -2801,7 +2810,7 @@ namespace Microsoft.Templates.Resources {
                 return ResourceManager.GetString("TemplatesSynchronizationWarnReadingLockFileMessage", resourceCulture);
             }
         }
-               
+        
         /// <summary>
         ///   Looks up a localized string similar to Template Studio for UWP.
         /// </summary>

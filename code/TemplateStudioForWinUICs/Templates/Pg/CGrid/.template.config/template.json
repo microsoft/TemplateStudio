@@ -13,7 +13,7 @@
     "language": "C#",
     "type": "item",
     "ts.type": "page",
-    "ts.projecttype": "BlankAdvanced|SplitView|MenuBar",
+    "ts.projecttype": "Blank|SplitView|MenuBar",
     "ts.frontendframework": "all",
     "ts.platform": "WinUI",
     "ts.appmodel": "Desktop",
@@ -25,35 +25,35 @@
     "ts.dependencies":"ts.WinUI.Feat.SampleData",
     "ts.licenses": "[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "Param_ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
-      "path": "Param_ProjectName/ViewModels/wts.ItemNameDetailViewModel.cs"
+      "path": "Param_ProjectName/ViewModels/Param_ItemNameDetailViewModel.cs"
     },
     {
-      "path": "Param_ProjectName/ViewModels/wts.ItemNameViewModel.cs"
+      "path": "Param_ProjectName/ViewModels/Param_ItemNameViewModel.cs"
     },
     {
-      "path": "Param_ProjectName/Views/wts.ItemNameDetailPage.xaml"
+      "path": "Param_ProjectName/Views/Param_ItemNameDetailPage.xaml"
     },
     {
-      "path": "Param_ProjectName/Views/wts.ItemNameDetailPage.xaml.cs"
+      "path": "Param_ProjectName/Views/Param_ItemNameDetailPage.xaml.cs"
     },
     {
-      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml"
+      "path": "Param_ProjectName/Views/Param_ItemNamePage.xaml"
     },
     {
-      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml.cs"
+      "path": "Param_ProjectName/Views/Param_ItemNamePage.xaml.cs"
     }
   ],
   "symbols": {
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },

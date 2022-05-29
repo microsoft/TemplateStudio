@@ -23,18 +23,18 @@
     "ts.rightClickEnabled":"true",
     "ts.licenses": "[NUnit](https://raw.githubusercontent.com/nunit/nunit/master/LICENSE.txt)"
   },
-  "sourceName": "wts.projectName",
+  "sourceName": "ts.projectName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     { "path": "Param_ProjectName.Core.Tests.NUnit/Param_ProjectName.Core.Tests.NUnit.csproj" }
   ],
   "symbols": {
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     }

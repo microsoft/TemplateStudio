@@ -11,8 +11,8 @@ namespace TemplateStudioForWinUICs
         public const string Name = "Template Studio for WinUI (C#)";
         public const string Description = @"Template Studio accelerates the creation of new WinUI apps using a wizard-based UI.";
         public const string Language = "en-US";
-        public const string Version = "1.0";
-        public const string Author = "Microsoft Corporation";
+        public const string Version = "5.1";
+        public const string Author = "Microsoft";
         public const string Tags = "Template Studio, WinUI, XAML, MVVM, Desktop";
     }
 }

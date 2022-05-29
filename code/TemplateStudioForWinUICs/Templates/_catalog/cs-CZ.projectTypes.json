@@ -2,11 +2,6 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "Tento základní projekt obsahuje prázdné plátno, na kterém můžete vytvořit aplikaci."
-  },
-  {
-    "name": "BlankAdvanced",
-    "displayName": "Blank Advanced",
     "summary": "Součástí balení je navigační rámec a základní služby a styly."
   },
   {

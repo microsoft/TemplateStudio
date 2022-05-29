@@ -3,9 +3,7 @@ using System.Collections.Generic;
 
 namespace Param_RootNamespace.Core.Models
 {
-    // Remove this class once your pages/features are using your data.
-    // This is used by the SampleDataService.
-    // It is the model class we use to display data on pages like Grid, Chart, and  ListDetails.
+    // Model for the SampleDataService. Replace with your own model.
     public class SampleOrder
     {
         public long OrderID { get; set; }
@@ -30,19 +28,16 @@ namespace Param_RootNamespace.Core.Models
 
         public string Status { get; set; }
 
-        public char Symbol => (char)SymbolCode;
-
         public int SymbolCode { get; set; }
 
         public string SymbolName { get; set; }
 
+        public char Symbol => (char)SymbolCode;
+
         public ICollection<SampleOrderDetail> Details { get; set; }
 
-        public override string ToString()
-        {
-            return $"{Company} {Status}";
-        }
-
         public string ShortDescription => $"Order ID: {OrderID}";
+
+        public override string ToString() => $"{Company} {Status}";
     }
 }

@@ -1,0 +1,54 @@
+parameters:
+- name: Moniker
+  type: string
+- name: BuildConfiguration
+  type: string
+- name: BuildPlatform
+  type: string
+
+jobs:
+- job:
+  displayName: Build
+  timeoutInMinutes: 240
+  pool:
+    vmImage: windows-2022
+
+  steps:
+  - checkout: self
+    clean: true
+    submodules: recursive
+
+  - task: NuGetToolInstaller@1
+    displayName: Use NuGet
+    inputs:
+      checkLatest: true
+
+  - task: NuGetCommand@2
+    displayName: NuGet restore
+    inputs:
+      solution: code/TemplateStudio.sln
+
+  - task: VSBuild@1
+    displayName: Build
+    inputs:
+      solution: code/TemplateStudio.${{ parameters.Moniker }}.slnf
+      vsVersion: 17.0
+      msbuildArgs: /p:DeployExtension=false
+      configuration: ${{ parameters.BuildConfiguration }}
+      platform: ${{ parameters.BuildPlatform }}
+      clean: true
+
+  - task: CopyFiles@1
+    displayName: Copy Artifacts
+    condition: and(succeededOrFailed(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+    inputs:
+      SourceFolder: $(Build.SourcesDirectory)
+      Contents: '**\bin\${{ parameters.BuildConfiguration }}\**'
+      TargetFolder: $(Build.ArtifactStagingDirectory)
+
+  - task: PublishBuildArtifacts@1
+    displayName: Publish Artifacts
+    condition: and(succeededOrFailed(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+    inputs:
+      PathtoPublish: $(Build.ArtifactStagingDirectory)
+      TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'

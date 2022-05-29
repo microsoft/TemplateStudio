@@ -30,18 +30,18 @@
     { "path": "Param_ProjectName.Tests.MSTest/Param_ProjectName.Tests.MSTest.vbproj" }
   ],
   "symbols": {
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.userName":
+    "ts.userName":
     {
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_UserName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },

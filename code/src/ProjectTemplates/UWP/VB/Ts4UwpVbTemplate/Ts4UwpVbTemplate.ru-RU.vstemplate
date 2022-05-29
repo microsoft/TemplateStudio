@@ -22,8 +22,7 @@
 	  <CustomParameters>
 		  <CustomParameter Name="$ts.platform$" Value="Uwp"/>
 		  <CustomParameter Name="$ts.language$" Value="VisualBasic"/>
-		  <CustomParameter Name="$ts.category$" Value="TemplateStudio4"/>
-		  <CustomParameter Name="$ts.version$" Value="2.1.0"/>
+		  <CustomParameter Name="$ts.category$" Value="TemplateStudio"/>
 		  <CustomParameter Name="$ts.requiredversion$" Value="17.0"/>
 		  <CustomParameter Name="$ts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.Universal"/>
 	  </CustomParameters>

@@ -578,7 +578,7 @@
     <comment>Validation error message: Empty</comment>
   </data>
   <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
-    <value>名前の最後に「Page」を使用しないでください。これは自動的に追加されます。[名前付けの詳細をご覧ください。]({0}WTSNaming.md)</value>
+    <value>名前の最後に「Page」を使用しないでください。これは自動的に追加されます。[名前付けの詳細をご覧ください。]({0}naming.md)</value>
     <comment>Validation error message: Wrong Page Suffix</comment>
   </data>
   <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
@@ -593,7 +593,7 @@
     <comment>Validation error message: Reserved name</comment>
   </data>
   <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
-    <value>指定した名前の最後に「Page」が追加されることにご注意ください。[名前付けの詳細をご覧ください。]({0}WTSNaming.md)</value>
+    <value>指定した名前の最後に「Page」が追加されることにご注意ください。[名前付けの詳細をご覧ください。]({0}naming.md)</value>
     <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ProjectConfigurationDescriptionText" xml:space="preserve">

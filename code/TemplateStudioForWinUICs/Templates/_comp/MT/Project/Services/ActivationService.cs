@@ -13,42 +13,38 @@ namespace Param_RootNamespace.Services
     {
         private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
         private readonly IEnumerable<IActivationHandler> _activationHandlers;
-        private readonly INavigationService _navigationService;
         private UIElement _shell = null;
 
-        public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers, INavigationService navigationService)
+        public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers)
         {
             _defaultHandler = defaultHandler;
             _activationHandlers = activationHandlers;
-            _navigationService = navigationService;
         }
 
         public async Task ActivateAsync(object activationArgs)
         {
-            // Initialize services that you need before app activation
-            // take into account that the splash screen is shown while this code runs.
+            // Execute tasks before activation.
             await InitializeAsync();
 
+            // Set the MainWindow Content.
             if (App.MainWindow.Content == null)
             {
                 App.MainWindow.Content = _shell ?? new Frame();
             }
 
-            // Depending on activationArgs one of ActivationHandlers or DefaultActivationHandler
-            // will navigate to the first page
+            // Handle activation via ActivationHandlers.
             await HandleActivationAsync(activationArgs);
 
-            // Ensure the current window is active
+            // Activate the MainWindow.
             App.MainWindow.Activate();
 
-            // Tasks after activation
+            // Execute tasks after activation.
             await StartupAsync();
         }
 
         private async Task HandleActivationAsync(object activationArgs)
         {
-            var activationHandler = _activationHandlers
-                                                .FirstOrDefault(h => h.CanHandle(activationArgs));
+            var activationHandler = _activationHandlers.FirstOrDefault(h => h.CanHandle(activationArgs));
 
             if (activationHandler != null)
             {

@@ -177,21 +177,6 @@ where
 - `<ts directory>` : Directory where *TS* is cloned
 - `<output directory>`: Directory where test xml result files will be generated
 
-## Core
-
-*Template Studio* relies on *Core Template Studio* for template synchronization and template composition, generation and postaction. *Core Template Studio* has it's own Github repository [github.com/Microsoft/CoreTemplateStudio](https://github.com/Microsoft/CoreTemplateStudio) as it is shared with the sister project *Web Template Studio* [github.com/Microsoft/WebTemplateStudio](https://github.com/Microsoft/WebTemplateStudio).
-
-*Core Template Studio* is integrated into *Template Studio* using a git submodule under the folder (`../code/CoreTemplateStudio`).
-The submodule points to a specific commit in the release branch of *Core Template Studio*, that you can see in github:
-
-![CoreTS submodule](./resources/getting-started/CoreTS-Submodule.PNG)
-
-When you clone *TS* you have to run two commands: `git submodule init` and `git submodule update` to fetch all the data from *Core Template Studio*.
-When fetching changes, also execute `git submodule update` after doing `git fetch` to be sure you're submodule is up to date.
-
-Changes on *Core Template Studio* should be done on the *Core Template Studio* repos.
-In *TS*, to update the submodule to the most recent commit, you have to run the command: `git submodule update --remote`.
-
 ## Troubleshooting
 
 When working on Template Studio the following folders are useful to investigate any issue you run into:

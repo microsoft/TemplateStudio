@@ -1,0 +1,22 @@
+﻿<Page
+    mc:Ignorable="d">
+    <Grid>
+<!--{[{-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            x:Uid="Param_ItemName_Title"
+            Style="{StaticResource PageTitleStyle}" />
+<!--}]}-->
+        <StackPanel
+<!--{[{-->
+            Grid.Row="1" 
+<!--}]}-->
+            x:Name="ContentArea">
+        </StackPanel>
+    </Grid>
+</Page>

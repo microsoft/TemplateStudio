@@ -2,11 +2,6 @@
   {
     "name": "Blank",
     "displayName": "Blank",
-    "summary": "Этот базовый проект является пустым холстом, на котором можно создать приложение."
-  },
-  {
-    "name": "BlankAdvanced",
-    "displayName": "Blank Advanced",
     "summary": "Включена навигационная рамка и основные услуги и стили."
   },
   {

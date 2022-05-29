@@ -3,31 +3,31 @@
     public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged
     {
         private readonly INavigationService _navigationService;
-//{[{
+        //{[{
         private readonly IRightPaneService _rightPaneService;
-//}]}
+        //}]}
         private RelayCommand _goBackCommand;
-//{[{
-        private ICommand _menuFilewts.ItemNameCommand;
-//}]}
+        //{[{
+        private ICommand _menuFilets.ItemNameCommand;
+        //}]}
         private ICommand _loadedCommand;
         public System.Windows.Input.ICommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new System.Windows.Input.ICommand(OnGoBack, CanGoBack));
-//{[{
+        //{[{
 
-        public ICommand MenuFilewts.ItemNameCommand => _menuFilewts.ItemNameCommand ?? (_menuFilewts.ItemNameCommand = new System.Windows.Input.ICommand(OnMenuFilewts.ItemName));
-//}]}
+        public ICommand MenuFilets.ItemNameCommand => _menuFilets.ItemNameCommand ?? (_menuFilets.ItemNameCommand = new System.Windows.Input.ICommand(OnMenuFilets.ItemName));
+        //}]}
         public ShellViewModel(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
         {
-//^^
-//{[{
+            //^^
+            //{[{
             _rightPaneService = rightPaneService;
-//}]}
+            //}]}
         }
-//^^
-//{[{
+        //^^
+        //{[{
 
-        private void OnMenuFilewts.ItemName()
-            => _rightPaneService.OpenInRightPane(typeof(wts.ItemNameViewModel).FullName);
-//}]}
+        private void OnMenuFilets.ItemName()
+            => _rightPaneService.OpenInRightPane(typeof(ts.ItemNameViewModel).FullName);
+        //}]}
     }
 }

@@ -11,7 +11,7 @@
     "language": "C#",
     "type": "item",
     "ts.type": "feature",
-    "ts.projecttype": "BlankAdvanced|SplitView|MenuBar",
+    "ts.projecttype": "Blank|SplitView|MenuBar",
     "ts.frontendframework": "all",
     "ts.platform": "WinUI",
     "ts.appmodel": "Desktop",
@@ -35,7 +35,7 @@
     }
   ],
   "symbols": {
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     }

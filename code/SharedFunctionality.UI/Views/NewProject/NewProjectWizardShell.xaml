@@ -43,7 +43,7 @@
         </ResourceDictionary>
     </Window.Resources>-->
 
-    <Grid Style="{StaticResource WtsGridMainPage}">
+    <Grid Style="{StaticResource TSGridMainPage}">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
             <!-- 10% Wizard Header-->
@@ -56,19 +56,19 @@
             Grid.Row="0"
             Margin="{StaticResource Margin_L_Left}"
             Text="{Binding WizardStatus.Title}"
-            Style="{StaticResource WtsTextBlockWizardTitleSecondary}" />
+            Style="{StaticResource TSTextBlockWizardTitleSecondary}" />
 
-        <Grid Grid.Row="1" Style="{StaticResource WtsGridSectionDividerHorizontal}" />
+        <Grid Grid.Row="1" Style="{StaticResource TSGridSectionDividerHorizontal}" />
 
         <Frame Grid.Row="2" x:Name="mainFrame" NavigationUIVisibility="Hidden" Focusable="False" />
         <controls:NotificationsControl Grid.Row="2" VerticalAlignment="Top"/>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
             <Grid>
-                <Button  Style="{StaticResource WtsButtonRestoreWindow}" Command="{Binding Navigation.RestoreCommand}" Visibility="{Binding Navigation.IsMaximized, Converter={StaticResource BoolToVisibilityConverter}}" />
-                <Button  Style="{StaticResource WtsButtonMaximizeWindow}" Command="{Binding Navigation.MaximizeCommand}" Visibility="{Binding Navigation.IsMaximized, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
+                <Button  Style="{StaticResource TSButtonRestoreWindow}" Command="{Binding Navigation.RestoreCommand}" Visibility="{Binding Navigation.IsMaximized, Converter={StaticResource BoolToVisibilityConverter}}" />
+                <Button  Style="{StaticResource TSButtonMaximizeWindow}" Command="{Binding Navigation.MaximizeCommand}" Visibility="{Binding Navigation.IsMaximized, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=reverse}" />
             </Grid>
-            <Button  Style="{StaticResource WtsButtonCloseWindow}" Command="{Binding Navigation.CancelCommand}" />
+            <Button  Style="{StaticResource TSButtonCloseWindow}" Command="{Binding Navigation.CancelCommand}" />
         </StackPanel>
     </Grid>
 

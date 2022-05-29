@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="TemplateStudioForWPF.f4e060e0-bdf6-4ed0-9924-983506ec9862" Version="1.0" Language="en-US" Publisher="Microsoft Corporation" />
+        <Identity Id="TemplateStudioForWPF.f4e060e0-bdf6-4ed0-9924-983506ec9862" Version="5.1" Language="en-US" Publisher="Microsoft" />
         <DisplayName>Template Studio for WPF</DisplayName>
         <Description xml:space="preserve">Template Studio accelerates the creation of new WPF apps using a wizard-based UI.</Description>
         <MoreInfo>https://github.com/microsoft/TemplateStudio/</MoreInfo>
@@ -11,7 +11,7 @@
         <Tags>Template Studio, WPF, XAML, MVVM, Desktop</Tags>
     </Metadata>
     <Installation>
-        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.2, 18.0)">
             <ProductArchitecture>amd64</ProductArchitecture>
         </InstallationTarget>
     </Installation>

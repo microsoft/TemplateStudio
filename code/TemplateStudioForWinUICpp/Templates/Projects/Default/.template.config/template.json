@@ -22,58 +22,52 @@
     "ts.displayOrder": "0",
     "ts.licenses": "[Microsoft.WindowsAppSDK](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.0.1/License)|[Microsoft.Windows.CppWinRT](https://www.nuget.org/packages/Microsoft.Windows.CppWinRT/2.0.220331.4/License)"
   },
-  "sourceName": "wts.ProjectName",
+  "sourceName": "Param_ProjectName",
   "preferNameDirectory": true,
   "guids": [
     "d889ee01-aa4e-4969-a377-75b9deffd415"
   ],
   "PrimaryOutputs": [
-    { "path": "wts.ProjectName/wts.ProjectName.vcxproj" }
+    { "path": "Param_ProjectName/Param_ProjectName.vcxproj" }
   ],
   "symbols": {
-    "wts.projectName":
+    "ts.projectName":
     {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     },
-    "wts.wizardVersion":
+    "ts.wizardVersion":
     {
       "type": "parameter",
       "dataType": "string",
       "replaces": "Param_Wizard.Version"
     },
-    "wts.templatesVersion":
-    {
-      "type": "parameter",
-      "dataType": "string",
-      "replaces": "Param_Templates.Version"
-    },
-    "wts.generationProjectType":
+    "ts.generationProjectType":
     {
       "type": "parameter",
       "replaces": "Param_ProjectType"
     },
-    "wts.generationFrontEndFramework":
+    "ts.generationFrontEndFramework":
     {
       "type": "parameter",
       "replaces": "Param_Framework"
     },
-    "wts.generationPlatform":
+    "ts.generationPlatform":
     {
       "type": "parameter",
       "replaces": "Param_Platform"
     },
-    "wts.generation.appmodel":
+    "ts.generation.appmodel":
     {
       "type": "parameter",
       "replaces": "Param_AppModel"
     },
-    "wts.homePageName":
+    "ts.homePageName":
     {
       "type":"parameter",
       "replaces":"Param_HomeName"

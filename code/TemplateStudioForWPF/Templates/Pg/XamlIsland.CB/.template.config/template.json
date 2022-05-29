@@ -27,41 +27,41 @@
     "ts.dependencies": "ts.WPF.Feat.ThemeSelection|ts.WPF.Feat.XamlIslandUwpApp",
     "ts.licenses": "[Microsoft.Toolkit.Wpf.UI.XamlHost](https://github.com/windows-toolkit/Microsoft.Toolkit.Win32/blob/master/license.md)"
   },
-  "sourceName": "wts.ItemName",
+  "sourceName": "ts.ItemName",
   "preferNameDirectory": true,
   "PrimaryOutputs": [
     {
       "path": "Param_ProjectName/Program.cs"
     },
     {
-      "path": "Param_ProjectName/Controls/wts.ItemNameControl.xaml"
+      "path": "Param_ProjectName/Controls/ts.ItemNameControl.xaml"
     },
     {
-      "path": "Param_ProjectName/Controls/wts.ItemNameControl.xaml.cs"
+      "path": "Param_ProjectName/Controls/ts.ItemNameControl.xaml.cs"
     },
     {
       "path": "Param_ProjectName/Converters/ColorConverter.cs"
     },
     {
-      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml"
+      "path": "Param_ProjectName/Views/ts.ItemNamePage.xaml"
     },
     {
-      "path": "Param_ProjectName/Views/wts.ItemNamePage.xaml.cs"
+      "path": "Param_ProjectName/Views/ts.ItemNamePage.xaml.cs"
     },
     {
-      "path": "Param_ProjectName.XamlIsland/wts.ItemNameControlUniversal.xaml"
+      "path": "Param_ProjectName.XamlIsland/ts.ItemNameControlUniversal.xaml"
     },
     {
-      "path": "Param_ProjectName.XamlIsland/wts.ItemNameControlUniversal.xaml.cs"
+      "path": "Param_ProjectName.XamlIsland/ts.ItemNameControlUniversal.xaml.cs"
     }
   ],
   "symbols": {
-    "wts.projectName": {
+    "ts.projectName": {
       "type": "parameter",
       "replaces": "Param_ProjectName",
       "fileRename": "Param_ProjectName"
     },
-    "wts.rootNamespace": {
+    "ts.rootNamespace": {
       "type": "parameter",
       "replaces": "Param_RootNamespace"
     }

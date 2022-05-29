@@ -17,7 +17,7 @@
       "ts.compositionFilter": "$projectType == Ribbon & $frontendframework == MVVMToolkit & ts.type == project",
       "ts.licenses": "[Fluent.Ribbon](https://www.nuget.org/packages/Fluent.Ribbon/8.0.3/License)"
     },
-    "sourceName": "wts.ItemName",
+    "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
       {
@@ -46,7 +46,7 @@
       }
     ],
     "symbols": {
-      "wts.rootNamespace": {
+      "ts.rootNamespace": {
         "type": "parameter",
         "replaces": "Param_RootNamespace"
       },

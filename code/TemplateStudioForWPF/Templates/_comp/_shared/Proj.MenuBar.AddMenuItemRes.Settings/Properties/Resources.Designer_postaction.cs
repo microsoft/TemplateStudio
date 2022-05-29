@@ -1,14 +1,16 @@
-﻿public class Resources {
-//^^
-//{[{
+﻿    public class Resources {
+        //^^
+        //{[{
 
-    /// <summary>
-    ///   Looks up a localized string similar to MenuItemFilewts.ItemNamePageHeader.
-    /// </summary>
-    public static string ShellMenuItemFilewts.ItemNamePageHeader {
-        get {
-            return ResourceManager.GetString("ShellMenuItemFilewts.ItemNamePageHeader", resourceCulture);
+        /// <summary>
+        ///   Looks up a localized string similar to MenuItemFilets.ItemNamePageHeader.
+        /// </summary>
+        public static string ShellMenuItemFilets.ItemNamePageHeader
+        {
+            get
+            {
+                return ResourceManager.GetString("ShellMenuItemFilets.ItemNamePageHeader", resourceCulture);
+            }
         }
+        //}]}
     }
-//}]}
-}

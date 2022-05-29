@@ -19,7 +19,7 @@ namespace Microsoft.Templates.UI.Converters
                 _ = bool.TryParse(value.ToString(), out hasErrors);
             }
 
-            var styleName = hasErrors ? "WtsGridSavedTemplateError" : "WtsGridSavedTemplate";
+            var styleName = hasErrors ? "TSGridSavedTemplateError" : "TSGridSavedTemplate";
             return ResourcesService.Instance.FindResource(styleName);
         }
 
