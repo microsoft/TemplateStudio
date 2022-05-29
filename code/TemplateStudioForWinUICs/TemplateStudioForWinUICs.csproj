@@ -2109,9 +2109,6 @@
     <Content Include="Templates\Proj\Default\Param_ProjectName\App.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\Page.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\TextBlock.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
