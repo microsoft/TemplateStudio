@@ -19,7 +19,7 @@ namespace Param_RootNamespace.Views
             ViewModel = viewModel;
             InitializeComponent();
 
-            ViewModel.NavigationService.Frame = shellFrame;
+            ViewModel.NavigationService.Frame = NavigationFrame;
             ViewModel.NavigationViewService.Initialize(NavigationViewControl);
 
             // TODO: Set the title bar icon by updating /Assets/WindowIcon.png.

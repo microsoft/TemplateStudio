@@ -39,7 +39,7 @@
             </MenuBar>
         </Grid>
         <Grid Grid.Row="2" Margin="{StaticResource MenuBarContentMargin}">
-            <Frame x:Name="shellFrame" />
+            <Frame x:Name="NavigationFrame" />
         </Grid>
     </Grid>
 </Page>

@@ -18,7 +18,7 @@ namespace Param_RootNamespace.Views
             ViewModel = viewModel;
             InitializeComponent();
 
-            ViewModel.NavigationService.Frame = shellFrame;
+            ViewModel.NavigationService.Frame = NavigationFrame;
 
             // TODO: Set the title bar icon by updating /Assets/WindowIcon.png.
             // A custom title bar is required for full window theme and Mica support.
