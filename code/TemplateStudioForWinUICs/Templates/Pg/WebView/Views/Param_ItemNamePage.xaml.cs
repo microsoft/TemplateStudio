@@ -15,7 +15,8 @@ namespace Param_RootNamespace.Views
         {
             ViewModel = App.GetService<Param_ItemNameViewModel>();
             InitializeComponent();
-            ViewModel.WebViewService.Initialize(webView);
+
+            ViewModel.WebViewService.Initialize(WebView);
         }
     }
 }
