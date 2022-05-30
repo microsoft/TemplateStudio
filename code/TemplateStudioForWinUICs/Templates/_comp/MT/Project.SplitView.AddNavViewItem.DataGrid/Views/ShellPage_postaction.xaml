@@ -3,7 +3,7 @@
 <!--{[{-->
     <NavigationViewItem x:Uid="Shell_Param_ItemName" helpers:NavigationHelper.NavigateTo="Param_RootNamespace.ViewModels.Param_ItemNameViewModel">
         <NavigationViewItem.Icon>
-            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xf57a;"/>
+            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe80a;"/>
         </NavigationViewItem.Icon>
     </NavigationViewItem>
 <!--}]}-->
