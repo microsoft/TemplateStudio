@@ -23,7 +23,10 @@ namespace Param_RootNamespace.ViewModels
         private ICommand _reloadCommand;
         private ICommand _retryCommand;
 
-        public IWebViewService WebViewService { get; }
+        public IWebViewService WebViewService
+        {
+            get;
+        }
 
         public Uri Source
         {

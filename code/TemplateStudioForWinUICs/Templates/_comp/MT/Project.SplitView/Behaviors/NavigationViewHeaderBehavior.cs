@@ -12,7 +12,10 @@ namespace Param_RootNamespace.Behaviors
 
         private Page _currentPage;
 
-        public DataTemplate DefaultHeaderTemplate { get; set; }
+        public DataTemplate DefaultHeaderTemplate
+        {
+            get; set;
+        }
 
         public object DefaultHeader
         {

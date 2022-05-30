@@ -28,37 +28,43 @@ namespace Param_RootNamespace.Helpers
             {
                 if (theme != ElementTheme.Default)
                 {
-                    Application.Current.Resources["WindowCaptionForeground"] = theme switch {
+                    Application.Current.Resources["WindowCaptionForeground"] = theme switch
+                    {
                         ElementTheme.Dark => new SolidColorBrush(Colors.White),
                         ElementTheme.Light => new SolidColorBrush(Colors.Black),
                         _ => new SolidColorBrush(Colors.Transparent)
                     };
 
-                    Application.Current.Resources["WindowCaptionForegroundDisabled"] = theme switch {
+                    Application.Current.Resources["WindowCaptionForegroundDisabled"] = theme switch
+                    {
                         ElementTheme.Dark => new SolidColorBrush(Color.FromArgb(0x66, 0xFF, 0xFF, 0xFF)),
                         ElementTheme.Light => new SolidColorBrush(Color.FromArgb(0x66, 0x00, 0x00, 0x00)),
                         _ => new SolidColorBrush(Colors.Transparent)
                     };
 
-                    Application.Current.Resources["WindowCaptionButtonBackgroundPointerOver"] = theme switch {
+                    Application.Current.Resources["WindowCaptionButtonBackgroundPointerOver"] = theme switch
+                    {
                         ElementTheme.Dark => new SolidColorBrush(Color.FromArgb(0x33, 0xFF, 0xFF, 0xFF)),
                         ElementTheme.Light => new SolidColorBrush(Color.FromArgb(0x33, 0x00, 0x00, 0x00)),
                         _ => new SolidColorBrush(Colors.Transparent)
                     };
 
-                    Application.Current.Resources["WindowCaptionButtonBackgroundPressed"] = theme switch {
+                    Application.Current.Resources["WindowCaptionButtonBackgroundPressed"] = theme switch
+                    {
                         ElementTheme.Dark => new SolidColorBrush(Color.FromArgb(0x66, 0xFF, 0xFF, 0xFF)),
                         ElementTheme.Light => new SolidColorBrush(Color.FromArgb(0x66, 0x00, 0x00, 0x00)),
                         _ => new SolidColorBrush(Colors.Transparent)
                     };
 
-                    Application.Current.Resources["WindowCaptionButtonStrokePointerOver"] = theme switch {
+                    Application.Current.Resources["WindowCaptionButtonStrokePointerOver"] = theme switch
+                    {
                         ElementTheme.Dark => new SolidColorBrush(Colors.White),
                         ElementTheme.Light => new SolidColorBrush(Colors.Black),
                         _ => new SolidColorBrush(Colors.Transparent)
                     };
 
-                    Application.Current.Resources["WindowCaptionButtonStrokePressed"] = theme switch {
+                    Application.Current.Resources["WindowCaptionButtonStrokePressed"] = theme switch
+                    {
                         ElementTheme.Dark => new SolidColorBrush(Colors.White),
                         ElementTheme.Light => new SolidColorBrush(Colors.Black),
                         _ => new SolidColorBrush(Colors.Transparent)

@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.ViewModels;
@@ -101,8 +100,6 @@ namespace Param_RootNamespace.Services
 
             return false;
         }
-
-        public void CleanNavigation() => _frame.BackStack.Clear();
 
         private void OnNavigated(object sender, NavigationEventArgs e)
         {

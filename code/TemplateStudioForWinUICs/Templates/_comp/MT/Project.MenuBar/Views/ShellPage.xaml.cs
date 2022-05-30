@@ -11,7 +11,10 @@ namespace Param_RootNamespace.Views
 {
     public sealed partial class ShellPage : Page
     {
-        public ShellViewModel ViewModel { get; }
+        public ShellViewModel ViewModel
+        {
+            get;
+        }
 
         public ShellPage(ShellViewModel viewModel)
         {

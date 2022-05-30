@@ -14,7 +14,7 @@ indent_style = space
 #place else statements on a new line
 csharp_new_line_before_else = true
 #require braces to be on a new line for lambdas, methods, control_blocks, types, properties, and accessors (also known as "Allman" style)
-csharp_new_line_before_open_brace = lambdas, methods, control_blocks, types, properties, accessors
+csharp_new_line_before_open_brace = all
 
 #Formatting - organize using options
 

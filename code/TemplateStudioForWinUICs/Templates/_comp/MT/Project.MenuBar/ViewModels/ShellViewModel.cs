@@ -16,7 +16,10 @@ namespace Param_RootNamespace.ViewModels
 
         public ICommand MenuFileExitCommand => _menuFileExitCommand ??= new RelayCommand(OnMenuFileExit);
 
-        public INavigationService NavigationService { get; }
+        public INavigationService NavigationService
+        {
+            get;
+        }
 
         public bool IsBackEnabled
         {

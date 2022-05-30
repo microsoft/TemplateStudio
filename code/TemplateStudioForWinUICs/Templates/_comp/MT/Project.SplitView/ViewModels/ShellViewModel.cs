@@ -1,5 +1,4 @@
-﻿using System;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.UI.Xaml.Navigation;
 
 using Param_RootNamespace.Contracts.Services;
@@ -12,9 +11,15 @@ namespace Param_RootNamespace.ViewModels
         private bool _isBackEnabled;
         private object _selected;
 
-        public INavigationService NavigationService { get; }
+        public INavigationService NavigationService
+        {
+            get;
+        }
 
-        public INavigationViewService NavigationViewService { get; }
+        public INavigationViewService NavigationViewService
+        {
+            get;
+        }
 
         public bool IsBackEnabled
         {
