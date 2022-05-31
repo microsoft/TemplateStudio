@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 
 using Param_RootNamespace.Contracts.Services;
+using Param_RootNamespace.Helpers;
 
 using Microsoft.UI.Xaml;
 
@@ -39,6 +40,8 @@ namespace Param_RootNamespace.Services
             if (App.MainWindow.Content is FrameworkElement rootElement)
             {
                 rootElement.RequestedTheme = Theme;
+
+                TitleBarHelper.UpdateTitleBar(Theme);
             }
 
             await Task.CompletedTask;

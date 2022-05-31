@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Microsoft.UI.Xaml;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Helpers;

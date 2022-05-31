@@ -1,5 +1,6 @@
 ﻿<Page
-    Style="{StaticResource PageStyle}">
+    mc:Ignorable="d">
+    
     <ScrollViewer>
         <StackPanel
             MaxWidth="650">

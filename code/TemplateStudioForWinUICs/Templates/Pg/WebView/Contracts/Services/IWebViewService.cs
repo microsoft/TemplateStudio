@@ -6,9 +6,15 @@ namespace Param_RootNamespace.Contracts.Services
 {
     public interface IWebViewService
     {
-        bool CanGoBack { get; }
+        bool CanGoBack
+        {
+            get;
+        }
 
-        bool CanGoForward { get; }
+        bool CanGoForward
+        {
+            get;
+        }
 
         event EventHandler<CoreWebView2WebErrorStatus> NavigationCompleted;
 

@@ -24,10 +24,10 @@
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <FontIcon
-                                    HorizontalAlignment="Left"
-                                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                    Glyph="{Binding Symbol}"
-                                    AutomationProperties.Name="{Binding SymbolName}" />
+                                HorizontalAlignment="Left"
+                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                Glyph="{Binding Symbol}"
+                                AutomationProperties.Name="{Binding SymbolName}" />
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
                 </controls:DataGridTemplateColumn>
