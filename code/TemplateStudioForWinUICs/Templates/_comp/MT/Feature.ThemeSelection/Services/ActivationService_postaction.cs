@@ -1,33 +1,32 @@
-﻿namespace Param_RootNamespace.Services
+﻿namespace Param_RootNamespace.Services;
+
+public class ActivationService : IActivationService
 {
-    public class ActivationService : IActivationService
+    private readonly IEnumerable<IActivationHandler> _activationHandlers;
+//{[{
+    private readonly IThemeSelectorService _themeSelectorService;
+//}]}
+    public ActivationService(/*{[{*/IThemeSelectorService themeSelectorService/*}]}*/)
     {
-        private readonly IEnumerable<IActivationHandler> _activationHandlers;
-//{[{
-        private readonly IThemeSelectorService _themeSelectorService;
-//}]}
-        public ActivationService(/*{[{*/IThemeSelectorService themeSelectorService/*}]}*/)
-        {
 //^^
 //{[{
-            _themeSelectorService = themeSelectorService;
+        _themeSelectorService = themeSelectorService;
 //}]}
-        }
+    }
 
-        private async Task InitializeAsync()
-        {
+    private async Task InitializeAsync()
+    {
 //{[{
-            await _themeSelectorService.InitializeAsync().ConfigureAwait(false);
+        await _themeSelectorService.InitializeAsync().ConfigureAwait(false);
 //}]}
-        }
+    }
 
-        private async Task StartupAsync()
-        {
+    private async Task StartupAsync()
+    {
 //^^
 //{[{
-            await _themeSelectorService.SetRequestedThemeAsync();
+        await _themeSelectorService.SetRequestedThemeAsync();
 //}]}
-            await Task.CompletedTask;
-        }
+        await Task.CompletedTask;
     }
 }

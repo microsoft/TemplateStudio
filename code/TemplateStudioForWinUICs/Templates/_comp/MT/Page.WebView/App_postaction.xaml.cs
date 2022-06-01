@@ -1,8 +1,6 @@
-﻿
-            .ConfigureServices((context, services) =>
-            {
-                // Services
+﻿        .ConfigureServices((context, services) =>
+        {
+            // Services
 //{[{
-                services.AddTransient<IWebViewService, WebViewService>();
+            services.AddTransient<IWebViewService, WebViewService>();
 //}]}
-}

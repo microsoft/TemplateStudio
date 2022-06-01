@@ -1,20 +1,19 @@
-﻿namespace Param_RootNamespace.ViewModels
+﻿namespace Param_RootNamespace.ViewModels;
+
+public class ShellViewModel : ObservableRecipient
 {
-    public class ShellViewModel : ObservableRecipient
-    {
-        private ICommand _menuFileExitCommand;
+    private ICommand _menuFileExitCommand;
 //{[{
-        private ICommand _menuParam_ItemNameCommand;
+    private ICommand _menuParam_ItemNameCommand;
 //}]}
-        public ICommand MenuFileExitCommand => _menuFileExitCommand ??= new RelayCommand(OnMenuFileExit);
+    public ICommand MenuFileExitCommand => _menuFileExitCommand ??= new RelayCommand(OnMenuFileExit);
 //{[{
 
-        public ICommand MenuParam_ItemNameCommand => _menuParam_ItemNameCommand ??= new RelayCommand(OnMenuParam_ItemName);
+    public ICommand MenuParam_ItemNameCommand => _menuParam_ItemNameCommand ??= new RelayCommand(OnMenuParam_ItemName);
 //}]}
-        private void OnMenuFileExit() => Application.Current.Exit();
+    private void OnMenuFileExit() => Application.Current.Exit();
 //{[{
 
-        private void OnMenuParam_ItemName() => NavigationService.NavigateTo(typeof(Param_ItemNameViewModel).FullName);
+    private void OnMenuParam_ItemName() => NavigationService.NavigateTo(typeof(Param_ItemNameViewModel).FullName);
 //}]}
-    }
 }

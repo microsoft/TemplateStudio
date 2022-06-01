@@ -2,30 +2,29 @@
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Web.WebView2.Core;
 
-namespace Param_RootNamespace.Contracts.Services
+namespace Param_RootNamespace.Contracts.Services;
+
+public interface IWebViewService
 {
-    public interface IWebViewService
+    bool CanGoBack
     {
-        bool CanGoBack
-        {
-            get;
-        }
-
-        bool CanGoForward
-        {
-            get;
-        }
-
-        event EventHandler<CoreWebView2WebErrorStatus> NavigationCompleted;
-
-        void Initialize(WebView2 webView);
-
-        void GoBack();
-
-        void GoForward();
-
-        void Reload();
-
-        void UnregisterEvents();
+        get;
     }
+
+    bool CanGoForward
+    {
+        get;
+    }
+
+    event EventHandler<CoreWebView2WebErrorStatus> NavigationCompleted;
+
+    void Initialize(WebView2 webView);
+
+    void GoBack();
+
+    void GoForward();
+
+    void Reload();
+
+    void UnregisterEvents();
 }

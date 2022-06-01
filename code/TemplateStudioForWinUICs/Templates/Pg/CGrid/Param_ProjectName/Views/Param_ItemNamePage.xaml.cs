@@ -1,12 +1,11 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 
-namespace Param_RootNamespace.Views
+namespace Param_RootNamespace.Views;
+
+public sealed partial class Param_ItemNamePage : Page
 {
-    public sealed partial class Param_ItemNamePage : Page
+    public Param_ItemNamePage()
     {
-        public Param_ItemNamePage()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }
