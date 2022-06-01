@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 
-namespace Param_RootNamespace.Activation
-{
-    public interface IActivationHandler
-    {
-        bool CanHandle(object args);
+namespace Param_RootNamespace.Activation;
 
-        Task HandleAsync(object args);
-    }
+public interface IActivationHandler
+{
+    bool CanHandle(object args);
+
+    Task HandleAsync(object args);
 }

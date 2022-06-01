@@ -1,15 +1,14 @@
-﻿namespace Param_RootNamespace.Services
+﻿namespace Param_RootNamespace.Services;
+
+public class ActivationService : IActivationService
 {
-    public class ActivationService : IActivationService
+    public async Task ActivateAsync(object activationArgs)
     {
-        public async Task ActivateAsync(object activationArgs)
+        if (App.MainWindow.Content == null)
         {
-            if (App.MainWindow.Content == null)
-            {
 //{[{
-                _shell = App.GetService<ShellPage>();
+            _shell = App.GetService<ShellPage>();
 //}]}
-            }
         }
     }
 }
