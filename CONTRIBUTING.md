@@ -243,6 +243,8 @@ When developing extensions, the experimental instance of Visual Studio can somet
 
 Replace `<VSInstance>` with the folder name returned by `ls $Env:LOCALAPPDATA/Microsoft/VisualStudio/*.*`. This should return a folder with an `-Exp` suffix and a folder without that suffix. Set `<VSInstance>` to the unsuffixed name (e.g. `17.0_a0adeae7`).
 
+If this doesn't work, uninstalling and reinstalling Visual Studio will always return you to a working state.
+
 ## Filing a pull request
 
 All contributions are expected to be reviewed and merged via pull requests into the main branch.
