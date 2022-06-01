@@ -235,6 +235,14 @@ Below is a checklist to follow when validating changes:
 
 Once all changes pass basic validation, submit them for review by filing a pull request.
 
+When developing extensions, the experimental instance of Visual Studio can sometimes become corrupt, preventing deployment and debugging of the extension. This usually surfaces as deployment errors when trying to deploy the extension or as silent failures that result in the Template Studio project templates not showing up in the New Project dialog. To recover from this state, you can reset the experimental instance by closing all instances of Visual Studio, then running the below command from PowerShell:
+
+```powershell
+& "C:\Program Files\Microsoft Visual Studio\2022\Community\VSSDK\VisualStudioIntegration\Tools\Bin\CreateExpInstance.exe" /Reset /RootSuffix=Exp /VSInstance=<VSInstance>
+```
+
+Replace `<VSInstance>` with the folder name returned by `ls $Env:LOCALAPPDATA/Microsoft/VisualStudio/*.*`. This should return a folder with an `-Exp` suffix and a folder without that suffix. Set `<VSInstance>` to the unsuffixed name (e.g. `17.0_a0adeae7`).
+
 ## Filing a pull request
 
 All contributions are expected to be reviewed and merged via pull requests into the main branch.
