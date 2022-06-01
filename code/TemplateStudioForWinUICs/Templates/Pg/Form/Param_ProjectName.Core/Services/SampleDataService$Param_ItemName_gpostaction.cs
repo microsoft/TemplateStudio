@@ -1,20 +1,19 @@
-﻿namespace Param_RootNamespace.Core.Services
+﻿namespace Param_RootNamespace.Core.Services;
+
+public class SampleDataService : ISampleDataService
 {
-    public class SampleDataService : ISampleDataService
-    {
 //^^
 //{[{
 
-        public async Task SaveOrderAsync(SampleOrder order)
+    public async Task SaveOrderAsync(SampleOrder order)
+    {
+        if (_allOrders == null)
         {
-            if (_allOrders == null)
-            {
-                _allOrders = new List<SampleOrder>(AllOrders());
-            }
-
-            _allOrders.Add(order);
-            await Task.CompletedTask;
+            _allOrders = new List<SampleOrder>(AllOrders());
         }
-//}]}
+
+        _allOrders.Add(order);
+        await Task.CompletedTask;
     }
+//}]}
 }

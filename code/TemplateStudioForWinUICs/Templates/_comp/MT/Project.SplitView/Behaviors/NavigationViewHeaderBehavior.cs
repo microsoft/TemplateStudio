@@ -4,114 +4,116 @@ using Microsoft.UI.Xaml.Navigation;
 using Microsoft.Xaml.Interactivity;
 using Param_RootNamespace.Contracts.Services;
 
-namespace Param_RootNamespace.Behaviors
+namespace Param_RootNamespace.Behaviors;
+
+public class NavigationViewHeaderBehavior : Behavior<NavigationView>
 {
-    public class NavigationViewHeaderBehavior : Behavior<NavigationView>
+    private static NavigationViewHeaderBehavior _current;
+
+    private Page _currentPage;
+
+    public DataTemplate DefaultHeaderTemplate
     {
-        private static NavigationViewHeaderBehavior _current;
+        get; set;
+    }
 
-        private Page _currentPage;
+    public object DefaultHeader
+    {
+        get => GetValue(DefaultHeaderProperty);
+        set => SetValue(DefaultHeaderProperty, value);
+    }
 
-        public DataTemplate DefaultHeaderTemplate { get; set; }
+    public static readonly DependencyProperty DefaultHeaderProperty =
+        DependencyProperty.Register("DefaultHeader", typeof(object), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(null, (d, e) => _current.UpdateHeader()));
 
-        public object DefaultHeader
+    public static NavigationViewHeaderMode GetHeaderMode(Page item) => (NavigationViewHeaderMode)item.GetValue(HeaderModeProperty);
+
+    public static void SetHeaderMode(Page item, NavigationViewHeaderMode value) => item.SetValue(HeaderModeProperty, value);
+
+    public static readonly DependencyProperty HeaderModeProperty =
+        DependencyProperty.RegisterAttached("HeaderMode", typeof(bool), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(NavigationViewHeaderMode.Always, (d, e) => _current.UpdateHeader()));
+
+    public static object GetHeaderContext(Page item) => item.GetValue(HeaderContextProperty);
+
+    public static void SetHeaderContext(Page item, object value) => item.SetValue(HeaderContextProperty, value);
+
+    public static readonly DependencyProperty HeaderContextProperty =
+        DependencyProperty.RegisterAttached("HeaderContext", typeof(object), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(null, (d, e) => _current.UpdateHeader()));
+
+    public static DataTemplate GetHeaderTemplate(Page item) => (DataTemplate)item.GetValue(HeaderTemplateProperty);
+
+    public static void SetHeaderTemplate(Page item, DataTemplate value) => item.SetValue(HeaderTemplateProperty, value);
+
+    public static readonly DependencyProperty HeaderTemplateProperty =
+        DependencyProperty.RegisterAttached("HeaderTemplate", typeof(DataTemplate), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(null, (d, e) => _current.UpdateHeaderTemplate()));
+
+    protected override void OnAttached()
+    {
+        base.OnAttached();
+        _current = this;
+        var navigationService = App.GetService<INavigationService>();
+        navigationService.Navigated += OnNavigated;
+    }
+
+    protected override void OnDetaching()
+    {
+        base.OnDetaching();
+        var navigationService = App.GetService<INavigationService>();
+        navigationService.Navigated -= OnNavigated;
+    }
+
+    private void OnNavigated(object sender, NavigationEventArgs e)
+    {
+        var frame = sender as Frame;
+        if (frame.Content is Page page)
         {
-            get => GetValue(DefaultHeaderProperty);
-            set => SetValue(DefaultHeaderProperty, value);
+            _currentPage = page;
+
+            UpdateHeader();
+            UpdateHeaderTemplate();
         }
+    }
 
-        public static readonly DependencyProperty DefaultHeaderProperty =
-            DependencyProperty.Register("DefaultHeader", typeof(object), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(null, (d, e) => _current.UpdateHeader()));
-
-        public static NavigationViewHeaderMode GetHeaderMode(Page item) => (NavigationViewHeaderMode)item.GetValue(HeaderModeProperty);
-
-        public static void SetHeaderMode(Page item, NavigationViewHeaderMode value) => item.SetValue(HeaderModeProperty, value);
-
-        public static readonly DependencyProperty HeaderModeProperty =
-            DependencyProperty.RegisterAttached("HeaderMode", typeof(bool), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(NavigationViewHeaderMode.Always, (d, e) => _current.UpdateHeader()));
-
-        public static object GetHeaderContext(Page item) => item.GetValue(HeaderContextProperty);
-
-        public static void SetHeaderContext(Page item, object value) => item.SetValue(HeaderContextProperty, value);
-
-        public static readonly DependencyProperty HeaderContextProperty =
-            DependencyProperty.RegisterAttached("HeaderContext", typeof(object), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(null, (d, e) => _current.UpdateHeader()));
-
-        public static DataTemplate GetHeaderTemplate(Page item) => (DataTemplate)item.GetValue(HeaderTemplateProperty);
-
-        public static void SetHeaderTemplate(Page item, DataTemplate value) => item.SetValue(HeaderTemplateProperty, value);
-
-        public static readonly DependencyProperty HeaderTemplateProperty =
-            DependencyProperty.RegisterAttached("HeaderTemplate", typeof(DataTemplate), typeof(NavigationViewHeaderBehavior), new PropertyMetadata(null, (d, e) => _current.UpdateHeaderTemplate()));
-
-        protected override void OnAttached()
+    private void UpdateHeader()
+    {
+        if (_currentPage != null)
         {
-            base.OnAttached();
-            _current = this;
-            var navigationService = App.GetService<INavigationService>();
-            navigationService.Navigated += OnNavigated;
-        }
-
-        protected override void OnDetaching()
-        {
-            base.OnDetaching();
-            var navigationService = App.GetService<INavigationService>();
-            navigationService.Navigated -= OnNavigated;
-        }
-
-        private void OnNavigated(object sender, NavigationEventArgs e)
-        {
-            var frame = sender as Frame;
-            if (frame.Content is Page page)
+            var headerMode = GetHeaderMode(_currentPage);
+            if (headerMode == NavigationViewHeaderMode.Never)
             {
-                _currentPage = page;
-
-                UpdateHeader();
-                UpdateHeaderTemplate();
+                AssociatedObject.Header = null;
+                AssociatedObject.AlwaysShowHeader = false;
             }
-        }
-
-        private void UpdateHeader()
-        {
-            if (_currentPage != null)
+            else
             {
-                var headerMode = GetHeaderMode(_currentPage);
-                if (headerMode == NavigationViewHeaderMode.Never)
+                var headerFromPage = GetHeaderContext(_currentPage);
+                if (headerFromPage != null)
                 {
-                    AssociatedObject.Header = null;
-                    AssociatedObject.AlwaysShowHeader = false;
+                    AssociatedObject.Header = headerFromPage;
                 }
                 else
                 {
-                    var headerFromPage = GetHeaderContext(_currentPage);
-                    if (headerFromPage != null)
-                    {
-                        AssociatedObject.Header = headerFromPage;
-                    }
-                    else
-                    {
-                        AssociatedObject.Header = DefaultHeader;
-                    }
+                    AssociatedObject.Header = DefaultHeader;
+                }
 
-                    if (headerMode == NavigationViewHeaderMode.Always)
-                    {
-                        AssociatedObject.AlwaysShowHeader = true;
-                    }
-                    else
-                    {
-                        AssociatedObject.AlwaysShowHeader = false;
-                    }
+                if (headerMode == NavigationViewHeaderMode.Always)
+                {
+                    AssociatedObject.AlwaysShowHeader = true;
+                }
+                else
+                {
+                    AssociatedObject.AlwaysShowHeader = false;
                 }
             }
         }
+    }
 
-        private void UpdateHeaderTemplate()
+    private void UpdateHeaderTemplate()
+    {
+        if (_currentPage != null)
         {
-            if (_currentPage != null)
-            {
-                var headerTemplate = GetHeaderTemplate(_currentPage);
-                AssociatedObject.HeaderTemplate = headerTemplate ?? DefaultHeaderTemplate;
-            }
+            var headerTemplate = GetHeaderTemplate(_currentPage);
+            AssociatedObject.HeaderTemplate = headerTemplate ?? DefaultHeaderTemplate;
         }
     }
 }

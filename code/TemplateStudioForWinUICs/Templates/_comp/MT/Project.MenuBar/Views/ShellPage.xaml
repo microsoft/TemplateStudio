@@ -7,19 +7,24 @@
     xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
     Loaded="OnLoaded"
     Unloaded="OnUnloaded"
-    Style="{StaticResource PageStyle}"
+    Background="{ThemeResource SolidBackgroundFillColorBaseBrush}"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" x:Name="AppTitleBar">
+            <Image Source="/Assets/WindowIcon.png" HorizontalAlignment="Left" Width="16" Height="16" Margin="8,0"/>
+            <TextBlock x:Name="AppTitleBarText" VerticalAlignment="Center" TextWrapping="NoWrap" Style="{StaticResource CaptionTextBlockStyle}" Margin="32, 0, 0, 0"/>
+        </Grid>
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <MenuBar Grid.Column="0" VerticalAlignment="Top">
+            <MenuBar Grid.Column="0">
                 <!--
                 TODO: Update item titles by updating <x:Uid>.Text entries in Strings/en-us/Resources.resw.
                 https://docs.microsoft.com/windows/uwp/app-resources/localize-strings-ui-manifest#refer-to-a-string-resource-identifier-from-xaml
@@ -33,8 +38,8 @@
                 </MenuBarItem>
             </MenuBar>
         </Grid>
-        <Grid Grid.Row="1" Margin="{StaticResource MenuBarContentMargin}">
-            <Frame x:Name="shellFrame" />
+        <Grid Grid.Row="2" Margin="{StaticResource MenuBarContentMargin}">
+            <Frame x:Name="NavigationFrame" />
         </Grid>
     </Grid>
 </Page>

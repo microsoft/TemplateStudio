@@ -1,6 +1,6 @@
-﻿            .ConfigureServices((context, services) =>
-            {
-                // Services
+﻿        .ConfigureServices((context, services) =>
+        {
+            // Services
 //{[{
-                services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
+            services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
 //}]}

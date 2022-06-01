@@ -1,37 +1,35 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using Param_RootNamespace.Contracts.ViewModels;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Models;
 
-namespace Param_RootNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels;
+
+public class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
 {
-    public class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
+    private readonly ISampleDataService _sampleDataService;
+
+    public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+
+    public Param_ItemNameViewModel(ISampleDataService sampleDataService)
     {
-        private readonly ISampleDataService _sampleDataService;
+        _sampleDataService = sampleDataService;
+    }
 
-        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+    public async void OnNavigatedTo(object parameter)
+    {
+        Source.Clear();
 
-        public Param_ItemNameViewModel(ISampleDataService sampleDataService)
+        // TODO: Replace with real data.
+        var data = await _sampleDataService.GetGridDataAsync();
+
+        foreach (var item in data)
         {
-            _sampleDataService = sampleDataService;
+            Source.Add(item);
         }
+    }
 
-        public async void OnNavigatedTo(object parameter)
-        {
-            Source.Clear();
-
-            // TODO: Replace with real data.
-            var data = await _sampleDataService.GetGridDataAsync();
-
-            foreach (var item in data)
-            {
-                Source.Add(item);
-            }
-        }
-
-        public void OnNavigatedFrom()
-        {
-        }
+    public void OnNavigatedFrom()
+    {
     }
 }

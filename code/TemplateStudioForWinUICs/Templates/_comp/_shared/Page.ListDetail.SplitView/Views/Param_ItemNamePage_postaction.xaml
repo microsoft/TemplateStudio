@@ -41,7 +41,7 @@
             x:Uid="Param_ItemName"
             x:Name="ListDetailsViewControl"
             <!--{[{-->
-            BackButtonBehavior="Automatic"
+            BackButtonBehavior="Manual"
             <!--}]}-->
             <!--{--{-->
             ListHeaderTemplate="{StaticResource ListHeaderTemplate}"

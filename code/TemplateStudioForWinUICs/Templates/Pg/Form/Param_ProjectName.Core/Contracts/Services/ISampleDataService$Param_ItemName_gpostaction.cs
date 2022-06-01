@@ -1,11 +1,10 @@
-﻿namespace Param_RootNamespace.Core.Contracts.Services
+﻿namespace Param_RootNamespace.Core.Contracts.Services;
+
+public interface ISampleDataService
 {
-    public interface ISampleDataService
-    {
 //^^
 //{[{
 
-        Task SaveOrderAsync(SampleOrder order);
+    Task SaveOrderAsync(SampleOrder order);
 //}]}
-    }
 }

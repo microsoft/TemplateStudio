@@ -62,6 +62,7 @@
         <controls:ListDetailsView
             x:Uid="Param_ItemName"
             x:Name="ListDetailsViewControl"
+            Background="Transparent"
             BorderBrush="Transparent"
             DetailsTemplate="{StaticResource DetailsTemplate}"
             ItemsSource="{x:Bind ViewModel.SampleItems}"
