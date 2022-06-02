@@ -196,6 +196,11 @@
     <Content Include="Templates\_comp\_shared\Page.AddBackground.Blank\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\Test\App.MSTest\.template.config\icon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedStyles\AllStylesDictionary.cs">
@@ -218,6 +223,12 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioForWinUICsPackage.cs" />
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Usings.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Tests.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\Helpers\TitleBarHelper.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -349,6 +360,15 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.AddBackground.Blank\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\.template.config\description.md">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Param_ProjectName.Tests.MSTest.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
@@ -2242,6 +2262,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />
   <Import Project="..\SharedFunctionality.UI\SharedFunctionality.UI.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
