@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace Param_RootNamespace.Contracts.Services
+namespace Param_RootNamespace.Contracts.Services;
+
+public interface IActivationService
 {
-    public interface IActivationService
-    {
-        Task ActivateAsync(object activationArgs);
-    }
+    Task ActivateAsync(object activationArgs);
 }

@@ -1,12 +1,12 @@
-﻿            .ConfigureServices((context, services) =>
-            {
-                // Services
+﻿        .ConfigureServices((context, services) =>
+        {
+            // Services
 //{[{
-                services.AddTransient<INavigationViewService, NavigationViewService>();
+            services.AddTransient<INavigationViewService, NavigationViewService>();
 //}]}
 
-                // Views and ViewModels
+            // Views and ViewModels
 //{[{
-                services.AddTransient<ShellPage>();
-                services.AddTransient<ShellViewModel>();
+            services.AddTransient<ShellPage>();
+            services.AddTransient<ShellViewModel>();
 //}]}

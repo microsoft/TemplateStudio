@@ -11,10 +11,10 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <WebView2
-            x:Name="webView"
-            Source="{x:Bind ViewModel.Source, Mode=OneWay}" />
 
+        <WebView2
+            x:Name="WebView"
+            Source="{x:Bind ViewModel.Source, Mode=OneWay}" />
 
         <StackPanel
             HorizontalAlignment="Center"

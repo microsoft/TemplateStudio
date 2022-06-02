@@ -1,7 +1,6 @@
-﻿            .ConfigureServices((context, services) =>
-            {
-                // Services
+﻿        .ConfigureServices((context, services) =>
+        {
+            // Services
 //{[{
-                services.AddSingleton<ILocalSettingsService, LocalSettingsServicePackaged>();
+            services.AddSingleton<ILocalSettingsService, LocalSettingsServicePackaged>();
 //}]}
-}
