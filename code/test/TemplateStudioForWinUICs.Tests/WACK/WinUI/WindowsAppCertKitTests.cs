@@ -77,7 +77,7 @@ namespace Microsoft.Templates.Test.WinUICs.Wack
 
             Assert.True(exitCode.Equals(0), $"Failed to create MsixBundle for {projectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(outputFile)} for more details.");
 
-            var bundleFile = new DirectoryInfo(Path.Combine(projectPath, projectName, "AppPackages")).GetFiles("*.msixbundle", SearchOption.AllDirectories).First().FullName;
+            var bundleFile = new DirectoryInfo(Path.Combine(projectPath, projectName, "AppPackages")).GetFiles("*.msix", SearchOption.AllDirectories).First().FullName;
 
             // Run WACK test
             // NOTE. This requires elevation. If not elevated you'll get a UAC prompt
