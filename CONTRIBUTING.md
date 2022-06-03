@@ -171,7 +171,7 @@ Below are the fields that can be evaluated in a composition filter:
   * `$frontendframework`
   * `$projectType`
 
-Conditionals can be combined with the `&` operator and fields can be compared to literal values with the `==` and `!=` operators.
+Conditionals can be combined with the `&` operator and fields can be compared to literal values with the `==` and `!=` operators. Literal values can be separated by `|` to achieve OR logic.
 
 New files can be contributed to the base Project template by adding them to the composition template following the folder structure of the base Project template.
 
