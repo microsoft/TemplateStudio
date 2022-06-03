@@ -171,7 +171,7 @@ Below are the fields that can be evaluated in a composition filter:
   * `$frontendframework`
   * `$projectType`
 
-Conditionals can be combined with the `&` operator and fields can be compared to literal values with the `==` and `!=` operators.
+Conditionals can be combined with the `&` operator and fields can be compared to literal values with the `==` and `!=` operators. Literal values can be separated by `|` to achieve OR logic.
 
 New files can be contributed to the base Project template by adding them to the composition template following the folder structure of the base Project template.
 
@@ -191,7 +191,7 @@ Merge post action files use pattern matching and special comments to identify a 
   </PropertyGroup>
 ```
 
-The above merge post action file would search for the `EnableMsixTooling` property and then remove `<WindowsPackageType>None</WindowsPackageType>` found after that location by surrounding the line to remove with XML comments that use the `{--{` and `}--}` syntax. This syntax indicates that the content within the comment should be removed from the original file. See https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/templates.md#post-actions for more details on merge post action syntax as well as other types of post actions that can change the output after generation has occurred.
+The above merge post action file would search for the `EnableMsixTooling` property and then remove `<WindowsPackageType>None</WindowsPackageType>` found after that location by surrounding the line to remove with XML comments that use the `{--{` and `}--}` syntax. This syntax indicates that the content within the comment should be removed from the original file. See https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/templates.md#post-actions for more details on merge post action syntax as well as other types of post actions that can change the output after generation has occurred. Note that the special comments should use the comment syntax corresponding to the file being modified. `.xaml` and `.csproj` files should use XML comment syntax and `.cs` files should use C# comment syntax.
 
 ### Modifying the Wizard
 
