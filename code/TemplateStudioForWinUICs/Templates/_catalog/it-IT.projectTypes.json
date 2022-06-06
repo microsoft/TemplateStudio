@@ -5,7 +5,7 @@
     "summary": "Sono inclusi un frame di navigazione e servizi e stili di base."
   },
   {
-    "name": "SplitView",
+    "name": "NavView",
     "displayName": "Navigation Pane",
     "summary": "Un menu Hamburger è incluso per spostarsi tra le pagine."
   },

@@ -5,7 +5,7 @@
     "summary": "Um quadro de navegação e serviços e estilos básicos estão incluídos."
   },
   {
-    "name": "SplitView",
+    "name": "NavView",
     "displayName": "Navigation Pane",
     "summary": "Um Menu Hambúrguer é incluído para a navegação entre as páginas."
   },

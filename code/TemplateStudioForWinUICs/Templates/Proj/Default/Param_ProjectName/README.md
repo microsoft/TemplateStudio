@@ -28,7 +28,7 @@ You can open the Task List using the menu `Views -> Task List`.
 │ ├── Styles/ - custom style definitions
 │ ├── ViewModels/ - properties and commands consumed in the views
 │ ├── Views/ - UI pages
-│ │ ├── ShellPage.xaml - main app page with navigation frame (only for SplitView and MenuBar)
+│ │ ├── ShellPage.xaml - main app page with navigation frame (only for NavView and MenuBar)
 │ │ └── ...
 │ └── App.xaml - app definition and lifecycle events
 │ └── Package.appxmanifest - app properties and declarations
