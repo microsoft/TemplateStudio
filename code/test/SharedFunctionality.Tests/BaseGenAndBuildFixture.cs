@@ -126,18 +126,18 @@ namespace Microsoft.Templates.Test
 
             var solutionFile = Path.GetFullPath(outputPath + @"\" + projectName + ".sln");
             var projectFile = Path.GetFullPath(outputPath + @"\" + packagingProjectName + @"\" + packagingProjectName + $".{packagingProjectExtension}");
-            var nugetExecutable = GetPath("nuget\\nuget.exe");
+            var appPackagesDir = outputPath + @"\" + projectName + @"\AppPackages\\";
 
             var vsRoot = GetVsInstallRoot();
 
             Console.Out.WriteLine();
             Console.Out.WriteLine($"### > Ready to start building (MSIX)");
             Console.Out.WriteLine($"### > VSRoot: {vsRoot}");
-            Console.Out.WriteLine($"### > Running following command: {GetPath(batfile)} \"{vsRoot}\" \"{solutionFile}\" \"{projectFile}\" \"{nugetExecutable}\"");
+            Console.Out.WriteLine($"### > Running following command: {GetPath(batfile)} \"{vsRoot}\" \"{solutionFile}\" \"{projectFile}\" \"{appPackagesDir}\"");
 
             var startInfo = new ProcessStartInfo(GetPath(batfile))
             {
-                Arguments = $"\"{vsRoot}\" \"{solutionFile}\" \"{projectFile}\" \"{nugetExecutable}\"",
+                Arguments = $"\"{vsRoot}\" \"{solutionFile}\" \"{projectFile}\" \"{appPackagesDir}\"",
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 CreateNoWindow = false,
