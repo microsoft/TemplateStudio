@@ -88,7 +88,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.ServiceHub.Framework">
-      <Version>3.1.2036</Version>
+      <Version>3.1.4097</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.TemplateEngine.Edge">
       <Version>6.0.200</Version>
@@ -99,13 +99,13 @@
     <PackageReference Include="Microsoft.VisualStudio.ProjectSystem">
       <Version>17.0.1313-pre</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.0.32112.339" ExcludeAssets="runtime">
+    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.2.32505.173" ExcludeAssets="runtime">
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface">
-      <Version>17.0.31902.203</Version>
+      <Version>17.2.32505.113</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.0.5234">
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.2.2186">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -116,7 +116,7 @@
       <Version>6.0.0</Version>
     </PackageReference>
     <PackageReference Include="StreamJsonRpc">
-      <Version>2.10.41</Version>
+      <Version>2.11.35</Version>
     </PackageReference>
     <PackageReference Include="WriteableBitmapEx">
       <Version>1.6.8</Version>
@@ -172,6 +172,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Content Include="Templates\Ft\SelfContained\.template.config\icon.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Assets\WindowIcon.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.WebView\Views\ShellPage_postaction.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.Blank\Views\ShellPage_postaction.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ListDetails\Views\ShellPage_postaction.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ContentGrid\Views\ShellPage_postaction.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.DataGrid\Views\ShellPage_postaction.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\_shared\Page.AddBackground.Blank\Views\Param_ItemNamePage_postaction.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedStyles\AllStylesDictionary.cs">
@@ -194,6 +218,12 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioForWinUICsPackage.cs" />
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Helpers\TitleBarHelper.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.MenuBar.AddNavViewItem.Settings\Views\ShellPage_postaction.xaml.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Commands\Resources\TemplateStudioCommand.png" />
     <Content Include="Commands\TemplateStudioForWinuiPackage.vsct">
       <Generator>VsctGenerator</Generator>
@@ -274,6 +304,51 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Proj\Default\.vsconfig">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\SelfContained\.template.config\description.md">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\SelfContained\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\SelfContained\Param_ProjectName_postaction.csproj">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.WebView\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.WebView\Strings\en-us\Resources_postaction.resw">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.Blank\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.Blank\Strings\en-us\Resources_postaction.resw">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ListDetails\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ListDetails\Strings\en-us\Resources_postaction.resw">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ContentGrid\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.ContentGrid\Strings\en-us\Resources_postaction.resw">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.DataGrid\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.DataGrid\Strings\en-us\Resources_postaction.resw">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Proj\Default\.editorconfig">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\_shared\Page.AddBackground.Blank\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
@@ -528,13 +603,7 @@
     <Content Include="Templates\_comp\MT\Project.MenuBar\App_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Project.MenuBar\Contracts\Services\IRightPaneService.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_comp\MT\Project.MenuBar\Services\ActivationService_postaction.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Project.MenuBar\Services\RightPaneService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.MenuBar\ViewModels\ShellViewModel.cs">
@@ -1923,12 +1992,6 @@
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.Settings\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem\Strings\en-us\Resources_postaction.resw">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1966,9 +2029,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.ListDetail.SplitView\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeMinimal\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeNever\.template.config\template.json">
@@ -2052,9 +2112,6 @@
     <Content Include="Templates\Proj\Default\Param_ProjectName\App.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\Page.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\Styles\TextBlock.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2088,9 +2145,6 @@
     <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem.Settings\Views\ShellPage_searchreplace.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Project.SplitView.AddNavViewItem\Views\ShellPage_postaction.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_comp\MT\Project.SplitView\Views\ShellPage.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2113,9 +2167,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.ListDetail.SplitView\Views\Param_ItemNamePage_postaction.xaml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeMinimal\Views\Param_ItemNamePage_postaction.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.SplitView.AddHeaderModeNever\Views\Param_ItemNamePage_postaction.xaml">
@@ -2191,7 +2242,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />
   <Import Project="..\SharedFunctionality.UI\SharedFunctionality.UI.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

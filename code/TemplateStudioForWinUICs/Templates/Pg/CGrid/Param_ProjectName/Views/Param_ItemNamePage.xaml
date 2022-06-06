@@ -7,12 +7,10 @@
     xmlns:animations="using:CommunityToolkit.WinUI.UI.Animations"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:models="using:Param_RootNamespace.Core.Models"
-    mc:Ignorable="d"
-    Style="{StaticResource PageStyle}">
+    mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
         <controls:AdaptiveGridView
-            Padding="{StaticResource MediumLeftRightMargin}"
             animations:Connected.ListItemElementName="itemThumbnail"
             animations:Connected.ListItemKey="animationKeyContentGrid"
             DesiredWidth="180"
@@ -26,8 +24,7 @@
                 <DataTemplate x:DataType="models:SampleOrder">
                     <Grid
                         x:Name="itemThumbnail"
-                        Padding="{StaticResource XSmallLeftTopRightBottomMargin}"
-                        Background="{ThemeResource SystemControlPageBackgroundChromeLowBrush}">
+                        Padding="{StaticResource XSmallLeftTopRightBottomMargin}">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                             <FontIcon
                                 Glyph="{x:Bind Symbol}"

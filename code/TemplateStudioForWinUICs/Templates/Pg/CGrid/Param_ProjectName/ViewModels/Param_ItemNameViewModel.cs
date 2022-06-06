@@ -1,52 +1,50 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.ViewModels;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Models;
 
-namespace Param_RootNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels;
+
+public class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
 {
-    public class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
+    private readonly INavigationService _navigationService;
+    private readonly ISampleDataService _sampleDataService;
+    private ICommand _itemClickCommand;
+
+    public ICommand ItemClickCommand => _itemClickCommand ??= new RelayCommand<SampleOrder>(OnItemClick);
+
+    public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+
+    public Param_ItemNameViewModel(INavigationService navigationService, ISampleDataService sampleDataService)
     {
-        private readonly INavigationService _navigationService;
-        private readonly ISampleDataService _sampleDataService;
-        private ICommand _itemClickCommand;
+        _navigationService = navigationService;
+        _sampleDataService = sampleDataService;
+    }
 
-        public ICommand ItemClickCommand => _itemClickCommand ?? (_itemClickCommand = new RelayCommand<SampleOrder>(OnItemClick));
+    public async void OnNavigatedTo(object parameter)
+    {
+        Source.Clear();
 
-        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
-
-        public Param_ItemNameViewModel(INavigationService navigationService, ISampleDataService sampleDataService)
+        // TODO: Replace with real data.
+        var data = await _sampleDataService.GetContentGridDataAsync();
+        foreach (var item in data)
         {
-            _navigationService = navigationService;
-            _sampleDataService = sampleDataService;
+            Source.Add(item);
         }
+    }
 
-        public async void OnNavigatedTo(object parameter)
+    public void OnNavigatedFrom()
+    {
+    }
+
+    private void OnItemClick(SampleOrder clickedItem)
+    {
+        if (clickedItem != null)
         {
-            Source.Clear();
-
-            // TODO: Replace with real data.
-            var data = await _sampleDataService.GetContentGridDataAsync();
-            foreach (var item in data)
-            {
-                Source.Add(item);
-            }
-        }
-
-        public void OnNavigatedFrom()
-        {
-        }
-
-        private void OnItemClick(SampleOrder clickedItem)
-        {
-            if (clickedItem != null)
-            {
-                _navigationService.SetListDataItemForNextConnectedAnimation(clickedItem);
-                _navigationService.NavigateTo(typeof(Param_ItemNameDetailViewModel).FullName, clickedItem.OrderID);
-            }
+            _navigationService.SetListDataItemForNextConnectedAnimation(clickedItem);
+            _navigationService.NavigateTo(typeof(Param_ItemNameDetailViewModel).FullName, clickedItem.OrderID);
         }
     }
 }

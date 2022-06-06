@@ -5,14 +5,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
-    mc:Ignorable="d"
-    Style="{StaticResource PageStyle}">
+    mc:Ignorable="d">
 
-    <Grid x:Name="ContentArea" Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid x:Name="ContentArea">
         <controls:DataGrid
             AutoGenerateColumns="False"
             GridLinesVisibility="Horizontal"
             ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}">
+            <controls:DataGrid.Resources>
+                <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundColor" Color="Transparent" />
+            </controls:DataGrid.Resources>
             <controls:DataGrid.Columns>
                 <!-- TODO: Replace column definitions to match real data. Consider adding Header values to Resources.resw. -->
                 <controls:DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
@@ -25,11 +27,10 @@
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <FontIcon
-                                    Margin="{StaticResource SmallLeftRightMargin}"
-                                    HorizontalAlignment="Left"
-                                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                    Glyph="{Binding Symbol}"
-                                    AutomationProperties.Name="{Binding SymbolName}" />
+                                HorizontalAlignment="Left"
+                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                Glyph="{Binding Symbol}"
+                                AutomationProperties.Name="{Binding SymbolName}" />
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
                 </controls:DataGridTemplateColumn>

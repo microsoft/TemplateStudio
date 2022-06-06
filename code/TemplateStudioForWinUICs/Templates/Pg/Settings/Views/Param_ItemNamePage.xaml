@@ -6,12 +6,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:helpers="using:Param_RootNamespace.Helpers"
     xmlns:xaml="using:Microsoft.UI.Xaml"
-    mc:Ignorable="d"
-    Style="{StaticResource PageStyle}">
+    mc:Ignorable="d">
     <Page.Resources>
         <helpers:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
     </Page.Resources>
-    <Grid Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid>
         <StackPanel
             x:Name="ContentArea">
             <TextBlock x:Uid="Settings_Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
@@ -61,7 +60,7 @@
                     x:Uid="Settings_AboutDescription"
                     Margin="{StaticResource XSmallTopMargin}"
                     Style="{ThemeResource BodyTextBlockStyle}" />
-                <HyperlinkButton x:Uid="SettingsPage_PrivacyTermsLink" Margin="{StaticResource XSmallTopMargin}" />
+                <HyperlinkButton x:Uid="SettingsPage_PrivacyTermsLink" Margin="{StaticResource SettingsPageHyperlinkButtonMargin}" />
             </StackPanel>
         </StackPanel>
     </Grid>

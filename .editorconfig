@@ -30,6 +30,8 @@ dotnet_style_prefer_conditional_expression_over_return = true:silent
 
 # C# files
 [*.cs]
+charset = utf-8-bom
+
 # New line preferences
 csharp_new_line_before_open_brace = all
 csharp_new_line_before_else = true
@@ -166,18 +168,23 @@ csharp_space_between_square_brackets = false
 # License header
 file_header_template = Licensed to the .NET Foundation under one or more agreements.\nThe .NET Foundation licenses this file to you under the MIT license.\nSee the LICENSE file in the project root for more information.
 csharp_style_namespace_declarations = block_scoped:silent
+csharp_style_prefer_method_group_conversion = true:silent
 
 # C++ Files
 [*.{cpp,h,in}]
 curly_bracket_next_line = true
 indent_brace_style = Allman
 
+# xaml files
+[*.xaml]
+charset = utf-8-bom
+
 # Xml project files
 [*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,nativeproj,locproj}]
 indent_size = 2
 
 [*.{csproj,vbproj,proj,nativeproj,locproj}]
-charset = utf-8
+charset = utf-8-bom
 
 # Xml build files
 [*.builds]

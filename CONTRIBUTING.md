@@ -69,6 +69,32 @@ Base templates contain the core part of the templates that are unaffected by oth
 
 Each template has a `.template.config/template.json` file that defines metadata for the template as well as any conditionals that apply to their application, also known as composition filters. Template Studio templates are based on the [.NET Templating Engine](https://github.com/dotnet/templating/wiki/Reference-for-template.json), so the `template.json` format is inherited from .NET. Template Studio extends the .NET model to support composition filters.
 
+Below is a checklist to follow when adding new templates:
+
+* Copy an existing similar template as a starting point
+* Set descriptive `name` and `shortName` fields in `.template.config/template.json`
+* Set unique `identity` and `groupIdentity` fields in `.template.config/template.json`
+  * By default, `groupIdentity` should be the same as `identity` unless you have a good reason to change it
+* Update other metadata in `.template.config/template.json` as appropriate
+  * See [Modifying the Wizard](#Modifying-the-Wizard) and [template.json reference](https://github.com/dotnet/templating/wiki/Reference-for-template.json)
+* Update `.template.config/icon.xaml` as appropriate
+  * Requests for new icons can be filed at https://aka.ms/d3icons
+* Modify the content of the template
+* Set `Include in VSIX` to `true` in the Properties window for all the files in the template
+
+To determine whether code should be part of a base template vs. a composition template, ask yourself these questions:
+
+* Is the code the same regardless of other options selected in the Template Studio wizard?
+  * Yes? It should be included in a base template.
+  * No? It should be included in a composition template.
+* Is the code dependent on the frontend framework selected in the Template Studio wizard?
+  * Yes? It should be included in a composition template under `_comp/<FRONTENDFRAMEWORK>`.
+  * No? It should be included in a composition template under `_comp/_shared`.
+
+Determining what code should be part of a base template vs. a composition template is the most important and challenging step when adding new templates. Once this is established, implementing the templates becomes straightforward.
+
+When proposing non-trivial changes to templates, creating a git repository from a fully generated Template Studio project and then committing changes can help track and communicate the differences. The git diffs can then be used to identify net new content that should be added to base templates and changes to existing content that should be added to composition templates.
+
 ### Composition Templates
 
 Composition templates are just like other templates except that they include a `ts.compositionFilter` tag in `template.json` that qualifies when they will be applied.
@@ -145,7 +171,7 @@ Below are the fields that can be evaluated in a composition filter:
   * `$frontendframework`
   * `$projectType`
 
-Conditionals can be combined with the `&` operator and fields can be compared to literal values with the `==` and `!=` operators.
+Conditionals can be combined with the `&` operator and fields can be compared to literal values with the `==` and `!=` operators. Literal values can be separated by `|` to achieve OR logic.
 
 New files can be contributed to the base Project template by adding them to the composition template following the folder structure of the base Project template.
 
@@ -158,14 +184,14 @@ Merge post action files use pattern matching and special comments to identify a 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+    <EnableMsixTooling>true</EnableMsixTooling>
 <!--{--{-->
     <WindowsPackageType>None</WindowsPackageType>
 <!--}--}-->
   </PropertyGroup>
 ```
 
-The above merge post action file would search for the `EnablePreviewMsixTooling` property and then remove `<WindowsPackageType>None</WindowsPackageType>` found after that location by surrounding the line to remove with XML comments that use the `{--{` and `}--}` syntax. This syntax indicates that the content within the comment should be removed from the original file. See https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/templates.md#post-actions for more details on merge post action syntax as well as other types of post actions that can change the output after generation has occurred.
+The above merge post action file would search for the `EnableMsixTooling` property and then remove `<WindowsPackageType>None</WindowsPackageType>` found after that location by surrounding the line to remove with XML comments that use the `{--{` and `}--}` syntax. This syntax indicates that the content within the comment should be removed from the original file. See https://github.com/microsoft/CoreTemplateStudio/blob/dev/docs/templates.md#post-actions for more details on merge post action syntax as well as other types of post actions that can change the output after generation has occurred. Note that the special comments should use the comment syntax corresponding to the file being modified. `.xaml` and `.csproj` files should use XML comment syntax and `.cs` files should use C# comment syntax.
 
 ### Modifying the Wizard
 
@@ -178,8 +204,14 @@ The Template Studio wizard enables developers to produce a custom project templa
 * Add `ts.projecttype` and `ts.frontendframework` filters to base template.json files
   * Enables you to associate a template with specific project types and/or frontend frameworks
 * Add `ts.dependencies` to base template.json files to associate dependencies between templates which will link them in the wizard
+* Add `ts.group` to base template.json files to group features in the wizard
+  * This requires adding a corresponding `TemplateGroup_<GROUPNAME>` string resource in SharedResources/StringRes.resx.
+* Add `ts.displayOrder` to base template.json files to change the display order in the wizard
+* Add `description.md` and `icon.xaml` files to base .template.config folders to update the description and icon presented in the wizard
 * Add a `Layout.json` file to a base Project template
   * Enables you to mark a feature as readonly
+
+Each template contains a `.template.config/icon.xaml` file that defines the icon that is displayed in the wizard for that template. Visual Studio designers are available to help recommend icons from their [existing icon library](https://d3assets.azurewebsites.net/icons/vswin2022) or to design new icons. Requests for new icons can be filed at https://aka.ms/d3icons.
 
 Note: Composition templates within the _comp folder do not alter the wizard. They only modify the base templates based on the options selected in the wizard.
 
@@ -202,6 +234,16 @@ Below is a checklist to follow when validating changes:
 * Do all relevant tests pass?
 
 Once all changes pass basic validation, submit them for review by filing a pull request.
+
+When developing extensions, the experimental instance of Visual Studio can sometimes become corrupt, preventing deployment and debugging of the extension. This usually surfaces as deployment errors when trying to deploy the extension or as silent failures that result in the Template Studio project templates not showing up in the New Project dialog. To recover from this state, you can reset the experimental instance by closing all instances of Visual Studio, then running the below command from PowerShell:
+
+```powershell
+& "C:\Program Files\Microsoft Visual Studio\2022\Community\VSSDK\VisualStudioIntegration\Tools\Bin\CreateExpInstance.exe" /Reset /RootSuffix=Exp /VSInstance=<VSInstance>
+```
+
+Replace `<VSInstance>` with the folder name returned by `ls $Env:LOCALAPPDATA/Microsoft/VisualStudio/*.*`. This should return a folder with an `-Exp` suffix and a folder without that suffix. Set `<VSInstance>` to the unsuffixed name (e.g. `17.0_a0adeae7`).
+
+If this doesn't work, uninstalling and reinstalling Visual Studio will always return you to a working state.
 
 ## Filing a pull request
 

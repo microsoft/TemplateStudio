@@ -8,7 +8,7 @@
   "shortName": "MSIX Packaging",
   "groupIdentity": "ts.WinUI.Feat.MSIXPackaging",
   "identity": "ts.WinUI.Feat.MSIXPackaging",
-  "description": "Allows packages creation for side-loading or distribution via Microsoft Store.",
+  "description": "Package with MSIX for sideloading or distribution via the Microsoft Store.",
   "tags": {
     "language": "C#",
     "type": "project",
@@ -19,7 +19,7 @@
     "ts.appmodel": "Desktop",
     "ts.version": "1.0.0",
     "ts.genGroup": "0",
-    "ts.group": "Packaging",
+    "ts.group": "Deployment",
     "ts.displayOrder": "1",
     "ts.defaultInstance": "MSIX Packaging",
     "ts.multipleInstance": "false",

@@ -1,19 +1,18 @@
-﻿namespace Param_RootNamespace.Services
-{
-    public class NavigationViewService : INavigationViewService
-    {
+﻿namespace Param_RootNamespace.Services;
 
-        private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+public class NavigationViewService : INavigationViewService
+{
+
+    private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+    {
+        if (args.IsSettingsInvoked)
         {
-            if (args.IsSettingsInvoked)
-            {
 //{--{
-                // Navigate to the settings page - implement as appropriate if needed
+            // Navigate to the settings page.
 //}--}
 //{[{
-                _navigationService.NavigateTo(typeof(Param_ItemNameViewModel).FullName);
+            _navigationService.NavigateTo(typeof(Param_ItemNameViewModel).FullName);
 //}]}
-            }
         }
     }
 }

@@ -1,12 +1,7 @@
-﻿            .ConfigureServices((context, services) =>
-            {
-                // Services
+﻿        .ConfigureServices((context, services) =>
+        {
+            // Views and ViewModels
 //{[{
-                services.AddSingleton<IRightPaneService, RightPaneService>();
-//}]}
-
-                // Views and ViewModels
-//{[{
-                services.AddTransient<ShellPage>();
-                services.AddTransient<ShellViewModel>();
+            services.AddTransient<ShellPage>();
+            services.AddTransient<ShellViewModel>();
 //}]}

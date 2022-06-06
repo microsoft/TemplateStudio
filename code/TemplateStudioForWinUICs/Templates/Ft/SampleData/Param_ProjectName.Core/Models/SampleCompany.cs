@@ -1,33 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Param_RootNamespace.Core.Models
+namespace Param_RootNamespace.Core.Models;
+
+// Model for the SampleDataService. Replace with your own model.
+public class SampleCompany
 {
-    // Remove this class once your pages/features are using your data.
-    // This is used by the SampleDataService.
-    // It is the model class we use to display data on pages like Grid, Chart, and ListDetails.
-    public class SampleCompany
+    public string CompanyID
     {
-        public string CompanyID { get; set; }
+        get; set;
+    }
 
-        public string CompanyName { get; set; }
+    public string CompanyName
+    {
+        get; set;
+    }
 
-        public string ContactName { get; set; }
+    public string ContactName
+    {
+        get; set;
+    }
 
-        public string ContactTitle { get; set; }
+    public string ContactTitle
+    {
+        get; set;
+    }
 
-        public string Address { get; set; }
+    public string Address
+    {
+        get; set;
+    }
 
-        public string City { get; set; }
+    public string City
+    {
+        get; set;
+    }
 
-        public string PostalCode { get; set; }
+    public string PostalCode
+    {
+        get; set;
+    }
 
-        public string Country { get; set; }
+    public string Country
+    {
+        get; set;
+    }
 
-        public string Phone { get; set; }
+    public string Phone
+    {
+        get; set;
+    }
 
-        public string Fax { get; set; }
+    public string Fax
+    {
+        get; set;
+    }
 
-        public ICollection<SampleOrder> Orders { get; set; }
+    public ICollection<SampleOrder> Orders
+    {
+        get; set;
     }
 }

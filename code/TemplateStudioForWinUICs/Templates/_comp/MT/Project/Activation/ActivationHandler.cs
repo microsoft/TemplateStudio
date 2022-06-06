@@ -1,33 +1,19 @@
 ﻿using System.Threading.Tasks;
 
-namespace Param_RootNamespace.Activation
+namespace Param_RootNamespace.Activation;
+
+// Extend this class to implement new ActivationHandlers. See DefaultActivationHandler for an example.
+// https://github.com/microsoft/TemplateStudio/blob/main/docs/WinUI/activation.md
+public abstract class ActivationHandler<T> : IActivationHandler
+    where T : class
 {
-    // For more information on understanding activation flow see
-    // https://github.com/microsoft/TemplateStudio/blob/main/docs/WinUI/activation.md
-    //
-    // Extend this class to implement new ActivationHandlers
-    public abstract class ActivationHandler<T> : IActivationHandler
-        where T : class
-    {
-        // Override this method to add the activation logic in your activation handler
-        protected abstract Task HandleInternalAsync(T args);
+    // Override this method to add the logic for whether to handle the activation.
+    protected virtual bool CanHandleInternal(T args) => true;
 
-        public async Task HandleAsync(object args)
-        {
-            await HandleInternalAsync(args as T);
-        }
+    // Override this method to add the logic for your activation handler.
+    protected abstract Task HandleInternalAsync(T args);
 
-        public bool CanHandle(object args)
-        {
-            // CanHandle checks the args is of type you have configured
-            return args is T && CanHandleInternal(args as T);
-        }
+    public bool CanHandle(object args) => args is T && CanHandleInternal(args as T);
 
-        // You can override this method to add extra validation on activation args
-        // to determine if your ActivationHandler should handle this activation args
-        protected virtual bool CanHandleInternal(T args)
-        {
-            return true;
-        }
-    }
+    public async Task HandleAsync(object args) => await HandleInternalAsync(args as T);
 }

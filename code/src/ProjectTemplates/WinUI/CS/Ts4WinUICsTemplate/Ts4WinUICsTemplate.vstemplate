@@ -13,7 +13,6 @@
 		<ProvideDefaultName>true</ProvideDefaultName>
 		<LanguageTag>XAML</LanguageTag>
 		<PlatformTag>Windows</PlatformTag>
-        <PlatformTag>Windows App SDK</PlatformTag>
 		<ProjectTypeTag>desktop</ProjectTypeTag>
 		<ProjectTypeTag>WinUI</ProjectTypeTag>
 	</TemplateData>

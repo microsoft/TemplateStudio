@@ -4,5 +4,5 @@
     xmlns:behaviors="using:Param_RootNamespace.Behaviors"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     <!--}]}-->
-    Style="{StaticResource PageStyle}">
+    mc:Ignorable="d">
 </Page>

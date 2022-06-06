@@ -2,8 +2,8 @@
 <root>
 <!--^^-->
 <!--{[{-->
-  <data name="ShellMenuItem_File_Param_ItemName.Text" xml:space="preserve">
-    <value>Param_ItemName</value>
+  <data name="ShellMenuBarSettingsButton.[using:Microsoft.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Settings</value>
   </data>
 <!--}]}-->
 </root>

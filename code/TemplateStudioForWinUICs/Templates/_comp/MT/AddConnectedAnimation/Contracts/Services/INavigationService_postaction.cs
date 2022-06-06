@@ -1,11 +1,10 @@
-﻿namespace Param_RootNamespace.Contracts.Services
+﻿namespace Param_RootNamespace.Contracts.Services;
+
+public interface INavigationService
 {
-    public interface INavigationService
-    {
 //^^
 //{[{
 
-        void SetListDataItemForNextConnectedAnimation(object item);
+    void SetListDataItemForNextConnectedAnimation(object item);
 //}]}
-    }
 }

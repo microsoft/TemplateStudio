@@ -63,6 +63,12 @@ We will be refactoring and optimizing our CI pipelines to support the new multi-
 
 DISCLAIMER: The roadmap is subject to change.
 
+## Upcoming releases
+- [5.1 - June 2022](https://github.com/microsoft/TemplateStudio/milestone/34)
+  - UX refresh aligned with latest WinUI 3 design guidelines
+  - Update to Windows App SDK 1.1 and add Self-Contained Deployment
+  - Improved code style and CA fixes
+
 ## Past releases
 - [5.0 - April 2022](https://github.com/microsoft/TemplateStudio/releases/tag/v5.0)
 - [4.1 - June 2021](https://github.com/microsoft/TemplateStudio/milestone/32)
