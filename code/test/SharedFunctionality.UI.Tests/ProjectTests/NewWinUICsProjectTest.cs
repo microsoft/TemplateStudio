@@ -16,7 +16,7 @@ namespace Microsoft.UI.Test.ProjectTests
     [Trait("Group", "Minimum")]
     public class NewWinUICsProjectTest : IClassFixture<WinUICsPlatformTemplatesFixture>
     {
-        private const string DefaultProjectType = "SplitView";
+        private const string DefaultProjectType = "NavView";
         private const string DefaultFramework = "MVVMToolkit";
 
         public NewWinUICsProjectTest(WinUICsPlatformTemplatesFixture fixture)

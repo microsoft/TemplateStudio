@@ -5,7 +5,7 @@
     "summary": "내비게이션 프레임과 기본 서비스 및 스타일이 포함되어 있습니다."
   },
   {
-    "name": "SplitView",
+    "name": "NavView",
     "displayName": "Navigation Pane",
     "summary": "햄버거 메뉴는 페이지 간 탐색을 위해 제공됩니다."
   },

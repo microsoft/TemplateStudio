@@ -5,7 +5,7 @@
     "summary": "Incluye un marco de navegación, servicios y estilos básicos."
   },
   {
-    "name": "SplitView",
+    "name": "NavView",
     "displayName": "Navigation Pane",
     "summary": "Incluye un menú de hamburguesa para poder navegar entre las páginas."
   },

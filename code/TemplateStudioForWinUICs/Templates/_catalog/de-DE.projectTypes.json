@@ -5,7 +5,7 @@
     "summary": "Ein Navigationsbereich und grundlegende Dienste und Stile sind enthalten."
   },
   {
-    "name": "SplitView",
+    "name": "NavView",
     "displayName": "Navigation Pane",
     "summary": "Für die Navigation zwischen den Seiten ist ein Hamburger-Menü enthalten."
   },

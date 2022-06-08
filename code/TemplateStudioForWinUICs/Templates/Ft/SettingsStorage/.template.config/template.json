@@ -11,7 +11,7 @@
     "language": "C#",
     "type": "item",
     "ts.type": "feature",
-    "ts.projecttype": "Blank|SplitView|MenuBar",
+    "ts.projecttype": "Blank|NavView|MenuBar",
     "ts.frontendframework": "all",
     "ts.platform": "WinUI",
     "ts.appmodel": "Desktop",

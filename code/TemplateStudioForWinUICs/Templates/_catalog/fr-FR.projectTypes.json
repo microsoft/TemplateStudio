@@ -5,7 +5,7 @@
     "summary": "Un cadre de navigation et des services et styles de base sont inclus."
   },
   {
-    "name": "SplitView",
+    "name": "NavView",
     "displayName": "Navigation Pane",
     "summary": "Un menu hamburger est inclus, pour permettre de naviguer entre les pages."
   },
