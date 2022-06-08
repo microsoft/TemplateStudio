@@ -5,7 +5,7 @@
     "summary": "ナビゲーション フレームと基本的なサービスとスタイルが含まれています。"
   },
   {
-    "name": "SplitView",
+    "name": "NavView",
     "displayName": "Navigation Pane",
     "summary": "ページ間の移動に使用されるハンバーガー メニューが含まれています。"
   },

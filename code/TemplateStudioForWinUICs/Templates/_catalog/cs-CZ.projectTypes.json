@@ -5,7 +5,7 @@
     "summary": "Součástí balení je navigační rámec a základní služby a styly."
   },
   {
-    "name": "SplitView",
+    "name": "NavView",
     "displayName": "Navigation Pane",
     "summary": "Zahrnuje také nabídku typu „hamburger“ pro navigaci mezi stránkami."
   },

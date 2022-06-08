@@ -5,7 +5,7 @@
     "summary": "Gezinti çerçevesi ve temel hizmetler ve stiller dahildir."
   },
   {
-    "name": "SplitView",
+    "name": "NavView",
     "displayName": "Navigation Pane",
     "summary": "Sayfalar arasında gezinti için Hamburger Menüsü bulunmaktadır."
   },

@@ -5,7 +5,7 @@
     "summary": "W zestawie znajduje się ramka nawigacji oraz podstawowe usługi i style."
   },
   {
-    "name": "SplitView",
+    "name": "NavView",
     "displayName": "Navigation Pane",
     "summary": "Zawiera on menu typu „hamburger” do nawigowania między stronami."
   },

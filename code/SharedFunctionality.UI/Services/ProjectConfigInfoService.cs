@@ -23,6 +23,7 @@ namespace Microsoft.Templates.UI.Services
 
         // ProjectType
         private const string Blank = "Blank";
+        private const string NavView = "NavView";
         private const string SplitView = "SplitView";
         private const string TabbedNav = "TabbedNav";
         private const string MenuBar = "MenuBar";
@@ -147,6 +148,10 @@ namespace Microsoft.Templates.UI.Services
             {
                 return MenuBar;
             }
+            else if (IsNavView(platform))
+            {
+                return NavView;
+            }
             else if (IsSplitView(platform))
             {
                 return SplitView;
@@ -204,6 +209,18 @@ namespace Microsoft.Templates.UI.Services
             }
         }
 
+        private bool IsNavView(string platform)
+        {
+            switch (platform)
+            {
+                case Platforms.WinUI:
+                    return ExistsFileInProjectPath("ShellPage.xaml", "Views")
+                        && FileContainsLine("Views", "ShellPage.xaml", "<NavigationView");
+                default:
+                    return false;
+            }
+        }
+
         private bool IsSplitView(string platform)
         {
             switch (platform)
@@ -221,9 +238,6 @@ namespace Microsoft.Templates.UI.Services
                 case Platforms.Wpf:
                     return ExistsFileInProjectPath("ShellWindow.xaml", "Views")
                         && FileContainsLine("Views", "ShellWindow.xaml", "<controls:HamburgerMenu");
-                case Platforms.WinUI:
-                    return ExistsFileInProjectPath("ShellPage.xaml", "Views")
-                        && FileContainsLine("Views", "ShellPage.xaml", "<NavigationView");
                 default:
                     return false;
             }
