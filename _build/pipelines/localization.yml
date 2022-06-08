@@ -1,0 +1,51 @@
+name: $(date:yyyyMMdd)$(rev:.r)
+
+trigger: none
+
+pr: none
+
+schedules:
+- cron: 0 5 * * *
+  branches:
+    include:
+    - main
+
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: refs/heads/main
+
+jobs:
+- job:
+  displayName: Localization
+  timeoutInMinutes: 0
+  pool:
+    vmImage: windows-2022
+
+  steps:
+  - checkout: self
+    clean: true
+
+  - task: MicrosoftTDBuild.tdbuild-task.tdbuild-task.TouchdownBuildTask@1
+    displayName: TDBuild
+    inputs:
+      teamId: 46285
+      authId: $(TouchdownApplicationID)
+      authKey: $(TouchdownApplicationKey)
+      resourceFilePath: |
+        **\StringRes.resx
+      outputDirectoryRoot: TDBuild
+      appendRelativeDir: true
+      pseudoSetting: Included
+
+  - powershell: 'tar czf TDBuild.tar.gz TDBuild'
+    displayName: Save TDBuild Output
+
+  - task: PublishBuildArtifacts@1
+    displayName: Publish Artifacts
+    inputs:
+      PathtoPublish: TDBuild.tar.gz
+      ArtifactName: TDBuild
+
+
