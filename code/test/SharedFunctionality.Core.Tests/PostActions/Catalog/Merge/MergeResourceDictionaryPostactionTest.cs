@@ -8,6 +8,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge.CodeStyleProviders;
 using Microsoft.Templates.Core.Test.TestFakes;
+using Microsoft.Templates.SharedResources;
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
@@ -58,7 +59,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Exception ex = Assert.Throws<Exception>(() => mergeResourceDictionaryPostAction.Execute());
             Assert.NotNull(ex.InnerException);
             Assert.Equal(typeof(System.IO.InvalidDataException), ex.InnerException.GetType());
-            Assert.Equal(string.Format(Resources.Resources.PostActionException, "Microsoft.Templates.Core.PostActions.Catalog.Merge.MergeResourceDictionaryPostAction", "TestTemplate"), ex.Message);
+            Assert.Equal(string.Format(Resources.PostActionException, "Microsoft.Templates.Core.PostActions.Catalog.Merge.MergeResourceDictionaryPostAction", "TestTemplate"), ex.Message);
         }
     }
 }
