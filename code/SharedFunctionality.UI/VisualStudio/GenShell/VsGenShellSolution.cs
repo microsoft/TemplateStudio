@@ -17,7 +17,7 @@ using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Gen.Shell;
 using Microsoft.Templates.Core.Helpers;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
@@ -120,7 +120,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
                 chrono.Stop();
             }
 
-            GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(StringRes.StatusAddingProjectReferences);
+            GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(Resources.StatusAddingProjectReferences);
 
             await AddReferencesToProjectsAsync(projectInfo.ProjectReferences);
 
@@ -182,7 +182,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellCollapseSolutionItemsMessage} {ex}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{Resources.ErrorVsGenShellCollapseSolutionItemsMessage} {ex}").FireAndForget();
             }
         }
 
@@ -202,7 +202,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellCollapseSolutionItemsMessage} {ex}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{Resources.ErrorVsGenShellCollapseSolutionItemsMessage} {ex}").FireAndForget();
             }
         }
 
@@ -229,7 +229,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorUnableToSetDefaultConfiguration} {ex}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{Resources.ErrorUnableToSetDefaultConfiguration} {ex}").FireAndForget();
             }
         }
 
@@ -263,7 +263,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
                 {
                     foreach (var file in projFiles)
                     {
-                        GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(string.Format(StringRes.StatusAddingItem, Path.GetFileName(file)));
+                        GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(string.Format(Resources.StatusAddingItem, Path.GetFileName(file)));
 
                         var newItem = proj.ProjectItems.AddFromFile(file);
 
@@ -278,7 +278,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             }
             catch (Exception ex)
             {
-                throw new Exception(string.Format(StringRes.ErrorAddingItemsToProject, projPath), ex);
+                throw new Exception(string.Format(Resources.ErrorAddingItemsToProject, projPath), ex);
             }
         }
 
@@ -323,7 +323,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync(string.Format(StringRes.ErrorUnableGetProjectByPath, projFile), ex).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(string.Format(Resources.ErrorUnableGetProjectByPath, projFile), ex).FireAndForget();
             }
 
             return (proj, guid);
@@ -358,7 +358,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
                         {
                             if (!nugetPackages.Packages.Any(p => p.Id == pkgToAdd.PackageId && p.Version == pkgToAdd.Version))
                             {
-                                GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(pkgToAdd.PackageId)));
+                                GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(string.Format(Resources.StatusAddingNuget, Path.GetFileName(pkgToAdd.PackageId)));
 
                                 if (installer == null)
                                 {
@@ -392,7 +392,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
 
                     foreach (var reference in projectNugets)
                     {
-                        GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(string.Format(StringRes.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
+                        GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(string.Format(Resources.StatusAddingNuget, Path.GetFileName(reference.PackageId)));
 
                         await configuredProject.Services.PackageReferences.AddAsync(reference.PackageId, reference.Version);
                     }
@@ -407,10 +407,10 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
 
             foreach (var nuget in projectNugets)
             {
-                sb.AppendLine(string.Format(StringRes.ErrorMissingNugetPackagesInstallTemplate, nuget.PackageId, nuget.Version));
+                sb.AppendLine(string.Format(Resources.ErrorMissingNugetPackagesInstallTemplate, nuget.PackageId, nuget.Version));
             }
 
-            var missingNugetPackagesInfo = string.Format(StringRes.ErrorMissingNugetPackagesTemplate, relPath, sb);
+            var missingNugetPackagesInfo = string.Format(Resources.ErrorMissingNugetPackagesTemplate, relPath, sb);
             var fileName = Path.Combine(GenContext.Current.DestinationPath, "ERROR_NugetPackages_Missing.txt");
 
             File.AppendAllText(fileName, missingNugetPackagesInfo);
@@ -435,7 +435,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             }
             catch (Exception ex)
             {
-                throw new Exception(string.Format(StringRes.ErrorAddingSdksToProject, projectPath), ex);
+                throw new Exception(string.Format(Resources.ErrorAddingSdksToProject, projectPath), ex);
             }
         }
 
@@ -446,7 +446,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             try
             {
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
-                GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(string.Format(StringRes.StatusAddingProject, Path.GetFileName(project)));
+                GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(string.Format(Resources.StatusAddingProject, Path.GetFileName(project)));
 
                 dte.Solution.AddFromFile(project);
             }
@@ -486,7 +486,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
 
                 if (!projectAlreadyExistsInSolution)
                 {
-                    throw new Exception(string.Format(StringRes.ErrorAddingProject, project), ex);
+                    throw new Exception(string.Format(Resources.ErrorAddingProject, project), ex);
                 }
             }
         }
@@ -549,7 +549,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             }
             catch (Exception ex)
             {
-                throw new Exception(StringRes.ErrorAddingReferencesBetweenProjects, ex);
+                throw new Exception(Resources.ErrorAddingReferencesBetweenProjects, ex);
             }
         }
 

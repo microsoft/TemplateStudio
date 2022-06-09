@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Helpers
 {
@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Core.Helpers
                 var projFile = Fs.FindFileAtOrAbove(itemDirectory, "*.*proj");
                 if (string.IsNullOrEmpty(projFile))
                 {
-                    AppHealth.Current.Error.TrackAsync(string.Format(StringRes.ExceptionProjectNotFound, item)).FireAndForget();
+                    AppHealth.Current.Error.TrackAsync(string.Format(Resources.ExceptionProjectNotFound, item)).FireAndForget();
                 }
                 else
                 {

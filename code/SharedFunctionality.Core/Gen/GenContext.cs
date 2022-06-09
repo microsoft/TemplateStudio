@@ -13,7 +13,7 @@ using Microsoft.Templates.Core.Gen.Shell;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Naming;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Gen
 {
@@ -37,7 +37,7 @@ namespace Microsoft.Templates.Core.Gen
             {
                 if (_currentContext == null)
                 {
-                    throw new InvalidOperationException(StringRes.GenContextCurrentInvalidOperationMessage);
+                    throw new InvalidOperationException(Resources.GenContextCurrentInvalidOperationMessage);
                 }
 
                 return _currentContext;
@@ -73,7 +73,7 @@ namespace Microsoft.Templates.Core.Gen
                 AppHealth.Current.AddWriter(new ShellHealthWriter(shell));
                 AppHealth.Current.IntializeTelemetryClient(shell);
 
-                AppHealth.Current.Info.TrackAsync($"{StringRes.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
+                AppHealth.Current.Info.TrackAsync($"{Resources.ConfigurationFileLoadedString}: {Configuration.LoadedConfigFile}").FireAndForget();
 
                 string hostVersion = $"{shell.VisualStudio.GetVsVersionAndInstance()}-{wizardVersion}";
 
@@ -89,8 +89,8 @@ namespace Microsoft.Templates.Core.Gen
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Exception.TrackAsync(ex, StringRes.GenContextBootstrapError).FireAndForget();
-                Trace.TraceError($"{StringRes.GenContextBootstrapError} Exception:\n\r{ex}");
+                AppHealth.Current.Exception.TrackAsync(ex, Resources.GenContextBootstrapError).FireAndForget();
+                Trace.TraceError($"{Resources.GenContextBootstrapError} Exception:\n\r{ex}");
                 throw;
             }
         }

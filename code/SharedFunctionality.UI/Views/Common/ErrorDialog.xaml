@@ -4,14 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:res="clr-namespace:Microsoft.Templates.Resources;assembly=SharedResources"
+    xmlns:res="clr-namespace:Microsoft.Templates.SharedResources;assembly=SharedResources"
     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
     xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
     ResizeMode="NoResize"
     SizeToContent="Height"
     WindowStartupLocation="CenterScreen"
-    Title="{x:Static res:StringRes.WindowsTemplateStudio}"
+    Title="{x:Static res:Resources.WindowsTemplateStudio}"
     MouseLeftButtonDown="OnMouseLeftButtonDown"
     mc:Ignorable="d"
     MinHeight="180" MaxHeight="450" Width="450">
@@ -80,11 +80,11 @@
             <Grid Margin="{StaticResource Margin_M_LeftTopRightBottom}">
                 <CheckBox
                     IsChecked="{Binding ShowDetails}"
-                    Content="{x:Static res:StringRes.ErrorDialogShowDetails}"
+                    Content="{x:Static res:Resources.ErrorDialogShowDetails}"
                     Style="{StaticResource TSCheckBoxStyle}" />
                 <Button
                     Style="{StaticResource TSButtonFinish}"
-                    Content="{x:Static res:StringRes.ButtonOk}"
+                    Content="{x:Static res:Resources.ButtonOk}"
                     Command="{Binding AcceptCommand}"
                     HorizontalAlignment="Right"/>
             </Grid>

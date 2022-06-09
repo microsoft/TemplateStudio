@@ -9,7 +9,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen.Shell;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Services;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -113,7 +113,7 @@ namespace Microsoft.Templates.UI.Services
                 return Platforms.Wpf;
             }
 
-            throw new Exception(StringRes.ErrorUnableResolvePlatform);
+            throw new Exception(Resources.ErrorUnableResolvePlatform);
         }
 
         private bool IsUwp()

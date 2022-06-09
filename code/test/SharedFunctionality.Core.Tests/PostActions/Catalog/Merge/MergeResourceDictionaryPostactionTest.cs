@@ -58,7 +58,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
             Exception ex = Assert.Throws<Exception>(() => mergeResourceDictionaryPostAction.Execute());
             Assert.NotNull(ex.InnerException);
             Assert.Equal(typeof(System.IO.InvalidDataException), ex.InnerException.GetType());
-            Assert.Equal(string.Format(Resources.StringRes.PostActionException, "Microsoft.Templates.Core.PostActions.Catalog.Merge.MergeResourceDictionaryPostAction", "TestTemplate"), ex.Message);
+            Assert.Equal(string.Format(Resources.Resources.PostActionException, "Microsoft.Templates.Core.PostActions.Catalog.Merge.MergeResourceDictionaryPostAction", "TestTemplate"), ex.Message);
         }
     }
 }

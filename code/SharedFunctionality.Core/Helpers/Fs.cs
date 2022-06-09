@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Helpers
 {
@@ -25,7 +25,7 @@ namespace Microsoft.Templates.Core.Helpers
             }
             catch (Exception ex)
             {
-                var message = string.Format(StringRes.ErrorCreatingFolder, folder, ex.Message);
+                var message = string.Format(Resources.ErrorCreatingFolder, folder, ex.Message);
                 AppHealth.Current.Warning.TrackAsync(message, ex).FireAndForget();
             }
         }
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Core.Helpers
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeCopyFileMessage, sourceFile, destFolder, ex.Message), ex).FireAndForget();
+                AppHealth.Current.Warning.TrackAsync(string.Format(Resources.FsSafeCopyFileMessage, sourceFile, destFolder, ex.Message), ex).FireAndForget();
             }
         }
 
@@ -86,7 +86,7 @@ namespace Microsoft.Templates.Core.Helpers
             {
                 if (warnOnFailure)
                 {
-                    AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeMoveFileMessage, filePath, newPath, ex.Message), ex).FireAndForget();
+                    AppHealth.Current.Warning.TrackAsync(string.Format(Resources.FsSafeMoveFileMessage, filePath, newPath, ex.Message), ex).FireAndForget();
                 }
             }
         }
@@ -102,7 +102,7 @@ namespace Microsoft.Templates.Core.Helpers
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeDeleteFileMessage, filePath, ex.Message), ex).FireAndForget();
+                AppHealth.Current.Warning.TrackAsync(string.Format(Resources.FsSafeDeleteFileMessage, filePath, ex.Message), ex).FireAndForget();
             }
         }
 
@@ -118,7 +118,7 @@ namespace Microsoft.Templates.Core.Helpers
             }
             catch (Exception ex)
             {
-                var message = string.Format(StringRes.FsEnsureFileEditableException, filePath);
+                var message = string.Format(Resources.FsEnsureFileEditableException, filePath);
                 AppHealth.Current.Warning.TrackAsync(message, ex).FireAndForget();
             }
         }
@@ -136,7 +136,7 @@ namespace Microsoft.Templates.Core.Helpers
             {
                 if (warnOnFailure)
                 {
-                    AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeDeleteDirectoryMessage, dir, ex.Message), ex).FireAndForget();
+                    AppHealth.Current.Warning.TrackAsync(string.Format(Resources.FsSafeDeleteDirectoryMessage, dir, ex.Message), ex).FireAndForget();
                 }
             }
         }
@@ -176,7 +176,7 @@ namespace Microsoft.Templates.Core.Helpers
             {
                 if (warnOnFailure)
                 {
-                    AppHealth.Current.Warning.TrackAsync(string.Format(StringRes.FsSafeRenameDirectoryMessage, dir, ex.Message), ex).FireAndForget();
+                    AppHealth.Current.Warning.TrackAsync(string.Format(Resources.FsSafeRenameDirectoryMessage, dir, ex.Message), ex).FireAndForget();
                 }
             }
         }

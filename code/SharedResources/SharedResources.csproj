@@ -120,75 +120,75 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringRes.cs-CZ.Designer.cs">
+    <Compile Include="Resources.cs-CZ.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.cs-CZ.resx</DependentUpon>
+      <DependentUpon>Resources.cs-CZ.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringRes.de-DE.Designer.cs">
+    <Compile Include="Resources.de-DE.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.de-DE.resx</DependentUpon>
+      <DependentUpon>Resources.de-DE.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringRes.Designer.cs">
+    <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.resx</DependentUpon>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringRes.es-ES.Designer.cs">
+    <Compile Include="Resources.es-ES.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.es-ES.resx</DependentUpon>
+      <DependentUpon>Resources.es-ES.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringRes.fr-FR.Designer.cs">
+    <Compile Include="Resources.fr-FR.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.fr-FR.resx</DependentUpon>
+      <DependentUpon>Resources.fr-FR.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringRes.it-IT.Designer.cs">
+    <Compile Include="Resources.it-IT.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.it-IT.resx</DependentUpon>
+      <DependentUpon>Resources.it-IT.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringRes.ja-JP.Designer.cs">
+    <Compile Include="Resources.ja-JP.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.ja-JP.resx</DependentUpon>
+      <DependentUpon>Resources.ja-JP.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringRes.ko-KR.Designer.cs">
+    <Compile Include="Resources.ko-KR.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.ko-KR.resx</DependentUpon>
+      <DependentUpon>Resources.ko-KR.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringRes.pl-PL.Designer.cs">
+    <Compile Include="Resources.pl-PL.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.pl-PL.resx</DependentUpon>
+      <DependentUpon>Resources.pl-PL.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringRes.pt-BR.Designer.cs">
+    <Compile Include="Resources.pt-BR.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.pt-BR.resx</DependentUpon>
+      <DependentUpon>Resources.pt-BR.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringRes.ru-RU.Designer.cs">
+    <Compile Include="Resources.ru-RU.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.ru-RU.resx</DependentUpon>
+      <DependentUpon>Resources.ru-RU.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringRes.tr-TR.Designer.cs">
+    <Compile Include="Resources.tr-TR.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.tr-TR.resx</DependentUpon>
+      <DependentUpon>Resources.tr-TR.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringRes.zh-CN.Designer.cs">
+    <Compile Include="Resources.zh-CN.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.zh-CN.resx</DependentUpon>
+      <DependentUpon>Resources.zh-CN.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringRes.zh-TW.Designer.cs">
+    <Compile Include="Resources.zh-TW.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StringRes.zh-TW.resx</DependentUpon>
+      <DependentUpon>Resources.zh-TW.resx</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioProject.cs" />
   </ItemGroup>
@@ -196,21 +196,21 @@
     <None Include="SharedResources.snk" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="StringRes.ru-RU.resx">
+    <EmbeddedResource Include="Resources.ru-RU.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.ru-RU.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.ru-RU.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="StringRes.tr-TR.resx">
+    <EmbeddedResource Include="Resources.tr-TR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.tr-TR.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.tr-TR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="StringRes.zh-CN.resx">
+    <EmbeddedResource Include="Resources.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.zh-CN.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.zh-CN.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="StringRes.zh-TW.resx">
+    <EmbeddedResource Include="Resources.zh-TW.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.zh-TW.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.zh-TW.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Assets\DefaultIcon.png" />
     <Resource Include="Assets\FileExtensions\CSharp.png" />
@@ -401,45 +401,46 @@
     <Resource Include="Assets\IconUp.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="StringRes.cs-CZ.resx">
+    <EmbeddedResource Include="Resources.cs-CZ.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.cs-CZ.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.cs-CZ.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="StringRes.de-DE.resx">
+    <EmbeddedResource Include="Resources.de-DE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.de-DE.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.de-DE.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="StringRes.es-ES.resx">
+    <EmbeddedResource Include="Resources.es-ES.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.es-ES.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.es-ES.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="StringRes.fr-FR.resx">
+    <EmbeddedResource Include="Resources.fr-FR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.fr-FR.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.fr-FR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="StringRes.it-IT.resx">
+    <EmbeddedResource Include="Resources.it-IT.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.it-IT.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.it-IT.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="StringRes.ja-JP.resx">
+    <EmbeddedResource Include="Resources.ja-JP.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.ja-JP.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.ja-JP.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="StringRes.ko-KR.resx">
+    <EmbeddedResource Include="Resources.ko-KR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.ko-KR.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.ko-KR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="StringRes.pl-PL.resx">
+    <EmbeddedResource Include="Resources.pl-PL.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.pl-PL.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.pl-PL.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="StringRes.pt-BR.resx">
+    <EmbeddedResource Include="Resources.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.pt-BR.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.pt-BR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="StringRes.resx">
+    <EmbeddedResource Include="Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>StringRes.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Microsoft.Templates.SharedResources</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

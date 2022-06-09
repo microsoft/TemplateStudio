@@ -9,6 +9,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Services;
 using Microsoft.Templates.Core.Validation;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.UI.Validators
 {
@@ -32,9 +33,9 @@ namespace Microsoft.Templates.UI.Validators
             {
                 var message = new ValidationMessage
                 {
-                    Message = Resources.StringRes.ValidatorHasOldNavigationViewMessage,
-                    Url = string.Format(Resources.StringRes.ValidatorHasOldNavigationViewLink, Core.Configuration.Current.GitHubDocsUrl),
-                    HyperLinkMessage = Resources.StringRes.ValidatorHasOldNavigationViewLinkMessage,
+                    Message = Resources.ValidatorHasOldNavigationViewMessage,
+                    Url = string.Format(Resources.ValidatorHasOldNavigationViewLink, Core.Configuration.Current.GitHubDocsUrl),
+                    HyperLinkMessage = Resources.ValidatorHasOldNavigationViewLinkMessage,
                 };
 
                 result.IsValid = false;

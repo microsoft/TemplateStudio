@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Naming
 {
@@ -35,7 +35,7 @@ namespace Microsoft.Templates.Core.Naming
                 }
             }
 
-            throw new Exception(StringRes.NamingInferMessage);
+            throw new Exception(Resources.NamingInferMessage);
         }
 
         public static ValidationResult Validate(string value, IEnumerable<Validator> validators)

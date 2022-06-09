@@ -5,13 +5,13 @@
 using System;
 using System.Diagnostics;
 
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
     public class FormattedWriterMessages
     {
-        private static string exHeader = $"===================== {StringRes.ExceptionInfoString} =====================";
+        private static string exHeader = $"===================== {Resources.ExceptionInfoString} =====================";
 
         public static string ExHeader
         {

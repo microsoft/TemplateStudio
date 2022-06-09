@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
@@ -66,7 +66,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
                     {
                         if (!XNode.DeepEquals(node, sourceNode))
                         {
-                            var errorMessage = string.Format(StringRes.FailedMergePostActionKeyAlreadyDefined, GetKey(node), RelatedTemplate);
+                            var errorMessage = string.Format(Resources.FailedMergePostActionKeyAlreadyDefined, GetKey(node), RelatedTemplate);
                             if (Config.FailOnError)
                             {
                                 throw new InvalidDataException(errorMessage);
