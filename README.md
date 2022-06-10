@@ -85,11 +85,10 @@ After selecting the items wanted in your app, you can extend the generated code 
 ## Documentation
 
 - [Installing the extension](./docs/getting-started-extension.md)
-- [Understand the core concepts](./docs/concepts.md)
 - [Using TS to build UWP apps](./docs/UWP/getting-started-endusers.md)
 - [Using TS to build WPF apps](./docs/WPF/getting-started-endusers.md)
 - [Using TS to build WinUI 3 in Desktop apps](./docs/WinUI/readme.md)
-- [Working on TS](./docs/getting-started-developers.md)
+- [Working on TS](/CONTRIBUTING.md)
 
 ## Known issues
 
@@ -99,7 +98,7 @@ After selecting the items wanted in your app, you can extend the generated code 
 
 Please use [GitHub issues](https://github.com/microsoft/TemplateStudio/issues) for feedback, questions or comments.
 
-If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/microsoft/TemplateStudio/issues) section as well.  We would love to see what you are thinking.
+If you have specific feature requests or would like to vote on what others are recommending, please go to the [GitHub issues](https://github.com/microsoft/TemplateStudio/issues) section as well. We would love to see what you are thinking.
 
 Here is what we're currently thinking in our [roadmap](./docs/roadmap.md).
 
