@@ -71,8 +71,10 @@ namespace Microsoft.Templates.Core
             if (configDir != null)
             {
                 var descriptionFile = Directory
-                    .EnumerateFiles(configDir, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.description.md")
+                    .EnumerateFiles(configDir, "*description*.md")
+                    .Where(f => f.Contains(CultureInfo.CurrentUICulture.Name))
                     .FirstOrDefault();
+
                 if (string.IsNullOrWhiteSpace(descriptionFile) || !File.Exists(descriptionFile))
                 {
                     descriptionFile = Directory.EnumerateFiles(configDir, "description.md").FirstOrDefault();
