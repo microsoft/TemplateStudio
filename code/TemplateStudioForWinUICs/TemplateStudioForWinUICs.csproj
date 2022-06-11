@@ -714,61 +714,61 @@
     <Content Include="Templates\_comp\MT\Project\Services\PageService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\description.cs-CZ.md">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\description.cs-CZ.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.cs-CZ.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\description.de-DE.md">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\description.de-DE.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.de-DE.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\description.md">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\description.es-ES.md">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\description.es-ES.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.es-ES.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\description.fr-FR.md">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\description.fr-FR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.fr-FR.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\description.it-IT.md">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\description.it-IT.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\description.ja-JP.md">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\description.ja-JP.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.ja-JP.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\description.ko-KR.md">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\description.ko-KR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.ko-KR.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\description.pl-PL.md">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\description.pl-PL.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.pl-PL.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\description.pt-BR.md">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\description.pt-BR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.pt-BR.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\description.ru-RU.md">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\description.ru-RU.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.ru-RU.json">
@@ -777,19 +777,19 @@
     <Content Include="Templates\Ft\MSIX\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\description.tr-TR.md">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\description.tr-TR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.tr-TR.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\description.zh-CN.md">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\description.zh-CN.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.zh-CN.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\description.zh-TW.md">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\description.zh-TW.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.zh-TW.json">
