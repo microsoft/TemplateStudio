@@ -1,0 +1,4 @@
+﻿{
+  "name": "MSIX Packaging",
+  "description": "Umožňuje vytváření balíčků pro side-loading nebo distribuci prostřednictvím Microsoft Storu."
+}

@@ -684,7 +684,7 @@
     <Content Include="Templates\Ft\MSIX\.template.config\cs-CZ.description.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\MSIX\.template.config\cs-CZ.template.json">
+    <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.cs-CZ.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\.template.config\de-DE.description.md">
