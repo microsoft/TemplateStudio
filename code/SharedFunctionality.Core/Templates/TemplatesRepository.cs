@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.TemplateEngine.Utils;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
@@ -205,13 +206,17 @@ namespace Microsoft.Templates.Core
 
         public TemplateInfo GetTemplateInfo(ITemplateInfo template, UserSelectionContext context)
         {
+            var localizationLocator = CodeGen.Instance.Cache.Localizations.FirstOrDefault(l =>
+                l.Identity == template.Identity &&
+                l.Locale == CultureInfo.CurrentUICulture.Name);
+
             var templateInfo = new TemplateInfo
             {
                 TemplateId = template.Identity,
                 TemplateGroupIdentity = template.GroupIdentity,
-                Name = template.Name,
+                Name = localizationLocator?.Name ?? template.Name,
                 DefaultName = template.GetDefaultName(),
-                Description = template.Description,
+                Description = localizationLocator?.Description ?? template.Description,
                 RichDescription = template.GetRichDescription(),
                 Author = template.Author,
                 Version = template.GetVersion(),
