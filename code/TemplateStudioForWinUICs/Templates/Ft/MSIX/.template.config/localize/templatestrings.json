@@ -1,4 +1,4 @@
 ﻿{
-  "name": "MSIX Packaging",
-  "description": "Package with MSIX for sideloading or distribution via the Microsoft Store."
+    "name": "MSIX Packaging",
+    "description": "Package with MSIX for sideloading or distribution via the Microsoft Store."
 }
