@@ -35,6 +35,7 @@ jobs:
       authKey: $(TouchdownApplicationKey)
       resourceFilePath: |
         **\SharedResources\Resources.resx
+        **\.template.config\localize\templatestrings.json
       outputDirectoryRoot: TDBuild
       appendRelativeDir: true
       pseudoSetting: Included
