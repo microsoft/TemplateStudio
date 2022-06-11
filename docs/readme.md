@@ -7,7 +7,6 @@
 Everyone should read these.
 
 - [Installing the extension](./getting-started-extension.md)
-- [Core concepts](./concepts.md)
 - [How to create a new app and add new pages/features](./how-to.md)
 - [3rd party libraries updates and breaking changes](./third-party-libraries.md)
 
@@ -38,7 +37,7 @@ These will help if using *TS* to build apps.
 
 These will help if you want to know more about *TS* or contribute to the project.
 
-- [Getting started with the TS codebase](./getting-started-developers.md)
+- [Getting started with the TS codebase](/CONTRIBUTING.md)
 - [Understanding and authoring Templates](./templates.md)
 - [Recording usage Telemetry](./telemetry.md)
 - [Ensuring generated code is accessible](./accessibility.md)

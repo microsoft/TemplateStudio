@@ -95,7 +95,7 @@ Once installed, you will see a **new Project Template** which allows you to acce
 
 ![File New Project](resources/vsix/newProject2019-pre.PNG)
 
-You can start working with *Template Studio* by cloning [our repo](https://github.com/microsoft/TemplateStudio) and working locally with the code and the available templates.  If you plan to contribute, please follow the [contribution guidelines](../CONTRIBUTING.md)
+You can start working with *Template Studio* by cloning [our repo](https://github.com/microsoft/TemplateStudio) and working locally with the code and the available templates.  If you plan to contribute, please follow the [contribution guidelines](/CONTRIBUTING.md)
 
 ### Nightly Dev-release
 
@@ -105,8 +105,7 @@ If you want to have updates from in-progress changes.  This feed will have the r
 
 ## Learn more
 
-- [Core concepts](./concepts.md)
 - [Using and extending the generated UWP app](./UWP/getting-started-endusers.md)
 - [Using and extending the generated WPF app](./WPF/getting-started-endusers.md)
-- [Getting started with the TS codebase](./getting-started-developers.md)
+- [Getting started with the TS codebase](/CONTRIBUTING.md)
 - [All docs](./readme.md)

@@ -11,7 +11,7 @@ The *Template Studio* allows you to combine different templates to generate the 
 
 ## Interested in contributing
 
-Do you want to contribute? Here are our [contribution guidelines](../CONTRIBUTING.md).
+Do you want to contribute? Here are our [contribution guidelines](/CONTRIBUTING.md).
 
 ## Anatomy of Templates and Template Authoring
 
@@ -95,7 +95,7 @@ There are also code snippets to add Tags, PrimaryOutputs, Symbols and Post Actio
 
 ## Learn more
 
-- [Getting started with the TS codebase](./getting-started-developers.md)
+- [Getting started with the TS codebase](/CONTRIBUTING.md)
 - [Templates doc in Core Template Studio](https://github.com/microsoft/CoreTemplateStudio/tree/main/docs/templates.md)
 - [Recording usage Telemetry](./telemetry.md)
 - [Ensuring generated code is accessible](./accessibility.md)
