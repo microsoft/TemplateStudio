@@ -9,7 +9,7 @@
       xmlns:catalog="clr-namespace:Microsoft.VisualStudio.Imaging;assembly=Microsoft.VisualStudio.ImageCatalog"
       xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
       xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
-      xmlns:res="clr-namespace:Microsoft.Templates.Resources;assembly=SharedResources"
+      xmlns:res="clr-namespace:Microsoft.Templates.SharedResources;assembly=SharedResources"
       mc:Ignorable="d"
       FocusManager.FocusedElement="{Binding ElementName=backHyperlink}"
       d:DesignHeight="300" d:DesignWidth="300"
@@ -40,7 +40,7 @@
         </Grid.ColumnDefinitions>
 
         <Button x:Name="backButton"
-                AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}"
+                AutomationProperties.Name="{x:Static res:Resources.ButtonBack}"
                 Command="{Binding GoBackCommand}"
                 Grid.ColumnSpan="2"
                 Margin="14,6,14,0"
@@ -51,14 +51,14 @@
                         <Hyperlink x:Name="backHyperlink"
                                    Style="{StaticResource TSHyperlink}"
                                    Command="{Binding GoBackCommand}"
-                                   AutomationProperties.Name="{x:Static res:StringRes.ButtonBack}"
+                                   AutomationProperties.Name="{x:Static res:Resources.ButtonBack}"
                                    Focusable="False">
                             <Grid Background="Transparent">
                                 <TextBlock VerticalAlignment="Center" Margin="10,10,10,10">
                                     <TextBlock.Inlines>
                                         <Run Text="&#xE0A6;" Style="{StaticResource TSRunHyperlink}" FontFamily="Segoe MDL2 Assets" />
                                         <Run Text=" " Style="{StaticResource TSRunHyperlink}" />
-                                        <Run Text="{x:Static res:StringRes.ButtonBack}" Style="{StaticResource TSRunHyperlink}" />
+                                        <Run Text="{x:Static res:Resources.ButtonBack}" Style="{StaticResource TSRunHyperlink}" />
                                     </TextBlock.Inlines>
                                 </TextBlock>
                             </Grid>
@@ -104,7 +104,7 @@
                         Style="{StaticResource TSCrispImageTemplateDetailsDeprecatedIcon}"
                         Moniker="{x:Static catalog:KnownMonikers.StatusWarning}" />
                     <TextBlock
-                        Text="{x:Static res:StringRes.DeprecatedMessage}" 
+                        Text="{x:Static res:Resources.DeprecatedMessage}" 
                         Style="{StaticResource TSTextBlockTemplateDetailsDeprecatedMessage}"/>
                 </StackPanel>
 
@@ -116,7 +116,7 @@
                 <TextBlock
                     Grid.Row="3"
                     Margin="{StaticResource Margin_L_Top}"
-                    Text="{x:Static res:StringRes.TemplateDetailsAuthor}"
+                    Text="{x:Static res:Resources.TemplateDetailsAuthor}"
                     Style="{StaticResource TSTextBlockTemplateDetailsPropertyLabel}"                    
                     Visibility="{Binding Author, Converter={StaticResource StringVisibilityConverter}}" />
                 <TextBlock
@@ -130,7 +130,7 @@
                 <TextBlock
                     Grid.Row="4"
                     Margin="{StaticResource Margin_M_Top}"
-                    Text="{x:Static res:StringRes.TemplateDetailsVersion}"
+                    Text="{x:Static res:Resources.TemplateDetailsVersion}"
                     Style="{StaticResource TSTextBlockTemplateDetailsPropertyLabel}"
                     Visibility="{Binding Version, Converter={StaticResource StringVisibilityConverter}}" />
                 <TextBlock
@@ -144,7 +144,7 @@
                 <TextBlock
                     Grid.Row="5"
                     Margin="{StaticResource Margin_M_Top}"
-                    Text="{x:Static res:StringRes.TemplateDetailsLicenses}"
+                    Text="{x:Static res:Resources.TemplateDetailsLicenses}"
                     Style="{StaticResource TSTextBlockTemplateDetailsPropertyLabel}"
                     Visibility="{Binding Licenses, Converter={StaticResource HasItemsVisibilityConverter}}" />
                 <ItemsControl
@@ -159,7 +159,7 @@
                 <TextBlock
                     Grid.Row="6"
                     Margin="{StaticResource Margin_M_Top}"
-                    Text="{x:Static res:StringRes.TemplateDetailsDependencies}"
+                    Text="{x:Static res:Resources.TemplateDetailsDependencies}"
                     Style="{StaticResource TSTextBlockTemplateDetailsPropertyLabel}"
                     Visibility="{Binding Dependencies, Converter={StaticResource HasItemsVisibilityConverter}}" />
                 <ItemsControl
@@ -174,7 +174,7 @@
                 <TextBlock
                     Grid.Row="7"
                     Margin="{StaticResource Margin_M_Top}"
-                    Text="{x:Static res:StringRes.TemplateDetailsRequirements}"
+                    Text="{x:Static res:Resources.TemplateDetailsRequirements}"
                     Style="{StaticResource TSTextBlockTemplateDetailsPropertyLabel}"
                     Visibility="{Binding Requirements, Converter={StaticResource HasItemsVisibilityConverter}}" />
                 <ItemsControl
@@ -189,7 +189,7 @@
                 <TextBlock
                     Grid.Row="8"
                     Margin="{StaticResource Margin_M_Top}"
-                    Text="{x:Static res:StringRes.TemplateDetailsExclusions}"
+                    Text="{x:Static res:Resources.TemplateDetailsExclusions}"
                     Style="{StaticResource TSTextBlockTemplateDetailsPropertyLabel}"
                     Visibility="{Binding Exclusions, Converter={StaticResource HasItemsVisibilityConverter}}" />
                 <ItemsControl
@@ -204,7 +204,7 @@
                 <TextBlock
                     Grid.Row="9"
                     Margin="{StaticResource Margin_M_Top}"
-                    Text="{x:Static res:StringRes.TemplateDetailsRequiredVSWorkloads}"
+                    Text="{x:Static res:Resources.TemplateDetailsRequiredVSWorkloads}"
                     Style="{StaticResource TSTextBlockTemplateDetailsPropertyLabel}"
                     Visibility="{Binding RequiredVisualStudioWorkloads, Converter={StaticResource HasItemsVisibilityConverter}}" />
                 <ItemsControl
@@ -219,7 +219,7 @@
                 <TextBlock
                     Grid.Row="10"
                     Margin="{StaticResource Margin_M_Top}"
-                    Text="{x:Static res:StringRes.TemplateDetailsRequiredSdks}"
+                    Text="{x:Static res:Resources.TemplateDetailsRequiredSdks}"
                     Style="{StaticResource TSTextBlockTemplateDetailsPropertyLabel}"
                     Visibility="{Binding RequiredSdks, Converter={StaticResource HasItemsVisibilityConverter}}" />
                 <ItemsControl
@@ -234,7 +234,7 @@
                 <TextBlock
                     Grid.Row="11"
                     Margin="{StaticResource Margin_M_Top}"
-                    Text="{x:Static res:StringRes.TemplateDetailsRequiredDotNetVersion}"
+                    Text="{x:Static res:Resources.TemplateDetailsRequiredDotNetVersion}"
                     Style="{StaticResource TSTextBlockTemplateDetailsPropertyLabel}"
                     Visibility="{Binding RequiredDotNetVersion, Converter={StaticResource HasItemsVisibilityConverter}}" />
                 <ItemsControl
@@ -249,7 +249,7 @@
                 <TextBlock
                     Grid.Row="12"
                     Margin="{StaticResource Margin_M_Top}"
-                    Text="{x:Static res:StringRes.TemplateDetailsLayout}"
+                    Text="{x:Static res:Resources.TemplateDetailsLayout}"
                     Style="{StaticResource TSTextBlockTemplateDetailsPropertyLabel}"
                     Visibility="{Binding HasLayout, Converter={StaticResource BoolToVisibilityConverter}}" />
                 <ItemsControl

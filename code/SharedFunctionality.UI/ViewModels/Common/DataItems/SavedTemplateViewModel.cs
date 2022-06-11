@@ -10,7 +10,7 @@ using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
@@ -183,7 +183,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             SetProperty(ref _name, newName, nameof(Name));
             if (ValidationService.HasAllPagesViewSuffix(fromNewTemplate, newName))
             {
-                var notification = Notification.Warning(string.Format(StringRes.NotificationValidationWarning_ViewSuffix, Configuration.Current.GitHubDocsUrl), Category.ViewSufixValidation, TimerType.Large);
+                var notification = Notification.Warning(string.Format(Resources.NotificationValidationWarning_ViewSuffix, Configuration.Current.GitHubDocsUrl), Category.ViewSufixValidation, TimerType.Large);
                 NotificationsControl.AddNotificationAsync(notification).FireAndForget();
             }
             else

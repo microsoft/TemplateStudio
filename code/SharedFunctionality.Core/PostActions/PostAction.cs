@@ -6,7 +6,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.PostActions
 {
@@ -39,11 +39,11 @@ namespace Microsoft.Templates.Core.PostActions
             {
                 if (!ContinueOnError)
                 {
-                    throw new Exception(string.Format(StringRes.PostActionException, GetType(), RelatedTemplate), ex);
+                    throw new Exception(string.Format(Resources.PostActionException, GetType(), RelatedTemplate), ex);
                 }
                 else
                 {
-                    string msg = string.Format(StringRes.PostActionContinuerOnErrorWarning, GetType(), RelatedTemplate);
+                    string msg = string.Format(Resources.PostActionContinuerOnErrorWarning, GetType(), RelatedTemplate);
                     AppHealth.Current.Warning.TrackAsync(msg, ex).FireAndForget();
                 }
             }

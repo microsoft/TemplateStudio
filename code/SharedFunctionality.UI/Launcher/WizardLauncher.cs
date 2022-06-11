@@ -10,6 +10,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Core.Services;
+using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
@@ -18,8 +19,6 @@ using Microsoft.Templates.UI.Views;
 using Microsoft.Templates.UI.Views.Common;
 using Microsoft.Templates.UI.VisualStudio.GenShell;
 using Microsoft.VisualStudio.TemplateWizard;
-using CoreStringRes = Microsoft.Templates.Resources.StringRes;
-using UIStringRes = Microsoft.Templates.Resources.StringRes;
 
 namespace Microsoft.Templates.UI.Launcher
 {
@@ -140,8 +139,8 @@ namespace Microsoft.Templates.UI.Launcher
                 var requiredVSVersion = Version.Parse(requiredVersion);
                 if (actualVSVersion.CompareTo(requiredVSVersion) < 0)
                 {
-                    var title = UIStringRes.InfoDialogInvalidVersionTitle;
-                    var message = string.Format(UIStringRes.InfoDialogInvalidVSVersion, platform, requiredVersion);
+                    var title = Resources.InfoDialogInvalidVersionTitle;
+                    var message = string.Format(Resources.InfoDialogInvalidVSVersion, platform, requiredVersion);
                     var link = "https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio";
 
                     var vm = new InfoDialogViewModel(title, message, link, _styleProvider);
@@ -170,8 +169,8 @@ namespace Microsoft.Templates.UI.Launcher
 
                 if (missingWorkloads.Count > 0)
                 {
-                    var title = UIStringRes.InfoDialogMissingWorkloadTitle;
-                    var message = string.Format(UIStringRes.InfoDialogRequiredWorkloadNotFoundMessage, platform.GetPlatformDisplayName(), missingWorkloads.Aggregate((i, j) => $"{i}, {j}") );
+                    var title = Resources.InfoDialogMissingWorkloadTitle;
+                    var message = string.Format(Resources.InfoDialogRequiredWorkloadNotFoundMessage, platform.GetPlatformDisplayName(), missingWorkloads.Aggregate((i, j) => $"{i}, {j}") );
                     var link = "https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio";
 
                     var vm = new InfoDialogViewModel(title, message, link, _styleProvider);
@@ -195,14 +194,14 @@ namespace Microsoft.Templates.UI.Launcher
                 switch (projectNameValidation.Errors.FirstOrDefault()?.ErrorType)
                 {
                     case ValidationErrorType.ReservedName:
-                        message = string.Format(CoreStringRes.ErrorProjectReservedName, projectName);
+                        message = string.Format(Resources.ErrorProjectReservedName, projectName);
                         break;
                     case ValidationErrorType.Regex:
-                        message = string.Format(CoreStringRes.ErrorProjectStartsWith, projectName, projectName[0]);
+                        message = string.Format(Resources.ErrorProjectStartsWith, projectName, projectName[0]);
                         break;
                 }
 
-                var title = CoreStringRes.ErrorTitleInvalidProjectName;
+                var title = Resources.ErrorTitleInvalidProjectName;
                 //// Keep this a WTS link as it's to docs
                 var link = "https://github.com/microsoft/TemplateStudio/blob/main/docs/WTSNaming.md";
                 var vm = new InfoDialogViewModel(title, message, link, _styleProvider);

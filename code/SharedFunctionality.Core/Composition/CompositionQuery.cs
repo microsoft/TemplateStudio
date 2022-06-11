@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 using Microsoft.TemplateEngine.Abstractions;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Composition
 {
@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Core.Composition
                 }
                 else
                 {
-                    throw new InvalidCompositionQueryException(string.Format(StringRes.CompositionQueryParseMessage, rawQuery));
+                    throw new InvalidCompositionQueryException(string.Format(Resources.CompositionQueryParseMessage, rawQuery));
                 }
             }
 

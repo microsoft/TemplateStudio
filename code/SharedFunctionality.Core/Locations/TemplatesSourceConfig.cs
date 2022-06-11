@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 
 using Microsoft.Templates.Core.Diagnostics;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -41,7 +41,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Exception.TrackAsync(ex, StringRes.TemplatesSourceErrorLoadingConfigFileMessage).FireAndForget();
+                AppHealth.Current.Exception.TrackAsync(ex, Resources.TemplatesSourceErrorLoadingConfigFileMessage).FireAndForget();
                 result = null;
             }
 

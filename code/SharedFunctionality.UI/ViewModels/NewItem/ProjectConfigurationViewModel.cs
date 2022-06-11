@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.ViewModels.Common;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
@@ -122,8 +122,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public ProjectConfigurationViewModel(string language)
         {
-            Title = StringRes.ProjectConfigurationTitleText;
-            Description = StringRes.ProjectConfigurationDescriptionText;
+            Title = Resources.ProjectConfigurationTitleText;
+            Description = Resources.ProjectConfigurationDescriptionText;
             Language = language;
         }
 

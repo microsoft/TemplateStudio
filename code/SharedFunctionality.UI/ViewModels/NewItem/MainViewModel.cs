@@ -12,7 +12,7 @@ using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
@@ -78,8 +78,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             get
             {
-                yield return StepData.MainStep(NewItemStepTemplateSelection, "1", StringRes.NewItemStepOne, () => new TemplateSelectionPage(), true, true);
-                yield return StepData.MainStep(NewItemStepChangesSummary, "2", StringRes.NewItemStepTwo, () => new ChangesSummaryPage(_output));
+                yield return StepData.MainStep(NewItemStepTemplateSelection, "1", Resources.NewItemStepOne, () => new TemplateSelectionPage(), true, true);
+                yield return StepData.MainStep(NewItemStepChangesSummary, "2", Resources.NewItemStepTwo, () => new ChangesSummaryPage(_output));
             }
         }
 
@@ -96,13 +96,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             switch (templateType)
             {
                 case TemplateType.Page:
-                    return StringRes.NewItemTitlePage;
+                    return Resources.NewItemTitlePage;
                 case TemplateType.Feature:
-                    return StringRes.NewItemTitleFeature;
+                    return Resources.NewItemTitleFeature;
                 case TemplateType.Service:
-                    return StringRes.NewItemTitleService;
+                    return Resources.NewItemTitleService;
                 case TemplateType.Testing:
-                    return StringRes.NewItemTitleTesting;
+                    return Resources.NewItemTitleTesting;
                 default:
                     return string.Empty;
             }
@@ -145,13 +145,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             switch (templateType)
             {
                 case TemplateType.Page:
-                    return StringRes.NewItemHasNoChangesPage;
+                    return Resources.NewItemHasNoChangesPage;
                 case TemplateType.Feature:
-                    return StringRes.NewItemHasNoChangesFeature;
+                    return Resources.NewItemHasNoChangesFeature;
                 case TemplateType.Service:
-                    return StringRes.NewItemHasNoChangesService;
+                    return Resources.NewItemHasNoChangesService;
                 case TemplateType.Testing:
-                    return StringRes.NewItemHasNoChangesTesting;
+                    return Resources.NewItemHasNoChangesTesting;
                 default:
                     return string.Empty;
             }
@@ -226,7 +226,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
             catch (Exception ex)
             {
-                await NotificationsControl.AddNotificationAsync(Notification.Error(StringRes.NotificationSyncError_Refresh));
+                await NotificationsControl.AddNotificationAsync(Notification.Error(Resources.NotificationSyncError_Refresh));
 
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);
@@ -241,7 +241,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             if (GenContext.Current.ProjectName != new DirectoryInfo(GenContext.Current.DestinationPath).Name)
             {
-                var notification = Notification.Error(StringRes.NotificationValidationError_ProjectNameAndPathDoNotMatch, ErrorCategory.ProjectPathValidation);
+                var notification = Notification.Error(Resources.NotificationValidationError_ProjectNameAndPathDoNotMatch, ErrorCategory.ProjectPathValidation);
                 NotificationsControl.AddNotificationAsync(notification).FireAndForget();
                 ChangesSummary.DoNotMerge = true;
                 ChangesSummary.IsDoNotMergeEnabled = false;

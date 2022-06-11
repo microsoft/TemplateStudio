@@ -6,7 +6,7 @@ using System;
 using System.Diagnostics;
 
 using Microsoft.Templates.Core.Gen.Shell;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 using SystemTasks = System.Threading.Tasks;
 
@@ -27,12 +27,12 @@ namespace Microsoft.Templates.Core.Diagnostics
             {
                 await SafeTrackAsync(() =>
                 {
-                    string header = $"========== {StringRes.ExceptionTrackedString} [{DateTime.Now.FormatAsFullDateTime()}] ==========\n";
+                    string header = $"========== {Resources.ExceptionTrackedString} [{DateTime.Now.FormatAsFullDateTime()}] ==========\n";
                     _shell.UI.WriteOutput(header);
 
                     if (message != null)
                     {
-                        _shell.UI.WriteOutput($"{StringRes.AdditionalMessageString}: {message}\n");
+                        _shell.UI.WriteOutput($"{Resources.AdditionalMessageString}: {message}\n");
                     }
 
                     _shell.UI.WriteOutput($"{ex.ToString()}\n");
@@ -54,7 +54,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
                     if (ex != null)
                     {
-                        string header = $"----------- {StringRes.AddtionalExceptionInfoString} -----------\n";
+                        string header = $"----------- {Resources.AddtionalExceptionInfoString} -----------\n";
                         string footer = $"{new string('-', header.Length - 2)}\n";
                         string exceptionInfo = header + $"{ex}\n" + footer;
                         _shell.UI.WriteOutput(exceptionInfo);
