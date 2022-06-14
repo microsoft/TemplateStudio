@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Settings Storage",
-  "description": "Pamięć ustawienia pomaga uprościć zapisywanie danych w folderze danych aplikacji.",
-  "identity": "ts.WinUI.Feat.SettingsStorage"
+    "name": "Settings Storage",
+    "description": "Pamięć ustawienia pomaga uprościć zapisywanie danych w folderze danych aplikacji."
 }

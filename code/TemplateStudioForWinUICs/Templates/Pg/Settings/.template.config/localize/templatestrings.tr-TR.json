@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Settings",
-  "description": "Ayarlar sayfası, uygulamanız için yapılandırma ayarlarını eklemenizi önerdiğimiz sayfadır.",
-  "identity": "ts.WinUI.Page.Settings"
+    "name": "Settings",
+    "description": "Ayarlar sayfası, uygulamanız için yapılandırma ayarlarını eklemenizi önerdiğimiz sayfadır."
 }

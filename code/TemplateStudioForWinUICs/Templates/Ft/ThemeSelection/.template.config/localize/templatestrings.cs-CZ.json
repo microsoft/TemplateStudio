@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Theme Selection",
-  "description": "Přidává do vaší aplikace podporu motivů.",
-  "identity": "ts.WinUI.Feat.ThemeSelection"
+    "name": "Theme Selection",
+    "description": "Přidává do vaší aplikace podporu motivů."
 }

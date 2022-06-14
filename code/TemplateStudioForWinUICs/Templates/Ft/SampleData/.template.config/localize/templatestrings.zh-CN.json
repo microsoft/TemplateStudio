@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft Community",
-  "name": "Sample Data",
-  "description": "SampleData 可保留由生成的某些页面版本所用的示例数据。",
-  "identity": "ts.WinUI.Feat.SampleData"
+    "name": "Sample Data",
+    "description": "SampleData 可保留由生成的某些页面版本所用的示例数据。"
 }

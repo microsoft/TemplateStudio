@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft Community",
-  "name": "Sample Data",
-  "description": "SampleData contém dados de exemplo usados pela versão gerada de algumas páginas.",
-  "identity": "ts.WinUI.Feat.SampleData"
+    "name": "Sample Data",
+    "description": "SampleData contém dados de exemplo usados pela versão gerada de algumas páginas."
 }

@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Blank",
-  "description": "Esta es la página más básica. Un lienzo en blanco para convertirlo en lo que quieras.",
-  "identity": "ts.WinUI.Page.Blank"
+    "name": "Blank",
+    "description": "Esta es la página más básica. Un lienzo en blanco para convertirlo en lo que quieras."
 }

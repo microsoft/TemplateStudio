@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Settings",
-  "description": "La pagina delle impostazioni è destinata a contenere le impostazioni di configurazione per l'app.",
-  "identity": "ts.WinUI.Page.Settings"
+    "name": "Settings",
+    "description": "La pagina delle impostazioni è destinata a contenere le impostazioni di configurazione per l'app."
 }

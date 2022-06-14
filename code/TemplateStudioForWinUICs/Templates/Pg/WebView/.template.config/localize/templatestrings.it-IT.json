@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "WebView",
-  "description": "La pagina di visualizzazione Web esegue il rendering del contenuto Web tramite WebView2 (Microsoft Edge con Chromium).",
-  "identity": "ts.WinUI.Page.WebView"
+    "name": "WebView",
+    "description": "La pagina di visualizzazione Web esegue il rendering del contenuto Web tramite WebView2 (Microsoft Edge con Chromium)."
 }

@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Content Grid",
-  "description": "Esta página permite adicionar itens personalizados na forma de uma Grade adaptável.",
-  "identity": "ts.WinUI.Page.ContentGrid"
+    "name": "Content Grid",
+    "description": "Esta página permite adicionar itens personalizados na forma de uma Grade adaptável."
 }

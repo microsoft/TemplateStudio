@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Theme Selection",
-  "description": "Ergänzt Ihre Anwendung mit Designunterstützung.",
-  "identity": "ts.WinUI.Feat.ThemeSelection"
+    "name": "Theme Selection",
+    "description": "Ergänzt Ihre Anwendung mit Designunterstützung."
 }

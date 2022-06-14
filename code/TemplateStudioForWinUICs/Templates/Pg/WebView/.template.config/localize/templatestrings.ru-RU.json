@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "WebView",
-  "description": "Страница веб-просмотра отображает веб-контент с помощью WebView2 (Microsoft Edge с хромом).",
-  "identity": "ts.WinUI.Page.WebView"
+    "name": "WebView",
+    "description": "Страница веб-просмотра отображает веб-контент с помощью WebView2 (Microsoft Edge с хромом)."
 }

@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Settings Storage",
-  "description": "Ayar deposu, verilerinizi uygulama verileri klasörünüzde depolamanızı kolaylaştırır.",
-  "identity": "ts.WinUI.Feat.SettingsStorage"
+    "name": "Settings Storage",
+    "description": "Ayar deposu, verilerinizi uygulama verileri klasörünüzde depolamanızı kolaylaştırır."
 }

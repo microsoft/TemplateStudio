@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "DataGrid",
-  "description": "Eine Seite mit einem einfachen Datenraster.",
-  "identity": "ts.WinUI.Page.DataGrid"
+    "name": "DataGrid",
+    "description": "Eine Seite mit einem einfachen Datenraster."
 }

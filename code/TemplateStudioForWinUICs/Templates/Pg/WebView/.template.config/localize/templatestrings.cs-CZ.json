@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "WebView",
-  "description": "Stránka webového zobrazení vykresluje webový obsah pomocí WebView2 (Microsoft Edge s Chromium).",
-  "identity": "ts.WinUI.Page.WebView"
+    "name": "WebView",
+    "description": "Stránka webového zobrazení vykresluje webový obsah pomocí WebView2 (Microsoft Edge s Chromium)."
 }

@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Theme Selection",
-  "description": "向你的应用程序添加主题支持。",
-  "identity": "ts.WinUI.Feat.ThemeSelection"
+    "name": "Theme Selection",
+    "description": "向你的应用程序添加主题支持。"
 }

@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Content Grid",
-  "description": "本頁面允許您以 Adaptive Grid 格式新增自訂項目。",
-  "identity": "ts.WinUI.Page.ContentGrid"
+    "name": "Content Grid",
+    "description": "本頁面允許您以 Adaptive Grid 格式新增自訂項目。"
 }

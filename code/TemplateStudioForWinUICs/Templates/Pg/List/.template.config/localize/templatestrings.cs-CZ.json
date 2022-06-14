@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "ListDetails",
-  "description": "Vzor seznamu a podrobností obsahuje podokno seznamu a podokno podrobností pro obsah.",
-  "identity": "ts.WinUI.Page.ListDetails"
+    "name": "ListDetails",
+    "description": "Vzor seznamu a podrobností obsahuje podokno seznamu a podokno podrobností pro obsah."
 }

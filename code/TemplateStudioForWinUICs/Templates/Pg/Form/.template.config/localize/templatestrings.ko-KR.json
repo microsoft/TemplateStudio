@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Form",
-  "description": "This page contains a basic form page with validators.",
-  "identity": "ts.WinUI.Page.Form"
+    "name": "Form",
+    "description": "This page contains a basic form page with validators."
 }

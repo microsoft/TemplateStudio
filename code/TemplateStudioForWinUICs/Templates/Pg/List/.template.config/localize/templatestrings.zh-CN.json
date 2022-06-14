@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "ListDetails",
-  "description": "列表/详细信息模式具有列表窗格和内容详细信息窗格。",
-  "identity": "ts.WinUI.Page.ListDetails"
+    "name": "ListDetails",
+    "description": "列表/详细信息模式具有列表窗格和内容详细信息窗格。"
 }

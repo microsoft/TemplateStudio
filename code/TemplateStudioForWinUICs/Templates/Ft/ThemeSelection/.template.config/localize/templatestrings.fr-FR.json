@@ -1,6 +1,4 @@
 ﻿{
-  "author": "Microsoft",
-  "name": "Theme Selection",
-  "description": "Ajoute la prise en charge des thèmes pour votre application.",
-  "identity": "ts.WinUI.Feat.ThemeSelection"
+    "name": "Theme Selection",
+    "description": "Ajoute la prise en charge des thèmes pour votre application."
 }
