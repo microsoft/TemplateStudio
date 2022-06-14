@@ -86,11 +86,9 @@ After selecting the items wanted in your app, you can extend the generated code 
 
 ## Documentation
 
-- [Installing the extension](./docs/getting-started-extension.md)
 - [Using TS to build WinUI 3 apps](./docs/WinUI/readme.md)
 - [Using TS to build WPF apps](./docs/WPF/getting-started-endusers.md)
 - [Using TS to build UWP apps](./docs/UWP/getting-started-endusers.md)
-- [Working on TS](/CONTRIBUTING.md)
 
 ## Principles
 
