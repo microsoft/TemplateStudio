@@ -6,8 +6,6 @@ Please read the [Getting Started with Template Studio](../docs/readme.md) page f
 
 To start working with the latest version of this code, check [CONTRIBUTING.md](/CONTRIBUTING.md)
 
-To start using Template Studio extension, [Getting Started with the Extension](../docs/getting-started-extension.md)
-
 To start authoring templates, check [Understanding the Templates](../docs/templates.md)
 
 # Build and Test

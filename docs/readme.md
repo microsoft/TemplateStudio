@@ -6,8 +6,6 @@
 
 Everyone should read these.
 
-- [Installing the extension](./getting-started-extension.md)
-- [How to create a new app and add new pages/features](./how-to.md)
 - [3rd party libraries updates and breaking changes](./third-party-libraries.md)
 
 ## Using TS to build apps
