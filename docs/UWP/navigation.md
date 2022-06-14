@@ -24,49 +24,6 @@ Navigation differs between different project types.
 You can find more on configuring code generated with this project type [here](./projectTypes/navigationpane.md).
 - **Pivot and Tabs** project type sets Window.Current.Content as a new Frame and navigates to PivotPage that contains a PivotControl, this PivotControl contains one PivotItem for each page. PivotItems contains header text and a Frame set display the configured page. With this project type, the NavigationService does not manage navigating between pivot items, but could be used to navigate away from the PivotPage if necessary.
 
-## Mixed navigation sample
-
-This sample is based on *Template Studio* 1.3 release and shows an app which includes a _startup page_ that is displayed before navigating to a shell page and then behaving like a Navigation Pane project.
-The following code uses [Code Behind](../../samples/navigation/MixedNavigationSample.CodeBehind), versions for [MVVM Light](../../samples/navigation/MixedNavigationSample.MVVMLight) and [MVVM Basic](../../samples/navigation/MixedNavigationSample.MVVMBasic) are also available.
-
-- Step 1. Navigate to the Start Page
-
-In `App.xaml.cs` the `ActivationService` has been changed to start on the new page.
-
-```csharp
-private ActivationService CreateActivationService()
-{
-    //This is the default navigation for a NavigationPane project type
-    //return new ActivationService(this, typeof(Views.HomePage), new Views.ShellPage());
-
-    //We are going to initialize navigation to a StartPage
-    return new ActivationService(this, typeof(Views.StartPage));
-}
-```
-
-- Step 2. Return to normal **Navigation Pane** navigation.
-
-Navigate to the `ShellPage` and this will reset the NavigationService Frame to it's own custom Frame.
-Then navigate to `HomePage` so something is displayed in the shell.
-All subsequent navigation just requires a single `Navigate()` call.
-
-From `StartPage.xaml.cs`
-
-```csharp
-    private void StartButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-    {
-        //Navigating to a ShellPage, this will replaces NavigationService frame for an inner frame to change navigation handling.
-        NavigationService.Navigate<Views.ShellPage>();
-
-        //Navigating now to a HomePage, this will be the first navigation on a NavigationPane menu
-        NavigationService.Navigate<Views.HomePage>();
-    }
-```
-
-The three pages in this sample and the order in which they can be navigated to are shown below.
-
-![Mixed navigation sample](./resources/navigation/MixedNavigationSample.png)
-
 Additional navigation scenarios are covered [here](./navigation-advanced.md).
 
 ---
