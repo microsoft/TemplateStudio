@@ -1,28 +1,28 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/template",
-  "author": "Microsoft",
-  "classifications": [
-    "Universal"
-  ],
-  "name": "ts.WinUI.Page.ListDetail.Blank.MenuBar",
-  "identity": "ts.WinUI.Page.ListDetail.Blank.MenuBar",
-  "shortName": "ts.WinUI.Page.ListDetail.Blank.MenuBar",
-  "tags": {
-    "language": "C#",
-    "type": "item",
-    "ts.type": "composition",
-    "ts.platform" : "WinUI",
-    "ts.version": "1.0.0",
-    "ts.compositionFilter": "$projectType == Blank|MenuBar & groupidentity == ts.WinUI.Page.ListDetails"
-  },
-  "sourceName": "Param_ItemName",
-  "preferNameDirectory": true,
-  "PrimaryOutputs": [
-  ],
-  "symbols": {
-    "ts.rootNamespace": {
-      "type": "parameter",
-      "replaces": "Param_RootNamespace"
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+        "Universal"
+    ],
+    "name": "ts.WinUI.Page.ListDetail.Blank.MenuBar",
+    "identity": "ts.WinUI.Page.ListDetail.Blank.MenuBar",
+    "shortName": "ts.WinUI.Page.ListDetail.Blank.MenuBar",
+    "tags": {
+        "language": "C#",
+        "type": "item",
+        "ts.type": "composition",
+        "ts.platform": "WinUI",
+        "ts.version": "1.0.0",
+        "ts.compositionFilter": "$projectType == Blank|MenuBar & groupidentity == ts.WinUI.Page.ListDetails"
+    },
+    "sourceName": "Param_ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        }
     }
-  }
 }

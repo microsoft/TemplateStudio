@@ -2,37 +2,37 @@
     "$schema": "http://json.schemastore.org/template",
     "author": "Microsoft",
     "classifications": [
-      "Universal"
+        "Universal"
     ],
     "name": "ts.WinUI.Project.MenuBar",
     "shortName": "ts.WinUI.Project.MenuBar",
     "identity": "ts.WinUI.Project.MenuBar",
     "tags": {
-      "language": "C#",
-      "type": "item",
-      "ts.type": "composition",
-      "ts.platform": "WinUI",
-      "ts.version": "1.0.0",
-      "ts.compositionOrder": "0",
-      "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == MenuBar & ts.type == project"
+        "language": "C#",
+        "type": "item",
+        "ts.type": "composition",
+        "ts.platform": "WinUI",
+        "ts.version": "1.0.0",
+        "ts.compositionOrder": "0",
+        "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == MenuBar & ts.type == project"
     },
     "sourceName": "Param_ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
-      {
-        "path": "ViewModels/ShellViewModel.cs"
-      },
-      {
-        "path": "Views/ShellPage.xaml"
-      },
-      {
-        "path": "Views/ShellPage.xaml.cs"
-      }
+        {
+            "path": "ViewModels/ShellViewModel.cs"
+        },
+        {
+            "path": "Views/ShellPage.xaml"
+        },
+        {
+            "path": "Views/ShellPage.xaml.cs"
+        }
     ],
     "symbols": {
-      "ts.rootNamespace": {
-        "type": "parameter",
-        "replaces": "Param_RootNamespace"
-      }
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        }
     }
-  }
+}

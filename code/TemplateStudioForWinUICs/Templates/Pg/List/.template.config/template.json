@@ -1,75 +1,75 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/template",
-  "author": "Microsoft",
-  "classifications": [
-    "Universal"
-  ],
-  "name": "ListDetails",
-  "shortName": "ListDetails",
-  "identity": "ts.WinUI.Page.ListDetails",
-  "groupIdentity": "ts.WinUI.Page.ListDetails",
-  "description": "The list/details pattern has a list pane and a details pane for content.",
-  "tags": {
-    "language": "C#",
-    "type": "item",
-    "ts.type": "page",
-    "ts.projecttype": "Blank|NavView|MenuBar",
-    "ts.frontendframework": "all",
-    "ts.platform": "WinUI",
-    "ts.appmodel": "Desktop",
-    "ts.version": "1.0.0",
-    "ts.displayOrder": "4",
-    "ts.genGroup": "0",
-    "ts.rightClickEnabled":"true",
-    "ts.outputToParent": "true",
-    "ts.dependencies":"ts.WinUI.Feat.SampleData",
-    "ts.licenses": "[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
-  },
-  "sourceName": "Param_ItemName",
-  "preferNameDirectory": true,
-  "PrimaryOutputs": [
-    {
-      "path": "Param_ProjectName/ViewModels/Param_ItemNameViewModel.cs"
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+        "Universal"
+    ],
+    "name": "ListDetails",
+    "shortName": "ListDetails",
+    "identity": "ts.WinUI.Page.ListDetails",
+    "groupIdentity": "ts.WinUI.Page.ListDetails",
+    "description": "The list/details pattern has a list pane and a details pane for content.",
+    "tags": {
+        "language": "C#",
+        "type": "item",
+        "ts.type": "page",
+        "ts.projecttype": "Blank|NavView|MenuBar",
+        "ts.frontendframework": "all",
+        "ts.platform": "WinUI",
+        "ts.appmodel": "Desktop",
+        "ts.version": "1.0.0",
+        "ts.displayOrder": "4",
+        "ts.genGroup": "0",
+        "ts.rightClickEnabled": "true",
+        "ts.outputToParent": "true",
+        "ts.dependencies": "ts.WinUI.Feat.SampleData",
+        "ts.licenses": "[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
     },
-    {
-      "path": "Param_ProjectName/Views/Param_ItemNameDetailControl.xaml"
+    "sourceName": "Param_ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+        {
+            "path": "Param_ProjectName/ViewModels/Param_ItemNameViewModel.cs"
+        },
+        {
+            "path": "Param_ProjectName/Views/Param_ItemNameDetailControl.xaml"
+        },
+        {
+            "path": "Param_ProjectName/Views/Param_ItemNameDetailControl.xaml.cs"
+        },
+        {
+            "path": "Param_ProjectName/Views/Param_ItemNamePage.xaml"
+        },
+        {
+            "path": "Param_ProjectName/Views/Param_ItemNamePage.xaml.cs"
+        }
+    ],
+    "symbols": {
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        },
+        "baseclass": {
+            "type": "parameter",
+            "replaces": "System.ComponentModel.INotifyPropertyChanged"
+        },
+        "ts.projectName": {
+            "type": "parameter",
+            "replaces": "Param_ProjectName",
+            "fileRename": "Param_ProjectName"
+        }
     },
-    {
-      "path": "Param_ProjectName/Views/Param_ItemNameDetailControl.xaml.cs"
-    },
-    {
-      "path": "Param_ProjectName/Views/Param_ItemNamePage.xaml"
-    },
-    {
-      "path": "Param_ProjectName/Views/Param_ItemNamePage.xaml.cs"
-    }
-  ],
-  "symbols": {
-    "ts.rootNamespace": {
-      "type": "parameter",
-      "replaces": "Param_RootNamespace"
-    },
-    "baseclass": {
-      "type": "parameter",
-      "replaces": "System.ComponentModel.INotifyPropertyChanged"
-    },
-    "ts.projectName": {
-      "type": "parameter",
-      "replaces": "Param_ProjectName",
-      "fileRename": "Param_ProjectName"
-    }
-  },
-  "postActions": [
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId": "CommunityToolkit.WinUI.UI.Controls",
-        "version": "7.1.2",
-        "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
-      },
-      "continueOnError": true
-    }
-  ]
+    "postActions": [
+        {
+            "description": "Add nuget package",
+            "manualInstructions": [],
+            "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+            "args": {
+                "packageId": "CommunityToolkit.WinUI.UI.Controls",
+                "version": "7.1.2",
+                "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+            },
+            "continueOnError": true
+        }
+    ]
 }

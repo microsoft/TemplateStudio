@@ -2,27 +2,27 @@
     "$schema": "http://json.schemastore.org/template",
     "author": "Microsoft",
     "classifications": [
-      "Universal"
+        "Universal"
     ],
     "name": "ts.WinUI.Project.NavView.AddNavigationViewItem.WebView",
     "identity": "ts.WinUI.Project.NavView.AddNavigationViewItem.WebView",
     "shortName": "ts.WinUI.Project.NavView.AddNavigationViewItem.WebView",
     "tags": {
-      "language": "C#",
-      "type": "item",
-      "ts.type": "composition",
-      "ts.platform": "WinUI",
-      "ts.version": "1.0.0",
-      "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == NavView & ts.type == page & identity == ts.WinUI.Page.WebView"
+        "language": "C#",
+        "type": "item",
+        "ts.type": "composition",
+        "ts.platform": "WinUI",
+        "ts.version": "1.0.0",
+        "ts.compositionFilter": "$frontendframework == MVVMToolkit & $projectType == NavView & ts.type == page & identity == ts.WinUI.Page.WebView"
     },
     "sourceName": "Param_ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],
     "symbols": {
-      "ts.rootNamespace": {
-        "type": "parameter",
-        "replaces": "Param_RootNamespace"
-      }
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        }
     }
-  }
+}

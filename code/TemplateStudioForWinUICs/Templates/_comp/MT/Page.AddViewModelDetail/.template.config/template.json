@@ -2,27 +2,27 @@
     "$schema": "http://json.schemastore.org/template",
     "author": "Microsoft",
     "classifications": [
-      "Universal"
+        "Universal"
     ],
     "name": "ts.WinUI.MVVMToolkit.Page.AddViewModelDetail",
     "shortName": "ts.WinUI.MVVMToolkit.Page.AddViewModelDetail",
     "identity": "ts.WinUI.MVVMToolkit.Page.AddViewModelDetail",
     "tags": {
-      "language": "C#",
-      "type": "item",
-      "ts.type": "composition",
-      "ts.platform": "WinUI",
-      "ts.version": "1.0.0",
-      "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == ts.WinUI.Page.ContentGrid"
+        "language": "C#",
+        "type": "item",
+        "ts.type": "composition",
+        "ts.platform": "WinUI",
+        "ts.version": "1.0.0",
+        "ts.compositionFilter": "$frontendframework == MVVMToolkit & identity == ts.WinUI.Page.ContentGrid"
     },
     "sourceName": "Param_ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],
     "symbols": {
-      "ts.rootNamespace": {
-        "type": "parameter",
-        "replaces": "Param_RootNamespace"
-      }
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        }
     }
-  }
+}

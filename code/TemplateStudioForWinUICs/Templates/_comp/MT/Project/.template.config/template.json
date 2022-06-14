@@ -2,88 +2,88 @@
     "$schema": "http://json.schemastore.org/template",
     "author": "Microsoft",
     "classifications": [
-      "Universal"
+        "Universal"
     ],
     "name": "ts.WinUI.MVVMToolkit.Project",
     "shortName": "ts.WinUI.MVVMToolkit.Project",
     "identity": "ts.WinUI.MVVMToolkit.Project",
     "tags": {
-      "language": "C#",
-      "type": "item",
-      "ts.type": "composition",
-      "ts.platform": "WinUI",
-      "ts.version": "1.0.0",
-      "ts.compositionOrder": "0",
-      "ts.compositionFilter": "$frontendframework == MVVMToolkit & ts.type == project",
-      "ts.licenses": "[Microsoft.Extensions.Hosting](https://licenses.nuget.org/MIT)|[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
+        "language": "C#",
+        "type": "item",
+        "ts.type": "composition",
+        "ts.platform": "WinUI",
+        "ts.version": "1.0.0",
+        "ts.compositionOrder": "0",
+        "ts.compositionFilter": "$frontendframework == MVVMToolkit & ts.type == project",
+        "ts.licenses": "[Microsoft.Extensions.Hosting](https://licenses.nuget.org/MIT)|[Windows Community Toolkit](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)"
 
     },
     "sourceName": "Param_ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
-      {
-        "path": "Activation/ActivationHandler.cs"
-      },
-      {
-        "path": "Activation/DefaultActivationHandler.cs"
-      },
-      {
-        "path": "Activation/IActivationHandler.cs"
-      },
-      {
-        "path": "Contracts/Services/IActivationService.cs"
-      },
-      {
-        "path": "Contracts/Services/INavigationService.cs"
-      },
-      {
-        "path": "Contracts/Services/IPageService.cs"
-      },
-      {
-        "path": "Helpers/FrameExtensions.cs"
-      },
-      {
-        "path": "Services/ActivationService.cs"
-      },
-      {
-        "path": "Services/NavigationService.cs"
-      },
-      {
-        "path": "Services/PageService.cs"
-      }
+        {
+            "path": "Activation/ActivationHandler.cs"
+        },
+        {
+            "path": "Activation/DefaultActivationHandler.cs"
+        },
+        {
+            "path": "Activation/IActivationHandler.cs"
+        },
+        {
+            "path": "Contracts/Services/IActivationService.cs"
+        },
+        {
+            "path": "Contracts/Services/INavigationService.cs"
+        },
+        {
+            "path": "Contracts/Services/IPageService.cs"
+        },
+        {
+            "path": "Helpers/FrameExtensions.cs"
+        },
+        {
+            "path": "Services/ActivationService.cs"
+        },
+        {
+            "path": "Services/NavigationService.cs"
+        },
+        {
+            "path": "Services/PageService.cs"
+        }
     ],
     "symbols": {
-      "ts.rootNamespace": {
-        "type": "parameter",
-        "replaces": "Param_RootNamespace"
-      },
-      "ts.homePageName": {
-        "type":"parameter",
-        "replaces":"Param_HomeName"
-      }
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        },
+        "ts.homePageName": {
+            "type": "parameter",
+            "replaces": "Param_HomeName"
+        }
     },
     "postActions": [
-      {
-        "description": "Add nuget package",
-        "manualInstructions": [ ],
-        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-        "args": {
-          "packageId": "CommunityToolkit.Mvvm",
-          "version": "7.1.2",
-          "projectPath": "Param_ProjectName.csproj"
+        {
+            "description": "Add nuget package",
+            "manualInstructions": [],
+            "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+            "args": {
+                "packageId": "CommunityToolkit.Mvvm",
+                "version": "7.1.2",
+                "projectPath": "Param_ProjectName.csproj"
+            },
+            "continueOnError": true
         },
-        "continueOnError": true
-      },
-      {
-        "description": "Add nuget package",
-        "manualInstructions": [ ],
-        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-        "args": {
-          "packageId": "Microsoft.Extensions.Hosting",
-          "version": "6.0.1",
-          "projectPath": "Param_ProjectName.csproj"
-        },
-        "continueOnError": true
-      }
+        {
+            "description": "Add nuget package",
+            "manualInstructions": [],
+            "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+            "args": {
+                "packageId": "Microsoft.Extensions.Hosting",
+                "version": "6.0.1",
+                "projectPath": "Param_ProjectName.csproj"
+            },
+            "continueOnError": true
+        }
     ]
-  }
+}
