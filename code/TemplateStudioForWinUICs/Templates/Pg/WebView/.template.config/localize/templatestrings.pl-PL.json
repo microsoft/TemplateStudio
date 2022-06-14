@@ -1,0 +1,4 @@
+﻿{
+    "name": "WebView",
+    "description": "Strona widoku sieci Web renderuje zawartość sieci Web przy użyciu programu WebView2 (Microsoft Edge with Chromium)."
+}
