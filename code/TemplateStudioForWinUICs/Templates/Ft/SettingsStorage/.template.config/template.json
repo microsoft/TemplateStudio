@@ -6,7 +6,7 @@
     "shortName": "Settings Storage",
     "groupIdentity": "ts.WinUI.Feat.SettingsStorage",
     "identity": "ts.WinUI.Feat.SettingsStorage",
-    "description": "Setting storage helps simplify storing data inside your application data folder.",
+    "description": "Settings storage helps simplify storing data inside your application data folder.",
     "tags": {
         "language": "C#",
         "type": "item",
@@ -19,7 +19,6 @@
         "ts.displayOrder": "1",
         "ts.group": "ApplicationLifecycle",
         "ts.licenses": "[Newtonsoft.Json](https://raw.githubusercontent.com/JamesNK/Newtonsoft.Json/master/LICENSE.md)",
-        "ts.defaultInstance": "SettingsStorage",
         "ts.multipleInstance": "false",
         "ts.genGroup": "0",
         "ts.rightClickEnabled": "true",

@@ -1,4 +1,6 @@
 ﻿{
-    "name": "ListDetails",
-    "description": "The list/details pattern has a list pane and a details pane for content."
+    "name": "List Details",
+    "_name.comment": "Label for a page in an app that shows data in a list with details shown for the selected item.",
+    "description": "The list/details pattern has a list pane and a details pane for content.",
+    "_description.comment": "Label description for ListDetails."
 }

@@ -1,4 +1,6 @@
 ﻿{
     "name": "Blank",
-    "description": "A blank page."
+    "_name.comment": "Label for a blank page in an app.",
+    "description": "A blank page.",
+    "_description.comment": "Label description for Blank."
 }

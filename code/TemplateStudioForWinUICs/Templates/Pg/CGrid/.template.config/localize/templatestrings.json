@@ -1,4 +1,6 @@
 ﻿{
     "name": "Content Grid",
-    "description": "This page allows you to add custom items in the form of an Adaptive Grid."
+    "_name.comment": "Label for a page in an app that shows data in an adaptive grid layout.",
+    "description": "This page allows you to add custom items in the form of an Adaptive Grid.",
+    "_description.comment": "Label description for Content Grid."
 }

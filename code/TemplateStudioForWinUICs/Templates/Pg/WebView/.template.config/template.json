@@ -4,8 +4,8 @@
     "classifications": [
         "Universal"
     ],
-    "name": "WebView",
-    "shortName": "WebView",
+    "name": "Web View",
+    "shortName": "Web View",
     "identity": "ts.WinUI.Page.WebView",
     "groupIdentity": "ts.WinUI.Page.WebView",
     "description": "The web view page renders web content using WebView2 (Microsoft Edge with Chromium).",

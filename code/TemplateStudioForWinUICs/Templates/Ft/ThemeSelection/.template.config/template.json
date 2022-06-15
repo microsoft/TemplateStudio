@@ -18,7 +18,6 @@
         "ts.version": "1.0.0",
         "ts.displayOrder": "1",
         "ts.group": "UserInteraction",
-        "ts.defaultInstance": "ThemeSelection",
         "ts.multipleInstance": "false",
         "ts.genGroup": "0",
         "ts.dependencies": "ts.WinUI.Feat.SettingsStorage",
