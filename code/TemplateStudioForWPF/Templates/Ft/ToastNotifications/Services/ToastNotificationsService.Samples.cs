@@ -1,4 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.Notifications;
+﻿using CommunityToolkit.WinUI.Notifications;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
@@ -11,7 +11,7 @@ public partial class ToastNotificationsService
         // Create the toast content
         var content = new ToastContent()
         {
-            // More about the Launch property at https://docs.microsoft.com/dotnet/api/microsoft.toolkit.uwp.notifications.toastcontent
+            // More about the Launch property at https://docs.microsoft.com/dotnet/api/communitytoolkit.winui.notifications.toastcontent
             Launch = "ToastContentActivationParams",
 
             Visual = new ToastVisual()
@@ -37,7 +37,7 @@ public partial class ToastNotificationsService
             {
                 Buttons =
                 {
-                    // More about Toast Buttons at https://docs.microsoft.com/dotnet/api/microsoft.toolkit.uwp.notifications.toastbutton
+                    // More about Toast Buttons at https://docs.microsoft.com/dotnet/api/communitytoolkit.winui.notifications.toastbutton
                     new ToastButton("OK", "ToastButtonActivationArguments")
                     {
                         ActivationType = ToastActivationType.Foreground

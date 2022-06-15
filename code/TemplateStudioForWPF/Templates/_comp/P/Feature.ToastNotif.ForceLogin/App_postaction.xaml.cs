@@ -4,7 +4,7 @@ public partial class App : PrismApplication
 {
     protected override async void OnInitialized()
     {
-        // https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast?tabs=desktop
+        // https://docs.microsoft.com/windows/apps/design/shell/tiles-and-notifications/send-local-toast?tabs=desktop
         ToastNotificationManagerCompat.OnActivated += (toastArgs) =>
         {
                 config[App.ToastNotificationActivationArguments] = toastArgs.Argument;

@@ -1,5 +1,5 @@
 ﻿using Param_RootNamespace.Contracts.Services;
-using Microsoft.Toolkit.Uwp.Notifications;
+using CommunityToolkit.WinUI.Notifications;
 using Windows.UI.Notifications;
 
 namespace Param_RootNamespace.Services;
