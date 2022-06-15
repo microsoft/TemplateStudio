@@ -1,4 +1,4 @@
 ﻿{
-  "name": "MSIX Packaging",
-  "description": "Позволяет создавать пакеты для боковой загрузки или распространения через Microsoft Store."
+    "name": "MSIX Packaging",
+    "description": "Позволяет создавать пакеты для боковой загрузки или распространения через Microsoft Store."
 }

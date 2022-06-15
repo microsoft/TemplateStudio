@@ -1,4 +1,4 @@
 ﻿{
-  "name": "MSIX Packaging",
-  "description": "Microsoft Store aracılığıyla dağıtım veya dışarıdan yükleme için paket oluşturulmasına izin verir."
+    "name": "MSIX Packaging",
+    "description": "Microsoft Store aracılığıyla dağıtım veya dışarıdan yükleme için paket oluşturulmasına izin verir."
 }

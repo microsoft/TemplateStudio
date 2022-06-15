@@ -1,4 +1,4 @@
 ﻿{
-  "name": "MSIX Packaging",
-  "description": "Permite la creación de paquetes para transferir localmente o distribuir mediante Microsoft Store."
+    "name": "MSIX Packaging",
+    "description": "Permite la creación de paquetes para transferir localmente o distribuir mediante Microsoft Store."
 }
