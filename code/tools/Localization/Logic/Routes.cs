@@ -76,8 +76,8 @@ namespace Localization
   <MoreInfoUrl>https://github.com/microsoft/TemplateStudio/</MoreInfoUrl>  
 </VsixLanguagePack>";
 
-        internal const string ResourcesFilePath = "StringRes.resx";
-        internal const string ResourcesFilePathPattern = "StringRes.{0}.resx";
+        internal const string ResourcesFilePath = "Resources.resx";
+        internal const string ResourcesFilePathPattern = "Resources.{0}.resx";
 
         internal static string[] ResoureceDirectories { get; } =
         {

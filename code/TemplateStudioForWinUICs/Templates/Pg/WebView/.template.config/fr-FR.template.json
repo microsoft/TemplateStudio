@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "WebView",
-  "description": "La page web rend le contenu Web à l’aide de WebView2 (Microsoft Edge avec Chromium).",
-  "identity": "ts.WinUI.Page.WebView"
-}

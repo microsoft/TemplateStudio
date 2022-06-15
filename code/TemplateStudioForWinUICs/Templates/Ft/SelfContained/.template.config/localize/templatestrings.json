@@ -1,0 +1,4 @@
+﻿{
+    "name": "Self-Contained",
+    "description": "Ship Windows App SDK dependencies as part of your application."
+}

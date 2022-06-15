@@ -12,7 +12,7 @@ using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Naming;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 {
@@ -71,7 +71,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
             var relativeFilePath = originalFilePath.GetPathRelativeToGenerationParentPath();
             var otherRelativePath = otherFilePath.GetPathRelativeToGenerationParentPath();
 
-            var errorMessage = string.Format(StringRes.FailedMergePostActionMismatchedEncoding, relativeFilePath, originalEncoding.EncodingName, otherRelativePath, otherEncoding.EncodingName);
+            var errorMessage = string.Format(Resources.FailedMergePostActionMismatchedEncoding, relativeFilePath, originalEncoding.EncodingName, otherRelativePath, otherEncoding.EncodingName);
 
             if (Config.FailOnError)
             {
@@ -130,11 +130,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
         {
             if (Config.FailOnError)
             {
-                throw new FileNotFoundException(string.Format(StringRes.MergeFileNotFoundExceptionMessage, Config.FilePath, RelatedTemplate));
+                throw new FileNotFoundException(string.Format(Resources.MergeFileNotFoundExceptionMessage, Config.FilePath, RelatedTemplate));
             }
 
             var relativeFilePath = originalFilePath.GetPathRelativeToGenerationParentPath();
-            var errorMessage = string.Format(StringRes.FailedMergePostActionFileNotFound, relativeFilePath, RelatedTemplate);
+            var errorMessage = string.Format(Resources.FailedMergePostActionFileNotFound, relativeFilePath, RelatedTemplate);
 
             HandleFailedMergePostActions(relativeFilePath, MergeFailureType.FileNotFound, suffix, errorMessage);
         }
@@ -145,11 +145,11 @@ namespace Microsoft.Templates.Core.PostActions.Catalog.Merge
 
             if (Config.FailOnError)
             {
-                throw new InvalidDataException(string.Format(StringRes.MergeLineNotFoundExceptionMessage, formattedErrorLine, originalFilePath, RelatedTemplate));
+                throw new InvalidDataException(string.Format(Resources.MergeLineNotFoundExceptionMessage, formattedErrorLine, originalFilePath, RelatedTemplate));
             }
 
             var relativeFilePath = originalFilePath.GetPathRelativeToGenerationParentPath();
-            var errorMessage = string.Format(StringRes.FailedMergePostActionLineNotFound, formattedErrorLine, relativeFilePath, RelatedTemplate);
+            var errorMessage = string.Format(Resources.FailedMergePostActionLineNotFound, formattedErrorLine, relativeFilePath, RelatedTemplate);
 
             HandleFailedMergePostActions(relativeFilePath, MergeFailureType.LineNotFound, MergeConfiguration.Suffix, errorMessage);
         }

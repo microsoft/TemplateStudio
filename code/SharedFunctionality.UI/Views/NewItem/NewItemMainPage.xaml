@@ -6,7 +6,7 @@
       xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
       xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
       xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
-      xmlns:res="clr-namespace:Microsoft.Templates.Resources;assembly=SharedResources"
+      xmlns:res="clr-namespace:Microsoft.Templates.SharedResources;assembly=SharedResources"
       xmlns:common="clr-namespace:Microsoft.Templates.UI.Views.Common"
       Loaded="OnLoaded"
       Unloaded="OnUnloaded"
@@ -48,23 +48,23 @@
             </Grid.ColumnDefinitions>
             <TextBlock
                 Grid.Column="0"
-                Text="{x:Static res:StringRes.TermsAndConditionsText}"
+                Text="{x:Static res:Resources.TermsAndConditionsText}"
                 Style="{StaticResource TSTextBlockTermsAndConditions}"
                 Visibility="{Binding Navigation.CurrentStep, Converter={StaticResource StepVisibilityConverter}, ConverterParameter=1}" />
 
             <CheckBox
-                Content="{x:Static res:StringRes.ChangesSummaryCheckBoxText}"
+                Content="{x:Static res:Resources.ChangesSummaryCheckBoxText}"
                 Style="{StaticResource TSCheckBoxStyle}"
                 Margin="{StaticResource Margin_M_LeftRight}"
                 IsEnabled="{Binding ChangesSummary.IsDoNotMergeEnabled, Mode=OneWay}"
                 IsChecked="{Binding ChangesSummary.DoNotMerge, Mode=TwoWay}"
                 Visibility="{Binding Navigation.CurrentStep, Converter={StaticResource StepVisibilityConverter}, ConverterParameter=2}" />
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,26,0">
-                <Button Style="{StaticResource TSButton}" Content="{x:Static res:StringRes.ButtonBack}" Command="{Binding Navigation.GoBackCommand}" AutomationProperties.AutomationId="GoBackButton" />
-                <Button Style="{StaticResource TSButton}" Content="{x:Static res:StringRes.ButtonNext}" Margin="8,0,0,0" Command="{Binding Navigation.GoForwardCommand}"
+                <Button Style="{StaticResource TSButton}" Content="{x:Static res:Resources.ButtonBack}" Command="{Binding Navigation.GoBackCommand}" AutomationProperties.AutomationId="GoBackButton" />
+                <Button Style="{StaticResource TSButton}" Content="{x:Static res:Resources.ButtonNext}" Margin="8,0,0,0" Command="{Binding Navigation.GoForwardCommand}"
                         extensions:FocusExtension.IsFocused="{Binding TemplateSelection.IsFocused}" AutomationProperties.AutomationId="GoForwardButton" />
-                <Button Style="{StaticResource TSButtonFinish}" Content="{x:Static res:StringRes.ButtonCreate}" Margin="8,0,0,0" Command="{Binding Navigation.FinishCommand}" AutomationProperties.AutomationId="FinishButton" />
-                <Button Style="{StaticResource TSButton}" Content="{x:Static res:StringRes.ButtonCancel}" Margin="8,0,0,0" Command="{Binding Navigation.CancelCommand}" AutomationProperties.AutomationId="CancelButton" />
+                <Button Style="{StaticResource TSButtonFinish}" Content="{x:Static res:Resources.ButtonCreate}" Margin="8,0,0,0" Command="{Binding Navigation.FinishCommand}" AutomationProperties.AutomationId="FinishButton" />
+                <Button Style="{StaticResource TSButton}" Content="{x:Static res:Resources.ButtonCancel}" Margin="8,0,0,0" Command="{Binding Navigation.CancelCommand}" AutomationProperties.AutomationId="CancelButton" />
             </StackPanel>
         </Grid>
     </Grid>

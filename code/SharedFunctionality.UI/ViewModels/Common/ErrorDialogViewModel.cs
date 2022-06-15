@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -13,7 +13,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
 
         public ErrorDialogViewModel(Exception ex)
         {
-            Title = StringRes.ErrorDialogTitle;
+            Title = Resources.ErrorDialogTitle;
             Description = ex.Message;
             ErrorStackTrace = ex.ToString();
         }

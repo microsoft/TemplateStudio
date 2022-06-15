@@ -10,7 +10,7 @@ using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Gen.Shell;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TemplateWizard;
@@ -142,7 +142,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellShowStatusBarMessageMessage} {ex}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{Resources.ErrorVsGenShellShowStatusBarMessageMessage} {ex}").FireAndForget();
             }
         }
 
@@ -156,7 +156,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync($"{StringRes.ErrorVsGenShellShowStatusBarMessageMessage} {ex}").FireAndForget();
+                AppHealth.Current.Error.TrackAsync($"{Resources.ErrorVsGenShellShowStatusBarMessageMessage} {ex}").FireAndForget();
             }
         }
 
@@ -206,7 +206,7 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
             }
             catch (Exception)
             {
-                AppHealth.Current.Error.TrackAsync(StringRes.ErrorUnableToOpenProjectOverview).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(Resources.ErrorUnableToOpenProjectOverview).FireAndForget();
             }
         }
     }

@@ -1,43 +1,43 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/template",
-  "author": "Microsoft",
-  "classifications": ["Universal"],
-  "name": "Theme Selection",
-  "shortName": "Theme Selection",
-  "groupIdentity": "ts.WinUI.Feat.ThemeSelection",
-  "identity": "ts.WinUI.Feat.ThemeSelection",
-  "description": "Adds theming support to your application.",
-  "tags": {
-    "language": "C#",
-    "type": "item",
-    "ts.type": "feature",
-    "ts.projecttype": "Blank|NavView|MenuBar",
-    "ts.frontendframework": "all",
-    "ts.platform": "WinUI",
-    "ts.appmodel": "Desktop",
-    "ts.version": "1.0.0",
-    "ts.displayOrder": "1",
-    "ts.group": "UserInteraction",
-    "ts.defaultInstance": "ThemeSelection",
-    "ts.multipleInstance": "false",
-    "ts.genGroup": "0",
-    "ts.dependencies":"ts.WinUI.Feat.SettingsStorage",
-    "ts.rightClickEnabled":"true"
-  },
-  "sourceName": "ThemeSelectionFeature",
-  "preferNameDirectory": true,
-  "PrimaryOutputs": [
-    {
-      "path": "Contracts/Services/IThemeSelectorService.cs"
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [ "Universal" ],
+    "name": "Theme Selection",
+    "shortName": "Theme Selection",
+    "groupIdentity": "ts.WinUI.Feat.ThemeSelection",
+    "identity": "ts.WinUI.Feat.ThemeSelection",
+    "description": "Adds theming support to your application.",
+    "tags": {
+        "language": "C#",
+        "type": "item",
+        "ts.type": "feature",
+        "ts.projecttype": "Blank|NavView|MenuBar",
+        "ts.frontendframework": "all",
+        "ts.platform": "WinUI",
+        "ts.appmodel": "Desktop",
+        "ts.version": "1.0.0",
+        "ts.displayOrder": "1",
+        "ts.group": "UserInteraction",
+        "ts.defaultInstance": "ThemeSelection",
+        "ts.multipleInstance": "false",
+        "ts.genGroup": "0",
+        "ts.dependencies": "ts.WinUI.Feat.SettingsStorage",
+        "ts.rightClickEnabled": "true"
     },
-    {
-      "path": "Services/ThemeSelectorService.cs"
+    "sourceName": "ThemeSelectionFeature",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+        {
+            "path": "Contracts/Services/IThemeSelectorService.cs"
+        },
+        {
+            "path": "Services/ThemeSelectorService.cs"
+        }
+    ],
+    "symbols": {
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        }
     }
-  ],
-  "symbols": {
-    "ts.rootNamespace": {
-      "type": "parameter",
-      "replaces": "Param_RootNamespace"
-    }
-  }
 }

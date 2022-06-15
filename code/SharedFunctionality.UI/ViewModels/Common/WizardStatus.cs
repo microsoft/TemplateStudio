@@ -8,7 +8,7 @@ using System.Text;
 using System.Web;
 using System.Windows.Input;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 
@@ -98,8 +98,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             var versionsStringBuilder = new StringBuilder();
 
             // As packing Templates & wizard together there's no need to show multiple version numbers (also avoid the difficulty of accessing this for right-click actions)
-            ////versionsStringBuilder.AppendLine($"{StringRes.ProjectDetailsAboutSectionTemplatesVersion} {GenContext.ToolBox.TemplatesVersion}");
-            versionsStringBuilder.Append($"{StringRes.ProjectDetailsAboutSectionWizardVersion} {GenContext.ToolBox.WizardVersion}");
+            ////versionsStringBuilder.AppendLine($"{Resources.ProjectDetailsAboutSectionTemplatesVersion} {GenContext.ToolBox.TemplatesVersion}");
+            versionsStringBuilder.Append($"{Resources.ProjectDetailsAboutSectionWizardVersion} {GenContext.ToolBox.WizardVersion}");
             var versionsText = versionsStringBuilder.ToString();
             if (string.IsNullOrEmpty(Versions) || !Versions.Equals(versionsText, StringComparison.Ordinal))
             {

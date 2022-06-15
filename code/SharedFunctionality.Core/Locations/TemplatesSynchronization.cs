@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Helpers;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Locations
 {
@@ -74,7 +74,7 @@ namespace Microsoft.Templates.Core.Locations
                         ////}
                         ////else
                         ////{
-                        ////    AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorExtracting).FireAndForget();
+                        ////    AppHealth.Current.Error.TrackAsync(Resources.TemplatesSynchronizationErrorExtracting).FireAndForget();
                         ////}
                     }
                     finally
@@ -182,7 +182,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorDownloadingConfig, ex).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(Resources.TemplatesSynchronizationErrorDownloadingConfig, ex).FireAndForget();
                 return notifyCheckingforUpdates;
             }
         }
@@ -211,7 +211,7 @@ namespace Microsoft.Templates.Core.Locations
             catch (Exception ex)
             {
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.ErrorAcquiring, Version = version.ToString() });
-                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorAcquiring, ex).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(Resources.TemplatesSynchronizationErrorAcquiring, ex).FireAndForget();
             }
         }
 
@@ -229,13 +229,13 @@ namespace Microsoft.Templates.Core.Locations
                 }
                 else
                 {
-                    AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorExtracting).FireAndForget();
+                    AppHealth.Current.Error.TrackAsync(Resources.TemplatesSynchronizationErrorExtracting).FireAndForget();
                 }
             }
             catch (Exception ex) when (ex.GetType() != typeof(OperationCanceledException))
             {
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.None });
-                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorExtracting, ex).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(Resources.TemplatesSynchronizationErrorExtracting, ex).FireAndForget();
             }
         }
 
@@ -250,7 +250,7 @@ namespace Microsoft.Templates.Core.Locations
             catch (Exception ex)
             {
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.None });
-                AppHealth.Current.Error.TrackAsync(StringRes.TemplatesSynchronizationErrorUpdating, ex).FireAndForget();
+                AppHealth.Current.Error.TrackAsync(Resources.TemplatesSynchronizationErrorUpdating, ex).FireAndForget();
             }
 
             await Task.CompletedTask;
@@ -267,7 +267,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                await AppHealth.Current.Warning.TrackAsync(StringRes.TemplatesSynchronizationPurgeContentAsyncMessage, ex);
+                await AppHealth.Current.Warning.TrackAsync(Resources.TemplatesSynchronizationPurgeContentAsyncMessage, ex);
             }
         }
 
@@ -299,7 +299,7 @@ namespace Microsoft.Templates.Core.Locations
         {
             while (IsOtherInstanceSyncing())
             {
-                await AppHealth.Current.Info.TrackAsync(StringRes.TemplatesSynchronizationWaitingOtherInstanceMessage);
+                await AppHealth.Current.Info.TrackAsync(Resources.TemplatesSynchronizationWaitingOtherInstanceMessage);
                 await Task.Delay(instanceSyncWait);
             }
         }
@@ -313,7 +313,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Warning.TrackAsync(StringRes.TemplatesSynchronizationWarnReadingLockFileMessage, ex).FireAndForget();
+                AppHealth.Current.Warning.TrackAsync(Resources.TemplatesSynchronizationWarnReadingLockFileMessage, ex).FireAndForget();
 
                 // No matter the exception. If there is one, we behave exactly the same as if we don't have instance syncronization exclusion.
                 return false;
@@ -335,7 +335,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Warning.TrackAsync(StringRes.TemplatesSynchronizationWarnCreatingLockFileMessage, ex).FireAndForget();
+                AppHealth.Current.Warning.TrackAsync(Resources.TemplatesSynchronizationWarnCreatingLockFileMessage, ex).FireAndForget();
             }
         }
 
@@ -351,7 +351,7 @@ namespace Microsoft.Templates.Core.Locations
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Warning.TrackAsync(StringRes.TemplatesSynchronizationWarnDeletingLockFileMessage, ex).FireAndForget();
+                AppHealth.Current.Warning.TrackAsync(Resources.TemplatesSynchronizationWarnDeletingLockFileMessage, ex).FireAndForget();
             }
         }
 

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.UI.Services
 {
@@ -89,7 +89,7 @@ namespace Microsoft.Templates.UI.Services
                 case RequirementType.DotNetRuntime:
                     return new DotNetValidator();
                 default:
-                    throw new InvalidDataException(string.Format(StringRes.ErrorInvalidRequirementType, requirementType));
+                    throw new InvalidDataException(string.Format(Resources.ErrorInvalidRequirementType, requirementType));
             }
         }
     }

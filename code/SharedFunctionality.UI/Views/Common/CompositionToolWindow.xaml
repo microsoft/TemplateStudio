@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
     xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
-    xmlns:res="clr-namespace:Microsoft.Templates.Resources;assembly=SharedResources"
+    xmlns:res="clr-namespace:Microsoft.Templates.SharedResources;assembly=SharedResources"
     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
     xmlns:templateSelector="clr-namespace:Microsoft.Templates.UI.TemplateSelectors"
@@ -14,7 +14,7 @@
     ResizeMode="CanResize"
     SizeToContent="Height"
     WindowStartupLocation="CenterScreen"
-    Title="{x:Static res:StringRes.ButtonCompositionTool}"
+    Title="{x:Static res:Resources.ButtonCompositionTool}"
     Loaded="OnLoaded"
     MinHeight="600" MinWidth="900">
 

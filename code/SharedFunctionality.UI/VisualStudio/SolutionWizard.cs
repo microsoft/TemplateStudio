@@ -13,7 +13,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
@@ -92,20 +92,20 @@ namespace Microsoft.Templates.UI.VisualStudio
         {
             try
             {
-                AppHealth.Current.Info.TrackAsync(string.Format(StringRes.StatusBarCreatingProject, TemplateStudioProject.AppName)).FireAndForget();
+                AppHealth.Current.Info.TrackAsync(string.Format(Resources.StatusBarCreatingProject, TemplateStudioProject.AppName)).FireAndForget();
 
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
                 await _generationService.GenerateProjectAsync(_userSelection);
                 PostGenerationActions();
 
-                AppHealth.Current.Info.TrackAsync(StringRes.StatusBarGenerationFinished).FireAndForget();
+                AppHealth.Current.Info.TrackAsync(Resources.StatusBarGenerationFinished).FireAndForget();
             }
             catch (System.Exception exc)
             {
                 System.Diagnostics.Debug.WriteLine(exc);
                 System.Diagnostics.Debugger.Break();
-                AppHealth.Current.Exception.TrackAsync(exc, StringRes.ErrorFailedToGenerateProjectFromTemplates).FireAndForget();
+                AppHealth.Current.Exception.TrackAsync(exc, Resources.ErrorFailedToGenerateProjectFromTemplates).FireAndForget();
             }
         }
 

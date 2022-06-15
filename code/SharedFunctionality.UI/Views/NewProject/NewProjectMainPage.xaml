@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
-      xmlns:res="clr-namespace:Microsoft.Templates.Resources;assembly=SharedResources"
+      xmlns:res="clr-namespace:Microsoft.Templates.SharedResources;assembly=SharedResources"
       xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
       xmlns:common="clr-namespace:Microsoft.Templates.UI.Views.Common"
       Loaded="OnLoaded"
@@ -38,10 +38,10 @@
             HorizontalAlignment="Center">
             <TextBlock 
                 Style="{StaticResource TSTextBlockSectionTitle}"
-                Text="{x:Static res:StringRes.NoContentPanelMessage}" />
-            <!--<TextBlock Margin="{StaticResource Margin_L_Top}" AutomationProperties.Name="{x:Static res:StringRes.ButtonRefreshTemplatesCache}" Visibility="{Binding RefreshTemplateCacheVisibility}">
-                <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding RefreshTemplatesCacheCommand}" AutomationProperties.Name="{x:Static res:StringRes.ButtonRefreshTemplatesCache}">
-                    <TextBlock Text="{x:Static res:StringRes.ButtonRefreshTemplatesCache}" Style="{StaticResource TSTextBlockHyperlinkAbout}" />
+                Text="{x:Static res:Resources.NoContentPanelMessage}" />
+            <!--<TextBlock Margin="{StaticResource Margin_L_Top}" AutomationProperties.Name="{x:Static res:Resources.ButtonRefreshTemplatesCache}" Visibility="{Binding RefreshTemplateCacheVisibility}">
+                <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding RefreshTemplatesCacheCommand}" AutomationProperties.Name="{x:Static res:Resources.ButtonRefreshTemplatesCache}">
+                    <TextBlock Text="{x:Static res:Resources.ButtonRefreshTemplatesCache}" Style="{StaticResource TSTextBlockHyperlinkAbout}" />
                 </Hyperlink>
             </TextBlock>-->
         </StackPanel>
@@ -66,11 +66,11 @@
                         <TextBlock
                             Style="{StaticResource TSTextBlockSectionTitle}"
                             Margin="{StaticResource Margin_M2_LeftTopRight}"
-                            Text="{x:Static res:StringRes.ProjectDetailsTitle}" />
+                            Text="{x:Static res:Resources.ProjectDetailsTitle}" />
                         <TextBlock
                             Style="{StaticResource TSTextBlockSubSectionTitle}"
                             Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                            Text="{x:Static res:StringRes.ProjectDetailsProjectTypeSectionTitle}" />
+                            Text="{x:Static res:Resources.ProjectDetailsProjectTypeSectionTitle}" />
                         <ComboBox
                             x:Name="projectTypeCombo"
                             Margin="16,12,26,0"
@@ -78,12 +78,12 @@
                             SelectedItem="{Binding ProjectType.Selected, Mode=TwoWay}"
                             Style="{StaticResource TSComboBoxProjectTypeStyle}"
                             IsEnabled="{Binding WizardStatus.IsNotBusy}"
-                            AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsProjectTypeSectionTitle}"
+                            AutomationProperties.Name="{x:Static res:Resources.ProjectDetailsProjectTypeSectionTitle}"
                             PreviewKeyDown="ComboBox_PreviewKeyDown" />
                         <TextBlock
                             Style="{StaticResource TSTextBlockSubSectionTitle}"
                             Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                            Text="{x:Static res:StringRes.ProjectDetailsFrameworkSectionTitle}" />
+                            Text="{x:Static res:Resources.ProjectDetailsFrameworkSectionTitle}" />
                         <ComboBox
                             x:Name="frameworkCombo"
                             Margin="16,12,26,0"
@@ -91,7 +91,7 @@
                             SelectedItem="{Binding Framework.Selected, Mode=TwoWay}"
                             Style="{StaticResource TSComboBoxFrameworkStyle}"
                             IsEnabled="{Binding WizardStatus.IsNotBusy}"
-                            AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsFrameworkSectionTitle}"
+                            AutomationProperties.Name="{x:Static res:Resources.ProjectDetailsFrameworkSectionTitle}"
                             PreviewKeyDown="ComboBox_PreviewKeyDown" />
                         <ItemsControl
                             Focusable="False"
@@ -127,7 +127,7 @@
                             <TextBlock
                                 Style="{StaticResource TSTextBlockSubSectionTitle}"
                                 Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                                Text="{x:Static res:StringRes.ProjectDetailsLicensesSectionTitle}" />
+                                Text="{x:Static res:Resources.ProjectDetailsLicensesSectionTitle}" />
                             <ItemsControl
                                 Style="{StaticResource TSItemsControl}"
                                 ItemsSource="{Binding UserSelection.Licenses}"
@@ -138,15 +138,15 @@
                         <TextBlock
                             Style="{StaticResource TSTextBlockSubSectionTitle}"
                             Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                            Text="{x:Static res:StringRes.ProjectDetailsAboutSectionTitle}" />
-                        <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
-                            <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
-                                <TextBlock Text="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource TSTextBlockHyperlinkAbout}" />
+                            Text="{x:Static res:Resources.ProjectDetailsAboutSectionTitle}" />
+                        <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static res:Resources.ProjectDetailsAboutSectionLink}">
+                            <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}" AutomationProperties.Name="{x:Static res:Resources.ProjectDetailsAboutSectionLink}">
+                                <TextBlock Text="{x:Static res:Resources.ProjectDetailsAboutSectionLink}" Style="{StaticResource TSTextBlockHyperlinkAbout}" />
                             </Hyperlink>
                         </TextBlock>
-                        <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionIssuesLink}">
-                            <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding WizardStatus.CreateIssueCommand}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionIssuesLink}">
-                                <TextBlock Text="{x:Static res:StringRes.ProjectDetailsAboutSectionIssuesLink}" Style="{StaticResource TSTextBlockHyperlinkAbout}" />
+                        <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static res:Resources.ProjectDetailsAboutSectionIssuesLink}">
+                            <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding WizardStatus.CreateIssueCommand}" AutomationProperties.Name="{x:Static res:Resources.ProjectDetailsAboutSectionIssuesLink}">
+                                <TextBlock Text="{x:Static res:Resources.ProjectDetailsAboutSectionIssuesLink}" Style="{StaticResource TSTextBlockHyperlinkAbout}" />
                             </Hyperlink>
                         </TextBlock>
                         <TextBox
@@ -157,13 +157,13 @@
                         <!--<Button
                             Margin="16,8,26,8"
                             Style="{StaticResource ButtonRefreshTemplatesStyle}"
-                            Content="{x:Static res:StringRes.ButtonRefreshTemplatesCache}"
+                            Content="{x:Static res:Resources.ButtonRefreshTemplatesCache}"
                             Command="{Binding RefreshTemplatesCacheCommand}"
                             Visibility="{Binding RefreshTemplateCacheVisibility}" />-->
                         <Button
                             Margin="16,8,26,8"
                             Style="{StaticResource ButtonRefreshTemplatesStyle}"
-                            Content="{x:Static res:StringRes.ButtonCompositionTool}"
+                            Content="{x:Static res:Resources.ButtonCompositionTool}"
                             Command="{Binding CompositionToolCommand}"
                             Visibility="{Binding RefreshTemplateCacheVisibility}" />
                     </StackPanel>
@@ -178,7 +178,7 @@
             </Grid.ColumnDefinitions>
             <TextBlock
                 Grid.Column="0"
-                Text="{x:Static res:StringRes.TermsAndConditionsText}">
+                Text="{x:Static res:Resources.TermsAndConditionsText}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock" BasedOn="{StaticResource TSTextBlockTermsAndConditions}">
                         <Setter Property="Visibility" Value="Visible" />
@@ -191,10 +191,10 @@
                 </TextBlock.Style>
             </TextBlock>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_Right}">
-                <Button Style="{StaticResource TSButton}" Content="{x:Static res:StringRes.ButtonBack}" Command="{Binding Navigation.GoBackCommand}" AutomationProperties.AutomationId="GoBackButton" />
-                <Button Style="{StaticResource TSButton}" Content="{x:Static res:StringRes.ButtonNext}" Margin="{StaticResource Margin_S_Left}" Command="{Binding Navigation.GoForwardCommand}" AutomationProperties.AutomationId="GoForwardButton" />
-                <Button Style="{StaticResource TSButtonFinish}" Content="{x:Static res:StringRes.ButtonCreate}" Margin="{StaticResource Margin_S_Left}" Command="{Binding Navigation.FinishCommand}" AutomationProperties.AutomationId="FinishButton" />
-                <Button Style="{StaticResource TSButton}" Content="{x:Static res:StringRes.ButtonCancel}" Margin="{StaticResource Margin_S_Left}" Command="{Binding Navigation.CancelCommand}" AutomationProperties.AutomationId="CancelButton" />
+                <Button Style="{StaticResource TSButton}" Content="{x:Static res:Resources.ButtonBack}" Command="{Binding Navigation.GoBackCommand}" AutomationProperties.AutomationId="GoBackButton" />
+                <Button Style="{StaticResource TSButton}" Content="{x:Static res:Resources.ButtonNext}" Margin="{StaticResource Margin_S_Left}" Command="{Binding Navigation.GoForwardCommand}" AutomationProperties.AutomationId="GoForwardButton" />
+                <Button Style="{StaticResource TSButtonFinish}" Content="{x:Static res:Resources.ButtonCreate}" Margin="{StaticResource Margin_S_Left}" Command="{Binding Navigation.FinishCommand}" AutomationProperties.AutomationId="FinishButton" />
+                <Button Style="{StaticResource TSButton}" Content="{x:Static res:Resources.ButtonCancel}" Margin="{StaticResource Margin_S_Left}" Command="{Binding Navigation.CancelCommand}" AutomationProperties.AutomationId="CancelButton" />
             </StackPanel>
         </Grid>
     </Grid>

@@ -4,14 +4,12 @@ Template Studio goal is to help developers with their File->New experience in Vi
 # Getting Started
 Please read the [Getting Started with Template Studio](../docs/readme.md) page for more detailed information about using Template Studio.
 
-To start working with the latest version of this code, check [Getting Started for Developers](../docs/getting-started-developers.md)
-
-To start using Template Studio extension, [Getting Started with the Extension](../docs/getting-started-extension.md)
+To start working with the latest version of this code, check [CONTRIBUTING.md](/CONTRIBUTING.md)
 
 To start authoring templates, check [Understanding the Templates](../docs/templates.md)
 
 # Build and Test
-To start working with the latest version of this code, check [Getting Started for Developers](../docs/getting-started-developers.md)
+To start working with the latest version of this code, check [CONTRIBUTING.md](/CONTRIBUTING.md)
 
 # Contribute
-Do you want to contribute? Here are our [contribution guidelines](../contributing.md).
+Do you want to contribute? Here are our [contribution guidelines](/CONTRIBUTING.md).

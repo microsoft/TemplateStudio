@@ -1,0 +1,4 @@
+﻿{
+  "name": "MSIX Packaging",
+  "description": "Permite a criação de pacotes para sideload ou distribuição via Microsoft Store."
+}

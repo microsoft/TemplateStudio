@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:res="clr-namespace:Microsoft.Templates.Resources;assembly=SharedResources"
+      xmlns:res="clr-namespace:Microsoft.Templates.SharedResources;assembly=SharedResources"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300">
 
@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
         <TextBlock
             Grid.Row="0"
-            Text="{x:Static res:StringRes.ProjectTypeTitle}"
+            Text="{x:Static res:Resources.ProjectTypeTitle}"
             Margin="{StaticResource Margin_L_LeftRight_M2_Top}"
             Style="{StaticResource TSTextBlockSectionTitle}" />
         <ListView            
@@ -30,7 +30,7 @@
             Style="{StaticResource TSListViewSingleSelection}"
             ItemsSource="{Binding ProjectType.Items}"
             ItemTemplate="{StaticResource TSItemTemplateBasicInfo}"
-            AutomationProperties.Name="{x:Static res:StringRes.AccessibilityProjectTypesList}" />
+            AutomationProperties.Name="{x:Static res:Resources.AccessibilityProjectTypesList}" />
     </Grid>
 
 </Page>

@@ -6,7 +6,7 @@
     xmlns:Themes="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.15.0"
     xmlns:controls="clr-namespace:Microsoft.Templates.UI.Controls"
     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
-    xmlns:res="clr-namespace:Microsoft.Templates.Resources;assembly=SharedResources"
+    xmlns:res="clr-namespace:Microsoft.Templates.SharedResources;assembly=SharedResources"
     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
     xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
     xmlns:theming="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Imaging"
@@ -163,7 +163,7 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Stretch" Value="None"/>
         <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor"/>
-        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.AccessibilityNewItemFileIcon}"/>
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:Resources.AccessibilityNewItemFileIcon}"/>
     </Style>
 
     <Style TargetType="Image" x:Key="TSImageNewItemImageFiles">
@@ -370,8 +370,8 @@
         <Setter Property="Padding" Value="{StaticResource Margin_S_LeftTopRightBottom}" />
         <Setter Property="Content" Value="&#xE106;" />
         <Setter Property="FontSize" Value="{Binding Environment100PercentFontSize, Source={x:Static services:UIStylesService.Instance}}" />
-        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonClose}" />
-        <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonClose}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:Resources.ButtonClose}" />
+        <Setter Property="ToolTip" Value="{x:Static res:Resources.ButtonClose}" />
 
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
@@ -425,8 +425,8 @@
         <Setter Property="Foreground" Value="{Binding DeleteTemplateIcon, Source={x:Static services:UIStylesService.Instance}}" />
         <Setter Property="Content" Value="&#xE10A;" />
         <Setter Property="FontSize" Value="12" />
-        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonRemove}" />
-        <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonRemove}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:Resources.ButtonRemove}" />
+        <Setter Property="ToolTip" Value="{x:Static res:Resources.ButtonRemove}" />
         <Style.Triggers>
             <Trigger Property="IsFocused" Value="true">
                 <Setter Property="Foreground" Value="{Binding ButtonFocusedText, Source={x:Static services:UIStylesService.Instance}}" />
@@ -442,8 +442,8 @@
     </Style>
 
     <Style TargetType="Button" x:Key="TSButtonRestoreWindow" BasedOn="{StaticResource TSButtonWindowButtons}">
-        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonRestore}" />
-        <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonRestore}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:Resources.ButtonRestore}" />
+        <Setter Property="ToolTip" Value="{x:Static res:Resources.ButtonRestore}" />
         <Setter Property="Content">
             <Setter.Value>
                 <Image Source="{StaticResource TSIconRestoreWindow}"
@@ -453,8 +453,8 @@
     </Style>
 
     <Style TargetType="Button" x:Key="TSButtonMaximizeWindow" BasedOn="{StaticResource TSButtonWindowButtons}">
-        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonMaximize}" />
-        <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonMaximize}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:Resources.ButtonMaximize}" />
+        <Setter Property="ToolTip" Value="{x:Static res:Resources.ButtonMaximize}" />
         <Setter Property="Content">
             <Setter.Value>
                 <Image Source="{StaticResource TSIconMaximizeWindow}"
@@ -464,8 +464,8 @@
     </Style>
 
     <Style TargetType="Button" x:Key="TSButtonCloseWindow" BasedOn="{StaticResource TSButtonWindowButtons}">
-        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.ButtonClose}" />
-        <Setter Property="ToolTip" Value="{x:Static res:StringRes.ButtonClose}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:Resources.ButtonClose}" />
+        <Setter Property="ToolTip" Value="{x:Static res:Resources.ButtonClose}" />
         <Setter Property="Content">
             <Setter.Value>
                 <Image Source="{StaticResource TSIconCloseWindow}"
@@ -2112,7 +2112,7 @@
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="IsReadOnly" Value="True" />
-        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.AccessibilityErrorDialogDescriptionTextboxName}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:Resources.AccessibilityErrorDialogDescriptionTextboxName}" />
     </Style>
 
     <!--#endregion-->
@@ -2207,7 +2207,7 @@
                     <Setter.Value>
                         <MultiBinding StringFormat="{}{0}, {1}, {2}">
                             <Binding Path="Title" />
-                            <Binding Source="{x:Static res:StringRes.DeprecatedMessage}" />
+                            <Binding Source="{x:Static res:Resources.DeprecatedMessage}" />
                             <Binding Path="Summary" />
                         </MultiBinding>
                     </Setter.Value>
@@ -2288,7 +2288,7 @@
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
         <EventSetter Event="PreviewMouseLeftButtonDown" Handler="OnPreviewMouseLeftButtonDown" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="AutomationProperties.HelpText" Value="{Binding Title, StringFormat={x:Static res:StringRes.HelpTextPressEnterToAddItem}}" />
+        <Setter Property="AutomationProperties.HelpText" Value="{Binding Title, StringFormat={x:Static res:Resources.HelpTextPressEnterToAddItem}}" />
         <Setter Property="AutomationProperties.Name">
             <Setter.Value>
                 <MultiBinding StringFormat="{}{0}, {1}">
@@ -2468,7 +2468,7 @@
         <Setter Property="Focusable" Value="False" />
         <EventSetter Event="PreviewKeyDown" Handler="OnPreviewKeyDown" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource TSListViewItemSequentialFlow}" />
-        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.AccessibilityNavigationMenu}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:Resources.AccessibilityNavigationMenu}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListView}">
@@ -2522,7 +2522,7 @@
                                         Style="{StaticResource TSTextBoxStyle}"
                                         Margin="{StaticResource Margin_XS_Left}"
                                         Visibility="{Binding ItemNameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
-                                        AutomationProperties.Name="{x:Static res:StringRes.AccessibilityEditPageItem}"
+                                        AutomationProperties.Name="{x:Static res:Resources.AccessibilityEditPageItem}"
                                         extensions:TextBoxExtensions.IsTextSelected="{Binding IsTextSelected}"
                                         Tag="{Binding LostKeyboardFocusCommand}"
                                         LostKeyboardFocus="OnLostKeyboardFocus">
@@ -2592,7 +2592,7 @@
                             </BeginStoryboard>
                         </EventTrigger>
                         <DataTrigger Binding="{Binding IsReorderEnabled}" Value="true">
-                            <Setter Property="AutomationProperties.HelpText" Value="{x:Static res:StringRes.ReorderPageHelpText}" />
+                            <Setter Property="AutomationProperties.HelpText" Value="{x:Static res:Resources.ReorderPageHelpText}" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -2609,7 +2609,7 @@
         <Setter Property="ItemContainerStyle" Value="{StaticResource TSListViewItemProjectDetailsTemplates}" />
         <Setter Property="SelectionMode" Value="Single" />
         <Setter Property="Focusable" Value="False" />
-        <Setter Property="AutomationProperties.Name" Value="{x:Static res:StringRes.AccessibilityUserSelectionPageList}" />
+        <Setter Property="AutomationProperties.Name" Value="{x:Static res:Resources.AccessibilityUserSelectionPageList}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListView}">
@@ -2746,7 +2746,7 @@
                         Style="{StaticResource TSCrispImageCardDeprecatedIcon}"
                         Moniker="{x:Static catalog:KnownMonikers.StatusWarning}" />
                     <TextBlock
-                        Text="{x:Static res:StringRes.DeprecatedMessage}" 
+                        Text="{x:Static res:Resources.DeprecatedMessage}" 
                         Style="{StaticResource TSTextBlockCardDeprecatedMessage}"/>
                 </StackPanel>
                 <TextBlock
@@ -2756,14 +2756,14 @@
                     Margin="0,0,0,12" />
             </Grid>
             <TextBlock VerticalAlignment="Bottom"
-                       AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}"
-                       AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:StringRes.ButtonDetailsHelpText}}">
+                       AutomationProperties.Name="{x:Static res:Resources.ButtonDetails}"
+                       AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:Resources.ButtonDetailsHelpText}}">
                 <Hyperlink Command="{Binding DetailsCommand}"
                            Style="{StaticResource TSHyperlink}"
-                           AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}"
-                           AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:StringRes.ButtonDetailsHelpText}}">
+                           AutomationProperties.Name="{x:Static res:Resources.ButtonDetails}"
+                           AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:Resources.ButtonDetailsHelpText}}">
                     <Grid Background="Transparent">
-                        <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource TSTextBlockHyperlink}" Margin="12,8,12,8" />
+                        <TextBlock Text="{x:Static res:Resources.ButtonDetails}" Style="{StaticResource TSTextBlockHyperlink}" Margin="12,8,12,8" />
                     </Grid>
                 </Hyperlink>
             </TextBlock>
@@ -2807,7 +2807,7 @@
                     </Grid>
                     <!--Single Instance added feedback-->
                     <StackPanel Orientation="Horizontal" Visibility="{Binding ShowAddedText, Converter={StaticResource BoolToVisibilityConverter}}" HorizontalAlignment="Right">
-                        <TextBlock Text="{x:Static res:StringRes.TemplateAdded}" Style="{StaticResource TSTextBlockCardAddedText}" />
+                        <TextBlock Text="{x:Static res:Resources.TemplateAdded}" Style="{StaticResource TSTextBlockCardAddedText}" />
                         <Grid Width="18" Height="18" VerticalAlignment="Bottom" Margin="{StaticResource Margin_XS_Left}">
                             <Ellipse Fill="{Binding CardFooterText, Source={x:Static services:UIStylesService.Instance}}" />
                             <TextBlock Style="{StaticResource TSTextBlockCardAddedIcon}" />
@@ -2816,14 +2816,14 @@
                 </Grid>
             </Grid>
             <TextBlock VerticalAlignment="Bottom"
-                       AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}"
-                       AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:StringRes.ButtonDetailsHelpText}}">
+                       AutomationProperties.Name="{x:Static res:Resources.ButtonDetails}"
+                       AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:Resources.ButtonDetailsHelpText}}">
                 <Hyperlink Command="{Binding DetailsCommand}"
                            Style="{StaticResource TSHyperlink}"
-                           AutomationProperties.Name="{x:Static res:StringRes.ButtonDetails}"
-                       AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:StringRes.ButtonDetailsHelpText}}">
+                           AutomationProperties.Name="{x:Static res:Resources.ButtonDetails}"
+                       AutomationProperties.HelpText="{Binding Title, StringFormat={x:Static res:Resources.ButtonDetailsHelpText}}">
                     <Grid Background="Transparent">
-                        <TextBlock Text="{x:Static res:StringRes.ButtonDetails}" Style="{StaticResource TSTextBlockHyperlink}" Margin="12,8,12,8" />
+                        <TextBlock Text="{x:Static res:Resources.ButtonDetails}" Style="{StaticResource TSTextBlockHyperlink}" Margin="12,8,12,8" />
                     </Grid>
                 </Hyperlink>
             </TextBlock>
@@ -2910,7 +2910,7 @@
             <Hyperlink Style="{StaticResource TSHyperlink}"
                        Command="{Binding OpenCommand}"
                        AutomationProperties.Name="{Binding Text}"
-                       ToolTip="{x:Static res:StringRes.ExternalHyperlinkTooltipMessage}">
+                       ToolTip="{x:Static res:Resources.ExternalHyperlinkTooltipMessage}">
                 <Grid Background="Transparent">
                     <TextBlock Text="{Binding Text}" Style="{StaticResource TSTextBlockHyperlink}" Margin="4,4,4,4" />
                 </Grid>
@@ -2964,35 +2964,35 @@
         <templateSelector:FileStatusTemplateSelector.ConflictingFileTemplate>
             <DataTemplate>
                 <TextBlock
-                    Text="{x:Static res:StringRes.ChangesSummaryGroupConflictingFilesDescription}"
+                    Text="{x:Static res:Resources.ChangesSummaryGroupConflictingFilesDescription}"
                     Style="{StaticResource TSTextBlockFileStatusDescription}" />
             </DataTemplate>
         </templateSelector:FileStatusTemplateSelector.ConflictingFileTemplate>
         <templateSelector:FileStatusTemplateSelector.ConflictingStylesFileTemplate>
             <DataTemplate>
                 <TextBlock
-                    Text="{x:Static res:StringRes.ChangesSummaryGroupConflictingStylesFilesDescription}"
+                    Text="{x:Static res:Resources.ChangesSummaryGroupConflictingStylesFilesDescription}"
                     Style="{StaticResource TSTextBlockFileStatusDescription}" />
             </DataTemplate>
         </templateSelector:FileStatusTemplateSelector.ConflictingStylesFileTemplate>
         <templateSelector:FileStatusTemplateSelector.ModifiedFileTemplate>
             <DataTemplate>
                 <TextBlock
-                    Text="{x:Static res:StringRes.ChangesSummaryGroupModifiedFilesDescription}"
+                    Text="{x:Static res:Resources.ChangesSummaryGroupModifiedFilesDescription}"
                     Style="{StaticResource TSTextBlockFileStatusDescription}" />
             </DataTemplate>
         </templateSelector:FileStatusTemplateSelector.ModifiedFileTemplate>
         <templateSelector:FileStatusTemplateSelector.NewFileTemplate>
             <DataTemplate>
                 <TextBlock
-                    Text="{x:Static res:StringRes.ChangesSummaryGroupNewFilesDescription}"
+                    Text="{x:Static res:Resources.ChangesSummaryGroupNewFilesDescription}"
                     Style="{StaticResource TSTextBlockFileStatusDescription}" />
             </DataTemplate>
         </templateSelector:FileStatusTemplateSelector.NewFileTemplate>
         <templateSelector:FileStatusTemplateSelector.UnchangedFileTemplate>
             <DataTemplate>
                 <TextBlock
-                    Text="{x:Static res:StringRes.ChangesSummaryGroupUnchangedFilesDescription}"
+                    Text="{x:Static res:Resources.ChangesSummaryGroupUnchangedFilesDescription}"
                     Style="{StaticResource TSTextBlockFileStatusDescription}" />
             </DataTemplate>
         </templateSelector:FileStatusTemplateSelector.UnchangedFileTemplate>
@@ -3000,7 +3000,7 @@
             <DataTemplate>
                 <StackPanel>
                     <TextBlock
-                        Text="{x:Static res:StringRes.ChangesSummaryGroupWarningFilesDescription}"
+                        Text="{x:Static res:Resources.ChangesSummaryGroupWarningFilesDescription}"
                         Style="{StaticResource TSTextBlockFileStatusDescription}" />
                     <TextBlock
                         Margin="{StaticResource Margin_XS_Top}"
@@ -3027,16 +3027,16 @@
                     Grid.Column="0"
                     Margin="{StaticResource Margin_M_LeftTopRightBottom}"
                     ContentTemplateSelector="{StaticResource FileStatusTemplateSelector}" />
-                <TextBlock Grid.Column="1" AutomationProperties.Name="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}">
+                <TextBlock Grid.Column="1" AutomationProperties.Name="{x:Static res:Resources.ChangesSummaryMoreInfoLink}">
                     <Hyperlink Style="{StaticResource TSHyperlink}"
                                Command="{Binding MoreDetailsCommand}"
-                               AutomationProperties.Name="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}"
-                               ToolTip="{x:Static res:StringRes.ExternalHyperlinkTooltipMessage}">                        
+                               AutomationProperties.Name="{x:Static res:Resources.ChangesSummaryMoreInfoLink}"
+                               ToolTip="{x:Static res:Resources.ExternalHyperlinkTooltipMessage}">                        
                         <Grid Background="Transparent">
                             <TextBlock
                                 Style="{StaticResource TSTextBlockHyperlink}"
                                 Margin="{StaticResource Margin_M_LeftTopRightBottom}"
-                                Text="{x:Static res:StringRes.ChangesSummaryMoreInfoLink}" />
+                                Text="{x:Static res:Resources.ChangesSummaryMoreInfoLink}" />
                         </Grid>
                     </Hyperlink>
                 </TextBlock>
@@ -3079,7 +3079,7 @@
                     <Hyperlink Style="{StaticResource TSHyperlink}"
                            Command="{Binding OpenLinkCommand}"
                            AutomationProperties.Name="{Binding HyperLinkMessage}"
-                           ToolTip="{x:Static res:StringRes.ExternalHyperlinkTooltipMessage}">
+                           ToolTip="{x:Static res:Resources.ExternalHyperlinkTooltipMessage}">
                         <Grid Background="Transparent">
                             <TextBlock Text="{Binding HyperLinkMessage}" Style="{StaticResource TSTextBlockHyperlink}" />
                         </Grid>

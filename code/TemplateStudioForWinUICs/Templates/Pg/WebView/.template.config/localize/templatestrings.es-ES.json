@@ -1,0 +1,4 @@
+﻿{
+    "name": "WebView",
+    "description": "La página WebView representa contenido web mediante WebView2 (Microsoft Edge con Chromium)."
+}

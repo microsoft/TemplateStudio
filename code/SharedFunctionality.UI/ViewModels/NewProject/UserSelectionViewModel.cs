@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
@@ -36,10 +36,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public UserSelectionViewModel()
         {
-            Groups.Add(new UserSelectionGroup(TemplateType.Page, StringRes.ProjectDetailsPagesSectionTitle, true));
-            Groups.Add(new UserSelectionGroup(TemplateType.Feature, StringRes.ProjectDetailsFeaturesSectionTitle));
-            Groups.Add(new UserSelectionGroup(TemplateType.Service, StringRes.ProjectDetailsServicesSectionTitle));
-            Groups.Add(new UserSelectionGroup(TemplateType.Testing, StringRes.ProjectDetailsTestingSectionTitle));
+            Groups.Add(new UserSelectionGroup(TemplateType.Page, Resources.ProjectDetailsPagesSectionTitle, true));
+            Groups.Add(new UserSelectionGroup(TemplateType.Feature, Resources.ProjectDetailsFeaturesSectionTitle));
+            Groups.Add(new UserSelectionGroup(TemplateType.Service, Resources.ProjectDetailsServicesSectionTitle));
+            Groups.Add(new UserSelectionGroup(TemplateType.Testing, Resources.ProjectDetailsTestingSectionTitle));
         }
 
         public void Initialize(UserSelectionContext context)
@@ -275,7 +275,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             {
                 var missingSdkVersions = missingVersions.Select(v => RequiredVersionService.GetRequirementDisplayName(v));
 
-                var notification = Notification.Warning(string.Format(StringRes.NotificationMissingVersions, missingSdkVersions.Aggregate((i, j) => $"{i}, {j}")), Category.MissingVersion, TimerType.None);
+                var notification = Notification.Warning(string.Format(Resources.NotificationMissingVersions, missingSdkVersions.Aggregate((i, j) => $"{i}, {j}")), Category.MissingVersion, TimerType.None);
                 NotificationsControl.AddNotificationAsync(notification).FireAndForget();
             }
             else
@@ -377,7 +377,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         private async Task ShowReadOnlyNotificationAsync(string name)
         {
-            var message = string.Format(StringRes.NotificationRemoveError_ReadOnly, name);
+            var message = string.Format(Resources.NotificationRemoveError_ReadOnly, name);
             var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
             await NotificationsControl.AddNotificationAsync(notification);
         }
@@ -386,7 +386,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             var allExludedTemplateNames = ConcatTemplateNames(exludedTemplateNames);
 
-            var message = string.Format(StringRes.NotificationAdditionError_Exclusion, name, allExludedTemplateNames);
+            var message = string.Format(Resources.NotificationAdditionError_Exclusion, name, allExludedTemplateNames);
 
             var notification = Notification.Warning(message, Category.AddTemplateValidation);
             await NotificationsControl.AddNotificationAsync(notification);
@@ -396,7 +396,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             var allRequiredTemplateNames = ConcatTemplateNames(requiredTemplateNames);
 
-            var message = string.Format(StringRes.NotificationAdditionError_Requirement, name, allRequiredTemplateNames);
+            var message = string.Format(Resources.NotificationAdditionError_Requirement, name, allRequiredTemplateNames);
 
             var notification = Notification.Warning(message, Category.AddTemplateValidation);
             await NotificationsControl.AddNotificationAsync(notification);
@@ -406,7 +406,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             var allRequiredForNames = ConcatTemplateNames(requiredForNames);
 
-            var message = string.Format(StringRes.NotificationRemoveError_Requirement, name, allRequiredForNames);
+            var message = string.Format(Resources.NotificationRemoveError_Requirement, name, allRequiredForNames);
 
             var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
             await NotificationsControl.AddNotificationAsync(notification);
@@ -416,7 +416,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             var allDependencyNames = ConcatTemplateNames(dependencyNames);
 
-            var message = string.Format(StringRes.NotificationRemoveError_Dependency, name, allDependencyNames);
+            var message = string.Format(Resources.NotificationRemoveError_Dependency, name, allDependencyNames);
             var notification = Notification.Warning(message, Category.RemoveTemplateValidation);
             await NotificationsControl.AddNotificationAsync(notification);
         }

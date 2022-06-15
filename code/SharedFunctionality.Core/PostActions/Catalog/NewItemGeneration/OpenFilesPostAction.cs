@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.PostActions.Catalog
 {
@@ -11,7 +11,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
     {
         internal override void ExecuteInternal()
         {
-            GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(StringRes.StatusOpeningItems);
+            GenContext.ToolBox.Shell.UI.ShowStatusBarMessage(Resources.StatusOpeningItems);
             GenContext.ToolBox.Shell.UI.OpenItems(GenContext.Current.FilesToOpen.ToArray());
             GenContext.Current.FilesToOpen.Clear();
         }

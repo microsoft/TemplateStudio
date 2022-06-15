@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:res="clr-namespace:Microsoft.Templates.Resources;assembly=SharedResources"
+    xmlns:res="clr-namespace:Microsoft.Templates.SharedResources;assembly=SharedResources"
     xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
@@ -35,7 +35,7 @@
             </Grid.RowDefinitions>
             <TextBlock
                 Grid.Row="0"
-                Text="{x:Static res:StringRes.TemplateSelectionTitle}"
+                Text="{x:Static res:Resources.TemplateSelectionTitle}"
                 Margin="{StaticResource Margin_L_LeftRight_M2_Top}"
                 Style="{StaticResource TSTextBlockSectionTitle}" />
             <ScrollViewer Grid.Row="1" Style="{StaticResource TSScrollViewer}">
@@ -56,9 +56,9 @@
                     <TextBlock
                         Style="{StaticResource TSTextBlockSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftTopRight}"
-                        Text="{x:Static res:StringRes.NewItemTemplateDetailsTitle}" />
+                        Text="{x:Static res:Resources.NewItemTemplateDetailsTitle}" />
                     <TextBlock
-                        Text="{x:Static res:StringRes.NewItemTemplateDetailsNameSectionTitle}"
+                        Text="{x:Static res:Resources.NewItemTemplateDetailsNameSectionTitle}"
                         Style="{StaticResource TSTextBlockSubSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}" />
                     <Grid>
@@ -69,7 +69,7 @@
                             Margin="16,12,26,12"
                             Visibility="{Binding TemplateSelection.NameEditable, Converter={StaticResource BoolToVisibilityConverter}}"
                             extensions:TextBoxExtensions.IsTextSelected="{Binding TemplateSelection.IsTextSelected}"
-                            AutomationProperties.Name="{x:Static res:StringRes.AccessibilityEditPageItem}"
+                            AutomationProperties.Name="{x:Static res:Resources.AccessibilityEditPageItem}"
                             Tag="{Binding TemplateSelection.LostKeyboardFocusCommand}"
                             LostKeyboardFocus="OnLostKeyboardFocus">
                             <TextBox.InputBindings>
@@ -86,7 +86,7 @@
                         <TextBlock
                             Style="{StaticResource TSTextBlockSubSectionTitle}"
                             Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                            Text="{x:Static res:StringRes.NewItemTemplateDetailsDependenciesSectionTitle}" />
+                            Text="{x:Static res:Resources.NewItemTemplateDetailsDependenciesSectionTitle}" />
                             <ItemsControl
                             Style="{StaticResource TSItemsControl}"
                             ItemsSource="{Binding TemplateSelection.Dependencies}"
@@ -97,7 +97,7 @@
                         <TextBlock
                             Style="{StaticResource TSTextBlockSubSectionTitle}"
                             Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                            Text="{x:Static res:StringRes.NewItemTemplateDetailsLicensesSectionTitle}" />
+                            Text="{x:Static res:Resources.NewItemTemplateDetailsLicensesSectionTitle}" />
                         <ItemsControl
                             Style="{StaticResource TSItemsControl}"
                             ItemsSource="{Binding TemplateSelection.Licenses}"
@@ -108,15 +108,15 @@
                     <TextBlock
                         Style="{StaticResource TSTextBlockSubSectionTitle}"
                         Margin="{StaticResource Margin_M2_LeftRight_L_Top}"
-                        Text="{x:Static res:StringRes.ProjectDetailsAboutSectionTitle}" />
-                    <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
-                        <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
-                            <TextBlock Text="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}" Style="{StaticResource TSTextBlockHyperlinkAbout}" />
+                        Text="{x:Static res:Resources.ProjectDetailsAboutSectionTitle}" />
+                    <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static res:Resources.ProjectDetailsAboutSectionLink}">
+                        <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding WizardStatus.OpenWebSiteCommand}" AutomationProperties.Name="{x:Static res:Resources.ProjectDetailsAboutSectionLink}">
+                            <TextBlock Text="{x:Static res:Resources.ProjectDetailsAboutSectionLink}" Style="{StaticResource TSTextBlockHyperlinkAbout}" />
                         </Hyperlink>
                     </TextBlock>
-                    <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
-                            <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding WizardStatus.CreateIssueCommand}" AutomationProperties.Name="{x:Static res:StringRes.ProjectDetailsAboutSectionLink}">
-                                <TextBlock Text="{x:Static res:StringRes.ProjectDetailsAboutSectionIssuesLink}" Style="{StaticResource TSTextBlockHyperlinkAbout}" />
+                    <TextBlock Margin="{StaticResource Margin_M2_LeftRight_S_Top}" AutomationProperties.Name="{x:Static res:Resources.ProjectDetailsAboutSectionLink}">
+                            <Hyperlink Style="{StaticResource TSHyperlink}" Command="{Binding WizardStatus.CreateIssueCommand}" AutomationProperties.Name="{x:Static res:Resources.ProjectDetailsAboutSectionLink}">
+                                <TextBlock Text="{x:Static res:Resources.ProjectDetailsAboutSectionIssuesLink}" Style="{StaticResource TSTextBlockHyperlinkAbout}" />
                             </Hyperlink>
                         </TextBlock>
                     <TextBox
@@ -139,12 +139,12 @@
                                     Style="{StaticResource TSTextBlockSubSectionTitle}"
                                     Margin="{StaticResource Margin_XS_Left}"
                                     VerticalAlignment="Bottom"
-                                    Text="{x:Static res:StringRes.BreakingChanges}" />
+                                    Text="{x:Static res:Resources.BreakingChanges}" />
                             </StackPanel>
                             <TextBlock
                                 TextWrapping="Wrap"
                                 Margin="{StaticResource Margin_M_Top}"
-                                Text="{x:Static res:StringRes.BreakingChangesDialogMessage}" />
+                                Text="{x:Static res:Resources.BreakingChangesDialogMessage}" />
                             <ItemsControl
                                 Style="{StaticResource TSItemsControl}"
                                 ItemsSource="{Binding BreakingChangesErrors}"
@@ -154,7 +154,7 @@
                     <!--<Button
                         Margin="16,8,26,0"
                         Style="{StaticResource ButtonRefreshTemplatesStyle}"
-                        Content="{x:Static res:StringRes.ButtonRefreshTemplatesCache}"
+                        Content="{x:Static res:Resources.ButtonRefreshTemplatesCache}"
                         Command="{Binding RefreshTemplatesCacheCommand}"
                         Visibility="{Binding RefreshTemplateCacheVisibility}" />-->
                 </StackPanel>
