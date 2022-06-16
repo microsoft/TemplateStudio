@@ -4,8 +4,8 @@
     "classifications": [
         "Universal"
     ],
-    "name": "DataGrid",
-    "shortName": "DataGrid",
+    "name": "Data Grid",
+    "shortName": "Data Grid",
     "identity": "ts.WinUI.Page.DataGrid",
     "groupIdentity": "ts.WinUI.Page.DataGrid",
     "description": "A page displaying a simple data grid.",

@@ -1,4 +1,4 @@
 ﻿{
-  "name": "MSIX Packaging",
-  "description": "允许通过 Microsoft Store 创建旁加载或分发包。"
+    "name": "MSIX Packaging",
+    "description": "允许通过 Microsoft Store 创建旁加载或分发包。"
 }

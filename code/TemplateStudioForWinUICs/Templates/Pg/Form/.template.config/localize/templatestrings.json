@@ -1,4 +1,6 @@
 ﻿{
     "name": "Form",
-    "description": "This page contains a basic form page with validators."
+    "_name.comment": "Label for a page in an app that allows user data entry.",
+    "description": "This page contains a basic form page with validators.",
+    "_description.comment": "Label description for Form."
 }

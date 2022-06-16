@@ -1,4 +1,6 @@
 ﻿{
     "name": "Sample Data",
-    "description": "SampleData holds sample data used by the generated version of some pages."
+    "_name.comment": "Label for adding sample data to a project.",
+    "description": "Adds sample data to the project.",
+    "_description.comment": "Label description for Sample Data."
 }

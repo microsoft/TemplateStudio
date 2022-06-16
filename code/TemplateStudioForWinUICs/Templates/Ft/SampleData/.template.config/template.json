@@ -16,7 +16,6 @@
         "ts.platform": "WinUI",
         "ts.appmodel": "Desktop",
         "ts.version": "1.0.0",
-        "ts.defaultInstance": "SampleData",
         "ts.multipleInstance": "false",
         "ts.isHidden": "true",
         "ts.genGroup": "0",

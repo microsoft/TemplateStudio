@@ -22,7 +22,6 @@
         "ts.genGroup": "1",
         "ts.rightClickEnabled": "true",
         "ts.multipleInstance": "false",
-        "ts.defaultInstance": "Settings",
         "ts.dependencies": "ts.WinUI.Feat.ThemeSelection"
     },
     "sourceName": "Param_ItemName",

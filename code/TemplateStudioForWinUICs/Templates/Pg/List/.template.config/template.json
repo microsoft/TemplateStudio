@@ -4,8 +4,8 @@
     "classifications": [
         "Universal"
     ],
-    "name": "ListDetails",
-    "shortName": "ListDetails",
+    "name": "List Details",
+    "shortName": "List Details",
     "identity": "ts.WinUI.Page.ListDetails",
     "groupIdentity": "ts.WinUI.Page.ListDetails",
     "description": "The list/details pattern has a list pane and a details pane for content.",
