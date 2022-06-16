@@ -152,25 +152,25 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharedResources\SharedResources.csproj">
-      <Project>{d617cf2a-6ced-4a31-b87c-3a890d0dde93}</Project>
-      <Name>SharedResources</Name>
-      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
-    </ProjectReference>
-    <ProjectReference Include="..\src\ProjectTemplates\UWP\CS\Ts4UwpCsTemplate\Ts4UwpCsTemplate.csproj">
+    <ProjectReference Include="..\ProjectTemplates\UWP\Cs\Ts4UwpCsTemplate.csproj">
       <Project>{A9F0E236-41E2-41B7-BF79-E2F440C58AE0}</Project>
       <Name>Ts4UwpCsTemplate</Name>
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
-    <ProjectReference Include="..\src\ProjectTemplates\UWP\VB\Ts4UwpVbTemplate\Ts4UwpVbTemplate.vbproj">
+    <ProjectReference Include="..\ProjectTemplates\UWP\Vb\Ts4UwpVbTemplate.vbproj">
       <Project>{CD3637EA-BD39-4C34-B3AC-2E2B21E35D7C}</Project>
       <Name>Ts4UwpVbTemplate</Name>
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\SharedResources\SharedResources.csproj">
+      <Project>{d617cf2a-6ced-4a31-b87c-3a890d0dde93}</Project>
+      <Name>SharedResources</Name>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
