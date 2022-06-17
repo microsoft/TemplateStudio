@@ -223,9 +223,18 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioForWinUICsPackage.cs" />
-    <Compile Include="Templates\Ft\AppNotifications\Param_ProjectName\Activation\NotificationActivationHandler.cs" />
-    <Compile Include="Templates\Ft\AppNotifications\Param_ProjectName\Contracts\Services\INotificationService.cs" />
-    <Compile Include="Templates\Ft\AppNotifications\Param_ProjectName\Services\NotificationService.cs" />
+    <Content Include="Templates\Ft\AppNotifications\Param_ProjectName\Notifications\ToastExample.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\AppNotifications\Param_ProjectName\Activation\NotificationActivationHandler.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\AppNotifications\Param_ProjectName\Contracts\Services\INotificationService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\AppNotifications\Param_ProjectName\Services\NotificationService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\Helpers\TitleBarHelper.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

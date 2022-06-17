@@ -1,9 +1,8 @@
-﻿namespace Param_RootNamespace.Contracts.Services
-{
-    public interface INotificationService
-    {
-        public void Initialize();
+﻿namespace Param_RootNamespace.Contracts.Services;
 
-        public void Unregister();
-    }
+public interface INotificationService
+{
+    public void Initialize();
+
+    public void Unregister();
 }

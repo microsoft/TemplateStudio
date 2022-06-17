@@ -25,6 +25,20 @@
     },
     "sourceName": "AppNotificationsFeature",
     "preferNameDirectory": true,
+    "PrimaryOutputs": [
+        {
+            "path": "Param_ProjectName/Activation/NotificationActivationHandler.cs"
+        },
+        {
+            "path": "Param_ProjectName/Contracts/Services/INotificationService.cs"
+        },
+        {
+            "path": "Param_ProjectName//Notifications/ToastExample.cs"
+        },
+        {
+            "path": "Param_ProjectName/Services/NotificationService.cs"
+        }
+    ],
     "symbols": {
         "ts.projectName": {
             "type": "parameter",
