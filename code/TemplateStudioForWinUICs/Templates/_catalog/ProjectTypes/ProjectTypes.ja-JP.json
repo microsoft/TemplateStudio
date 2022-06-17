@@ -1,0 +1,17 @@
+﻿[
+    {
+        "name": "Blank",
+        "displayName": "Blank",
+        "summary": "ナビゲーション フレームと基本的なサービスとスタイルが含まれています。"
+    },
+    {
+        "name": "NavView",
+        "displayName": "Navigation Pane",
+        "summary": "ページ間の移動に使用されるハンバーガー メニューが含まれています。"
+    },
+    {
+        "name": "MenuBar",
+        "displayName": "Menu Bar",
+        "summary": "ページ間を移動するためのメニューが付加されます。"
+    }
+]

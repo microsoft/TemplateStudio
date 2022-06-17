@@ -1,0 +1,12 @@
+﻿[
+    {
+        "name": "MVVMToolkit",
+        "displayName": "MVVM Toolkit",
+        "summary": "Moderní, rychlá, modulární knihovna MVVM a součást sady nástrojů Windows Community Toolkit."
+    },
+    {
+        "name": "None",
+        "displayName": "None",
+        "summary": "Žádné rozhraní nebo lešení složek. Pro spuštění aplikace je generován pouze minimální kód."
+    }
+]
