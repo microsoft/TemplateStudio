@@ -1,6 +1,7 @@
 ﻿{
     "name": "Sample Data",
-    "_name.comment": "Label for adding sample data to a project.",
     "description": "Adds sample data to the project.",
+
+    "_name.comment": "Label for adding sample data to a project.",
     "_description.comment": "Label description for Sample Data."
 }

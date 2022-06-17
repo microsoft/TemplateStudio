@@ -1,6 +1,7 @@
 ﻿{
-    "name": "WebView",
-    "_name.comment": "Label for a page in an app that renders web content with a WebView control.",
+    "name": "Web View",
     "description": "The web view page renders web content using WebView2 (Microsoft Edge with Chromium).",
+
+    "_name.comment": "Label for a page in an app that renders web content with a WebView control.",
     "_description.comment": "Label description for WebView."
 }

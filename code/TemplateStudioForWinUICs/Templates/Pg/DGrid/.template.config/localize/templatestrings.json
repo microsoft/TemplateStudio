@@ -1,6 +1,7 @@
 ﻿{
     "name": "Data Grid",
-    "_name.comment": "Label for a page in an app that shows data in a table layout.",
     "description": "A page displaying a simple data grid.",
+
+    "_name.comment": "Label for a page in an app that shows data in a table layout.",
     "_description.comment": "Label description for Data Grid."
 }
