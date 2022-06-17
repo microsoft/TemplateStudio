@@ -1,4 +1,4 @@
 ﻿{
-    "name": "WebView",
+    "name": "Web View",
     "description": "Страница веб-просмотра отображает веб-контент с помощью WebView2 (Microsoft Edge с хромом)."
 }

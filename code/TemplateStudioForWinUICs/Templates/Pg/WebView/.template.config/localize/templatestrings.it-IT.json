@@ -1,4 +1,4 @@
 ﻿{
-    "name": "WebView",
+    "name": "Web View",
     "description": "La pagina di visualizzazione Web esegue il rendering del contenuto Web tramite WebView2 (Microsoft Edge con Chromium)."
 }
