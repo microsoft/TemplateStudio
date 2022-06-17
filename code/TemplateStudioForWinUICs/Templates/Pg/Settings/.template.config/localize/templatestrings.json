@@ -1,6 +1,7 @@
 ﻿{
     "name": "Settings",
-    "_name.comment": "Label for a page in an app where users can change settings.",
     "description": "The settings page is the page where we recommend putting the configuration settings for your app.",
+
+    "_name.comment": "Label for a page in an app where users can change settings.",
     "_description.comment": "Label description for Settings."
 }
