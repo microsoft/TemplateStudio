@@ -1,0 +1,12 @@
+﻿[
+    {
+        "name": "MVVMToolkit",
+        "displayName": "MVVM Toolkit",
+        "summary": "Una biblioteca MVVM moderna, rápida y modular y parte del Kit de herramientas de la comunidad de Windows."
+    },
+    {
+        "name": "None",
+        "displayName": "None",
+        "summary": "No hay generación de framework o carpetas. Solo se genera el código mínimo para que la aplicación se ejecute."
+    }
+]

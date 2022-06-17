@@ -552,16 +552,20 @@ namespace Microsoft.Templates.Core
 
         private IEnumerable<MetadataInfo> GetMetadataInfo(string type)
         {
-            // if (Sync?.CurrentContent != null)
             if (CodeGen.Instance?.Cache?.MountPoint != null)
             {
-                // var folderName = Path.Combine(Sync?.CurrentContent.Path, CurrentPlatform, Catalog);
                 var folderName = Path.Combine(CodeGen.Instance.Cache.MountPoint.MountPointUri, Catalog);
 
                 if (Directory.Exists(folderName))
                 {
-                    var metadataFile = Path.Combine(folderName, $"{type}.json");
-                    var metadataFileLocalized = Path.Combine(folderName, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.{type}.json");
+                    var metadataFile = Directory
+                        .EnumerateFiles(folderName, $"{type}.json", SearchOption.AllDirectories)
+                        .FirstOrDefault();
+                    var metadataFileLocalized = Directory
+                        .EnumerateFiles(folderName, $"*{type}*.json", SearchOption.AllDirectories)
+                        .Where(f => f.Contains(CultureInfo.CurrentUICulture.Name))
+                        .FirstOrDefault();
+
                     if (File.Exists(metadataFile))
                     {
                         var metadata = JsonConvert.DeserializeObject<List<MetadataInfo>>(File.ReadAllText(metadataFile));
@@ -639,7 +643,11 @@ namespace Microsoft.Templates.Core
 
         private static void SetMetadataDescription(MetadataInfo mInfo, string folderName, string type)
         {
-            var descriptionFile = Path.Combine(folderName, type, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.{mInfo.Name}.md");
+            var descriptionFile = Directory
+                .EnumerateFiles(folderName, $"*{mInfo.Name}*.md", SearchOption.AllDirectories)
+                .Where(f => f.Contains(CultureInfo.CurrentUICulture.Name))
+                .FirstOrDefault();
+
             if (!File.Exists(descriptionFile))
             {
                 descriptionFile = Path.Combine(folderName, type, $"{mInfo.Name}.md");

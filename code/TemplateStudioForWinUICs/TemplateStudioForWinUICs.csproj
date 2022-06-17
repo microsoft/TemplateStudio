@@ -1686,73 +1686,73 @@
     <Content Include="Templates\Proj\Default\Param_ProjectName\Param_ProjectName.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\cs-CZ.frontendframeworks.json">
+    <Content Include="Templates\_catalog\FrontendFrameworks\FrontendFrameworks.cs-CZ.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\cs-CZ.projectTypes.json">
+    <Content Include="Templates\_catalog\ProjectTypes\ProjectTypes.cs-CZ.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\de-DE.frontendframeworks.json">
+    <Content Include="Templates\_catalog\FrontendFrameworks\FrontendFrameworks.de-DE.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\de-DE.projectTypes.json">
+    <Content Include="Templates\_catalog\ProjectTypes\ProjectTypes.de-DE.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\es-ES.frontendframeworks.json">
+    <Content Include="Templates\_catalog\FrontendFrameworks\FrontendFrameworks.es-ES.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\es-ES.projectTypes.json">
+    <Content Include="Templates\_catalog\ProjectTypes\ProjectTypes.es-ES.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\fr-FR.frontendframeworks.json">
+    <Content Include="Templates\_catalog\FrontendFrameworks\FrontendFrameworks.fr-FR.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\fr-FR.projectTypes.json">
+    <Content Include="Templates\_catalog\ProjectTypes\ProjectTypes.fr-FR.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks.json">
+    <Content Include="Templates\_catalog\FrontendFrameworks\FrontendFrameworks.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\cs-CZ.MVVMToolkit.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\MVVMToolkit.cs-CZ.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\cs-CZ.None.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\None.cs-CZ.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\de-DE.MVVMToolkit.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\MVVMToolkit.de-DE.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\de-DE.None.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\None.de-DE.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\es-ES.MVVMToolkit.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\MVVMToolkit.es-ES.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\es-ES.None.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\None.es-ES.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\fr-FR.MVVMToolkit.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\MVVMToolkit.fr-FR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\fr-FR.None.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\None.fr-FR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\it-IT.MVVMToolkit.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\MVVMToolkit.it-IT.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\it-IT.None.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\None.it-IT.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\ja-JP.MVVMToolkit.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\MVVMToolkit.ja-JP.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\ja-JP.None.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\None.ja-JP.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\ko-KR.MVVMToolkit.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\MVVMToolkit.ko-KR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\ko-KR.None.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\None.ko-KR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\FrontendFrameworks\MVVMToolkit.md">
@@ -1761,211 +1761,211 @@
     <Content Include="Templates\_catalog\FrontendFrameworks\None.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\pl-PL.MVVMToolkit.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\MVVMToolkit.pl-PL.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\pl-PL.None.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\None.pl-PL.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\pt-BR.MVVMToolkit.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\MVVMToolkit.pt-BR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\pt-BR.None.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\None.pt-BR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\ru-RU.MVVMToolkit.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\MVVMToolkit.ru-RU.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\ru-RU.None.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\None.ru-RU.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\tr-TR.MVVMToolkit.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\MVVMToolkit.tr-TR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\tr-TR.None.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\None.tr-TR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\zh-CN.MVVMToolkit.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\MVVMToolkit.zh-CN.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\zh-CN.None.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\None.zh-CN.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\zh-TW.MVVMToolkit.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\MVVMToolkit.zh-TW.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\FrontendFrameworks\zh-TW.None.md">
+    <Content Include="Templates\_catalog\FrontendFrameworks\None.zh-TW.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\it-IT.frontendframeworks.json">
+    <Content Include="Templates\_catalog\FrontendFrameworks\FrontendFrameworks.it-IT.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\it-IT.projectTypes.json">
+    <Content Include="Templates\_catalog\ProjectTypes\ProjectTypes.it-IT.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ja-JP.frontendframeworks.json">
+    <Content Include="Templates\_catalog\FrontendFrameworks\FrontendFrameworks.ja-JP.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ja-JP.projectTypes.json">
+    <Content Include="Templates\_catalog\ProjectTypes\ProjectTypes.ja-JP.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ko-KR.frontendframeworks.json">
+    <Content Include="Templates\_catalog\FrontendFrameworks\FrontendFrameworks.ko-KR.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ko-KR.projectTypes.json">
+    <Content Include="Templates\_catalog\ProjectTypes\ProjectTypes.ko-KR.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\pl-PL.frontendframeworks.json">
+    <Content Include="Templates\_catalog\FrontendFrameworks\FrontendFrameworks.pl-PL.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\pl-PL.projectTypes.json">
+    <Content Include="Templates\_catalog\ProjectTypes\ProjectTypes.pl-PL.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes.json">
+    <Content Include="Templates\_catalog\ProjectTypes\ProjectTypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\ProjectTypes\Blank.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\cs-CZ.Blank.md">
+    <Content Include="Templates\_catalog\ProjectTypes\Blank.cs-CZ.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\cs-CZ.MenuBar.md">
+    <Content Include="Templates\_catalog\ProjectTypes\MenuBar.cs-CZ.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\cs-CZ.NavView.md">
+    <Content Include="Templates\_catalog\ProjectTypes\NavView.cs-CZ.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\de-DE.Blank.md">
+    <Content Include="Templates\_catalog\ProjectTypes\Blank.de-DE.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\de-DE.MenuBar.md">
+    <Content Include="Templates\_catalog\ProjectTypes\MenuBar.de-DE.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\de-DE.NavView.md">
+    <Content Include="Templates\_catalog\ProjectTypes\NavView.de-DE.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\es-ES.Blank.md">
+    <Content Include="Templates\_catalog\ProjectTypes\Blank.es-ES.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\es-ES.MenuBar.md">
+    <Content Include="Templates\_catalog\ProjectTypes\MenuBar.es-ES.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\es-ES.NavView.md">
+    <Content Include="Templates\_catalog\ProjectTypes\NavView.es-ES.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\fr-FR.Blank.md">
+    <Content Include="Templates\_catalog\ProjectTypes\Blank.fr-FR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\fr-FR.MenuBar.md">
+    <Content Include="Templates\_catalog\ProjectTypes\MenuBar.fr-FR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\fr-FR.NavView.md">
+    <Content Include="Templates\_catalog\ProjectTypes\NavView.fr-FR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\it-IT.Blank.md">
+    <Content Include="Templates\_catalog\ProjectTypes\Blank.it-IT.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\it-IT.MenuBar.md">
+    <Content Include="Templates\_catalog\ProjectTypes\MenuBar.it-IT.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\it-IT.NavView.md">
+    <Content Include="Templates\_catalog\ProjectTypes\NavView.it-IT.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\ja-JP.Blank.md">
+    <Content Include="Templates\_catalog\ProjectTypes\Blank.ja-JP.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\ja-JP.MenuBar.md">
+    <Content Include="Templates\_catalog\ProjectTypes\MenuBar.ja-JP.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\ja-JP.NavView.md">
+    <Content Include="Templates\_catalog\ProjectTypes\NavView.ja-JP.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\ko-KR.Blank.md">
+    <Content Include="Templates\_catalog\ProjectTypes\Blank.ko-KR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\ko-KR.MenuBar.md">
+    <Content Include="Templates\_catalog\ProjectTypes\MenuBar.ko-KR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\ko-KR.NavView.md">
+    <Content Include="Templates\_catalog\ProjectTypes\NavView.ko-KR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\ProjectTypes\MenuBar.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\pl-PL.Blank.md">
+    <Content Include="Templates\_catalog\ProjectTypes\Blank.pl-PL.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\pl-PL.MenuBar.md">
+    <Content Include="Templates\_catalog\ProjectTypes\MenuBar.pl-PL.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\pl-PL.NavView.md">
+    <Content Include="Templates\_catalog\ProjectTypes\NavView.pl-PL.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\pt-BR.Blank.md">
+    <Content Include="Templates\_catalog\ProjectTypes\Blank.pt-BR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\pt-BR.MenuBar.md">
+    <Content Include="Templates\_catalog\ProjectTypes\MenuBar.pt-BR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\pt-BR.NavView.md">
+    <Content Include="Templates\_catalog\ProjectTypes\NavView.pt-BR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\ru-RU.Blank.md">
+    <Content Include="Templates\_catalog\ProjectTypes\Blank.ru-RU.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\ru-RU.NavView.md">
+    <Content Include="Templates\_catalog\ProjectTypes\NavView.ru-RU.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_catalog\ProjectTypes\NavView.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\tr-TR.Blank.md">
+    <Content Include="Templates\_catalog\ProjectTypes\Blank.tr-TR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\tr-TR.NavView.md">
+    <Content Include="Templates\_catalog\ProjectTypes\NavView.tr-TR.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\zh-CN.Blank.md">
+    <Content Include="Templates\_catalog\ProjectTypes\Blank.zh-CN.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\zh-CN.NavView.md">
+    <Content Include="Templates\_catalog\ProjectTypes\NavView.zh-CN.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\zh-TW.Blank.md">
+    <Content Include="Templates\_catalog\ProjectTypes\Blank.zh-TW.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ProjectTypes\zh-TW.NavView.md">
+    <Content Include="Templates\_catalog\ProjectTypes\NavView.zh-TW.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\pt-BR.frontendframeworks.json">
+    <Content Include="Templates\_catalog\FrontendFrameworks\FrontendFrameworks.pt-BR.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\pt-BR.projectTypes.json">
+    <Content Include="Templates\_catalog\ProjectTypes\ProjectTypes.pt-BR.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ru-RU.frontendframeworks.json">
+    <Content Include="Templates\_catalog\FrontendFrameworks\FrontendFrameworks.ru-RU.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\ru-RU.projectTypes.json">
+    <Content Include="Templates\_catalog\ProjectTypes\ProjectTypes.ru-RU.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\tr-TR.frontendframeworks.json">
+    <Content Include="Templates\_catalog\FrontendFrameworks\FrontendFrameworks.tr-TR.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\tr-TR.projectTypes.json">
+    <Content Include="Templates\_catalog\ProjectTypes\ProjectTypes.tr-TR.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\zh-CN.frontendframeworks.json">
+    <Content Include="Templates\_catalog\FrontendFrameworks\FrontendFrameworks.zh-CN.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\zh-CN.projectTypes.json">
+    <Content Include="Templates\_catalog\ProjectTypes\ProjectTypes.zh-CN.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\zh-TW.frontendframeworks.json">
+    <Content Include="Templates\_catalog\FrontendFrameworks\FrontendFrameworks.zh-TW.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_catalog\zh-TW.projectTypes.json">
+    <Content Include="Templates\_catalog\ProjectTypes\ProjectTypes.zh-TW.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\AddConnectedAnimation\.template.config\template.json">
