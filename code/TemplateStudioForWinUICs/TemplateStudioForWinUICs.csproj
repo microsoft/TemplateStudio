@@ -223,6 +223,9 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioForWinUICsPackage.cs" />
+    <Content Include="Templates\_comp\MT\Feature.AppNotifications\App_postaction.xaml.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Ft\AppNotifications\Param_ProjectName\Notifications\ToastExample.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1193,6 +1196,7 @@
     <Content Include="Templates\Ft\AppNotifications\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\_comp\MT\Feature.AppNotifications\.template.config\template.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="cs-CZ\Extension.vsixlangpack">
