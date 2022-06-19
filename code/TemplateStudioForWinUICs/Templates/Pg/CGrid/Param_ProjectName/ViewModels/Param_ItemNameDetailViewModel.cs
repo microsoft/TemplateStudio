@@ -8,9 +8,9 @@ namespace Param_RootNamespace.ViewModels;
 public class Param_ItemNameDetailViewModel : ObservableRecipient, INavigationAware
 {
     private readonly ISampleDataService _sampleDataService;
-    private SampleOrder _item;
+    private SampleOrder? _item;
 
-    public SampleOrder Item
+    public SampleOrder? Item
     {
         get => _item;
         set => SetProperty(ref _item, value);

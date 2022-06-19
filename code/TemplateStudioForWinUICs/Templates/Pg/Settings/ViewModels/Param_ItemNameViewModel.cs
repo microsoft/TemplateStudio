@@ -9,6 +9,7 @@ public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChan
 {
     private readonly IThemeSelectorService _themeSelectorService;
     private ElementTheme _elementTheme;
+    private string _versionDescription;
 
     public ElementTheme ElementTheme
     {
@@ -16,42 +17,32 @@ public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChan
         set => SetProperty(ref _elementTheme, value);
     }
 
-    private string _versionDescription;
-
     public string VersionDescription
     {
         get => _versionDescription;
         set => SetProperty(ref _versionDescription, value);
     }
 
-    private ICommand _switchThemeCommand;
-
     public ICommand SwitchThemeCommand
     {
-        get
-        {
-            if (_switchThemeCommand == null)
-            {
-                _switchThemeCommand = new RelayCommand<ElementTheme>(
-                    async (param) =>
-                    {
-                        if (ElementTheme != param)
-                        {
-                            ElementTheme = param;
-                            await _themeSelectorService.SetThemeAsync(param);
-                        }
-                    });
-            }
-
-            return _switchThemeCommand;
-        }
+        get;
     }
 
     public Param_ItemNameViewModel(IThemeSelectorService themeSelectorService)
     {
         _themeSelectorService = themeSelectorService;
         _elementTheme = _themeSelectorService.Theme;
-        VersionDescription = GetVersionDescription();
+        _versionDescription = GetVersionDescription();
+
+        SwitchThemeCommand = new RelayCommand<ElementTheme>(
+            async (param) =>
+            {
+                if (ElementTheme != param)
+                {
+                    ElementTheme = param;
+                    await _themeSelectorService.SetThemeAsync(param);
+                }
+            });
     }
 
     private static string GetVersionDescription()

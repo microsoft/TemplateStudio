@@ -13,15 +13,9 @@ namespace Param_RootNamespace.ViewModels;
 public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
 {
     // TODO: Set the default URL to display.
-    private const string DefaultUrl = "https://docs.microsoft.com/windows/apps/";
-    private Uri _source;
+    private Uri _source = new("https://docs.microsoft.com/windows/apps/");
     private bool _isLoading = true;
     private bool _hasFailures;
-    private ICommand _browserBackCommand;
-    private ICommand _browserForwardCommand;
-    private ICommand _openInBrowserCommand;
-    private ICommand _reloadCommand;
-    private ICommand _retryCommand;
 
     public IWebViewService WebViewService
     {
@@ -46,30 +40,45 @@ public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChan
         set => SetProperty(ref _hasFailures, value);
     }
 
-    public ICommand BrowserBackCommand => _browserBackCommand ??=
-        new RelayCommand(() => WebViewService?.GoBack(), () => WebViewService?.CanGoBack ?? false);
+    public ICommand BrowserBackCommand
+    {
+        get;
+    }
 
-    public ICommand BrowserForwardCommand => _browserForwardCommand ??=
-        new RelayCommand(() => WebViewService?.GoForward(), () => WebViewService?.CanGoForward ?? false);
+    public ICommand BrowserForwardCommand
+    {
+        get;
+    }
 
-    public ICommand ReloadCommand => _reloadCommand ??=
-        new RelayCommand(() => WebViewService?.Reload());
+    public ICommand ReloadCommand
+    {
+        get;
+    }
 
-    public ICommand RetryCommand => _retryCommand ??=
-        new RelayCommand(OnRetry);
+    public ICommand RetryCommand
+    {
+        get;
+    }
 
-    public ICommand OpenInBrowserCommand => _openInBrowserCommand ??=
-        new RelayCommand(async () => await Windows.System.Launcher.LaunchUriAsync(Source));
+    public ICommand OpenInBrowserCommand
+    {
+        get;
+    }
 
     public Param_ItemNameViewModel(IWebViewService webViewService)
     {
         WebViewService = webViewService;
+
+        BrowserBackCommand = new RelayCommand(() => WebViewService.GoBack(), () => WebViewService.CanGoBack);
+        BrowserForwardCommand = new RelayCommand(() => WebViewService.GoForward(), () => WebViewService.CanGoForward);
+        ReloadCommand = new RelayCommand(() => WebViewService.Reload());
+        RetryCommand = new RelayCommand(OnRetry);
+        OpenInBrowserCommand = new RelayCommand(async () => await Windows.System.Launcher.LaunchUriAsync(WebViewService.Source), () => WebViewService.Source != null);
     }
 
     public void OnNavigatedTo(object parameter)
     {
         WebViewService.NavigationCompleted += OnNavigationCompleted;
-        Source = new Uri(DefaultUrl);
     }
 
     public void OnNavigatedFrom()
@@ -78,7 +87,7 @@ public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChan
         WebViewService.NavigationCompleted -= OnNavigationCompleted;
     }
 
-    private void OnNavigationCompleted(object sender, CoreWebView2WebErrorStatus webErrorStatus)
+    private void OnNavigationCompleted(object? sender, CoreWebView2WebErrorStatus webErrorStatus)
     {
         IsLoading = false;
         OnPropertyChanged(nameof(BrowserBackCommand));

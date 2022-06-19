@@ -7,7 +7,7 @@ namespace Param_RootNamespace.Services;
 
 public class LocalSettingsServicePackaged : ILocalSettingsService
 {
-    public async Task<T> ReadSettingAsync<T>(string key)
+    public async Task<T?> ReadSettingAsync<T>(string key)
     {
         if (ApplicationData.Current.LocalSettings.Values.TryGetValue(key, out var obj))
         {

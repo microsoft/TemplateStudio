@@ -14,9 +14,10 @@ public class Param_ItemNameDetailViewModel : ObservableRecipient, INavigationAwa
 //}]}
 //^^
 //{[{
-    private ICommand _goBackCommand;
-
-    public ICommand GoBackCommand => _goBackCommand ??= new RelayCommand(OnGoBack);
+    public ICommand GoBackCommand
+    {
+        get;
+    }
 //}]}
 
     public Param_ItemNameDetailViewModel(/*{[{*/INavigationService navigationService/*}]}*/)
@@ -24,11 +25,15 @@ public class Param_ItemNameDetailViewModel : ObservableRecipient, INavigationAwa
 //{[{
         _navigationService = navigationService;
 //}]}
+//^^
+//{[{
+        GoBackCommand = new RelayCommand(OnGoBack);
+//}]}
     }
 
 //^^
 //{[{
-    private void OnGoBack()
+private void OnGoBack()
     {
         if (_navigationService.CanGoBack)
         {

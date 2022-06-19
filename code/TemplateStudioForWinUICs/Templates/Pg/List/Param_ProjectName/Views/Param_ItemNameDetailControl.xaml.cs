@@ -6,7 +6,7 @@ namespace Param_RootNamespace.Views;
 
 public sealed partial class Param_ItemNameDetailControl : UserControl
 {
-    public SampleOrder ListDetailsMenuItem
+    public SampleOrder? ListDetailsMenuItem
     {
         get => GetValue(ListDetailsMenuItemProperty) as SampleOrder;
         set => SetValue(ListDetailsMenuItemProperty, value);
@@ -21,7 +21,9 @@ public sealed partial class Param_ItemNameDetailControl : UserControl
 
     private static void OnListDetailsMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var control = d as Param_ItemNameDetailControl;
-        control.ForegroundElement.ChangeView(0, 0, 1);
+        if (d is ListDetailsDetailControl control)
+        {
+            control.ForegroundElement.ChangeView(0, 0, 1);
+        }
     }
 }

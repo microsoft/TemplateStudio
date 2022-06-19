@@ -13,7 +13,7 @@ public class ActivationService : IActivationService
 {
     private readonly ActivationHandler<LaunchActivatedEventArgs> _defaultHandler;
     private readonly IEnumerable<IActivationHandler> _activationHandlers;
-    private UIElement _shell = null;
+    private UIElement? _shell = null;
 
     public ActivationService(ActivationHandler<LaunchActivatedEventArgs> defaultHandler, IEnumerable<IActivationHandler> activationHandlers)
     {
