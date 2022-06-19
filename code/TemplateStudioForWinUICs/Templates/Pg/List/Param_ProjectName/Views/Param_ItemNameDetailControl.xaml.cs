@@ -21,7 +21,7 @@ public sealed partial class Param_ItemNameDetailControl : UserControl
 
     private static void OnListDetailsMenuItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is ListDetailsDetailControl control)
+        if (d is Param_ItemNameDetailControl control)
         {
             control.ForegroundElement.ChangeView(0, 0, 1);
         }
