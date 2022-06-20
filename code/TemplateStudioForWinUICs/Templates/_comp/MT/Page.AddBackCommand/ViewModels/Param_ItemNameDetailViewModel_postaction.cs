@@ -12,14 +12,15 @@ public class Param_ItemNameDetailViewModel : ObservableRecipient, INavigationAwa
 //{[{
     private readonly INavigationService _navigationService;
 //}]}
+
 //^^
 //{[{
     public ICommand GoBackCommand
     {
         get;
     }
-//}]}
 
+//}]}
     public Param_ItemNameDetailViewModel(/*{[{*/INavigationService navigationService/*}]}*/)
     {
 //{[{
