@@ -25,9 +25,9 @@ public class Param_ItemNameDetailViewModel : ObservableRecipient, INavigationAwa
 //{[{
         _navigationService = navigationService;
 //}]}
-
 //^^
 //{[{
+
         GoBackCommand = new RelayCommand(OnGoBack);
 //}]}
     }
