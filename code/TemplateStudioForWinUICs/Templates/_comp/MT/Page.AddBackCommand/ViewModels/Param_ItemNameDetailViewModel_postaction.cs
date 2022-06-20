@@ -33,7 +33,7 @@ public class Param_ItemNameDetailViewModel : ObservableRecipient, INavigationAwa
 
 //^^
 //{[{
-private void OnGoBack()
+    private void OnGoBack()
     {
         if (_navigationService.CanGoBack)
         {
