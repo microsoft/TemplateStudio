@@ -1,6 +1,6 @@
 ﻿using Param_RootNamespace.ViewModels;
 
-namespace Param_RootNamespace;
+namespace Param_ProjectName.Tests.MSTest;
 
 // To learn more about MSTests: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
 
