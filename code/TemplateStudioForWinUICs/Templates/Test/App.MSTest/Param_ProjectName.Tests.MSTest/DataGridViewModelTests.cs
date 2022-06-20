@@ -8,13 +8,13 @@ namespace Param_ProjectName.Tests.MSTest;
 // To learn more about MSTests: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
 
 [TestClass]
-public class DataGridParam_RootNamespace
+public class DataGridViewModelTests
 {
     public ISampleDataService mockSampleDataService;
     public DataGridViewModel dataGridViewModel;
     public Task<IEnumerable<SampleOrder>> data;
 
-    public DataGridParam_RootNamespace()
+    public DataGridViewModelTests()
     {
         mockSampleDataService = new MockSampleDataService(); // Create your own mock service
         dataGridViewModel = new DataGridViewModel(mockSampleDataService); // Mock service can be injected into the DataGridViewModel

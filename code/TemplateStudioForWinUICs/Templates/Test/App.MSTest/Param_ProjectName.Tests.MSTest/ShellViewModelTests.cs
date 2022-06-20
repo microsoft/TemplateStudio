@@ -7,14 +7,14 @@ namespace Param_ProjectName.Tests.MSTest;
 // To learn more about MSTests: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
 
 [TestClass]
-public class ShellParam_RootNamespace
+public class ShellViewModelTests
 {
     public IPageService mockPageService;
     public INavigationService mockNavigationService;
     public INavigationViewService mockNavigationViewService;
     public ShellViewModel shellViewModel;
 
-    public ShellParam_RootNamespace()
+    public ShellViewModelTests()
     {
         mockPageService = new MockPageService();
         mockNavigationService = new MockNavigationService(mockPageService);

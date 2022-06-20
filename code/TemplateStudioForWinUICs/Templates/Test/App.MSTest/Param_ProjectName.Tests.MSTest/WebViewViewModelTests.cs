@@ -7,12 +7,12 @@ namespace Param_ProjectName.Tests.MSTest;
 // To learn more about MSTests: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
 
 [TestClass]
-public class WebViewParam_RootNamespace
+public class WebViewViewModelTests
 {
     public IWebViewService mockWebViewService;
     public WebViewViewModel webViewViewModel;
 
-    public WebViewParam_RootNamespace()
+    public WebViewViewModelTests()
     {
         mockWebViewService = new MockWebViewService();
         webViewViewModel = new WebViewViewModel(mockWebViewService);

@@ -7,12 +7,12 @@ namespace Param_ProjectName.Tests.MSTest;
 // To learn more about MSTests: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
 
 [TestClass]
-public class ContentGridDetailParam_RootNamespace
+public class ContentGridDetailViewModelTests
 {
     public ISampleDataService mockSampleDataService;
     public ContentGridDetailViewModel contentGridDetailViewModel;
 
-    public ContentGridDetailParam_RootNamespace() 
+    public ContentGridDetailViewModelTests() 
     {
         mockSampleDataService = new MockSampleDataService();
         contentGridDetailViewModel = new ContentGridDetailViewModel(mockSampleDataService);

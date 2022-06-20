@@ -5,11 +5,11 @@ namespace Param_ProjectName.Tests.MSTest;
 // To learn more about MSTests: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
 
 [TestClass]
-public class MainParam_RootNamespace
+public class MainViewModelTests
 {
     public MainViewModel mainViewModel;
 
-    public MainParam_RootNamespace()
+    public MainViewModelTests()
     {
         mainViewModel = new MainViewModel();
     }
