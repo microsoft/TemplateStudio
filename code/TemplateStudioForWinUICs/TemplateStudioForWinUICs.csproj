@@ -1196,7 +1196,9 @@
     <Content Include="Templates\Ft\AppNotifications\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Feature.AppNotifications\.template.config\template.json" />
+    <Content Include="Templates\_comp\MT\Feature.AppNotifications\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="cs-CZ\Extension.vsixlangpack">
