@@ -1,8 +1,0 @@
-﻿    <PackageReference Include="coverlet.collector" Version="3.1.2" />
-<!--//{[{-->
-    <PackageReference Include="Microsoft.TestPlatform.TestHost">
-      <Version>17.2.0</Version>
-      <ExcludeAssets>build</ExcludeAssets>
-    </PackageReference>
-<!--//}]}-->
-  </ItemGroup>
