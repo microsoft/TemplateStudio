@@ -2,19 +2,19 @@
 using Param_RootNamespace.Services;
 using Param_RootNamespace.ViewModels;
 
-namespace ViewModelTests;
+namespace Param_RootNamespace;
 
 // To learn more about MSTests: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
 
 [TestClass]
-public class ShellViewModelTests
+public class ShellParam_RootNamespace
 {
     public IPageService mockPageService;
     public INavigationService mockNavigationService;
     public INavigationViewService mockNavigationViewService;
     public ShellViewModel shellViewModel;
 
-    public ShellViewModelTests()
+    public ShellParam_RootNamespace()
     {
         mockPageService = new MockPageService();
         mockNavigationService = new MockNavigationService(mockPageService);

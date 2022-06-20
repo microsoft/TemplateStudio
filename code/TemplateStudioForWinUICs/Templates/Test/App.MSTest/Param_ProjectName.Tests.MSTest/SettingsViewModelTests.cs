@@ -2,18 +2,18 @@
 using Param_RootNamespace.Services;
 using Param_RootNamespace.ViewModels;
 
-namespace ViewModelTests;
+namespace Param_RootNamespace;
 
 // To learn more about MSTests: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
 
 [TestClass]
-public class SettingsViewModelTests
+public class SettingsParam_RootNamespace
 {
     public ILocalSettingsService mockLocalSettingsService;
     public IThemeSelectorService mockThemeSelectorService;
     public SettingsViewModel settingsViewModel;
 
-    public SettingsViewModelTests()
+    public SettingsParam_RootNamespace()
     {
         mockLocalSettingsService = new MockLocalSettingsService();
         mockThemeSelectorService = new MockThemeSelectorService(mockLocalSettingsService);

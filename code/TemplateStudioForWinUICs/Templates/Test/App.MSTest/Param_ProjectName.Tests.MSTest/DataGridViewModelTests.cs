@@ -1,20 +1,20 @@
-using Param_RootNamespace.Core.Contracts.Services;
+﻿using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Models;
 using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.ViewModels;
 
-namespace ViewModelTests;
+namespace Param_RootNamespace;
 
 // To learn more about MSTests: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
 
 [TestClass]
-public class DataGridViewModelTests
+public class DataGridParam_RootNamespace
 {
     public ISampleDataService mockSampleDataService;
     public DataGridViewModel dataGridViewModel;
     public Task<IEnumerable<SampleOrder>> data;
 
-    public DataGridViewModelTests()
+    public DataGridParam_RootNamespace()
     {
         mockSampleDataService = new MockSampleDataService(); // Create your own mock service
         dataGridViewModel = new DataGridViewModel(mockSampleDataService); // Mock service can be injected into the DataGridViewModel

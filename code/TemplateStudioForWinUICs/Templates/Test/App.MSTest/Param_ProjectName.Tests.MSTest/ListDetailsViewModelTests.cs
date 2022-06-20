@@ -2,17 +2,17 @@
 using Param_RootNamespace.Core.Services;
 using Param_RootNamespace.ViewModels;
 
-namespace ViewModelTests;
+namespace Param_RootNamespace;
 
 // To learn more about MSTests: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
 
 [TestClass]
-public class ListDetailsViewModelTests
+public class ListDetailsParam_RootNamespace
 {
     public ISampleDataService mockSampleDataService;
     public ListDetailsViewModel listDetailsViewModel;
 
-    public ListDetailsViewModelTests()
+    public ListDetailsParam_RootNamespace()
     {
         mockSampleDataService = new MockSampleDataService();
         listDetailsViewModel = new ListDetailsViewModel(mockSampleDataService);

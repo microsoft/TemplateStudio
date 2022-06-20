@@ -1,15 +1,15 @@
-using Param_RootNamespace.ViewModels;
+﻿using Param_RootNamespace.ViewModels;
 
-namespace ViewModelTests;
+namespace Param_RootNamespace;
 
 // To learn more about MSTests: https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest
 
 [TestClass]
-public class MainViewModelTests
+public class MainParam_RootNamespace
 {
     public MainViewModel mainViewModel;
 
-    public MainViewModelTests()
+    public MainParam_RootNamespace()
     {
         mainViewModel = new MainViewModel();
     }
