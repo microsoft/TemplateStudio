@@ -1,6 +1,6 @@
-using MSTestsRef.Contracts.Services;
-using MSTestsRef.Services;
-using MSTestsRef.ViewModels;
+﻿using Param_RootNamespace.Contracts.Services;
+using Param_RootNamespace.Services;
+using Param_RootNamespace.ViewModels;
 
 namespace ViewModelTests;
 

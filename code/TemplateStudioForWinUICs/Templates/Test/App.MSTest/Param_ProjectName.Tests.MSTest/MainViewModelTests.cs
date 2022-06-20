@@ -1,4 +1,4 @@
-using MSTestsRef.ViewModels;
+using Param_RootNamespace.ViewModels;
 
 namespace ViewModelTests;
 
