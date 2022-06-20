@@ -4,21 +4,20 @@ using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Services;
 //}]}
-namespace Param_RootNamespace.Tests.NUnit
+namespace Param_RootNamespace.Tests.NUnit;
+
+public class PagesTests
 {
-    public class PagesTests
+    [SetUp]
+    public void Setup()
     {
-        [SetUp]
-        public void Setup()
-        {
-            // Core Services
+        // Core Services
 //{[{
-            _container.RegisterType<IFileService, FileService>();
+        _container.RegisterType<IFileService, FileService>();
 //}]}
-            // App Services
+        // App Services
 //{[{
-            _container.RegisterType<IPersistAndRestoreService, PersistAndRestoreService>();
+        _container.RegisterType<IPersistAndRestoreService, PersistAndRestoreService>();
 //}]}
-        }
     }
 }

@@ -12,71 +12,70 @@ using Param_RootNamespace.Views;
 using Param_RootNamespace.ViewModels;
 //}]}
 
-namespace Param_RootNamespace
+namespace Param_RootNamespace;
+
+public partial class App : Application
 {
-    public partial class App : Application
+//{[{
+    private IHost _host;
+
+    public T GetService<T>()
+        where T : class
+        => _host.Services.GetService(typeof(T)) as T;
+//}]}
+
+    public App()
+    {
+    }
+
+    private async void OnStartup(object sender, StartupEventArgs e)
     {
 //{[{
-        private IHost _host;
+        var appLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
 
-        public T GetService<T>()
-            where T : class
-            => _host.Services.GetService(typeof(T)) as T;
+        // For more information about .NET generic host see  https://docs.microsoft.com/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0
+        _host = Host.CreateDefaultBuilder(e.Args)
+                .ConfigureAppConfiguration(c =>
+                {
+                    c.SetBasePath(appLocation);
+                })
+                .ConfigureServices(ConfigureServices)
+                .Build();
+
+        await _host.StartAsync();
 //}]}
-
-        public App()
-        {
-        }
-
-        private async void OnStartup(object sender, StartupEventArgs e)
-        {
-//{[{
-            var appLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-
-            // For more information about .NET generic host see  https://docs.microsoft.com/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0
-            _host = Host.CreateDefaultBuilder(e.Args)
-                    .ConfigureAppConfiguration(c =>
-                    {
-                        c.SetBasePath(appLocation);
-                    })
-                    .ConfigureServices(ConfigureServices)
-                    .Build();
-
-            await _host.StartAsync();
-//}]}
-        }
+    }
 
 //{[{
-        private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
-        {
-            // TODO: Register your services, viewmodels and pages here
+    private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
+    {
+        // TODO: Register your services, viewmodels and pages here
 
-            // App Host
-            services.AddHostedService<ApplicationHostService>();
+        // App Host
+        services.AddHostedService<ApplicationHostService>();
 
-            // Activation Handlers
+        // Activation Handlers
 
-            // Core Services
+        // Core Services
 
-            // Services
-            services.AddSingleton<IPageService, PageService>();
-            services.AddSingleton<INavigationService, NavigationService>();
+        // Services
+        services.AddSingleton<IPageService, PageService>();
+        services.AddSingleton<INavigationService, NavigationService>();
 
-            // Views and ViewModels
-            services.AddTransient<IShellWindow, ShellWindow>();
-            services.AddTransient<ShellViewModel>();
+        // Views and ViewModels
+        services.AddTransient<IShellWindow, ShellWindow>();
+        services.AddTransient<ShellViewModel>();
 
-            // Configuration
-            services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
-        }
+        // Configuration
+        services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
+    }
 //}]}
-        private async void OnExit(object sender, ExitEventArgs e)
-        {
+    private async void OnExit(object sender, ExitEventArgs e)
+    {
 //{[{
-            await _host.StopAsync();
-            _host.Dispose();
-            _host = null;
+        await _host.StopAsync();
+        _host.Dispose();
+        _host = null;
 //}]}
-        }
     }
 }

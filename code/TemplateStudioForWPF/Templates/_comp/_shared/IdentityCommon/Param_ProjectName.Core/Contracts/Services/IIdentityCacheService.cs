@@ -3,12 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Param_RootNamespace.Core.Contracts.Services
-{
-    public interface IIdentityCacheService
-    {
-        void SaveMsalToken(byte[] token);
+namespace Param_RootNamespace.Core.Contracts.Services;
 
-        byte[] ReadMsalToken();
-    }
+public interface IIdentityCacheService
+{
+    void SaveMsalToken(byte[] token);
+
+    byte[] ReadMsalToken();
 }

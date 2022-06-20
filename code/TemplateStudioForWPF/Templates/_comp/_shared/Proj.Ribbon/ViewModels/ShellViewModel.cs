@@ -1,30 +1,29 @@
 ﻿using System.Windows.Input;
 using Param_RootNamespace.Contracts.Services;
 
-namespace Param_RootNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels;
+
+public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged
 {
-    public class ShellViewModel : System.ComponentModel.INotifyPropertyChanged
+    private readonly IRightPaneService _rightPaneService;
+    private ICommand _loadedCommand;
+    private ICommand _unloadedCommand;
+
+    public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new System.Windows.Input.ICommand(OnLoaded));
+
+    public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new System.Windows.Input.ICommand(OnUnloaded));
+
+    public ShellViewModel(IRightPaneService rightPaneService)
     {
-        private readonly IRightPaneService _rightPaneService;
-        private ICommand _loadedCommand;
-        private ICommand _unloadedCommand;
+        _rightPaneService = rightPaneService;
+    }
 
-        public ICommand LoadedCommand => _loadedCommand ?? (_loadedCommand = new System.Windows.Input.ICommand(OnLoaded));
+    private void OnLoaded()
+    {
+    }
 
-        public ICommand UnloadedCommand => _unloadedCommand ?? (_unloadedCommand = new System.Windows.Input.ICommand(OnUnloaded));
-
-        public ShellViewModel(IRightPaneService rightPaneService)
-        {
-            _rightPaneService = rightPaneService;
-        }
-
-        private void OnLoaded()
-        {
-        }
-
-        private void OnUnloaded()
-        {
-            _rightPaneService.CleanUp();
-        }
+    private void OnUnloaded()
+    {
+        _rightPaneService.CleanUp();
     }
 }

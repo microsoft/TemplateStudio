@@ -2,16 +2,15 @@
 using Param_RootNamespace.ViewModels;
 //}]}
 
-namespace Param_RootNamespace.Views
+namespace Param_RootNamespace.Views;
+
+public partial class ts.ItemNameDetailPage : Page
 {
-    public partial class ts.ItemNameDetailPage : Page
+    public ts.ItemNameDetailPage(/*{[{*/ts.ItemNameDetailViewModel viewModel/*}]}*/)
     {
-        public ts.ItemNameDetailPage(/*{[{*/ts.ItemNameDetailViewModel viewModel/*}]}*/)
-        {
-            InitializeComponent();
+        InitializeComponent();
 //{[{
-            DataContext = viewModel;
+        DataContext = viewModel;
 //}]}
-        }
     }
 }

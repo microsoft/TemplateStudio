@@ -4,37 +4,36 @@ using System.Windows.Data;
 using Fluent;
 using Prism.Mvvm;
 
-namespace Param_RootNamespace.Behaviors
+namespace Param_RootNamespace.Behaviors;
+
+public class RibbonPageConfiguration
 {
-    public class RibbonPageConfiguration
+    public Collection<RibbonGroupBox> HomeGroups { get; set; } = new Collection<RibbonGroupBox>();
+
+    public Collection<RibbonTabItem> Tabs { get; set; } = new Collection<RibbonTabItem>();
+
+    public RibbonPageConfiguration()
     {
-        public Collection<RibbonGroupBox> HomeGroups { get; set; } = new Collection<RibbonGroupBox>();
+    }
 
-        public Collection<RibbonTabItem> Tabs { get; set; } = new Collection<RibbonTabItem>();
-
-        public RibbonPageConfiguration()
+    public void SetDataContext(BindableBase viewModel, BindingMode bindingMode = BindingMode.OneWay)
+    {
+        foreach (var groups in HomeGroups)
         {
+            groups.SetBinding(FrameworkElement.DataContextProperty, new Binding
+            {
+                Source = viewModel,
+                Mode = bindingMode
+            });
         }
 
-        public void SetDataContext(BindableBase viewModel, BindingMode bindingMode = BindingMode.OneWay)
+        foreach (var tab in Tabs)
         {
-            foreach (var groups in HomeGroups)
+            tab.SetBinding(FrameworkElement.DataContextProperty, new Binding
             {
-                groups.SetBinding(FrameworkElement.DataContextProperty, new Binding
-                {
-                    Source = viewModel,
-                    Mode = bindingMode
-                });
-            }
-
-            foreach (var tab in Tabs)
-            {
-                tab.SetBinding(FrameworkElement.DataContextProperty, new Binding
-                {
-                    Source = viewModel,
-                    Mode = bindingMode
-                });
-            }
+                Source = viewModel,
+                Mode = bindingMode
+            });
         }
     }
 }

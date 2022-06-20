@@ -1,9 +1,8 @@
 ﻿using System.Windows.Controls;
 
-namespace Param_RootNamespace.Contracts.Views
+namespace Param_RootNamespace.Contracts.Views;
+
+public interface IShellDialogWindow
 {
-    public interface IShellDialogWindow
-    {
-        Frame GetDialogFrame();
-    }
+    Frame GetDialogFrame();
 }

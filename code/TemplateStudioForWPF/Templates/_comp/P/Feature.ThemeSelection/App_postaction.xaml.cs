@@ -2,25 +2,24 @@
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Services;
 //}]}
-namespace Param_RootNamespace
+namespace Param_RootNamespace;
+
+public partial class App : PrismApplication
 {
-    public partial class App : PrismApplication
+    protected override async void OnInitialized()
     {
-        protected override async void OnInitialized()
-        {
 //{[{
-            var themeSelectorService = Container.Resolve<IThemeSelectorService>();
-            themeSelectorService.InitializeTheme();
+        var themeSelectorService = Container.Resolve<IThemeSelectorService>();
+        themeSelectorService.InitializeTheme();
 
 //}]}
-        }
+    }
 
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-            // App Services
+    protected override void RegisterTypes(IContainerRegistry containerRegistry)
+    {
+        // App Services
 //{[{
-            containerRegistry.Register<IThemeSelectorService, ThemeSelectorService>();
+        containerRegistry.Register<IThemeSelectorService, ThemeSelectorService>();
 //}]}
-        }
     }
 }

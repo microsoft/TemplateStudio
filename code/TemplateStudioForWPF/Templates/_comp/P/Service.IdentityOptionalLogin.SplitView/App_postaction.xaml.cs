@@ -1,14 +1,13 @@
-﻿namespace Param_RootNamespace
+﻿namespace Param_RootNamespace;
+
+public partial class App : PrismApplication
 {
-    public partial class App : PrismApplication
+    public App()
     {
-        public App()
-        {
-        }
+    }
 //{[{
 
-        public object GetPageType(string pageKey)
-            => Container.Resolve<object>(pageKey);
+    public object GetPageType(string pageKey)
+        => Container.Resolve<object>(pageKey);
 //}]}
-    }
 }

@@ -2,36 +2,35 @@
 using System.Threading.Tasks;
 using Param_RootNamespace.Core.Helpers;
 
-namespace Param_RootNamespace.Core.Contracts.Services
+namespace Param_RootNamespace.Core.Contracts.Services;
+
+public interface IIdentityService
 {
-    public interface IIdentityService
-    {
-        event EventHandler LoggedIn;
+    event EventHandler LoggedIn;
 
-        event EventHandler LoggedOut;
+    event EventHandler LoggedOut;
 
-        void InitializeWithAadAndPersonalMsAccounts(string clientId, string redirectUri = null);
+    void InitializeWithAadAndPersonalMsAccounts(string clientId, string redirectUri = null);
 
-        void InitializeWithPersonalMsAccounts(string clientId, string redirectUri = null);
+    void InitializeWithPersonalMsAccounts(string clientId, string redirectUri = null);
 
-        void InitializeWithAadMultipleOrgs(string clientId, bool integratedAuth = false, string redirectUri = null);
+    void InitializeWithAadMultipleOrgs(string clientId, bool integratedAuth = false, string redirectUri = null);
 
-        void InitializeWithAadSingleOrg(string clientId, string tenant, bool integratedAuth = false, string redirectUri = null);
+    void InitializeWithAadSingleOrg(string clientId, string tenant, bool integratedAuth = false, string redirectUri = null);
 
-        bool IsLoggedIn();
+    bool IsLoggedIn();
 
-        Task<LoginResultType> LoginAsync();
+    Task<LoginResultType> LoginAsync();
 
-        bool IsAuthorized();
+    bool IsAuthorized();
 
-        string GetAccountUserName();
+    string GetAccountUserName();
 
-        Task LogoutAsync();
+    Task LogoutAsync();
 
-        Task<string> GetAccessTokenForGraphAsync();
+    Task<string> GetAccessTokenForGraphAsync();
 
-        Task<string> GetAccessTokenAsync(string[] scopes);
+    Task<string> GetAccessTokenAsync(string[] scopes);
 
-        Task<bool> AcquireTokenSilentAsync();
-    }
+    Task<bool> AcquireTokenSilentAsync();
 }

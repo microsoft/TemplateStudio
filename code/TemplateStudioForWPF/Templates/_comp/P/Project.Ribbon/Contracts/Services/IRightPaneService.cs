@@ -3,18 +3,17 @@ using System.Windows.Controls;
 using MahApps.Metro.Controls;
 using Prism.Regions;
 
-namespace Param_RootNamespace.Contracts.Services
+namespace Param_RootNamespace.Contracts.Services;
+
+public interface IRightPaneService
 {
-    public interface IRightPaneService
-    {
-        event EventHandler PaneOpened;
+    event EventHandler PaneOpened;
 
-        event EventHandler PaneClosed;
+    event EventHandler PaneClosed;
 
-        void OpenInRightPane(string pageKey, NavigationParameters navigationParameters = null);
+    void OpenInRightPane(string pageKey, NavigationParameters navigationParameters = null);
 
-        void Initialize(SplitView splitView, ContentControl rightPaneContentControl);
+    void Initialize(SplitView splitView, ContentControl rightPaneContentControl);
 
-        void CleanUp();
-    }
+    void CleanUp();
 }

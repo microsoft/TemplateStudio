@@ -5,35 +5,34 @@ using Param_RootNamespace.Contracts.Views;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Models;
 
-namespace Param_RootNamespace.Views
+namespace Param_RootNamespace.Views;
+
+public partial class ts.ItemNamePage : Page, INotifyPropertyChanged, INavigationAware
 {
-    public partial class ts.ItemNamePage : Page, INotifyPropertyChanged, INavigationAware
+    private readonly ISampleDataService _sampleDataService;
+
+    public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+
+    public ts.ItemNamePage(ISampleDataService sampleDataService)
     {
-        private readonly ISampleDataService _sampleDataService;
+        _sampleDataService = sampleDataService;
+        InitializeComponent();
+    }
 
-        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+    public async void OnNavigatedTo(object parameter)
+    {
+        Source.Clear();
 
-        public ts.ItemNamePage(ISampleDataService sampleDataService)
+        // Replace this with your actual data
+        var data = await _sampleDataService.GetGridDataAsync();
+
+        foreach (var item in data)
         {
-            _sampleDataService = sampleDataService;
-            InitializeComponent();
+            Source.Add(item);
         }
+    }
 
-        public async void OnNavigatedTo(object parameter)
-        {
-            Source.Clear();
-
-            // Replace this with your actual data
-            var data = await _sampleDataService.GetGridDataAsync();
-
-            foreach (var item in data)
-            {
-                Source.Add(item);
-            }
-        }
-
-        public void OnNavigatedFrom()
-        {
-        }
+    public void OnNavigatedFrom()
+    {
     }
 }
