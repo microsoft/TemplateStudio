@@ -2,7 +2,7 @@
 
 public interface INotificationService
 {
-    public void Initialize();
+    void Initialize();
 
-    public void Unregister();
+    void Unregister();
 }

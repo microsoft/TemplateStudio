@@ -1,6 +1,10 @@
 ﻿//{[{
 using Param_RootNamespace.Notifications;
 //}]}
+        .CreateDefaultBuilder()
+//{[{
+        .UseContentRoot(System.AppContext.BaseDirectory)
+//}]}
         .ConfigureServices((context, services) =>
         {
             // Other Activation Handlers

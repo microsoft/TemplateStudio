@@ -5,7 +5,7 @@ using Param_ProjectName.Contracts.Services;
 using Microsoft.Windows.AppNotifications;
 
 namespace Param_RootNamespace.Notifications;
-internal class NotificationService : INotificationService
+public class NotificationService : INotificationService
 {
     ~NotificationService()
     {
