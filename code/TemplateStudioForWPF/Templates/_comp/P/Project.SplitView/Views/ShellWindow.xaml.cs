@@ -2,15 +2,14 @@
 using Prism.Regions;
 using Param_RootNamespace.Constants;
 
-namespace Param_RootNamespace.Views
+namespace Param_RootNamespace.Views;
+
+public partial class ShellWindow : MetroWindow
 {
-    public partial class ShellWindow : MetroWindow
+    public ShellWindow(IRegionManager regionManager)
     {
-        public ShellWindow(IRegionManager regionManager)
-        {
-            InitializeComponent();
-            RegionManager.SetRegionName(hamburgerMenuContentControl, Regions.Main);
-            RegionManager.SetRegionManager(hamburgerMenuContentControl, regionManager);
-        }
+        InitializeComponent();
+        RegionManager.SetRegionName(hamburgerMenuContentControl, Regions.Main);
+        RegionManager.SetRegionManager(hamburgerMenuContentControl, regionManager);
     }
 }

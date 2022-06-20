@@ -1,15 +1,14 @@
 ﻿//{[{
 using Prism.Regions;
 //}]}
-namespace Param_RootNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels;
+
+public class ts.ItemNameViewModel : BindableBase, INavigationAware
 {
-    public class ts.ItemNameViewModel : BindableBase, INavigationAware
-    {
 //^^
 //{[{
 
-        public bool IsNavigationTarget(NavigationContext navigationContext)
-            => true;
+    public bool IsNavigationTarget(NavigationContext navigationContext)
+        => true;
 //}]}
-    }
 }

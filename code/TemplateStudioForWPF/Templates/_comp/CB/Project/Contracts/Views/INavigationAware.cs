@@ -1,9 +1,8 @@
-﻿namespace Param_RootNamespace.Contracts.Views
-{
-    public interface INavigationAware
-    {
-        void OnNavigatedTo(object parameter);
+﻿namespace Param_RootNamespace.Contracts.Views;
 
-        void OnNavigatedFrom();
-    }
+public interface INavigationAware
+{
+    void OnNavigatedTo(object parameter);
+
+    void OnNavigatedFrom();
 }

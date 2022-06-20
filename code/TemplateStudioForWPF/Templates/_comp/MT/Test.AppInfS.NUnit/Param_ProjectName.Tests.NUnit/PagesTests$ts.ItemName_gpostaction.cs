@@ -1,26 +1,25 @@
 ﻿//{[{
 using Param_RootNamespace.Core.Contracts.Services;
 //}]}
-namespace Param_RootNamespace.Tests.NUnit
+namespace Param_RootNamespace.Tests.NUnit;
+
+public class PagesTests
 {
-    public class PagesTests
+    private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
-        private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
+        // Core Services
+//{[{
+        services.AddSingleton<IIdentityService, IdentityService>();
+        services.AddSingleton<IMicrosoftGraphService, MicrosoftGraphService>();
+//}]}
+        // Services
+//{[{
+        services.AddSingleton<IUserDataService, UserDataService>();
+        services.AddSingleton<IIdentityCacheService, IdentityCacheService>();
+        services.AddHttpClient("msgraph", client =>
         {
-            // Core Services
-//{[{
-            services.AddSingleton<IIdentityService, IdentityService>();
-            services.AddSingleton<IMicrosoftGraphService, MicrosoftGraphService>();
+            client.BaseAddress = new System.Uri("https://graph.microsoft.com/v1.0/");
+        });
 //}]}
-            // Services
-//{[{
-            services.AddSingleton<IUserDataService, UserDataService>();
-            services.AddSingleton<IIdentityCacheService, IdentityCacheService>();
-            services.AddHttpClient("msgraph", client =>
-            {
-                client.BaseAddress = new System.Uri("https://graph.microsoft.com/v1.0/");
-            });
-//}]}
-        }
     }
 }

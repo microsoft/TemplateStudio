@@ -2,18 +2,17 @@
 using Microsoft.Toolkit.Mvvm.Input;
 //}]}
 
-namespace Param_RootNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels;
+
+public class ShellViewModel : ObservableObject
 {
-    public class ShellViewModel : ObservableObject
-    {
 //^^
 //{[{
-        private void OnNavigated(object sender, string viewModelName)
-        {
-            GoBackCommand.NotifyCanExecuteChanged();
-        }
-//}]}
-        private void OnMenuFileExit()
-            => Application.Current.Shutdown();
+    private void OnNavigated(object sender, string viewModelName)
+    {
+        GoBackCommand.NotifyCanExecuteChanged();
     }
+//}]}
+    private void OnMenuFileExit()
+        => Application.Current.Shutdown();
 }

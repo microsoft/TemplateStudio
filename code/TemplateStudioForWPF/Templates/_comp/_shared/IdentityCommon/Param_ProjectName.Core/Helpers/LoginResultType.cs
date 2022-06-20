@@ -1,11 +1,10 @@
-﻿namespace Param_RootNamespace.Core.Helpers
+﻿namespace Param_RootNamespace.Core.Helpers;
+
+public enum LoginResultType
 {
-    public enum LoginResultType
-    {
-        Success,
-        Unauthorized,
-        CancelledByUser,
-        NoNetworkAvailable,
-        UnknownError
-    }
+    Success,
+    Unauthorized,
+    CancelledByUser,
+    NoNetworkAvailable,
+    UnknownError
 }

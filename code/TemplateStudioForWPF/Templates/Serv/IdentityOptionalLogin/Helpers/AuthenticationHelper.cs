@@ -5,22 +5,21 @@ using Param_RootNamespace.Properties;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 
-namespace Param_RootNamespace.Helpers
+namespace Param_RootNamespace.Helpers;
+
+internal static class AuthenticationHelper
 {
-    internal static class AuthenticationHelper
+    internal static async Task ShowLoginErrorAsync(LoginResultType loginResult)
     {
-        internal static async Task ShowLoginErrorAsync(LoginResultType loginResult)
+        var metroWindow = Application.Current.MainWindow as MetroWindow;
+        switch (loginResult)
         {
-            var metroWindow = Application.Current.MainWindow as MetroWindow;
-            switch (loginResult)
-            {
-                case LoginResultType.NoNetworkAvailable:
-                    await metroWindow.ShowMessageAsync(Resources.DialogNoNetworkAvailableContent, Resources.DialogAuthenticationTitle);
-                    break;
-                case LoginResultType.UnknownError:
-                    await metroWindow.ShowMessageAsync(Resources.DialogAuthenticationTitle, Resources.DialogStatusUnknownErrorContent);
-                    break;
-            }
+            case LoginResultType.NoNetworkAvailable:
+                await metroWindow.ShowMessageAsync(Resources.DialogNoNetworkAvailableContent, Resources.DialogAuthenticationTitle);
+                break;
+            case LoginResultType.UnknownError:
+                await metroWindow.ShowMessageAsync(Resources.DialogAuthenticationTitle, Resources.DialogStatusUnknownErrorContent);
+                break;
         }
     }
 }

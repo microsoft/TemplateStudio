@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace Param_RootNamespace.Contracts.Services
+namespace Param_RootNamespace.Contracts.Services;
+
+public interface IApplicationInfoService
 {
-    public interface IApplicationInfoService
-    {
-    }
 }

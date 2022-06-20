@@ -1,9 +1,8 @@
-﻿namespace Param_RootNamespace.Contracts.Services
-{
-    public interface IPersistAndRestoreService
-    {
-        void RestoreData();
+﻿namespace Param_RootNamespace.Contracts.Services;
 
-        void PersistData();
-    }
+public interface IPersistAndRestoreService
+{
+    void RestoreData();
+
+    void PersistData();
 }

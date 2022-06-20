@@ -9,262 +9,261 @@ using Microsoft.Identity.Client;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Helpers;
 
-namespace Param_RootNamespace.Core.Services
+namespace Param_RootNamespace.Core.Services;
+
+public class IdentityService : IIdentityService
 {
-    public class IdentityService : IIdentityService
+    /*
+    For more information about using Identity, see
+    https://github.com/microsoft/TemplateStudio/blob/main/docs/WPF/services/identity.md
+
+    Read more about Microsoft Identity Client here
+    https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
+    https://docs.microsoft.com/azure/active-directory/develop/v2-overview
+
+    TODO: Please create a ClientID following these steps and update the appsettings.json IdentityClientId.
+    https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
+
+    The provided clientID requests permissions on user.read, this might be blocked in environments that require admin consent.
+    For more info about admin consent please see https://docs.microsoft.com/azure/active-directory/develop/application-consent-experience
+    For more info creating protected APIs, see https://docs.microsoft.com/azure/active-directory/develop/scenario-protected-web-api-overview
+    For more info on desktop apps that call protected APIs, see https://docs.microsoft.com/azure/active-directory/develop/scenario-desktop-overview
+    */
+    private readonly string[] _graphScopes = new string[] { "user.read" };
+    private readonly IIdentityCacheService _identityCacheService;
+    private bool _integratedAuthAvailable;
+    private IPublicClientApplication _client;
+    private AuthenticationResult _authenticationResult;
+
+    public event EventHandler LoggedIn;
+
+    public event EventHandler LoggedOut;
+
+    public IdentityService(IIdentityCacheService identityCacheService)
     {
-        /*
-        For more information about using Identity, see
-        https://github.com/microsoft/TemplateStudio/blob/main/docs/WPF/services/identity.md
+        _identityCacheService = identityCacheService;
+    }
 
-        Read more about Microsoft Identity Client here
-        https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki
-        https://docs.microsoft.com/azure/active-directory/develop/v2-overview
+    public void InitializeWithAadAndPersonalMsAccounts(string clientId, string redirectUri = null)
+    {
+        _integratedAuthAvailable = false;
+        _client = PublicClientApplicationBuilder.Create(clientId)
+                                                .WithAuthority(AadAuthorityAudience.AzureAdAndPersonalMicrosoftAccount)
+                                                .WithRedirectUri(redirectUri)
+                                                .Build();
 
-        TODO: Please create a ClientID following these steps and update the appsettings.json IdentityClientId.
-        https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
+        ConfigureCache();
+    }
 
-        The provided clientID requests permissions on user.read, this might be blocked in environments that require admin consent.
-        For more info about admin consent please see https://docs.microsoft.com/azure/active-directory/develop/application-consent-experience
-        For more info creating protected APIs, see https://docs.microsoft.com/azure/active-directory/develop/scenario-protected-web-api-overview
-        For more info on desktop apps that call protected APIs, see https://docs.microsoft.com/azure/active-directory/develop/scenario-desktop-overview
-        */
-        private readonly string[] _graphScopes = new string[] { "user.read" };
-        private readonly IIdentityCacheService _identityCacheService;
-        private bool _integratedAuthAvailable;
-        private IPublicClientApplication _client;
-        private AuthenticationResult _authenticationResult;
+    public void InitializeWithPersonalMsAccounts(string clientId, string redirectUri = null)
+    {
+        _integratedAuthAvailable = false;
+        _client = PublicClientApplicationBuilder.Create(clientId)
+                                                .WithAuthority(AadAuthorityAudience.PersonalMicrosoftAccount)
+                                                .WithRedirectUri(redirectUri)
+                                                .Build();
 
-        public event EventHandler LoggedIn;
+        ConfigureCache();
+    }
 
-        public event EventHandler LoggedOut;
+    public void InitializeWithAadMultipleOrgs(string clientId, bool integratedAuth = false, string redirectUri = null)
+    {
+        _integratedAuthAvailable = integratedAuth;
+        _client = PublicClientApplicationBuilder.Create(clientId)
+                                                .WithAuthority(AadAuthorityAudience.AzureAdMultipleOrgs)
+                                                .WithRedirectUri(redirectUri)
+                                                .Build();
 
-        public IdentityService(IIdentityCacheService identityCacheService)
+        ConfigureCache();
+    }
+
+    public void InitializeWithAadSingleOrg(string clientId, string tenant, bool integratedAuth = false, string redirectUri = null)
+    {
+        _integratedAuthAvailable = integratedAuth;
+        _client = PublicClientApplicationBuilder.Create(clientId)
+                                                .WithAuthority(AzureCloudInstance.AzurePublic, tenant)
+                                                .WithRedirectUri(redirectUri)
+                                                .Build();
+
+        ConfigureCache();
+    }
+
+    public bool IsLoggedIn() => _authenticationResult != null;
+
+    public async Task<LoginResultType> LoginAsync()
+    {
+        if (!NetworkInterface.GetIsNetworkAvailable())
         {
-            _identityCacheService = identityCacheService;
+            return LoginResultType.NoNetworkAvailable;
         }
 
-        public void InitializeWithAadAndPersonalMsAccounts(string clientId, string redirectUri = null)
+        try
         {
-            _integratedAuthAvailable = false;
-            _client = PublicClientApplicationBuilder.Create(clientId)
-                                                    .WithAuthority(AadAuthorityAudience.AzureAdAndPersonalMicrosoftAccount)
-                                                    .WithRedirectUri(redirectUri)
-                                                    .Build();
-
-            ConfigureCache();
-        }
-
-        public void InitializeWithPersonalMsAccounts(string clientId, string redirectUri = null)
-        {
-            _integratedAuthAvailable = false;
-            _client = PublicClientApplicationBuilder.Create(clientId)
-                                                    .WithAuthority(AadAuthorityAudience.PersonalMicrosoftAccount)
-                                                    .WithRedirectUri(redirectUri)
-                                                    .Build();
-
-            ConfigureCache();
-        }
-
-        public void InitializeWithAadMultipleOrgs(string clientId, bool integratedAuth = false, string redirectUri = null)
-        {
-            _integratedAuthAvailable = integratedAuth;
-            _client = PublicClientApplicationBuilder.Create(clientId)
-                                                    .WithAuthority(AadAuthorityAudience.AzureAdMultipleOrgs)
-                                                    .WithRedirectUri(redirectUri)
-                                                    .Build();
-
-            ConfigureCache();
-        }
-
-        public void InitializeWithAadSingleOrg(string clientId, string tenant, bool integratedAuth = false, string redirectUri = null)
-        {
-            _integratedAuthAvailable = integratedAuth;
-            _client = PublicClientApplicationBuilder.Create(clientId)
-                                                    .WithAuthority(AzureCloudInstance.AzurePublic, tenant)
-                                                    .WithRedirectUri(redirectUri)
-                                                    .Build();
-
-            ConfigureCache();
-        }
-
-        public bool IsLoggedIn() => _authenticationResult != null;
-
-        public async Task<LoginResultType> LoginAsync()
-        {
-            if (!NetworkInterface.GetIsNetworkAvailable())
+            var accounts = await _client.GetAccountsAsync();
+            _authenticationResult = await _client.AcquireTokenInteractive(_graphScopes)
+                                                 .WithAccount(accounts.FirstOrDefault())
+                                                 .ExecuteAsync();
+            if (!IsAuthorized())
             {
-                return LoginResultType.NoNetworkAvailable;
+                _authenticationResult = null;
+                return LoginResultType.Unauthorized;
             }
 
+            LoggedIn?.Invoke(this, EventArgs.Empty);
+            return LoginResultType.Success;
+        }
+        catch (MsalClientException ex)
+        {
+            if (ex.ErrorCode == "authentication_canceled")
+            {
+                return LoginResultType.CancelledByUser;
+            }
+
+            return LoginResultType.UnknownError;
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine(ex);
+            return LoginResultType.UnknownError;
+        }
+    }
+
+    public bool IsAuthorized()
+    {
+        // TODO: You can also add extra authorization checks here.
+        // i.e.: Checks permisions of _authenticationResult.Account.Username in a database.
+        return true;
+    }
+
+    public string GetAccountUserName()
+    {
+        return _authenticationResult?.Account?.Username;
+    }
+
+    public async Task LogoutAsync()
+    {
+        try
+        {
+            var accounts = await _client.GetAccountsAsync();
+            var account = accounts.FirstOrDefault();
+            if (account != null)
+            {
+                await _client.RemoveAsync(account);
+            }
+
+            _authenticationResult = null;
+            LoggedOut?.Invoke(this, EventArgs.Empty);
+        }
+        catch (MsalException)
+        {
+            // TODO: LogoutAsync can fail please handle exceptions as appropriate to your scenario
+            // For more info on MsalExceptions see
+            // https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/exceptions
+        }
+    }
+
+    public async Task<string> GetAccessTokenForGraphAsync() => await GetAccessTokenAsync(_graphScopes);
+
+    // All sensitive data in your app should be retrieven using access tokens.
+    // This method provides you with an access token to secure calls to the Microsoft Graph or other protected API.
+    // For more info on protecting web api with tokens see https://docs.microsoft.com/azure/active-directory/develop/scenario-protected-web-api-overview
+    public async Task<string> GetAccessTokenAsync(string[] scopes)
+    {
+        var acquireTokenSuccess = await AcquireTokenSilentAsync(scopes);
+        if (acquireTokenSuccess)
+        {
+            return _authenticationResult.AccessToken;
+        }
+        else
+        {
             try
             {
+                // Interactive authentication is required
                 var accounts = await _client.GetAccountsAsync();
-                _authenticationResult = await _client.AcquireTokenInteractive(_graphScopes)
+                _authenticationResult = await _client.AcquireTokenInteractive(scopes)
                                                      .WithAccount(accounts.FirstOrDefault())
                                                      .ExecuteAsync();
-                if (!IsAuthorized())
-                {
-                    _authenticationResult = null;
-                    return LoginResultType.Unauthorized;
-                }
-
-                LoggedIn?.Invoke(this, EventArgs.Empty);
-                return LoginResultType.Success;
-            }
-            catch (MsalClientException ex)
-            {
-                if (ex.ErrorCode == "authentication_canceled")
-                {
-                    return LoginResultType.CancelledByUser;
-                }
-
-                return LoginResultType.UnknownError;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex);
-                return LoginResultType.UnknownError;
-            }
-        }
-
-        public bool IsAuthorized()
-        {
-            // TODO: You can also add extra authorization checks here.
-            // i.e.: Checks permisions of _authenticationResult.Account.Username in a database.
-            return true;
-        }
-
-        public string GetAccountUserName()
-        {
-            return _authenticationResult?.Account?.Username;
-        }
-
-        public async Task LogoutAsync()
-        {
-            try
-            {
-                var accounts = await _client.GetAccountsAsync();
-                var account = accounts.FirstOrDefault();
-                if (account != null)
-                {
-                    await _client.RemoveAsync(account);
-                }
-
-                _authenticationResult = null;
-                LoggedOut?.Invoke(this, EventArgs.Empty);
+                return _authenticationResult.AccessToken;
             }
             catch (MsalException)
             {
-                // TODO: LogoutAsync can fail please handle exceptions as appropriate to your scenario
-                // For more info on MsalExceptions see
-                // https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/exceptions
+                // AcquireTokenSilent and AcquireTokenInteractive failed, the session will be closed.
+                _authenticationResult = null;
+                LoggedOut?.Invoke(this, EventArgs.Empty);
+                return string.Empty;
             }
         }
+    }
 
-        public async Task<string> GetAccessTokenForGraphAsync() => await GetAccessTokenAsync(_graphScopes);
+    public async Task<bool> AcquireTokenSilentAsync() => await AcquireTokenSilentAsync(_graphScopes);
 
-        // All sensitive data in your app should be retrieven using access tokens.
-        // This method provides you with an access token to secure calls to the Microsoft Graph or other protected API.
-        // For more info on protecting web api with tokens see https://docs.microsoft.com/azure/active-directory/develop/scenario-protected-web-api-overview
-        public async Task<string> GetAccessTokenAsync(string[] scopes)
+    private async Task<bool> AcquireTokenSilentAsync(string[] scopes)
+    {
+        if (!NetworkInterface.GetIsNetworkAvailable())
         {
-            var acquireTokenSuccess = await AcquireTokenSilentAsync(scopes);
-            if (acquireTokenSuccess)
-            {
-                return _authenticationResult.AccessToken;
-            }
-            else
+            return false;
+        }
+
+        try
+        {
+            var accounts = await _client.GetAccountsAsync();
+            _authenticationResult = await _client.AcquireTokenSilent(scopes, accounts.FirstOrDefault())
+                                                 .ExecuteAsync();
+            return true;
+        }
+        catch (MsalUiRequiredException ex)
+        {
+            System.Diagnostics.Debug.WriteLine(ex);
+            if (_integratedAuthAvailable)
             {
                 try
                 {
-                    // Interactive authentication is required
-                    var accounts = await _client.GetAccountsAsync();
-                    _authenticationResult = await _client.AcquireTokenInteractive(scopes)
-                                                         .WithAccount(accounts.FirstOrDefault())
+                    _authenticationResult = await _client.AcquireTokenByIntegratedWindowsAuth(_graphScopes)
                                                          .ExecuteAsync();
-                    return _authenticationResult.AccessToken;
+                    return true;
                 }
-                catch (MsalException)
-                {
-                    // AcquireTokenSilent and AcquireTokenInteractive failed, the session will be closed.
-                    _authenticationResult = null;
-                    LoggedOut?.Invoke(this, EventArgs.Empty);
-                    return string.Empty;
-                }
-            }
-        }
-
-        public async Task<bool> AcquireTokenSilentAsync() => await AcquireTokenSilentAsync(_graphScopes);
-
-        private async Task<bool> AcquireTokenSilentAsync(string[] scopes)
-        {
-            if (!NetworkInterface.GetIsNetworkAvailable())
-            {
-                return false;
-            }
-
-            try
-            {
-                var accounts = await _client.GetAccountsAsync();
-                _authenticationResult = await _client.AcquireTokenSilent(scopes, accounts.FirstOrDefault())
-                                                     .ExecuteAsync();
-                return true;
-            }
-            catch (MsalUiRequiredException ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex);
-                if (_integratedAuthAvailable)
-                {
-                    try
-                    {
-                        _authenticationResult = await _client.AcquireTokenByIntegratedWindowsAuth(_graphScopes)
-                                                             .ExecuteAsync();
-                        return true;
-                    }
-                    catch (MsalUiRequiredException)
-                    {
-                        // Interactive authentication is required
-                        return false;
-                    }
-                }
-                else
+                catch (MsalUiRequiredException)
                 {
                     // Interactive authentication is required
                     return false;
                 }
             }
-            catch (MsalException)
+            else
             {
-                // TODO: Silentauth failed, please handle this exception as appropriate to your scenario
-                // For more info on MsalExceptions see
-                // https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/exceptions
+                // Interactive authentication is required
                 return false;
             }
         }
-
-        private void ConfigureCache()
+        catch (MsalException)
         {
-            if (_identityCacheService != null)
+            // TODO: Silentauth failed, please handle this exception as appropriate to your scenario
+            // For more info on MsalExceptions see
+            // https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/wiki/exceptions
+            return false;
+        }
+    }
+
+    private void ConfigureCache()
+    {
+        if (_identityCacheService != null)
+        {
+            // .NET core applications should provide a mechanism to serialize and deserialize the user token cache
+            // https://aka.ms/msal-net-token-cache-serialization
+            _client.UserTokenCache.SetBeforeAccess((args) =>
             {
-                // .NET core applications should provide a mechanism to serialize and deserialize the user token cache
-                // https://aka.ms/msal-net-token-cache-serialization
-                _client.UserTokenCache.SetBeforeAccess((args) =>
+                var data = _identityCacheService.ReadMsalToken();
+                if (data != default)
                 {
-                    var data = _identityCacheService.ReadMsalToken();
-                    if (data != default)
-                    {
-                        args.TokenCache.DeserializeMsalV3(data);
-                    }
-                });
-                _client.UserTokenCache.SetAfterAccess((args) =>
+                    args.TokenCache.DeserializeMsalV3(data);
+                }
+            });
+            _client.UserTokenCache.SetAfterAccess((args) =>
+            {
+                if (args.HasStateChanged)
                 {
-                    if (args.HasStateChanged)
-                    {
-                        _identityCacheService.SaveMsalToken(args.TokenCache.SerializeMsalV3());
-                    }
-                });
-            }
+                    _identityCacheService.SaveMsalToken(args.TokenCache.SerializeMsalV3());
+                }
+            });
         }
     }
 }

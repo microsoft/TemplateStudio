@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Param_RootNamespace
+namespace Param_RootNamespace;
+
+public class Program
 {
-    public class Program
+    [System.STAThreadAttribute]
+    public static void Main()
     {
-        [System.STAThreadAttribute]
-        public static void Main()
+        using (new Param_RootNamespace.XamlIslandApp.App())
         {
-            using (new Param_RootNamespace.XamlIslandApp.App())
-            {
-                var app = new Param_RootNamespace.App();
-                app.InitializeComponent();
-                app.Run();
-            }
+            var app = new Param_RootNamespace.App();
+            app.InitializeComponent();
+            app.Run();
         }
     }
 }

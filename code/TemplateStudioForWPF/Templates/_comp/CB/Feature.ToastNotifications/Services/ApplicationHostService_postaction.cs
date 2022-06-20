@@ -1,29 +1,28 @@
-﻿namespace Param_RootNamespace.Services
-{
-    public class ApplicationHostService : IHostedService
-    {
-        private readonly INavigationService _navigationService;
-//{[{
-        private readonly IToastNotificationsService _toastNotificationsService;
-//}]}
-        public ApplicationHostService(/*{[{*/IToastNotificationsService toastNotificationsService/*}]}*/)
-        {
-//^^
-//{[{
-            _toastNotificationsService = toastNotificationsService;
-//}]}
-        }
+﻿namespace Param_RootNamespace.Services;
 
-        private async Task StartupAsync()
-        {
-            if (!_isInitialized)
-            {
+public class ApplicationHostService : IHostedService
+{
+    private readonly INavigationService _navigationService;
+//{[{
+    private readonly IToastNotificationsService _toastNotificationsService;
+//}]}
+    public ApplicationHostService(/*{[{*/IToastNotificationsService toastNotificationsService/*}]}*/)
+    {
 //^^
 //{[{
-                _toastNotificationsService.ShowToastNotificationSample();
+        _toastNotificationsService = toastNotificationsService;
 //}]}
-                await Task.CompletedTask;
-            }
+    }
+
+    private async Task StartupAsync()
+    {
+        if (!_isInitialized)
+        {
+//^^
+//{[{
+            _toastNotificationsService.ShowToastNotificationSample();
+//}]}
+            await Task.CompletedTask;
         }
     }
 }

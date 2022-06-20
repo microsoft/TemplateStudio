@@ -4,42 +4,41 @@ using System.Linq;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Models;
 
-namespace Param_RootNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels;
+
+public class ts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
 {
-    public class ts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
+    private readonly ISampleDataService _sampleDataService;
+    private SampleOrder _selected;
+
+    public SampleOrder Selected
     {
-        private readonly ISampleDataService _sampleDataService;
-        private SampleOrder _selected;
+        get { return _selected; }
+        set { Param_Setter(ref _selected, value); }
+    }
 
-        public SampleOrder Selected
+    public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+
+    public ts.ItemNameViewModel(ISampleDataService sampleDataService)
+    {
+        _sampleDataService = sampleDataService;
+    }
+
+    public async void OnNavigatedTo(Param_OnNavigatedToParams)
+    {
+        SampleItems.Clear();
+
+        var data = await _sampleDataService.GetListDetailsDataAsync();
+
+        foreach (var item in data)
         {
-            get { return _selected; }
-            set { Param_Setter(ref _selected, value); }
+            SampleItems.Add(item);
         }
 
-        public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+        Selected = SampleItems.First();
+    }
 
-        public ts.ItemNameViewModel(ISampleDataService sampleDataService)
-        {
-            _sampleDataService = sampleDataService;
-        }
-
-        public async void OnNavigatedTo(Param_OnNavigatedToParams)
-        {
-            SampleItems.Clear();
-
-            var data = await _sampleDataService.GetListDetailsDataAsync();
-
-            foreach (var item in data)
-            {
-                SampleItems.Add(item);
-            }
-
-            Selected = SampleItems.First();
-        }
-
-        public void OnNavigatedFrom(Param_OnNavigatedFromParams)
-        {
-        }
+    public void OnNavigatedFrom(Param_OnNavigatedFromParams)
+    {
     }
 }

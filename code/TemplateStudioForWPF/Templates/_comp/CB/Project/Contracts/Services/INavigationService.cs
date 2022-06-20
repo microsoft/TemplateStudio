@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Windows.Controls;
 
-namespace Param_RootNamespace.Contracts.Services
+namespace Param_RootNamespace.Contracts.Services;
+
+public interface INavigationService
 {
-    public interface INavigationService
-    {
-        event EventHandler<Type> Navigated;
+    event EventHandler<Type> Navigated;
 
-        bool CanGoBack { get; }
+    bool CanGoBack { get; }
 
-        void Initialize(Frame shellFrame);
+    void Initialize(Frame shellFrame);
 
-        bool NavigateTo(Type pageType, object parameter = null, bool clearNavigation = false);
+    bool NavigateTo(Type pageType, object parameter = null, bool clearNavigation = false);
 
-        void GoBack();
+    void GoBack();
 
-        void UnsubscribeNavigation();
+    void UnsubscribeNavigation();
 
-        void CleanNavigation();
-    }
+    void CleanNavigation();
 }
