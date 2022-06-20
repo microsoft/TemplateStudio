@@ -223,6 +223,30 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioForWinUICsPackage.cs" />
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\ContentGridDetailViewModelTests.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\ContentGridViewModelTests.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\DataGridViewModelTests.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\ListDetailsViewModelTests.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\MainViewModelTests.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\SettingsViewModelTests.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\ShellViewModelTests.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\WebViewViewModelTests.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Usings.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
