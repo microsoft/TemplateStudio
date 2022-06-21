@@ -4,15 +4,16 @@
     "classifications": [
       "Universal"
     ],
-    "name": "ts.WinUI.Testing.AddBlank",
-    "identity": "ts.WinUI.Testing.AddBlank",
-    "shortName": "ts.WinUI.Testing.AddBlank",
+    "name": "ts.WinUI.Test.MSTest.App.AddBlank",
+    "identity": "ts.WinUI.Test.MSTest.App.AddBlank",
+    "shortName": "ts.WinUI.Test.MSTest.App.AddBlank",
     "tags": {
       "language": "C#",
       "type": "item",
       "ts.type": "composition",
       "ts.platform": "WinUI",
       "ts.version": "1.0.0",
+      "ts.outputToParent": "true",
       "ts.compositionFilter": "$frontendframework == MVVMToolkit & $testing == ts.WinUI.Testing.App.MSTest & ts.type == page & identity == ts.WinUI.Page.Blank"
     },
     "sourceName": "Param_ItemName",
@@ -26,6 +27,11 @@
         }
     ],
     "symbols": {
+        "ts.projectName": {
+            "type": "parameter",
+            "replaces": "Param_ProjectName",
+            "fileRename": "Param_ProjectName"
+        },
         "ts.rootNamespace": {
             "type": "parameter",
             "replaces": "Param_RootNamespace"
