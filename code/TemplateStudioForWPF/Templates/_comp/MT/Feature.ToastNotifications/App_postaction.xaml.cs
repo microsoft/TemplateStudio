@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Toolkit.Uwp.Notifications;
+using CommunityToolkit.WinUI.Notifications;
 using Param_RootNamespace.Activation;
 using Param_RootNamespace.Contracts.Activation;
 //}]}
@@ -13,7 +13,7 @@ public partial class App : Application
     private async void OnStartup(object sender, StartupEventArgs e)
     {
 //{[{
-        // https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast?tabs=desktop
+        // https://docs.microsoft.com/windows/apps/design/shell/tiles-and-notifications/send-local-toast?tabs=desktop
         ToastNotificationManagerCompat.OnActivated += (toastArgs) =>
         {
             Current.Dispatcher.Invoke(async () =>

@@ -95,7 +95,7 @@ namespace Microsoft.Templates.UI.Services
                 return ContainsSDK("Microsoft.NET.Sdk") ? AppModels.Desktop : AppModels.Uwp;
             }
 
-            return AppContainerApplication("AppContainerApplication", "false") ? AppModels.Desktop : AppModels.Uwp;
+            return ContainsProperty("AppContainerApplication", "false") ? AppModels.Desktop : AppModels.Uwp;
         }
 
         public string InferPlatform()
@@ -130,12 +130,12 @@ namespace Microsoft.Templates.UI.Services
 
         private bool IsWpf()
         {
-            return ContainsSDK("Microsoft.NET.Sdk.WindowsDesktop");
+            return ContainsProperty("UseWPF", "true");
         }
 
         private bool IsWinUI()
         {
-            return ContainsNugetPackage("Microsoft.WindowsAppSDK");
+            return ContainsProperty("UseWinUI", "true");
         }
 
         private string InferProjectType(string platform)
@@ -182,7 +182,7 @@ namespace Microsoft.Templates.UI.Services
             {
                 return Prism;
             }
-            else if (IsMicrosoftMvvmToolkit(platform))
+            else if (IsMvvmToolkit(platform))
             {
                 return MvvmToolkit;
             }
@@ -367,15 +367,15 @@ namespace Microsoft.Templates.UI.Services
             return ContainsNugetPackage("Prism.Unity");
         }
 
-        private bool IsMicrosoftMvvmToolkit(string platform)
+        private bool IsMvvmToolkit(string platform)
         {
-            if (platform == Platforms.WinUI)
+            if (platform == Platforms.Uwp)
             {
-                return ContainsNugetPackage("CommunityToolkit.Mvvm");
+                return ContainsNugetPackage("Microsoft.Toolkit.Mvvm");
             }
             else
             {
-                return ContainsNugetPackage("Microsoft.Toolkit.Mvvm");
+                return ContainsNugetPackage("CommunityToolkit.Mvvm");
             }
         }
 
@@ -489,7 +489,7 @@ namespace Microsoft.Templates.UI.Services
             return false;
         }
 
-        private bool AppContainerApplication(string property, string value)
+        private bool ContainsProperty(string property, string value)
         {
             var files = Directory.GetFiles(_shell.Project.GetActiveProjectPath(), "*.*proj", SearchOption.TopDirectoryOnly);
             foreach (string file in files)

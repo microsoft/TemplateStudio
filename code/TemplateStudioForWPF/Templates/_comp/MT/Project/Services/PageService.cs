@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using Param_RootNamespace.Contracts.Services;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Param_RootNamespace.ViewModels;
 using Param_RootNamespace.Views;
 

@@ -1,6 +1,6 @@
 ﻿//{[{
 using System.Collections.Generic;
-using Microsoft.Toolkit.Uwp.Notifications;
+using CommunityToolkit.WinUI.Notifications;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Services;
 //}]}
@@ -17,7 +17,7 @@ public partial class App : PrismApplication
     protected override async void OnInitialized()
     {
 //{[{
-        // https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast?tabs=desktop
+        // https://docs.microsoft.com/windows/apps/design/shell/tiles-and-notifications/send-local-toast?tabs=desktop
         ToastNotificationManagerCompat.OnActivated += (toastArgs) =>
         {
             Current.Dispatcher.Invoke(async () =>
