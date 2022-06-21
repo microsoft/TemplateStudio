@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Param_RootNamespace.Core.Models;
+﻿namespace Param_RootNamespace.Core.Models;
 
 // Remove this class once your pages/features are using your data.
 // This is used by the SampleDataService.

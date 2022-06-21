@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using Param_RootNamespace.Contracts.Views;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Models;

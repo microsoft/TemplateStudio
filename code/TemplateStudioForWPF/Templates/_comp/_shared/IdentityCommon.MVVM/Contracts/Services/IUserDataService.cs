@@ -1,5 +1,4 @@
-﻿using System;
-using Param_RootNamespace.ViewModels;
+﻿using Param_RootNamespace.ViewModels;
 
 namespace Param_RootNamespace.Contracts.Services;
 

@@ -1,7 +1,6 @@
 ﻿//{[{
 using Microsoft.Extensions.DependencyInjection;
 using Prism.Regions;
-using System.Linq;
 using Unity;
 using System.Net.Http;
 //}]}

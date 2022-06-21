@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using Param_RootNamespace.Contracts.Views;
 using Param_RootNamespace.Core.Contracts.Services;

@@ -5,6 +5,7 @@
     <IsPackable>false</IsPackable>
     <Platforms>x64;x86;AnyCPU</Platforms>
     <RootNamespace>Param_RootNamespace.Tests.WinAppDriver</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">

@@ -1,6 +1,4 @@
 ﻿using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Param_RootNamespace.Core.Contracts.Services;
