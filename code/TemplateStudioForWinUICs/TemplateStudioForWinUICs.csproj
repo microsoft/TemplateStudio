@@ -223,6 +223,15 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioForWinUICsPackage.cs" />
+    <Content Include="Templates\_comp\MT\Testing.AddBlank\Param_ProjectName.Tests.MSTest\Mocks\MockNavigationService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Testing.AddBlank\Param_ProjectName.Tests.MSTest\Mocks\MockNavigationViewService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Testing.AddBlank\Param_ProjectName.Tests.MSTest\Mocks\MockPageService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Mocks\MockLocalSettingsService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -256,13 +265,13 @@
     <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\ListDetailsViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\MainViewModelTests.cs">
+    <Content Include="Templates\_comp\MT\Testing.AddBlank\Param_ProjectName.Tests.MSTest\MainViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\SettingsViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\ShellViewModelTests.cs">
+    <Content Include="Templates\_comp\MT\Testing.AddBlank\Param_ProjectName.Tests.MSTest\ShellViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\WebViewViewModelTests.cs">
@@ -413,6 +422,14 @@
     <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Param_ProjectName.Tests.MSTest.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\_comp\MT\Testing.AddBlank\template.json\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Testing.AddContentGrid\template.json\template.json" />
+    <Content Include="Templates\_comp\MT\Testing.AddDataGrid\template.json\template.json" />
+    <Content Include="Templates\_comp\MT\Testing.AddList\template.json\template.json" />
+    <Content Include="Templates\_comp\MT\Testing.AddSettings\template.json\template.json" />
+    <Content Include="Templates\_comp\MT\Testing.AddWebView\template.json\template.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="cs-CZ\Extension.vsixlangpack">
