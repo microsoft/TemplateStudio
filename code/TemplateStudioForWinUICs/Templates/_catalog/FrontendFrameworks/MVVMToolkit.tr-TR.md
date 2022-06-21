@@ -1,4 +1,4 @@
-﻿Microsoft.Toolkit.Mvvm paketi modern, hızlı ve modüler bir MVVM kitaplığıdır. Windows Topluluk Araç Seti'nin bir parçasıdır.
+﻿CommunityToolkit.Mvvm paketi modern, hızlı ve modüler bir MVVM kitaplığıdır. Windows Topluluk Araç Seti'nin bir parçasıdır.
 
 Bu paket herhangi bir uygulama platformunda kullanılabilir: UWP, WinForms, WPF, Xamarin, Uno ve daha fazlası; ve herhangi bir çalışma zamanında: .NET Native, .NET Core, .NET Framework veya Mono. API yüzeyi her durumda aynıdır ve paylaşılan kitaplıklar oluşturmak için mükemmeldir.
 

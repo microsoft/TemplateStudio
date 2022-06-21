@@ -17,11 +17,11 @@ Param(
     [string]$Path = "~\Downloads\TDBuild"
 )
 
+$repositoryRoot = git rev-parse --show-toplevel
+
 Get-ChildItem $Path -File -Recurse |
 Where-Object { -not $_.Directory.Name.StartsWith("qps-ploc") } |
 ForEach-Object {
-    $repositoryRoot = git rev-parse --show-toplevel
-
     $targetPath = Join-Path $repositoryRoot $_.Directory.Parent.FullName.Substring($_.FullName.LastIndexOf("\code\"))
     $targetFileName = "{0}.{1}{2}" -f $_.BaseName, $_.Directory.Name, $_.Extension
 

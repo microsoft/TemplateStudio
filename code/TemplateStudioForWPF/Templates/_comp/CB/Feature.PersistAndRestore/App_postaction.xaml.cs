@@ -2,20 +2,19 @@
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Services;
 //}]}
-namespace Param_RootNamespace
+namespace Param_RootNamespace;
+
+public partial class App : Application
 {
-    public partial class App : Application
+    private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
-        private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
-        {
-            // Core Services
+        // Core Services
 //{[{
-            services.AddSingleton<IFileService, FileService>();
+        services.AddSingleton<IFileService, FileService>();
 //}]}
-            // Services
+        // Services
 //{[{
-            services.AddSingleton<IPersistAndRestoreService, PersistAndRestoreService>();
+        services.AddSingleton<IPersistAndRestoreService, PersistAndRestoreService>();
 //}]}
-        }
     }
 }

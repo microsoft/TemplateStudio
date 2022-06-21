@@ -1,11 +1,10 @@
-﻿namespace Param_RootNamespace.Core.Contracts.Services
+﻿namespace Param_RootNamespace.Core.Contracts.Services;
+
+public interface ISampleDataService
 {
-    public interface ISampleDataService
-    {
 //^^
 //{[{
 
-        Task<IEnumerable<SampleOrder>> GetContentGridDataAsync();
+    Task<IEnumerable<SampleOrder>> GetContentGridDataAsync();
 //}]}
-    }
 }

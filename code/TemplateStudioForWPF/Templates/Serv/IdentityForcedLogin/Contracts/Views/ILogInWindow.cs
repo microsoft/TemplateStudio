@@ -1,9 +1,8 @@
-﻿namespace Param_RootNamespace.Contracts.Views
-{
-    public interface ILogInWindow
-    {
-        void ShowWindow();
+﻿namespace Param_RootNamespace.Contracts.Views;
 
-        void CloseWindow();
-    }
+public interface ILogInWindow
+{
+    void ShowWindow();
+
+    void CloseWindow();
 }

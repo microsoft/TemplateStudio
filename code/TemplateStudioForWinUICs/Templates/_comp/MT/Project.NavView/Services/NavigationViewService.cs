@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.UI.Xaml.Controls;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Helpers;

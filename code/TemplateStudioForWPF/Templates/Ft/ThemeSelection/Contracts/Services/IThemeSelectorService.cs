@@ -1,14 +1,12 @@
-﻿using System;
-using Param_RootNamespace.Models;
+﻿using Param_RootNamespace.Models;
 
-namespace Param_RootNamespace.Contracts.Services
+namespace Param_RootNamespace.Contracts.Services;
+
+public interface IThemeSelectorService
 {
-    public interface IThemeSelectorService
-    {
-        void InitializeTheme();
+    void InitializeTheme();
 
-        void SetTheme(AppTheme theme);
+    void SetTheme(AppTheme theme);
 
-        AppTheme GetCurrentTheme();
-    }
+    AppTheme GetCurrentTheme();
 }

@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Param_RootNamespace.Contracts.Services;
+﻿namespace Param_RootNamespace.Contracts.Services;
 
 public interface ILocalSettingsService
 {
