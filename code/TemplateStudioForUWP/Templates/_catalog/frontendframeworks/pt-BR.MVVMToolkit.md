@@ -1,4 +1,4 @@
-﻿O pacote CommunityToolkit.Mvvm é uma biblioteca MVVM moderna, rápida e modular. Faz parte do Windows Community Toolkit.
+﻿O pacote Microsoft.Toolkit.Mvvm é uma biblioteca MVVM moderna, rápida e modular. Faz parte do Windows Community Toolkit.
 
 Este pacote pode ser usado em qualquer plataforma de aplicativo: UWP, WinForms, WPF, Xamarin, Uno e muito mais; e em qualquer tempo de execução: .NET Native, .NET Core, .NET Framework ou Mono. A superfície da API é idêntica em todos os casos, tornando-a perfeita para a construção de bibliotecas compartilhadas.
 

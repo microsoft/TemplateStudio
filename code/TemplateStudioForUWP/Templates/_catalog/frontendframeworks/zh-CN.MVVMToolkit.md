@@ -1,4 +1,4 @@
-﻿CommunityToolkit.Mvvm软件包是一个现代化、快速和模块化的MVVM库。它是 Windows 社区工具包的一部分。
+﻿Microsoft.Toolkit.Mvvm软件包是一个现代化、快速和模块化的MVVM库。它是 Windows 社区工具包的一部分。
 
 此软件包可用于任何应用平台：UWP、温格式、WPF、Xamarin、优诺等：并在任何运行时间：。NET原生，。NET核心，。NET框架，或单声道。API 表面在所有情况下都是相同的，因此非常适合构建共享库。
 
