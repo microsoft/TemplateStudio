@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using WUXD = Windows.UI.Xaml.Data;
 using WUXM = Windows.UI.Xaml.Media;
 

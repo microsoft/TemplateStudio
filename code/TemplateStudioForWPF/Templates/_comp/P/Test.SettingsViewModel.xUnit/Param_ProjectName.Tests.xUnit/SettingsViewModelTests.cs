@@ -1,5 +1,4 @@
-﻿using System;
-using Param_RootNamespace.Contracts.Services;
+﻿using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Models;
 using Param_RootNamespace.ViewModels;
 using Moq;

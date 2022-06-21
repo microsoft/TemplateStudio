@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Param_RootNamespace.Activation;
+﻿namespace Param_RootNamespace.Activation;
 
 // Extend this class to implement new ActivationHandlers. See DefaultActivationHandler for an example.
 // https://github.com/microsoft/TemplateStudio/blob/main/docs/WinUI/activation.md

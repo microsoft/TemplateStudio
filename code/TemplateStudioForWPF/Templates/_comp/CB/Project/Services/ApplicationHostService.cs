@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Param_RootNamespace.Contracts.Services;
+﻿using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.Activation;
 using Param_RootNamespace.Contracts.Views;
 using Param_RootNamespace.Views;

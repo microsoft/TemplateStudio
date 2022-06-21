@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Param_RootNamespace.Activation;
+﻿namespace Param_RootNamespace.Activation;
 
 public interface IActivationHandler
 {

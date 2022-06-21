@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml.Controls;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Helpers;
 using Param_RootNamespace.ViewModels;

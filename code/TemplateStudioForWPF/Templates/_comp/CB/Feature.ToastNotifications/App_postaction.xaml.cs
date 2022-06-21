@@ -1,7 +1,4 @@
 ﻿//{[{
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CommunityToolkit.WinUI.Notifications;
 using Param_RootNamespace.Activation;
 using Param_RootNamespace.Contracts.Activation;

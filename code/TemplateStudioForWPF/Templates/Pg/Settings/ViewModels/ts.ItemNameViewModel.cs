@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Models;
 using Param_RootNamespace.Contracts.Services;

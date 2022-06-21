@@ -1,5 +1,4 @@
-﻿using System;
-using Param_RootNamespace.Core.Contracts.Services;
+﻿using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Helpers;
 using Param_RootNamespace.Properties;
 

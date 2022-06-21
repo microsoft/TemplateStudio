@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels;

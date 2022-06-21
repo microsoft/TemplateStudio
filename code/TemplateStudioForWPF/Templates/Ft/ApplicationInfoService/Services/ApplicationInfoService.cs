@@ -1,5 +1,4 @@
-﻿using System;
-using Param_RootNamespace.Contracts.Services;
+﻿using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.Services;
 

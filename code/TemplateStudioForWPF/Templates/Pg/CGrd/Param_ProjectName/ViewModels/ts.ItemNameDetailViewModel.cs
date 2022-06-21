@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Param_RootNamespace.Core.Contracts.Services;
+﻿using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Models;
 
 namespace Param_RootNamespace.ViewModels;

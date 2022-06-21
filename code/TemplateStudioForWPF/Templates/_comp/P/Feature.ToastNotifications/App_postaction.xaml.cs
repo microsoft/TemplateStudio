@@ -1,5 +1,4 @@
 ﻿//{[{
-using System.Collections.Generic;
 using CommunityToolkit.WinUI.Notifications;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Services;
