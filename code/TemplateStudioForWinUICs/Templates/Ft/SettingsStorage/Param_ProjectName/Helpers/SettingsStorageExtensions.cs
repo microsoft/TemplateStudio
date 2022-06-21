@@ -23,7 +23,7 @@ public static class SettingsStorageExtensions
         await FileIO.WriteTextAsync(file, fileContent);
     }
 
-    public static async Task<T> ReadAsync<T>(this StorageFolder folder, string name)
+    public static async Task<T?> ReadAsync<T>(this StorageFolder folder, string name)
     {
         if (!File.Exists(Path.Combine(folder.Path, GetFileName(name))))
         {
@@ -46,9 +46,9 @@ public static class SettingsStorageExtensions
         settings.Values[key] = value;
     }
 
-    public static async Task<T> ReadAsync<T>(this ApplicationDataContainer settings, string key)
+    public static async Task<T?> ReadAsync<T>(this ApplicationDataContainer settings, string key)
     {
-        object obj;
+        object? obj;
 
         if (settings.Values.TryGetValue(key, out obj))
         {
@@ -75,7 +75,7 @@ public static class SettingsStorageExtensions
         return storageFile;
     }
 
-    public static async Task<byte[]> ReadFileAsync(this StorageFolder folder, string fileName)
+    public static async Task<byte[]?> ReadFileAsync(this StorageFolder folder, string fileName)
     {
         var item = await folder.TryGetItemAsync(fileName).AsTask().ConfigureAwait(false);
 
@@ -89,7 +89,7 @@ public static class SettingsStorageExtensions
         return null;
     }
 
-    public static async Task<byte[]> ReadBytesAsync(this StorageFile file)
+    public static async Task<byte[]?> ReadBytesAsync(this StorageFile file)
     {
         if (file != null)
         {

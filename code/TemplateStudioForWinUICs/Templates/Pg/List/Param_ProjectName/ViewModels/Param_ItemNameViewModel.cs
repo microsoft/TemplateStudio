@@ -9,9 +9,9 @@ namespace Param_RootNamespace.ViewModels;
 public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
 {
     private readonly ISampleDataService _sampleDataService;
-    private SampleOrder _selected;
+    private SampleOrder? _selected;
 
-    public SampleOrder Selected
+    public SampleOrder? Selected
     {
         get => _selected;
         set => SetProperty(ref _selected, value);

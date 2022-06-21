@@ -11,9 +11,11 @@ public class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
 {
     private readonly INavigationService _navigationService;
     private readonly ISampleDataService _sampleDataService;
-    private ICommand _itemClickCommand;
 
-    public ICommand ItemClickCommand => _itemClickCommand ??= new RelayCommand<SampleOrder>(OnItemClick);
+    public ICommand ItemClickCommand
+    {
+        get;
+    }
 
     public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
@@ -21,6 +23,8 @@ public class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
     {
         _navigationService = navigationService;
         _sampleDataService = sampleDataService;
+
+        ItemClickCommand = new RelayCommand<SampleOrder>(OnItemClick);
     }
 
     public async void OnNavigatedTo(object parameter)
@@ -39,12 +43,12 @@ public class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
     {
     }
 
-    private void OnItemClick(SampleOrder clickedItem)
+    private void OnItemClick(SampleOrder? clickedItem)
     {
         if (clickedItem != null)
         {
             _navigationService.SetListDataItemForNextConnectedAnimation(clickedItem);
-            _navigationService.NavigateTo(typeof(Param_ItemNameDetailViewModel).FullName, clickedItem.OrderID);
+            _navigationService.NavigateTo(typeof(Param_ItemNameDetailViewModel).FullName!, clickedItem.OrderID);
         }
     }
 }

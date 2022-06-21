@@ -16,7 +16,7 @@ public class PageService : IPageService
 
     public Type GetPageType(string key)
     {
-        Type pageType;
+        Type? pageType;
         lock (_pages)
         {
             if (!_pages.TryGetValue(key, out pageType))
@@ -34,7 +34,7 @@ public class PageService : IPageService
     {
         lock (_pages)
         {
-            var key = typeof(VM).FullName;
+            var key = typeof(VM).FullName!;
             if (_pages.ContainsKey(key))
             {
                 throw new ArgumentException($"The key {key} is already configured in PageService");

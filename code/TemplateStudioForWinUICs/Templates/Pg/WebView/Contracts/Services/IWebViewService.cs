@@ -5,6 +5,11 @@ namespace Param_RootNamespace.Contracts.Services;
 
 public interface IWebViewService
 {
+    Uri? Source
+    {
+        get;
+    }
+
     bool CanGoBack
     {
         get;
@@ -15,7 +20,7 @@ public interface IWebViewService
         get;
     }
 
-    event EventHandler<CoreWebView2WebErrorStatus> NavigationCompleted;
+    event EventHandler<CoreWebView2WebErrorStatus>? NavigationCompleted;
 
     void Initialize(WebView2 webView);
 
