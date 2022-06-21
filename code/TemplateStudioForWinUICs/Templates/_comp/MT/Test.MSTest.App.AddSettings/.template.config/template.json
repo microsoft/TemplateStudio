@@ -4,9 +4,9 @@
     "classifications": [
       "Universal"
     ],
-    "name": "ts.WinUI.Test.MSTest.App.AddBlank",
-    "identity": "ts.WinUI.Test.MSTest.App.AddBlank",
-    "shortName": "ts.WinUI.Test.MSTest.App.AddBlank",
+    "name": "ts.WinUI.Test.MSTest.App.AddSettings",
+    "identity": "ts.WinUI.Test.MSTest.App.AddSettings",
+    "shortName": "ts.WinUI.Test.MSTest.App.AddSettings",
     "tags": {
       "language": "C#",
       "type": "item",
@@ -14,25 +14,19 @@
       "ts.platform": "WinUI",
       "ts.version": "1.0.0",
       "ts.outputToParent": "true",
-      "ts.compositionFilter": "$frontendframework == MVVMToolkit & $testing == ts.WinUI.Testing.App.MSTest & ts.type == page & identity == ts.WinUI.Page.Blank"
+      "ts.compositionFilter": "$frontendframework == MVVMToolkit & $testing == ts.WinUI.Testing.App.MSTest & ts.type == page & identity == ts.WinUI.Page.Settings"
     },
     "sourceName": "Param_ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
         {
-            "path": "Param_ProjectName.Tests.MSTest/ShellViewModelTests.cs"
+            "path": "Param_ProjectName.Tests.MSTest/SettingsViewModelTests.cs"
         },
         {
-            "path": "Param_ProjectName.Tests.MSTest/MainViewModelTests.cs"
+            "path": "Param_ProjectName.Tests.MSTest/Mocks/MockLocalSettingsService.cs"
         },
         {
-            "path": "Param_ProjectName.Tests.MSTest/Mocks/MockNavigationService.cs"
-        },
-        {
-            "path": "Param_ProjectName.Tests.MSTest/Mocks/MockNavigationViewService.cs"
-        },
-        {
-            "path": "Param_ProjectName.Tests.MSTest/Mocks/MockPageService.cs"
+            "path": "Param_ProjectName.Tests.MSTest/Mocks/MockThemeSelectorService.cs"
         }
     ],
     "symbols": {

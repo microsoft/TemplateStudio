@@ -223,6 +223,30 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioForWinUICsPackage.cs" />
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddWebView\Param_ProjectName.Tests.MSTest\Mocks\MockWebViewService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddSettings\Param_ProjectName.Tests.MSTest\Mocks\MockThemeSelectorService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddSettings\Param_ProjectName.Tests.MSTest\Mocks\MockLocalSettingsService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddList\Param_ProjectName.Tests.MSTest\Mocks\MockSampleDataService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddDataGrid\Param_ProjectName.Tests.MSTest\Mocks\MockSampleDataService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddContentGrid\Param_ProjectName.Tests.MSTest\Mocks\MockNavigationService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddContentGrid\Param_ProjectName.Tests.MSTest\Mocks\MockPageService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddContentGrid\Param_ProjectName.Tests.MSTest\Mocks\MockSampleDataService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\_comp\MT\Test.MSTest.App.AddBlank\Param_ProjectName.Tests.MSTest\Mocks\MockNavigationService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -232,49 +256,28 @@
     <Content Include="Templates\_comp\MT\Test.MSTest.App.AddBlank\Param_ProjectName.Tests.MSTest\Mocks\MockPageService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Mocks\MockLocalSettingsService.cs">
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddContentGrid\Param_ProjectName.Tests.MSTest\ContentGridDetailViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Mocks\MockNavigationService.cs">
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddContentGrid\Param_ProjectName.Tests.MSTest\ContentGridViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Mocks\MockNavigationViewService.cs">
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddDataGrid\Param_ProjectName.Tests.MSTest\DataGridViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Mocks\MockPageService.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Mocks\MockSampleDataService.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Mocks\MockThemeSelectorService.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Mocks\MockWebViewService.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\ContentGridDetailViewModelTests.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\ContentGridViewModelTests.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\DataGridViewModelTests.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\ListDetailsViewModelTests.cs">
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddList\Param_ProjectName.Tests.MSTest\ListDetailsViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Test.MSTest.App.AddBlank\Param_ProjectName.Tests.MSTest\MainViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\SettingsViewModelTests.cs">
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddSettings\Param_ProjectName.Tests.MSTest\SettingsViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Test.MSTest.App.AddBlank\Param_ProjectName.Tests.MSTest\ShellViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\WebViewViewModelTests.cs">
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddWebView\Param_ProjectName.Tests.MSTest\WebViewViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Usings.cs">
@@ -423,6 +426,21 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Test.MSTest.App.AddBlank\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddContentGrid\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddDataGrid\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddList\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddSettings\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddWebView\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
@@ -2316,7 +2334,9 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Mocks\" />
+  </ItemGroup>
   <Import Project="..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />
   <Import Project="..\SharedFunctionality.UI\SharedFunctionality.UI.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
