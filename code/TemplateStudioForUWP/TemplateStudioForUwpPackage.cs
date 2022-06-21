@@ -9,17 +9,22 @@ using System.Threading;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.VisualStudio;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using TemplateStudioForUWP.Commands;
 using Task = System.Threading.Tasks.Task;
 
+// https://docs.microsoft.com/visualstudio/extensibility/how-to-use-asyncpackage-to-load-vspackages-in-the-background?view=vs-2022
+// https://docs.microsoft.com/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2022
+// https://docs.microsoft.com/visualstudio/extensibility/internals/authoring-dot-vsct-files?view=vs-2022
+
 namespace TemplateStudioForUWP
 {
-    [ProvideAutoLoad(ActivationContextGuid, PackageAutoLoadFlags.BackgroundLoad)]
-    [ProvideUIContextRule(ActivationContextGuid,
-        name: "Load TW4UWP Project Package",
-        expression: "HasUWP",
-        termNames: new[] { "HasUWP" },
-        termValues: new[] { "SolutionHasProjectFlavor:{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}" })]
+    [ProvideAutoLoad(UIContextGuids80.SolutionExists, PackageAutoLoadFlags.BackgroundLoad)]
+    //[ProvideUIContextRule(ActivationContextGuid,
+    //    name: "Load TW4UWP Project Package",
+    //    expression: "HasUWP",
+    //    termNames: new[] { "HasUWP" },
+    //    termValues: new[] { "SolutionHasProjectFlavor:{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}" })]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(PackageGuids.guidTemplateStudioForUwpPackageString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
@@ -156,8 +161,8 @@ namespace TemplateStudioForUWP
             ThreadHelper.ThrowIfNotOnUIThread();
 
             var cmd = (OleMenuCommand)sender;
-            cmd.Enabled = RightClickActions.Enabled();
-            cmd.Visible = RightClickActions.VisibleForUwp(templateType);
+            cmd.Enabled = true; // RightClickActions.Enabled();
+            cmd.Visible = true; // RightClickActions.VisibleForUwp(templateType);
         }
 
         private void TempFolderAvailable(object sender, TemplateType templateType)
