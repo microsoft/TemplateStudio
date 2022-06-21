@@ -16,15 +16,16 @@ using Task = System.Threading.Tasks.Task;
 // https://docs.microsoft.com/visualstudio/extensibility/how-to-use-asyncpackage-to-load-vspackages-in-the-background?view=vs-2022
 // https://docs.microsoft.com/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2022
 // https://docs.microsoft.com/visualstudio/extensibility/internals/authoring-dot-vsct-files?view=vs-2022
+// https://docs.microsoft.com/visualstudio/extensibility/command-flag-element?view=vs-2022
 
 namespace TemplateStudioForUWP
 {
-    [ProvideAutoLoad(UIContextGuids80.SolutionExists, PackageAutoLoadFlags.BackgroundLoad)]
-    //[ProvideUIContextRule(ActivationContextGuid,
-    //    name: "Load TW4UWP Project Package",
-    //    expression: "HasUWP",
-    //    termNames: new[] { "HasUWP" },
-    //    termValues: new[] { "SolutionHasProjectFlavor:{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A}" })]
+    [ProvideAutoLoad(ActivationContextGuid, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideUIContextRule(ActivationContextGuid,
+        name: "Load TW4UWP Project Package",
+        expression: "HasUWP",
+        termNames: new[] { "HasUWP" },
+        termValues: new[] { "ActiveProjectOutputType:VSPROJ_OUTPUTTYPE_WINEXE" })]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(PackageGuids.guidTemplateStudioForUwpPackageString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]

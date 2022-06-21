@@ -177,6 +177,7 @@
     <Content Include="Commands\Resources\TemplateStudioCommand.png" />
     <Content Include="Commands\TemplateStudioForUWPPackage.vsct">
       <Generator>VsctGenerator</Generator>
+      <ResourceName>Menus.ctmenu</ResourceName>
       <LastGenOutput>TemplateStudioForUWPPackage.cs</LastGenOutput>
     </Content>
     <Content Include="cs-CZ\Extension.vsixlangpack">
