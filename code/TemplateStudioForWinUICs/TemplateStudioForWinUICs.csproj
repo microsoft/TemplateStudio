@@ -444,7 +444,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cs-CZ\Extension.vsixlangpack">
     <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.it-IT.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
