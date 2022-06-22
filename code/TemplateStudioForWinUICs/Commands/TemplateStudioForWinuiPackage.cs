@@ -12,11 +12,14 @@ namespace TemplateStudioForWinUICs.Commands
     /// </summary>
     internal sealed partial class PackageGuids
     {
-        public const string ts4WinuiPackageString = "0348e2b7-f1a1-438d-a243-028ce03d87da";
-        public static Guid ts4WinuiPackage = new Guid(ts4WinuiPackageString);
+        public const string guidTemplateStudioForWinUICsPackageString = "0348e2b7-f1a1-438d-a243-028ce03d87da";
+        public static Guid guidTemplateStudioForWinUICsPackage = new Guid(guidTemplateStudioForWinUICsPackageString);
 
-        public const string ts4WinuiPackageCmdSetString = "9808b482-559d-408f-8998-a00cbc1dfc79";
-        public static Guid ts4WinuiPackageCmdSet = new Guid(ts4WinuiPackageCmdSetString);
+        public const string guidTemplateStudioForWinUICsUIContextString = "476eb402-260c-4efc-a311-1d8aede9a470";
+        public static Guid guidTemplateStudioForWinUICsUIContext = new Guid(guidTemplateStudioForWinUICsUIContextString);
+
+        public const string guidTemplateStudioForWinUICsPackageCmdSetString = "9808b482-559d-408f-8998-a00cbc1dfc79";
+        public static Guid guidTemplateStudioForWinUICsPackageCmdSet = new Guid(guidTemplateStudioForWinUICsPackageCmdSetString);
 
         public const string guidImagesString = "4060629c-fd00-4d0f-8c97-92747bfb7f28";
         public static Guid guidImages = new Guid(guidImagesString);

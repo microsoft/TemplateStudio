@@ -22,7 +22,7 @@
         "ts.group": "Deployment",
         "ts.displayOrder": "1",
         "ts.multipleInstance": "false",
-        "ts.rightClickEnabled": "false"
+        "ts.rightClickEnabled": "true"
     },
     "sourceName": "Param_ItemName",
     "preferNameDirectory": true,

@@ -184,12 +184,6 @@ namespace Microsoft.Templates.UI.VisualStudio
             var projectConfigInfoService = new ProjectConfigInfoService(_shell);
             var configInfo = projectConfigInfoService.ReadProjectConfiguration();
 
-            // Do not allow right click on WinUI Blank project type
-            if (configInfo?.Platform == Platforms.WinUI && configInfo?.ProjectType == BlankProjectType)
-            {
-                return false;
-            }
-
             var rightClickOptions = _availableOptions.FirstOrDefault(o =>
                                         o.Platform == configInfo?.Platform &&
                                         o.Language == projectConfigInfoService.GetProgrammingLanguage() &&
