@@ -1,14 +1,13 @@
-﻿namespace Param_RootNamespace.Controls
+﻿namespace Param_RootNamespace.Controls;
+
+public partial class ts.ItemNameControl : UserControl
 {
-    public partial class ts.ItemNameControl : UserControl
+    public ts.ItemNameControl()
     {
-        public ts.ItemNameControl()
-        {
 //^^
 //{[{
-            _themeSelectorService = ((App) Application.Current).Container.Resolve(typeof(IThemeSelectorService)) as IThemeSelectorService;
+        _themeSelectorService = ((App) Application.Current).Container.Resolve(typeof(IThemeSelectorService)) as IThemeSelectorService;
 //}]}
-            _themeSelectorService.ThemeChanged += OnThemeChanged;
-        }
+        _themeSelectorService.ThemeChanged += OnThemeChanged;
     }
 }

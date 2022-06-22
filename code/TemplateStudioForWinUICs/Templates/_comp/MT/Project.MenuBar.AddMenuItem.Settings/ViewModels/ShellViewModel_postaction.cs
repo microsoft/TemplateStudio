@@ -2,18 +2,30 @@
 
 public class ShellViewModel : ObservableRecipient
 {
-    private ICommand _menuFileExitCommand;
+    public ICommand MenuFileExitCommand
+    {
+        get;
+    }
 //{[{
-    private ICommand _menuParam_ItemNameCommand;
+    public ICommand MenuParam_ItemNameCommand
+    {
+        get;
+    }
 //}]}
-    public ICommand MenuFileExitCommand => _menuFileExitCommand ??= new RelayCommand(OnMenuFileExit);
-//{[{
+    public ShellViewModel(INavigationService navigationService)
+    {
+        NavigationService = navigationService;
+        NavigationService.Navigated += OnNavigated;
 
-    public ICommand MenuParam_ItemNameCommand => _menuParam_ItemNameCommand ??= new RelayCommand(OnMenuParam_ItemName);
+        MenuFileExitCommand = new RelayCommand(OnMenuFileExit);
+//{[{
+        MenuParam_ItemNameCommand = new RelayCommand(OnMenuParam_ItemName);
 //}]}
+    }
+
     private void OnMenuFileExit() => Application.Current.Exit();
 //{[{
 
-    private void OnMenuParam_ItemName() => NavigationService.NavigateTo(typeof(Param_ItemNameViewModel).FullName);
+    private void OnMenuParam_ItemName() => NavigationService.NavigateTo(typeof(Param_ItemNameViewModel).FullName!);
 //}]}
 }

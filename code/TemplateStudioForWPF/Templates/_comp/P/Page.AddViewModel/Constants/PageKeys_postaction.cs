@@ -1,10 +1,9 @@
-﻿namespace Param_RootNamespace.Constants
+﻿namespace Param_RootNamespace.Constants;
+
+public class PageKeys
 {
-    public class PageKeys
-    {
 //^^
 //{[{
-        public const string ts.ItemName = "ts.ItemName";
+    public const string ts.ItemName = "ts.ItemName";
 //}]}
-    }
 }

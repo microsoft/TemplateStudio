@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml.Controls;
 
 namespace Param_RootNamespace.Contracts.Services;
 
 public interface INavigationViewService
 {
-    IList<object> MenuItems
+    IList<object>? MenuItems
     {
         get;
     }
 
-    object SettingsItem
+    object? SettingsItem
     {
         get;
     }
@@ -20,5 +18,5 @@ public interface INavigationViewService
 
     void UnregisterEvents();
 
-    NavigationViewItem GetSelectedItem(Type pageType);
+    NavigationViewItem? GetSelectedItem(Type pageType);
 }

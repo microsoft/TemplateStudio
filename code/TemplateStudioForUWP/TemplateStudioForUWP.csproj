@@ -3,6 +3,7 @@
   <PropertyGroup>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <UseCodebase>true</UseCodebase>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugUWP|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -51,11 +52,11 @@
     <RootNamespace>TemplateStudioForUWP</RootNamespace>
     <AssemblyName>TemplateStudioForUWP</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <GeneratePkgDefFile>false</GeneratePkgDefFile>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
     <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
     <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
-    <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
     <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
     <StartAction>Program</StartAction>
     <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
@@ -175,10 +176,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Commands\Resources\TemplateStudioCommand.png" />
-    <Content Include="Commands\TemplateStudioForUWPPackage.vsct">
+    <VSCTCompile Include="Commands\TemplateStudioForUWPPackage.vsct">
       <Generator>VsctGenerator</Generator>
+      <ResourceName>Menus.ctmenu</ResourceName>
       <LastGenOutput>TemplateStudioForUWPPackage.cs</LastGenOutput>
-    </Content>
+    </VSCTCompile>
     <Content Include="cs-CZ\Extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

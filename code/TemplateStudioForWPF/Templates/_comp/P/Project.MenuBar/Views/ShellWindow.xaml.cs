@@ -4,16 +4,15 @@ using MahApps.Metro.Controls;
 
 using Prism.Regions;
 
-namespace Param_RootNamespace.Views
+namespace Param_RootNamespace.Views;
+
+public partial class ShellWindow : MetroWindow
 {
-    public partial class ShellWindow : MetroWindow
+    public ShellWindow(IRegionManager regionManager, IRightPaneService rightPaneService)
     {
-        public ShellWindow(IRegionManager regionManager, IRightPaneService rightPaneService)
-        {
-            InitializeComponent();
-            RegionManager.SetRegionName(menuContentControl, Regions.Main);
-            RegionManager.SetRegionManager(menuContentControl, regionManager);
-            rightPaneService.Initialize(splitView, rightPaneContentControl);
-        }
+        InitializeComponent();
+        RegionManager.SetRegionName(menuContentControl, Regions.Main);
+        RegionManager.SetRegionManager(menuContentControl, regionManager);
+        rightPaneService.Initialize(splitView, rightPaneContentControl);
     }
 }

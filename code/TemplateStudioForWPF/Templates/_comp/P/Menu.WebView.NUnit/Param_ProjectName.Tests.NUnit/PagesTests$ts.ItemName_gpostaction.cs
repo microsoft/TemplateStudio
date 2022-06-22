@@ -1,24 +1,23 @@
-﻿namespace Param_RootNamespace.Tests.NUnit
+﻿namespace Param_RootNamespace.Tests.NUnit;
+
+public class PagesTests
 {
-    public class PagesTests
+    [SetUp]
+    public void Setup()
     {
-        [SetUp]
-        public void Setup()
-        {
-            // App Services
+        // App Services
 //{[{
-            _container.RegisterType<IRightPaneService, RightPaneService>();
-//}]}
-        }
-//^^
-//{[{
-        // TODO: Add tests for functionality you add to ts.ItemNameViewModel.
-        [Test]
-        public void Testts.ItemNameViewModelCreation()
-        {
-            var vm = _container.Resolve<ts.ItemNameViewModel>();
-            Assert.IsNotNull(vm);
-        }
+        _container.RegisterType<IRightPaneService, RightPaneService>();
 //}]}
     }
+//^^
+//{[{
+    // TODO: Add tests for functionality you add to ts.ItemNameViewModel.
+    [Test]
+    public void Testts.ItemNameViewModelCreation()
+    {
+        var vm = _container.Resolve<ts.ItemNameViewModel>();
+        Assert.IsNotNull(vm);
+    }
+//}]}
 }

@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 
 namespace Param_RootNamespace.Contracts.Services;
 

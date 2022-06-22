@@ -2,7 +2,7 @@
     "$schema": "http://json.schemastore.org/template",
     "author": "Microsoft",
     "classifications": [
-      "Universal"
+        "Universal"
     ],
     "name": "Toast Notifications",
     "shortName": "Toast Notifications",
@@ -10,56 +10,56 @@
     "identity": "ts.WPF.Feat.ToastNotifications",
     "description": "Adds code to show displaying a toast and handling it being used to launch the app.",
     "tags": {
-      "language": "C#",
-      "type": "item",
-      "ts.type": "feature",
-      "ts.projecttype": "all",
-      "ts.frontendframework": "all",
-      "ts.platform": "Wpf",
-      "ts.version": "1.0.0",
-      "ts.displayOrder": "1",
-      "ts.group": "UserInteraction",
-      "ts.defaultInstance": "ToastNotifications",
-      "ts.licenses": "[Microsoft.Toolkit.Uwp.Notifications](https://github.com/windows-toolkit/WindowsCommunityToolkit/blob/main/License.md)",
-      "ts.multipleInstance": "false",
-      "ts.genGroup": "0",
-      "ts.rightClickEnabled":"false"
+        "language": "C#",
+        "type": "item",
+        "ts.type": "feature",
+        "ts.projecttype": "all",
+        "ts.frontendframework": "all",
+        "ts.platform": "Wpf",
+        "ts.version": "1.0.0",
+        "ts.displayOrder": "1",
+        "ts.group": "UserInteraction",
+        "ts.defaultInstance": "ToastNotifications",
+        "ts.licenses": "[CommunityToolkit.WinUI.Notifications](https://github.com/CommunityToolkit/dotnet/blob/main/License.md)",
+        "ts.multipleInstance": "false",
+        "ts.genGroup": "0",
+        "ts.rightClickEnabled": "false"
     },
     "sourceName": "ts.ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
-      {
-        "path": "Contracts/Services/IToastNotificationsService.cs"
-      },
-      {
-        "path": "Services/ToastNotificationsService.cs"
-      },
-      {
-        "path": "Services/ToastNotificationsService.Samples.cs"
-      }
+        {
+            "path": "Contracts/Services/IToastNotificationsService.cs"
+        },
+        {
+            "path": "Services/ToastNotificationsService.cs"
+        },
+        {
+            "path": "Services/ToastNotificationsService.Samples.cs"
+        }
     ],
     "symbols": {
-      "ts.projectName": {
-        "type": "parameter",
-        "replaces": "Param_ProjectName",
-        "fileRename": "Param_ProjectName"
-      },
-      "ts.rootNamespace": {
-        "type": "parameter",
-        "replaces": "Param_RootNamespace"
-      }
+        "ts.projectName": {
+            "type": "parameter",
+            "replaces": "Param_ProjectName",
+            "fileRename": "Param_ProjectName"
+        },
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        }
     },
     "postActions": [
-      {
-        "description": "Add nuget package",
-        "manualInstructions": [ ],
-        "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-        "args": {
-          "packageId": "Microsoft.Toolkit.Uwp.Notifications",
-          "version": "7.1.2",
-          "projectPath": "Param_ProjectName.csproj"
-        },
-        "continueOnError": true
-      }
+        {
+            "description": "Add nuget package",
+            "manualInstructions": [],
+            "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+            "args": {
+                "packageId": "CommunityToolkit.WinUI.Notifications",
+                "version": "7.1.2",
+                "projectPath": "Param_ProjectName.csproj"
+            },
+            "continueOnError": true
+        }
     ]
-  }
+}

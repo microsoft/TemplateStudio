@@ -2,6 +2,7 @@
   <PropertyGroup>
     <RootNamespace>Param_RootNamespace</RootNamespace>
     <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
 <!--^^-->
 <!--{[{-->
     <Platforms>x64;x86</Platforms>

@@ -12,12 +12,12 @@ public interface INavigationService
         get;
     }
 
-    Frame Frame
+    Frame? Frame
     {
         get; set;
     }
 
-    bool NavigateTo(string pageKey, object parameter = null, bool clearNavigation = false);
+    bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false);
 
     bool GoBack();
 }

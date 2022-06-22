@@ -1,30 +1,29 @@
-﻿namespace Param_RootNamespace.Services
+﻿namespace Param_RootNamespace.Services;
+
+public class ApplicationHostService : IHostedService
 {
-    public class ApplicationHostService : IHostedService
-    {
-        private readonly INavigationService _navigationService;
+    private readonly INavigationService _navigationService;
 //{[{
-        private readonly IRightPaneService _rightPaneService;
+    private readonly IRightPaneService _rightPaneService;
 //}]}
 
-        public ApplicationHostService(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
-        {
+    public ApplicationHostService(/*{[{*/IRightPaneService rightPaneService/*}]}*/)
+    {
 //^^
 //{[{
-            _rightPaneService = rightPaneService;
+        _rightPaneService = rightPaneService;
 //}]}
-        }
+    }
 
-        private async Task HandleActivationAsync()
+    private async Task HandleActivationAsync()
+    {
+        if (App.Current.Windows.OfType<IShellWindow>().Count() == 0)
         {
-            if (App.Current.Windows.OfType<IShellWindow>().Count() == 0)
-            {
-                _navigationService.Initialize(_shellWindow.GetNavigationFrame());
+            _navigationService.Initialize(_shellWindow.GetNavigationFrame());
 //{[{
-                _rightPaneService.Initialize(_shellWindow.GetRightPaneFrame(), _shellWindow.GetSplitView());
+            _rightPaneService.Initialize(_shellWindow.GetRightPaneFrame(), _shellWindow.GetSplitView());
 //}]}
-                _shellWindow.ShowWindow();
-            }
+            _shellWindow.ShowWindow();
         }
     }
 }

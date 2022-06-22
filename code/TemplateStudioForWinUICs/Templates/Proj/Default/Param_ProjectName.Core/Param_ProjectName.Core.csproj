@@ -5,6 +5,7 @@
     <RootNamespace>Param_RootNamespace.Core</RootNamespace>
     <Platforms>x86;x64;arm64;AnyCPU</Platforms>
     <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>

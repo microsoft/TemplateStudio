@@ -43,7 +43,7 @@ public partial class App : Application
         })
         .Build();
 
-    public static T GetService<T>()
+    public static T? GetService<T>()
         where T : class
     {
         return _host.Services.GetService(typeof(T)) as T;
@@ -54,7 +54,7 @@ public partial class App : Application
     {
 //^^
 //{[{
-        var activationService = App.GetService<IActivationService>();
+        var activationService = App.GetService<IActivationService>()!;
         await activationService.ActivateAsync(args);
 //}]}
     }

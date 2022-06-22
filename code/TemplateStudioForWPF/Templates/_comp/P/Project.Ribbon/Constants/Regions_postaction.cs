@@ -1,11 +1,10 @@
-﻿namespace Param_RootNamespace.Constants
+﻿namespace Param_RootNamespace.Constants;
+
+public class Regions
 {
-    public class Regions
-    {
 //^^
 //{[{
 
-        public const string RightPane = "RightPane";
+    public const string RightPane = "RightPane";
 //}]}
-    }
 }

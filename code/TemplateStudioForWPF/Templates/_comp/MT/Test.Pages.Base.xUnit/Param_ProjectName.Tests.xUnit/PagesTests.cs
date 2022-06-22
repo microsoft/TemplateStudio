@@ -10,33 +10,32 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Xunit;
 
-namespace Param_RootNamespace.Tests.XUnit
+namespace Param_RootNamespace.Tests.XUnit;
+
+public class PagesTests
 {
-    public class PagesTests
+    private readonly IHost _host;
+
+    public PagesTests()
     {
-        private readonly IHost _host;
+        var appLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location);
+        _host = Host.CreateDefaultBuilder()
+            .ConfigureAppConfiguration(c => c.SetBasePath(appLocation))
+            .ConfigureServices(ConfigureServices)
+            .Build();
+    }
 
-        public PagesTests()
-        {
-            var appLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location);
-            _host = Host.CreateDefaultBuilder()
-                .ConfigureAppConfiguration(c => c.SetBasePath(appLocation))
-                .ConfigureServices(ConfigureServices)
-                .Build();
-        }
+    private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
+    {
+        // Core Services
 
-        private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
-        {
-            // Core Services
+        // Services
+        services.AddSingleton<IPageService, PageService>();
+        services.AddSingleton<INavigationService, NavigationService>();
 
-            // Services
-            services.AddSingleton<IPageService, PageService>();
-            services.AddSingleton<INavigationService, NavigationService>();
+        // ViewModels
 
-            // ViewModels
-
-            // Configuration
-            services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
-        }
+        // Configuration
+        services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
     }
 }

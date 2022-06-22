@@ -3,18 +3,17 @@ using MahApps.Metro.Controls;
 using System.Windows.Controls;
 using Param_RootNamespace.Behaviors;
 //}]}
-namespace Param_RootNamespace.Contracts.Views
+namespace Param_RootNamespace.Contracts.Views;
+
+public interface IShellWindow
 {
-    public interface IShellWindow
-    {
 //^^
 //{[{
 
-        Frame GetRightPaneFrame();
+    Frame GetRightPaneFrame();
 
-        SplitView GetSplitView();
+    SplitView GetSplitView();
 
-        RibbonTabsBehavior GetRibbonTabsBehavior();
+    RibbonTabsBehavior GetRibbonTabsBehavior();
 //}]}
-    }
 }
