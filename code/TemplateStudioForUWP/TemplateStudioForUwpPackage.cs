@@ -20,8 +20,8 @@ using Task = System.Threading.Tasks.Task;
 
 namespace TemplateStudioForUWP
 {
-    [ProvideAutoLoad(ActivationContextGuid, PackageAutoLoadFlags.BackgroundLoad)]
-    [ProvideUIContextRule(ActivationContextGuid,
+    [ProvideAutoLoad(PackageGuids.guidTemplateStudioForUwpUIContextString, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideUIContextRule(PackageGuids.guidTemplateStudioForUwpUIContextString,
         name: "Load TW4UWP Project Package",
         expression: "HasUWP",
         termNames: new[] { "HasUWP" },
@@ -31,7 +31,6 @@ namespace TemplateStudioForUWP
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class TemplateStudioForUwpPackage : AsyncPackage
     {
-        public const string ActivationContextGuid = "AD9D5551-71CA-4860-8071-2FDB57A89551";
         private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
 
         private RightClickActions RightClickActions => _rightClickActions.Value;
