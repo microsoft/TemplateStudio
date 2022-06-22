@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "DataGrid",
-  "description": "Strona wyświetlająca prostą siatkę danych.",
-  "identity": "ts.WinUI.Page.DataGrid"
-}

@@ -3,6 +3,7 @@
   <PropertyGroup>
     <MinimumVisualStudioVersion>17.0</MinimumVisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <UseCodebase>true</UseCodebase>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWPF|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -51,11 +52,11 @@
     <RootNamespace>TemplateStudioForWPF</RootNamespace>
     <AssemblyName>TemplateStudioForWPF</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <GeneratePkgDefFile>false</GeneratePkgDefFile>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
     <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
     <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
-    <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
     <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
     <StartAction>Program</StartAction>
     <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
@@ -134,18 +135,18 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharedResources\SharedResources.csproj">
-      <Project>{d617cf2a-6ced-4a31-b87c-3a890d0dde93}</Project>
-      <Name>SharedResources</Name>
-      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
-    </ProjectReference>
-    <ProjectReference Include="..\src\ProjectTemplates\WPF\CS\Ts4WpfCsTemplate\Ts4WpfCsTemplate.csproj">
+    <ProjectReference Include="..\ProjectTemplates\WPF\Ts4WpfCsTemplate.csproj">
       <Project>{98849B09-BB00-4680-999E-60CA37011A87}</Project>
       <Name>Ts4WpfCsTemplate</Name>
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
+    <ProjectReference Include="..\SharedResources\SharedResources.csproj">
+      <Project>{d617cf2a-6ced-4a31-b87c-3a890d0dde93}</Project>
+      <Name>SharedResources</Name>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -193,10 +194,11 @@
       <Link>TemplateStudioKey.snk</Link>
     </Content>
     <Content Include="Commands\Resources\TemplateStudioCommand.png" />
-    <Content Include="Commands\TemplateStudioForWpfPackage.vsct">
+    <VSCTCompile Include="Commands\TemplateStudioForWpfPackage.vsct">
       <Generator>VsctGenerator</Generator>
+      <ResourceName>Menus.ctmenu</ResourceName>
       <LastGenOutput>TemplateStudioForWpfPackage.cs</LastGenOutput>
-    </Content>
+    </VSCTCompile>
     <Content Include="Content\EULA.cs-CZ.rtf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>

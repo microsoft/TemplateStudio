@@ -3,24 +3,23 @@ using MahApps.Metro.Controls;
 using Param_RootNamespace.Contracts.Views;
 using Param_RootNamespace.ViewModels;
 
-namespace Param_RootNamespace.Views
+namespace Param_RootNamespace.Views;
+
+public partial class ShellDialogWindow : MetroWindow, IShellDialogWindow
 {
-    public partial class ShellDialogWindow : MetroWindow, IShellDialogWindow
+    public ShellDialogWindow(ShellDialogViewModel viewModel)
     {
-        public ShellDialogWindow(ShellDialogViewModel viewModel)
-        {
-            InitializeComponent();
-            viewModel.SetResult = OnSetResult;
-            DataContext = viewModel;
-        }
+        InitializeComponent();
+        viewModel.SetResult = OnSetResult;
+        DataContext = viewModel;
+    }
 
-        public Frame GetDialogFrame()
-            => dialogFrame;
+    public Frame GetDialogFrame()
+        => dialogFrame;
 
-        private void OnSetResult(bool? result)
-        {
-            DialogResult = result;
-            Close();
-        }
+    private void OnSetResult(bool? result)
+    {
+        DialogResult = result;
+        Close();
     }
 }

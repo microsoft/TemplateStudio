@@ -12,17 +12,24 @@ public class Param_ItemNameDetailViewModel : ObservableRecipient, INavigationAwa
 //{[{
     private readonly INavigationService _navigationService;
 //}]}
+
 //^^
 //{[{
-    private ICommand _goBackCommand;
+    public ICommand GoBackCommand
+    {
+        get;
+    }
 
-    public ICommand GoBackCommand => _goBackCommand ??= new RelayCommand(OnGoBack);
 //}]}
-
     public Param_ItemNameDetailViewModel(/*{[{*/INavigationService navigationService/*}]}*/)
     {
 //{[{
         _navigationService = navigationService;
+//}]}
+//^^
+//{[{
+
+        GoBackCommand = new RelayCommand(OnGoBack);
 //}]}
     }
 

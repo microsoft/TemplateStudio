@@ -1,0 +1,17 @@
+﻿[
+    {
+        "name": "Blank",
+        "displayName": "Blank",
+        "summary": "Включена навигационная рамка и основные услуги и стили."
+    },
+    {
+        "name": "NavView",
+        "displayName": "Navigation Pane",
+        "summary": "Включает \"меню-гамбургер\" для перехода между страницами."
+    },
+    {
+        "name": "MenuBar",
+        "displayName": "Menu Bar",
+        "summary": "Добавленное меню позволяет перемещаться между страницами."
+    }
+]

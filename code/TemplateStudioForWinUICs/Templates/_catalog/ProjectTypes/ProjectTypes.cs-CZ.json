@@ -1,0 +1,17 @@
+﻿[
+    {
+        "name": "Blank",
+        "displayName": "Blank",
+        "summary": "Součástí balení je navigační rámec a základní služby a styly."
+    },
+    {
+        "name": "NavView",
+        "displayName": "Navigation Pane",
+        "summary": "Zahrnuje také nabídku typu „hamburger“ pro navigaci mezi stránkami."
+    },
+    {
+        "name": "MenuBar",
+        "displayName": "Menu Bar",
+        "summary": "Je přidána nabídka pro přecházení mezi stránkami."
+    }
+]

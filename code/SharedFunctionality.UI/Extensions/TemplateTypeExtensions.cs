@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.UI.Extensions
 {
@@ -36,13 +36,13 @@ namespace Microsoft.Templates.UI.Extensions
             switch (templateType)
             {
                 case TemplateType.Page:
-                    return StringRes.NewProjectStepPages;
+                    return Resources.NewProjectStepPages;
                 case TemplateType.Feature:
-                    return StringRes.NewProjectStepFeatures;
+                    return Resources.NewProjectStepFeatures;
                 case TemplateType.Service:
-                    return StringRes.NewProjectStepServices;
+                    return Resources.NewProjectStepServices;
                 case TemplateType.Testing:
-                    return StringRes.NewProjectStepTesting;
+                    return Resources.NewProjectStepTesting;
                 default:
                     return string.Empty;
             }
@@ -53,13 +53,13 @@ namespace Microsoft.Templates.UI.Extensions
             switch (templateType)
             {
                 case TemplateType.Page:
-                    return StringRes.AddPagesTitle;
+                    return Resources.AddPagesTitle;
                 case TemplateType.Feature:
-                    return StringRes.AddFeaturesTitle;
+                    return Resources.AddFeaturesTitle;
                 case TemplateType.Service:
-                    return StringRes.AddServiceTitle;
+                    return Resources.AddServiceTitle;
                 case TemplateType.Testing:
-                    return StringRes.AddTestingTitle;
+                    return Resources.AddTestingTitle;
                 default:
                     return string.Empty;
             }

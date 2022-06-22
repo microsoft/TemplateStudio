@@ -2,16 +2,15 @@
 using Param_RootNamespace.Services;
 using Param_RootNamespace.Contracts.Services;
 //}]}
-namespace Param_RootNamespace.Tests.XUnit
+namespace Param_RootNamespace.Tests.XUnit;
+
+public class PagesTests
 {
-    public class PagesTests
+    public PagesTests()
     {
-        public PagesTests()
-        {
-            // App Services
+        // App Services
 //{[{
-            _container.RegisterType<IThemeSelectorService, ThemeSelectorService>();
+        _container.RegisterType<IThemeSelectorService, ThemeSelectorService>();
 //}]}
-        }
     }
 }

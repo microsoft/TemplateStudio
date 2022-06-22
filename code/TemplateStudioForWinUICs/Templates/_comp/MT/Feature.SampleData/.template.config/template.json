@@ -1,28 +1,28 @@
 ﻿{
     "$schema": "http://json.schemastore.org/template",
-  "author": "Microsoft Community",
+    "author": "Microsoft Community",
     "classifications": [
-      "Universal"
+        "Universal"
     ],
     "name": "ts.WinUI.MVVMToolkit.Feat.SampleData",
     "shortName": "ts.WinUI.MVVMToolkit.Feat.SampleData",
     "identity": "ts.WinUI.MVVMToolkit.Feat.SampleData",
     "tags": {
-    "language": "C#",
-    "type": "item",
-    "ts.type": "composition",
-    "ts.platform": "WinUI",
-    "ts.version": "1.0.0",
-    "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WinUI.Feat.SampleData"
-  },
+        "language": "C#",
+        "type": "item",
+        "ts.type": "composition",
+        "ts.platform": "WinUI",
+        "ts.version": "1.0.0",
+        "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WinUI.Feat.SampleData"
+    },
     "sourceName": "Param_ItemName",
     "preferNameDirectory": true,
     "PrimaryOutputs": [
     ],
     "symbols": {
-      "ts.rootNamespace": {
-        "type": "parameter",
-        "replaces": "Param_RootNamespace"
-      }
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        }
     }
-  }
+}

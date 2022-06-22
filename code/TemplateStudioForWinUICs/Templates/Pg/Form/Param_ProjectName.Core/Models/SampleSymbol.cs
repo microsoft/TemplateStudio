@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Param_RootNamespace.Core.Models;
+﻿namespace Param_RootNamespace.Core.Models;
 
 public class SampleSymbol
 {

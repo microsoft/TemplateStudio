@@ -1,54 +1,54 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/template",
-  "author": "Microsoft",
-  "classifications": [
-    "Universal"
-  ],
-  "name": "WebView",
-  "shortName": "WebView",
-  "identity": "ts.WinUI.Page.WebView",
-  "groupIdentity": "ts.WinUI.Page.WebView",
-  "description": "The web view page renders web content using WebView2 (Microsoft Edge with Chromium).",
-  "tags": {
-    "language": "C#",
-    "type": "item",
-    "ts.type": "page",
-    "ts.projecttype": "Blank|SplitView|MenuBar",
-    "ts.frontendframework": "all",
-    "ts.platform": "WinUI",
-    "ts.appmodel": "Desktop",
-    "ts.version": "1.0.0",
-    "ts.displayOrder": "3",
-    "ts.genGroup": "0",
-    "ts.rightClickEnabled":"true"
-  },
-  "sourceName": "Param_ItemName",
-  "preferNameDirectory": true,
-  "PrimaryOutputs": [
-    {
-      "path": "Contracts/Services/IWebViewService.cs"
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+        "Universal"
+    ],
+    "name": "Web View",
+    "shortName": "Web View",
+    "identity": "ts.WinUI.Page.WebView",
+    "groupIdentity": "ts.WinUI.Page.WebView",
+    "description": "The web view page renders web content using WebView2 (Microsoft Edge with Chromium).",
+    "tags": {
+        "language": "C#",
+        "type": "item",
+        "ts.type": "page",
+        "ts.projecttype": "Blank|NavView|MenuBar",
+        "ts.frontendframework": "all",
+        "ts.platform": "WinUI",
+        "ts.appmodel": "Desktop",
+        "ts.version": "1.0.0",
+        "ts.displayOrder": "3",
+        "ts.genGroup": "0",
+        "ts.rightClickEnabled": "true"
     },
-    {
-      "path": "Services/WebViewService.cs"
-    },
-    {
-      "path": "ViewModels/Param_ItemNameViewModel.cs"
-    },
-    {
-      "path": "Views/Param_ItemNamePage.xaml"
-    },
-    {
-      "path": "Views/Param_ItemNamePage.xaml.cs"
+    "sourceName": "Param_ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+        {
+            "path": "Contracts/Services/IWebViewService.cs"
+        },
+        {
+            "path": "Services/WebViewService.cs"
+        },
+        {
+            "path": "ViewModels/Param_ItemNameViewModel.cs"
+        },
+        {
+            "path": "Views/Param_ItemNamePage.xaml"
+        },
+        {
+            "path": "Views/Param_ItemNamePage.xaml.cs"
+        }
+    ],
+    "symbols": {
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        },
+        "baseclass": {
+            "type": "parameter",
+            "replaces": "System.ComponentModel.INotifyPropertyChanged"
+        }
     }
-  ],
-  "symbols": {
-    "ts.rootNamespace": {
-      "type": "parameter",
-      "replaces": "Param_RootNamespace"
-    },
-    "baseclass": {
-      "type": "parameter",
-      "replaces": "System.ComponentModel.INotifyPropertyChanged"
-    }
-  }
 }

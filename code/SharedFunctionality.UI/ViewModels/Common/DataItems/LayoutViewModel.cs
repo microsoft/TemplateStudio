@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -20,7 +20,7 @@ namespace Microsoft.Templates.UI.ViewModels.Common
             {
                 Template = new TemplateInfoViewModel(layout.Template, context)
                 {
-                    Title = string.Format(StringRes.TemplateDetailsLayoutOptional, layout.Template.Name),
+                    Title = string.Format(Resources.TemplateDetailsLayoutOptional, layout.Template.Name),
                 };
             }
             else

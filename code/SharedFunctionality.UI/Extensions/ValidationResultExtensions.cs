@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Naming;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Controls;
 
 namespace Microsoft.Templates.UI.Extensions
@@ -17,22 +17,22 @@ namespace Microsoft.Templates.UI.Extensions
             switch (validationError.ErrorType)
             {
                 case ValidationErrorType.EmptyName:
-                    return Notification.Error(StringRes.NotificationValidationError_Empty, ErrorCategory.NamingValidation, CategoriesToOverride);
+                    return Notification.Error(Resources.NotificationValidationError_Empty, ErrorCategory.NamingValidation, CategoriesToOverride);
                 case ValidationErrorType.AlreadyExists:
-                    return Notification.Error(StringRes.NotificationValidationError_AlreadyExists, ErrorCategory.NamingValidation, CategoriesToOverride);
+                    return Notification.Error(Resources.NotificationValidationError_AlreadyExists, ErrorCategory.NamingValidation, CategoriesToOverride);
                 case ValidationErrorType.Regex:
                     switch (validationError.ValidatorName)
                     {
                         case "badFormat":
-                            return Notification.Error(StringRes.NotificationValidationError_BadFormat, ErrorCategory.NamingValidation, CategoriesToOverride);
+                            return Notification.Error(Resources.NotificationValidationError_BadFormat, ErrorCategory.NamingValidation, CategoriesToOverride);
                         case "itemEndsWithPage":
-                            return Notification.Error(string.Format(StringRes.NotificationValidationError_PageSuffix, Configuration.Current.GitHubDocsUrl), ErrorCategory.NamingValidation, CategoriesToOverride);
+                            return Notification.Error(string.Format(Resources.NotificationValidationError_PageSuffix, Configuration.Current.GitHubDocsUrl), ErrorCategory.NamingValidation, CategoriesToOverride);
                         default:
-                            return Notification.Error(string.Format(StringRes.NotificationValidationError_Regex, validationError.ValidatorName));
+                            return Notification.Error(string.Format(Resources.NotificationValidationError_Regex, validationError.ValidatorName));
                     }
 
                 case ValidationErrorType.ReservedName:
-                    return Notification.Error(StringRes.NotificationValidationError_ReservedName, ErrorCategory.NamingValidation, CategoriesToOverride);
+                    return Notification.Error(Resources.NotificationValidationError_ReservedName, ErrorCategory.NamingValidation, CategoriesToOverride);
                 default:
                     return null;
             }

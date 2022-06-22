@@ -1,59 +1,59 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/template",
-  "author": "Microsoft",
-  "classifications": [
-    "Universal"
-  ],
-  "name": "Form",
-  "shortName": "Form",
-  "identity": "ts.WinUI.Page.Form",
-  "groupIdentity": "ts.WinUI.Page.Form",
-  "description": "This page contains a basic form page with validators.",
-  "tags": {
-    "language": "C#",
-    "type": "item",
-    "ts.type": "page",
-    "ts.projecttype": "Blank|SplitView|MenuBar",
-    "ts.frontendframework": "all",
-    "ts.platform": "WinUI",
-    "ts.appmodel": "Desktop",
-    "ts.version": "1.0.0",
-    "ts.displayOrder": "7",
-    "ts.genGroup": "0",
-    "ts.isHidden": "true",
-    "ts.rightClickEnabled":"true",
-    "ts.outputToParent": "true",
-    "ts.dependencies":"ts.WinUI.Feat.SampleData"
-  },
-  "sourceName": "Param_ItemName",
-  "preferNameDirectory": true,
-  "PrimaryOutputs": [
-    {
-      "path": "Param_ProjectName/ViewModels/Param_ItemNameViewModel.cs"
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+        "Universal"
+    ],
+    "name": "Form",
+    "shortName": "Form",
+    "identity": "ts.WinUI.Page.Form",
+    "groupIdentity": "ts.WinUI.Page.Form",
+    "description": "This page contains a basic form page with validators.",
+    "tags": {
+        "language": "C#",
+        "type": "item",
+        "ts.type": "page",
+        "ts.projecttype": "Blank|NavView|MenuBar",
+        "ts.frontendframework": "all",
+        "ts.platform": "WinUI",
+        "ts.appmodel": "Desktop",
+        "ts.version": "1.0.0",
+        "ts.displayOrder": "7",
+        "ts.genGroup": "0",
+        "ts.isHidden": "true",
+        "ts.rightClickEnabled": "true",
+        "ts.outputToParent": "true",
+        "ts.dependencies": "ts.WinUI.Feat.SampleData"
     },
-    {
-      "path": "Param_ProjectName/Views/Param_ItemNamePage.xaml"
-    },
-    {
-      "path": "Param_ProjectName/Views/Param_ItemNamePage.xaml.cs"
-    },
-    {
-      "path": "Param_ProjectName.Core/Models/SampleSymbol.cs"
+    "sourceName": "Param_ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+        {
+            "path": "Param_ProjectName/ViewModels/Param_ItemNameViewModel.cs"
+        },
+        {
+            "path": "Param_ProjectName/Views/Param_ItemNamePage.xaml"
+        },
+        {
+            "path": "Param_ProjectName/Views/Param_ItemNamePage.xaml.cs"
+        },
+        {
+            "path": "Param_ProjectName.Core/Models/SampleSymbol.cs"
+        }
+    ],
+    "symbols": {
+        "ts.projectName": {
+            "type": "parameter",
+            "replaces": "Param_ProjectName",
+            "fileRename": "Param_ProjectName"
+        },
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        },
+        "baseclass": {
+            "type": "parameter",
+            "replaces": "System.ComponentModel.INotifyPropertyChanged"
+        }
     }
-  ],
-  "symbols": {
-    "ts.projectName": {
-      "type": "parameter",
-      "replaces": "Param_ProjectName",
-      "fileRename": "Param_ProjectName"
-    },
-    "ts.rootNamespace": {
-      "type": "parameter",
-      "replaces": "Param_RootNamespace"
-    },
-    "baseclass": {
-      "type": "parameter",
-      "replaces": "System.ComponentModel.INotifyPropertyChanged"
-    }
-  }
 }

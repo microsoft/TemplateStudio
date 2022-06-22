@@ -6,6 +6,7 @@
     <AssetTargetFallback>uap10.0.18362</AssetTargetFallback>
     <Platforms>x64;x86;AnyCPU</Platforms>
     <RootNamespace>Param_RootNamespace.Tests.xUnit</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">

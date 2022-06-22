@@ -14,7 +14,7 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Core.PostActions;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Gen
 {
@@ -100,15 +100,15 @@ namespace Microsoft.Templates.Core.Gen
             switch (genInfo.Template.GetTemplateType())
             {
                 case TemplateType.Project:
-                    return string.Format(StringRes.StatusBarGeneratingProjectMessage, genInfo.Name);
+                    return string.Format(Resources.StatusBarGeneratingProjectMessage, genInfo.Name);
                 case TemplateType.Page:
-                    return string.Format(StringRes.StatusBarGeneratingPageMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
+                    return string.Format(Resources.StatusBarGeneratingPageMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
                 case TemplateType.Feature:
-                    return string.Format(StringRes.StatusBarGeneratingFeatureMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
+                    return string.Format(Resources.StatusBarGeneratingFeatureMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
                 case TemplateType.Service:
-                    return string.Format(StringRes.StatusBarGeneratingServiceMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
+                    return string.Format(Resources.StatusBarGeneratingServiceMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
                 case TemplateType.Testing:
-                    return string.Format(StringRes.StatusBarGeneratingTestingMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
+                    return string.Format(Resources.StatusBarGeneratingTestingMessage, $"{genInfo.Name} ({genInfo.Template.Name})");
                 default:
                     return null;
             }
@@ -127,7 +127,7 @@ namespace Microsoft.Templates.Core.Gen
                     if (!result.IsValid)
                     {
                         var errors = string.Join(Environment.NewLine, result.Errors.Select(e => $"Error: {e.ErrorType}; Validator: {e.ValidatorName}."));
-                        throw new InvalidDataException(string.Format(StringRes.ErrorProjectNameValidationFailed, GenContext.Current.ProjectName, Environment.NewLine + errors));
+                        throw new InvalidDataException(string.Format(Resources.ErrorProjectNameValidationFailed, GenContext.Current.ProjectName, Environment.NewLine + errors));
                     }
                 }
             }
@@ -147,7 +147,7 @@ namespace Microsoft.Templates.Core.Gen
                         if (!validationResult.IsValid)
                         {
                             var errors = string.Join(Environment.NewLine, validationResult.Errors.Select(e => $"Error: {e.ErrorType}; Validator: {e.ValidatorName}."));
-                            throw new InvalidDataException(string.Format(StringRes.ErrorNamingValidationFailed, item.Name, Environment.NewLine + errors));
+                            throw new InvalidDataException(string.Format(Resources.ErrorNamingValidationFailed, item.Name, Environment.NewLine + errors));
                         }
                     }
                 }
@@ -158,7 +158,7 @@ namespace Microsoft.Templates.Core.Gen
                 {
                     if (!userSelection.Items.Any(i => i.TemplateId == dependency.Identity))
                     {
-                        throw new InvalidDataException(string.Format(StringRes.ErrorDependencyMissing, dependency));
+                        throw new InvalidDataException(string.Format(Resources.ErrorDependencyMissing, dependency));
                     }
                 }
 
@@ -166,7 +166,7 @@ namespace Microsoft.Templates.Core.Gen
 
                 if (requirements.Count() > 0 && !userSelection.Items.Any(i => requirements.Select(r => r.Identity).Contains(i.TemplateId)))
                 {
-                    throw new InvalidDataException(string.Format(StringRes.ErrorRequirementMissing, requirements.Select(r => r.Name).Aggregate((i, j) => $"{i},{j}")));
+                    throw new InvalidDataException(string.Format(Resources.ErrorRequirementMissing, requirements.Select(r => r.Name).Aggregate((i, j) => $"{i},{j}")));
                 }
 
                 var exclusionTemplates = GenContext.ToolBox.Repo.GetExclusions(template, userSelection.Context);
@@ -175,7 +175,7 @@ namespace Microsoft.Templates.Core.Gen
                 {
                     if (userSelection.Items.Any(i => i.TemplateId == exclusion.Identity))
                     {
-                        throw new InvalidDataException(string.Format(StringRes.ErrorExcludedTemplatesFound, exclusion.Name));
+                        throw new InvalidDataException(string.Format(Resources.ErrorExcludedTemplatesFound, exclusion.Name));
                     }
                 }
             }

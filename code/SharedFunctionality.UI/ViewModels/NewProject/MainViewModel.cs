@@ -10,7 +10,7 @@ using System.Windows;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
@@ -77,8 +77,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         {
             get
             {
-                yield return StepData.MainStep(NewProjectStepProjectType, "1", StringRes.NewProjectStepProjectType, () => new ProjectTypePage(), true, true);
-                yield return StepData.MainStep(NewProjectStepFramework, "2", StringRes.NewProjectStepDesignPattern, () => new FrameworkPage());
+                yield return StepData.MainStep(NewProjectStepProjectType, "1", Resources.NewProjectStepProjectType, () => new ProjectTypePage(), true, true);
+                yield return StepData.MainStep(NewProjectStepFramework, "2", Resources.NewProjectStepDesignPattern, () => new FrameworkPage());
             }
         }
 
@@ -87,19 +87,19 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             switch (context.Platform)
             {
                 case Platforms.Uwp:
-                    WizardStatus.Title = $"{StringRes.NewProjectTitleUWP} ({GenContext.Current.ProjectName})";
+                    WizardStatus.Title = $"{Resources.NewProjectTitleUWP} ({GenContext.Current.ProjectName})";
                     break;
                 case Platforms.Wpf:
-                    WizardStatus.Title = $"{StringRes.NewProjectTitleWPF} ({GenContext.Current.ProjectName})";
+                    WizardStatus.Title = $"{Resources.NewProjectTitleWPF} ({GenContext.Current.ProjectName})";
                     break;
                 case Platforms.WinUI:
                     switch (context.GetAppModel())
                     {
                         case AppModels.Desktop:
-                            WizardStatus.Title = $"{StringRes.NewProjectTitleWinUIDesktop} ({GenContext.Current.ProjectName})";
+                            WizardStatus.Title = $"{Resources.NewProjectTitleWinUIDesktop} ({GenContext.Current.ProjectName})";
                             break;
                         case AppModels.Uwp:
-                            WizardStatus.Title = $"{StringRes.NewProjectTitleWinUIUWP} ({GenContext.Current.ProjectName})";
+                            WizardStatus.Title = $"{Resources.NewProjectTitleWinUIUWP} ({GenContext.Current.ProjectName})";
                             break;
                     }
 
@@ -272,7 +272,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
             catch (Exception ex)
             {
-                await NotificationsControl.AddNotificationAsync(Notification.Error(StringRes.NotificationSyncError_Refresh));
+                await NotificationsControl.AddNotificationAsync(Notification.Error(Resources.NotificationSyncError_Refresh));
 
                 await AppHealth.Current.Error.TrackAsync(ex.ToString());
                 await AppHealth.Current.Exception.TrackAsync(ex);

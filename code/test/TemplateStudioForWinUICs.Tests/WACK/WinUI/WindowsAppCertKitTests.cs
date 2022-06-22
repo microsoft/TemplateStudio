@@ -66,26 +66,24 @@ namespace Microsoft.Templates.Test.WinUICs.Wack
             // Replace the default assets in the generated project or they will cause WACK to fail
             foreach (var assetFile in new DirectoryInfo("./TestData/NonDefaultAssets").GetFiles("*.png"))
             {
-                File.Copy(assetFile.FullName, Path.Combine(GenContext.Current.DestinationPath + " (Package)", "Images", assetFile.Name), overwrite: true);
+                File.Copy(assetFile.FullName, Path.Combine(GenContext.Current.DestinationPath, "Assets", assetFile.Name), overwrite: true);
             }
-
-            var packagingProjectName = projectName + " (Package)";
 
             var batFile = language == ProgrammingLanguages.Cpp ? "bat\\WinUI\\RestoreAndBuildCppAppx.bat" : "bat\\WinUI\\RestoreAndBuildAppx.bat";
 
             // Create MSIXBundle
             // NOTE. This is very slow. (i.e. ~10+ mins) as it does a full release build including all .net native compilation
-            var (exitCode, outputFile) = _fixture.BuildMsixBundle(projectName, projectPath, packagingProjectName, "wapproj", batFile);
+            var (exitCode, outputFile) = _fixture.BuildMsixBundle(projectName, projectPath, projectName, "csproj", batFile);
 
-            Assert.True(exitCode.Equals(0), $"Failed to create MsixBundle for {packagingProjectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(outputFile)} for more details.");
+            Assert.True(exitCode.Equals(0), $"Failed to create MsixBundle for {projectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(outputFile)} for more details.");
 
-            var bundleFile = new DirectoryInfo(Path.Combine(projectPath, packagingProjectName, "AppPackages")).GetFiles("*.msixbundle", SearchOption.AllDirectories).First().FullName;
+            var bundleFile = new DirectoryInfo(Path.Combine(projectPath, projectName, "AppPackages")).GetFiles("*.msix", SearchOption.AllDirectories).First().FullName;
 
             // Run WACK test
             // NOTE. This requires elevation. If not elevated you'll get a UAC prompt
             var wackResult = _fixture.RunWackTestOnMsixBundle(bundleFile, projectPath);
 
-            Assert.True(wackResult.exitCode.Equals(0), $"Failed to create MsixBundle for {packagingProjectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(wackResult.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(wackResult.outputFile)} for more details.");
+            Assert.True(wackResult.exitCode.Equals(0), $"Failed to create MsixBundle for {projectName}. {Environment.NewLine}Errors found: {_fixture.GetErrorLines(wackResult.outputFile)}.{Environment.NewLine}Please see {Path.GetFullPath(wackResult.outputFile)} for more details.");
 
             var overallSuccessXml = @"OVERALL_RESULT=""PASS""";
 

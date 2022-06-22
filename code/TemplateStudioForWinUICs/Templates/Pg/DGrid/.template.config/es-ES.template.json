@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft",
-  "name": "DataGrid",
-  "description": "Página que muestra una cuadrícula de datos simple.",
-  "identity": "ts.WinUI.Page.DataGrid"
-}

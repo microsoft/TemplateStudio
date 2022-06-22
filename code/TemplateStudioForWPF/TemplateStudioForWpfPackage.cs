@@ -12,10 +12,15 @@ using Microsoft.VisualStudio.Shell;
 using TemplateStudioForWPF.Commands;
 using Task = System.Threading.Tasks.Task;
 
+// https://docs.microsoft.com/visualstudio/extensibility/how-to-use-asyncpackage-to-load-vspackages-in-the-background?view=vs-2022
+// https://docs.microsoft.com/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2022
+// https://docs.microsoft.com/visualstudio/extensibility/internals/authoring-dot-vsct-files?view=vs-2022
+// https://docs.microsoft.com/visualstudio/extensibility/command-flag-element?view=vs-2022
+
 namespace TemplateStudioForWPF
 {
-    [ProvideAutoLoad(ActivationContextGuid, PackageAutoLoadFlags.BackgroundLoad)]
-    [ProvideUIContextRule(ActivationContextGuid,
+    [ProvideAutoLoad(PackageGuids.guidTemplateStudioForWpfUIContextString, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideUIContextRule(PackageGuids.guidTemplateStudioForWpfUIContextString,
         name: "Load TS4WPF Project Package",
         expression: "HasWPF & UsesCSharp",
         termNames: new[] { "HasWPF", "UsesCSharp" },
@@ -25,7 +30,6 @@ namespace TemplateStudioForWPF
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class TemplateStudioForWpfPackage : AsyncPackage
     {
-        public const string ActivationContextGuid = "2ECF80C7-AF46-4304-B2EE-B04C8BD28255";
         private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
 
         private RightClickActions RightClickActions => _rightClickActions.Value;

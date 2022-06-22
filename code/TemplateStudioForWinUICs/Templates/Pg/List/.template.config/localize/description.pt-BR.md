@@ -1,0 +1,3 @@
+﻿O padrão lista/detalhes tem um painel de lista (geralmente com uma exibição de lista) e um painel de detalhes para conteúdo. Quando um item da lista é selecionado, o painel de detalhes é atualizado. Este padrão é frequentemente usado para livros de e-mail e endereços.
+
+Mais informações sobre o padrão lista/detalhes podem ser encontradas em [docs.microsoft.com](https://docs.microsoft.com/windows/apps/design/controls/list-details).

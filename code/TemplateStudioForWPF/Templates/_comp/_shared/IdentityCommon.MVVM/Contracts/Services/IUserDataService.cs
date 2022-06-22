@@ -1,14 +1,12 @@
-﻿using System;
-using Param_RootNamespace.ViewModels;
+﻿using Param_RootNamespace.ViewModels;
 
-namespace Param_RootNamespace.Contracts.Services
+namespace Param_RootNamespace.Contracts.Services;
+
+public interface IUserDataService
 {
-    public interface IUserDataService
-    {
-        event EventHandler<UserViewModel> UserDataUpdated;
+    event EventHandler<UserViewModel> UserDataUpdated;
 
-        void Initialize();
+    void Initialize();
 
-        UserViewModel GetUser();
-    }
+    UserViewModel GetUser();
 }

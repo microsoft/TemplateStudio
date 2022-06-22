@@ -5,7 +5,7 @@
 using System;
 using System.IO;
 using System.Linq;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core
 {
@@ -21,7 +21,7 @@ namespace Microsoft.Templates.Core
             var values = value.Split("|".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             if (values.Any(v => v != v.Trim()))
             {
-                throw new InvalidDataException(string.Format(StringRes.ErrorExtraWhitespacesInMultiValues, value));
+                throw new InvalidDataException(string.Format(Resources.ErrorExtraWhitespacesInMultiValues, value));
             }
 
             return values;

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.PostActions;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Gen
 {
@@ -62,7 +62,7 @@ namespace Microsoft.Templates.Core.Gen
             }
             catch (Exception ex)
             {
-                AppHealth.Current.Exception.TrackAsync(ex, StringRes.ErrorTrackTelemetryException).FireAndForget();
+                AppHealth.Current.Exception.TrackAsync(ex, Resources.ErrorTrackTelemetryException).FireAndForget();
             }
         }
     }

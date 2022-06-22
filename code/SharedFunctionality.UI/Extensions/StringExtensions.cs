@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.UI.Extensions
 {
@@ -14,13 +14,13 @@ namespace Microsoft.Templates.UI.Extensions
             switch (requiredWorkload)
             {
                 case "Microsoft.VisualStudio.Workload.ManagedDesktop":
-                    return StringRes.WorkloadDisplayNameManagedDesktop;
+                    return Resources.WorkloadDisplayNameManagedDesktop;
                 case "Microsoft.VisualStudio.Workload.Universal":
-                    return StringRes.WorkloadDisplayNameUniversal;
+                    return Resources.WorkloadDisplayNameUniversal;
                 case "Microsoft.VisualStudio.Workload.NetWeb":
-                    return StringRes.WorkloadDisplayNameNetWeb;
+                    return Resources.WorkloadDisplayNameNetWeb;
                 case "Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging":
-                    return StringRes.WorkloadDisplayNameMsixPackaging;
+                    return Resources.WorkloadDisplayNameMsixPackaging;
                 default:
                     return requiredWorkload;
             }
@@ -31,11 +31,11 @@ namespace Microsoft.Templates.UI.Extensions
             switch (platform)
             {
                 case Platforms.Uwp:
-                    return StringRes.UWP;
+                    return Resources.UWP;
                 case Platforms.Wpf:
-                    return StringRes.WPF;
+                    return Resources.WPF;
                 case Platforms.WinUI:
-                    return StringRes.WinUI;
+                    return Resources.WinUI;
                 default:
                     return platform;
             }

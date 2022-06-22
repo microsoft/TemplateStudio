@@ -2,16 +2,15 @@
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Services;
 //}]}
-namespace Param_RootNamespace
+namespace Param_RootNamespace;
+
+public partial class App : PrismApplication
 {
-    public partial class App : PrismApplication
+    protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-            // App Services
+        // App Services
 //{[{
-            containerRegistry.Register<ISampleDataService, SampleDataService>();
+        containerRegistry.Register<ISampleDataService, SampleDataService>();
 //}]}
-        }
     }
 }

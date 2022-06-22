@@ -4,13 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:res="clr-namespace:Microsoft.Templates.Resources;assembly=SharedResources"
+    xmlns:res="clr-namespace:Microsoft.Templates.SharedResources;assembly=SharedResources"
     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
     xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
     ResizeMode="NoResize"
     SizeToContent="Height"
     WindowStartupLocation="CenterScreen"
-    Title="{x:Static res:StringRes.WindowsTemplateStudio}"     
+    Title="{x:Static res:Resources.WindowsTemplateStudio}"     
     MouseLeftButtonDown="OnMouseLeftButtonDown" 
     mc:Ignorable="d"
     MinHeight="180" Width="450">
@@ -60,8 +60,8 @@
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource TSGridMainFooter}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_LeftTopRightBottom}">
-                <Button Style="{StaticResource TSButtonFinish}" Content="{x:Static res:StringRes.ButtonYes}" Command="{Binding AcceptCommand}" />
-                <Button Style="{StaticResource TSButton}" Content="{x:Static res:StringRes.ButtonNo}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" />
+                <Button Style="{StaticResource TSButtonFinish}" Content="{x:Static res:Resources.ButtonYes}" Command="{Binding AcceptCommand}" />
+                <Button Style="{StaticResource TSButton}" Content="{x:Static res:Resources.ButtonNo}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" />
             </StackPanel>
         </Grid>
         <Button Style="{StaticResource TSButtonCloseWindow}" Command="{Binding CancelCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" />

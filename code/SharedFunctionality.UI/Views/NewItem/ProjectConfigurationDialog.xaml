@@ -6,11 +6,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:services="clr-namespace:Microsoft.Templates.UI.Services"
     xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
-    xmlns:res="clr-namespace:Microsoft.Templates.Resources;assembly=SharedResources"
+    xmlns:res="clr-namespace:Microsoft.Templates.SharedResources;assembly=SharedResources"
     xmlns:converters="clr-namespace:Microsoft.Templates.UI.Converters"
     ResizeMode="NoResize"
     SizeToContent="Height"
-    Title="{x:Static res:StringRes.WindowsTemplateStudio}"
+    Title="{x:Static res:Resources.WindowsTemplateStudio}"
     MouseLeftButtonDown="OnMouseLeftButtonDown"
     WindowStartupLocation="CenterScreen"
     MinWidth="450"
@@ -69,7 +69,7 @@
 
             <StackPanel  Grid.Row="2">
                 <TextBlock
-                    Text="{x:Static res:StringRes.ProjectConfigurationSelectPlatform}"
+                    Text="{x:Static res:Resources.ProjectConfigurationSelectPlatform}"
                     Margin="{StaticResource Margin_L_Top}"
                     Style="{StaticResource TSTextBlockProjectConfigurationComboBoxHeaderStyle}" />
                 <ComboBox
@@ -78,9 +78,9 @@
                     Margin="{StaticResource Margin_S_Top}"
                     ItemTemplate="{StaticResource SimpleDisplayNameTemplate}"
                     Style="{StaticResource TSComboBoxStyle}"
-                    AutomationProperties.Name="{x:Static res:StringRes.ProjectConfigurationSelectPlatform}" />
+                    AutomationProperties.Name="{x:Static res:Resources.ProjectConfigurationSelectPlatform}" />
                 <TextBlock
-                    Text="{x:Static res:StringRes.ProjectConfigurationSelectAppModel}"
+                    Text="{x:Static res:Resources.ProjectConfigurationSelectAppModel}"
                     Margin="{StaticResource Margin_L_Top}"
                     Visibility="{Binding IsWinUISelected, Converter={StaticResource BoolToVisibilityConverter}}"
                     Style="{StaticResource TSTextBlockProjectConfigurationComboBoxHeaderStyle}" />
@@ -91,9 +91,9 @@
                     ItemTemplate="{StaticResource SimpleDisplayNameTemplate}"
                     Style="{StaticResource TSComboBoxStyle}"
                     Visibility="{Binding IsWinUISelected, Converter={StaticResource BoolToVisibilityConverter}}"
-                    AutomationProperties.Name="{x:Static res:StringRes.ProjectConfigurationSelectAppModel}" />
+                    AutomationProperties.Name="{x:Static res:Resources.ProjectConfigurationSelectAppModel}" />
                 <TextBlock
-                    Text="{x:Static res:StringRes.ProjectConfigurationSelectProjectType}"
+                    Text="{x:Static res:Resources.ProjectConfigurationSelectProjectType}"
                     Margin="{StaticResource Margin_M_Top}"
                     Style="{StaticResource TSTextBlockProjectConfigurationComboBoxHeaderStyle}" />
                 <ComboBox
@@ -102,14 +102,14 @@
                     Margin="{StaticResource Margin_S_TopBottom}"
                     ItemTemplate="{StaticResource MetadataDisplayNameTemplate}"
                     Style="{StaticResource TSComboBoxStyle}"
-                    AutomationProperties.Name="{x:Static res:StringRes.ProjectConfigurationSelectProjectType}"/>
+                    AutomationProperties.Name="{x:Static res:Resources.ProjectConfigurationSelectProjectType}"/>
                 <TextBlock
                     Text="{Binding SelectedProjectType.Summary}"
                     Margin="{StaticResource Margin_S_Bottom}"
                     Style="{StaticResource TSTextBlockProjectConfigurationDescriptionStyle}"/>
 
                 <TextBlock
-                    Text="{x:Static res:StringRes.ProjectConfigurationSelectFramework}"
+                    Text="{x:Static res:Resources.ProjectConfigurationSelectFramework}"
                     Margin="{StaticResource Margin_M_Top}"
                     Style="{StaticResource TSTextBlockProjectConfigurationComboBoxHeaderStyle}"/>
                 <ComboBox
@@ -118,7 +118,7 @@
                     Margin="{StaticResource Margin_S_TopBottom}"
                     ItemTemplate="{StaticResource MetadataDisplayNameTemplate}"
                     Style="{StaticResource TSComboBoxStyle}"
-                    AutomationProperties.Name="{x:Static res:StringRes.ProjectConfigurationSelectFramework}" />
+                    AutomationProperties.Name="{x:Static res:Resources.ProjectConfigurationSelectFramework}" />
                 <TextBlock
                     Text="{Binding SelectedFramework.Summary}"
                     Margin="{StaticResource Margin_S_Bottom}"
@@ -127,8 +127,8 @@
         </Grid>
         <Grid Grid.Row="1" Style="{StaticResource TSGridMainFooter}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Margin_M_LeftTopRightBottom}">
-                <Button Style="{StaticResource TSButtonFinish}" Content="{x:Static res:StringRes.ButtonOk}" Command="{Binding AcceptCommand}" />
-                <Button Style="{StaticResource TSButton}" Content="{x:Static res:StringRes.ButtonCancel}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" />
+                <Button Style="{StaticResource TSButtonFinish}" Content="{x:Static res:Resources.ButtonOk}" Command="{Binding AcceptCommand}" />
+                <Button Style="{StaticResource TSButton}" Content="{x:Static res:Resources.ButtonCancel}" Margin="{StaticResource Margin_S_Left}" Command="{Binding CancelCommand}" />
             </StackPanel>
         </Grid>
         <Button Style="{StaticResource TSButtonCloseWindow}" Command="{Binding CancelCommand}" VerticalAlignment="Top" HorizontalAlignment="Right" />

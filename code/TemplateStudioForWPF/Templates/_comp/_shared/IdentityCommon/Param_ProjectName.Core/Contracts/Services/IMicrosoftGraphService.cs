@@ -1,12 +1,10 @@
-﻿using System.Threading.Tasks;
-using Param_RootNamespace.Core.Models;
+﻿using Param_RootNamespace.Core.Models;
 
-namespace Param_RootNamespace.Core.Contracts.Services
+namespace Param_RootNamespace.Core.Contracts.Services;
+
+public interface IMicrosoftGraphService
 {
-    public interface IMicrosoftGraphService
-    {
-        Task<User> GetUserInfoAsync(string accessToken);
+    Task<User> GetUserInfoAsync(string accessToken);
 
-        Task<string> GetUserPhoto(string accessToken);
-    }
+    Task<string> GetUserPhoto(string accessToken);
 }

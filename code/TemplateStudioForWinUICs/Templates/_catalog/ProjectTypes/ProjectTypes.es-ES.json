@@ -1,0 +1,17 @@
+﻿[
+    {
+        "name": "Blank",
+        "displayName": "Blank",
+        "summary": "Incluye un marco de navegación, servicios y estilos básicos."
+    },
+    {
+        "name": "NavView",
+        "displayName": "Navigation Pane",
+        "summary": "Incluye un menú de hamburguesa para poder navegar entre las páginas."
+    },
+    {
+        "name": "MenuBar",
+        "displayName": "Menu Bar",
+        "summary": "Se añade un menú para desplazarse entre las páginas."
+    }
+]
