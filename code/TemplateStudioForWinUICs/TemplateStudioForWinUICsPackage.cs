@@ -14,8 +14,8 @@ using Task = System.Threading.Tasks.Task;
 
 namespace TemplateStudioForWinUICs
 {
-    [ProvideAutoLoad(ActivationContextGuid, PackageAutoLoadFlags.BackgroundLoad)]
-    [ProvideUIContextRule(ActivationContextGuid,
+    [ProvideAutoLoad(PackageGuids.guidTemplateStudioForWinUICsUIContextString, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideUIContextRule(PackageGuids.guidTemplateStudioForWinUICsUIContextString,
        name: "Load TS4WinUI C# Project Package",
        expression: "HasWinUI",
        termNames: new[] { "HasWinUI" },
@@ -25,7 +25,6 @@ namespace TemplateStudioForWinUICs
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class TemplateStudioForWinUIPackage : AsyncPackage
     {
-        public const string ActivationContextGuid = "{476EB402-260C-4EFC-A311-1D8AEDE9A470}";
         private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
 
         private RightClickActions RightClickActions => _rightClickActions.Value;

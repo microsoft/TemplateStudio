@@ -71,6 +71,22 @@
 			<Bitmap guid="guidImages" href="Resources\TemplateStudioCommand.png" usedList="bmpFeature1, bmpFeature2, bmpFeature3, bmpFeature4, bmpPage1, bmpWTS, bmpOpenTemp, bmpService, bmpTesting" />
 		</Bitmaps>
 	</Commands>
+    <VisibilityConstraints>
+        <VisibilityItem guid="ts4WinuiPackageCmdSet"
+						id="AddPageCommand" context="guidTemplateStudioForWinUICsUIContext" />
+
+        <VisibilityItem guid="ts4WinuiPackageCmdSet"
+						id="AddFeatureCommand" context="guidTemplateStudioForWinUICsUIContext" />
+
+        <VisibilityItem guid="ts4WinuiPackageCmdSet"
+						id="AddServiceCommand" context="guidTemplateStudioForWinUICsUIContext" />
+
+        <VisibilityItem guid="ts4WinuiPackageCmdSet"
+						id="AddTestingCommand" context="guidTemplateStudioForWinUICsUIContext" />
+
+        <VisibilityItem guid="ts4WinuiPackageCmdSet"
+						id="OpenTempFolder" context="guidTemplateStudioForWinUICsUIContext" />
+    </VisibilityConstraints>
 	<CommandPlacements>
 		<CommandPlacement guid="ts4WinuiPackageCmdSet" id="AddItemContextGroup" priority="0x0200">
 			<Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE" />
@@ -112,6 +128,9 @@
 	<Symbols>
 		<!-- This is the package guid. -->
 		<GuidSymbol name="ts4WinuiPackage" value="{0348E2B7-F1A1-438D-A243-028CE03D87DA}" />
+
+        <!-- This is the UI Context guid. -->
+        <GuidSymbol name="guidTemplateStudioForWinUICsUIContext" value="{476EB402-260C-4EFC-A311-1D8AEDE9A470}" />
 
 		<!-- This is the guid used to group the menu commands together -->
 		<GuidSymbol name="ts4WinuiPackageCmdSet" value="{9808B482-559D-408F-8998-A00CBC1DFC79}">

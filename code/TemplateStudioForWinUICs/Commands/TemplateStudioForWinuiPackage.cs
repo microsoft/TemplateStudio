@@ -15,6 +15,9 @@ namespace TemplateStudioForWinUICs.Commands
         public const string ts4WinuiPackageString = "0348e2b7-f1a1-438d-a243-028ce03d87da";
         public static Guid ts4WinuiPackage = new Guid(ts4WinuiPackageString);
 
+        public const string guidTemplateStudioForWinUICsUIContextString = "476eb402-260c-4efc-a311-1d8aede9a470";
+        public static Guid guidTemplateStudioForWinUICsUIContext = new Guid(guidTemplateStudioForWinUICsUIContextString);
+
         public const string ts4WinuiPackageCmdSetString = "9808b482-559d-408f-8998-a00cbc1dfc79";
         public static Guid ts4WinuiPackageCmdSet = new Guid(ts4WinuiPackageCmdSetString);
 
