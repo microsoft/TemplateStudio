@@ -29,7 +29,7 @@
     <Thickness x:Key="NavigationViewHeaderMargin">56,34,0,0</Thickness>
     <Thickness x:Key="NavigationViewPageContentMargin">56,24,56,0</Thickness>
 
-    <Thickness x:Key="MenuBarContentMargin">36,24,0,0</Thickness>
+    <Thickness x:Key="MenuBarContentMargin">36,24,36,0</Thickness>
 
     <Thickness x:Key="SettingsPageHyperlinkButtonMargin">-12,4,0,0</Thickness>
     
