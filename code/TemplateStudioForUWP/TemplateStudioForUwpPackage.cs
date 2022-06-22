@@ -20,12 +20,12 @@ using Task = System.Threading.Tasks.Task;
 
 namespace TemplateStudioForUWP
 {
-    [ProvideAutoLoad(ActivationContextGuid, PackageAutoLoadFlags.BackgroundLoad)]
-    [ProvideUIContextRule(ActivationContextGuid,
-        name: "Load TW4UWP Project Package",
-        expression: "HasUWP",
-        termNames: new[] { "HasUWP" },
-        termValues: new[] { "ActiveProjectOutputType:VSPROJ_OUTPUTTYPE_WINEXE" })]
+    [ProvideAutoLoad(UIContextGuids80.SolutionExists, PackageAutoLoadFlags.BackgroundLoad)]
+    //[ProvideUIContextRule(ActivationContextGuid,
+    //    name: "Load TW4UWP Project Package",
+    //    expression: "HasUWP",
+    //    termNames: new[] { "HasUWP" },
+    //    termValues: new[] { "ActiveProjectOutputType:VSPROJ_OUTPUTTYPE_WINEXE" })]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [Guid(PackageGuids.guidTemplateStudioForUwpPackageString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
