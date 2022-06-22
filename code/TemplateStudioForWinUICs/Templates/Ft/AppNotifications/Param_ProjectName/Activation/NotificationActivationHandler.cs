@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 
 using Param_ProjectName.Contracts.Services;
+using Param_ProjectName.Notifications;
 using Param_ProjectName.ViewModels;
 
 using Microsoft.UI.Xaml;
@@ -28,7 +29,7 @@ public class NotificationActivationHandler : ActivationHandler<LaunchActivatedEv
     {
         AppActivationArguments activationArgs = AppInstance.GetCurrent().GetActivatedEventArgs();
         var notificationActivatedEventArgs = (AppNotificationActivatedEventArgs)activationArgs.Data;
-        var action = ExtractParamFromArgs(notificationActivatedEventArgs.Argument, "action");
+        var action = NotificationService.ExtractParamFromArgs(notificationActivatedEventArgs.Argument, "action");
 
         switch (action)
         {
@@ -41,27 +42,5 @@ public class NotificationActivationHandler : ActivationHandler<LaunchActivatedEv
                 break;
         }
         await Task.CompletedTask;
-    }
-
-    public static string ExtractParamFromArgs(string args, string paramName)
-    {
-        var tag = paramName;
-        tag += "=";
-
-        var tagStart = args.IndexOf(tag);
-        if (tagStart == -1)
-        {
-            return null;
-        }
-
-        var paramStart = tagStart + tag.Length;
-
-        var paramEnd = args.IndexOf("&", paramStart);
-        if (paramEnd == -1)
-        {
-            paramEnd = args.Length;
-        }
-
-        return args.Substring(paramStart, paramEnd - paramStart);
     }
 }
