@@ -13,7 +13,7 @@ public sealed partial class Param_ItemNamePage : Page
 
     public Param_ItemNamePage()
     {
-        ViewModel = App.GetService<Param_ItemNameViewModel>();
+        ViewModel = App.GetService<Param_ItemNameViewModel>()!;
         InitializeComponent();
 
         ViewModel.WebViewService.Initialize(WebView);

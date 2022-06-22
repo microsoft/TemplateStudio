@@ -1,12 +1,10 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
-namespace Param_RootNamespace.Contracts.Services
+namespace Param_RootNamespace.Contracts.Services;
+
+public interface IPageService
 {
-    public interface IPageService
-    {
-        Type GetPageType(string key);
+    Type GetPageType(string key);
 
-        Page GetPage(string key);
-    }
+    Page GetPage(string key);
 }

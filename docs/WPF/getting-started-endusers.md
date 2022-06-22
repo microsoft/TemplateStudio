@@ -27,7 +27,7 @@ The final generated code is the result of a project configuration (project type 
 
 | Design pattern| Description |
 |--------------:|:------------|
-| [MVVM Toolkit](./frameworks/mvvmtoolkit.md) | The [Microsoft.Toolkit.Mvvm package](https://aka.ms/mvvmtoolkit) is a modern, fast, and modular MVVM library. It is part of the Windows Community Toolkit. |
+| [MVVM Toolkit](./frameworks/mvvmtoolkit.md) | The [CommunityToolkit.Mvvm package](https://aka.ms/mvvmtoolkit) is a modern, fast, and modular MVVM library. It is part of the Windows Community Toolkit. |
 | [Code Behind](./frameworks/codebehind.md) | Code is coupled directly with a XAML file using a .xaml.cs extension. If you developed in WinForms and feel comfortable with that style of development, this is a great option for you. |
 | [Prism](./frameworks/prism.md) | [Prism](https://github.com/PrismLibrary/Prism) is a framework for building loosely coupled, maintainable, and testable XAML applications. It was originally based on guidance from Microsoft's Patterns and Practices team but is now supported by an open source community. It is designed to help build rich client applications that are flexible and easy to maintain by composing different modules and following design patterns.
 | [MVVM Basic](./frameworks/mvvmbasic.md) | MVVM Basic includes the minimum necessary to follow the MVVM pattern. It uses Microsoft.Extensions.Hosting library to handle dependency injection and inversion of control. It is intended for people new to MVVM or who are unable to or do not wish to use a 3rd party framework.<br />**Support for MVVM Basic is deprecated and will be removed in a future version.**|

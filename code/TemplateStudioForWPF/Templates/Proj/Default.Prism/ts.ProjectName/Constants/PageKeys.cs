@@ -1,6 +1,5 @@
-﻿namespace Param_RootNamespace.Constants
+﻿namespace Param_RootNamespace.Constants;
+
+public class PageKeys
 {
-    public class PageKeys
-    {
-    }
 }

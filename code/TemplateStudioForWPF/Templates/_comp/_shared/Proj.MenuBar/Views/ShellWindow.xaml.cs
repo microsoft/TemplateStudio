@@ -2,28 +2,27 @@
 using Param_RootNamespace.Contracts.Views;
 using MahApps.Metro.Controls;
 
-namespace Param_RootNamespace.Views
+namespace Param_RootNamespace.Views;
+
+public partial class ShellWindow : MetroWindow, IShellWindow
 {
-    public partial class ShellWindow : MetroWindow, IShellWindow
+    public ShellWindow()
     {
-        public ShellWindow()
-        {
-            InitializeComponent();
-        }
-
-        public Frame GetNavigationFrame()
-            => shellFrame;
-
-        public Frame GetRightPaneFrame()
-            => rightPaneFrame;
-
-        public void ShowWindow()
-            => Show();
-
-        public void CloseWindow()
-            => Close();
-
-        public SplitView GetSplitView()
-            => splitView;
+        InitializeComponent();
     }
+
+    public Frame GetNavigationFrame()
+        => shellFrame;
+
+    public Frame GetRightPaneFrame()
+        => rightPaneFrame;
+
+    public void ShowWindow()
+        => Show();
+
+    public void CloseWindow()
+        => Close();
+
+    public SplitView GetSplitView()
+        => splitView;
 }

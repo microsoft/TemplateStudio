@@ -1,12 +1,11 @@
 ﻿using System.Windows.Controls;
 
-namespace Param_RootNamespace.Views
+namespace Param_RootNamespace.Views;
+
+public partial class ts.ItemNameDetailPage : System.Windows.Controls.Page
 {
-    public partial class ts.ItemNameDetailPage : System.Windows.Controls.Page
+    public ts.ItemNameDetailPage()
     {
-        public ts.ItemNameDetailPage()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

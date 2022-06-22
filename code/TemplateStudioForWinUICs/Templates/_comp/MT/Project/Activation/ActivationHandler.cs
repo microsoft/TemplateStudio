@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Param_RootNamespace.Activation;
+﻿namespace Param_RootNamespace.Activation;
 
 // Extend this class to implement new ActivationHandlers. See DefaultActivationHandler for an example.
 // https://github.com/microsoft/TemplateStudio/blob/main/docs/WinUI/activation.md
@@ -13,7 +11,7 @@ public abstract class ActivationHandler<T> : IActivationHandler
     // Override this method to add the logic for your activation handler.
     protected abstract Task HandleInternalAsync(T args);
 
-    public bool CanHandle(object args) => args is T && CanHandleInternal(args as T);
+    public bool CanHandle(object args) => args is T && CanHandleInternal((args as T)!);
 
-    public async Task HandleAsync(object args) => await HandleInternalAsync(args as T);
+    public async Task HandleAsync(object args) => await HandleInternalAsync((args as T)!);
 }

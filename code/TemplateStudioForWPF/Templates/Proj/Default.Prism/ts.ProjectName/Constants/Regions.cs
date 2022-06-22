@@ -1,7 +1,6 @@
-﻿namespace Param_RootNamespace.Constants
+﻿namespace Param_RootNamespace.Constants;
+
+public class Regions
 {
-    public class Regions
-    {
-        public const string Main = "MainRegion";
-    }
+    public const string Main = "MainRegion";
 }

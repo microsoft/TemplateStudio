@@ -1,18 +1,17 @@
 ﻿//{[{
-using Microsoft.Toolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Input;
 //}]}
-namespace Param_RootNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels;
+
+public class ts.ItemNameViewModel : ObservableObject
 {
-    public class ts.ItemNameViewModel : ObservableObject
+    public void OnNavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
     {
-        public void OnNavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
-        {
-            IsLoading = false;
+        IsLoading = false;
 //^^
 //{[{
-            BrowserBackCommand.NotifyCanExecuteChanged();
-            BrowserForwardCommand.NotifyCanExecuteChanged();
+        BrowserBackCommand.NotifyCanExecuteChanged();
+        BrowserForwardCommand.NotifyCanExecuteChanged();
 //}]}
-        }
     }
 }

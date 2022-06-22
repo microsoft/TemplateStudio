@@ -1,9 +1,8 @@
-﻿namespace Param_RootNamespace.Models
+﻿namespace Param_RootNamespace.Models;
+
+public enum AppTheme
 {
-    public enum AppTheme
-    {
-        Default,
-        Light,
-        Dark
-    }
+    Default,
+    Light,
+    Dark
 }

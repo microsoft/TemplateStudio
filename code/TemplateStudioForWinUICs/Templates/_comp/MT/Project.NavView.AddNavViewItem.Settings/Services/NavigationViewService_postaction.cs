@@ -11,7 +11,7 @@ public class NavigationViewService : INavigationViewService
             // Navigate to the settings page.
 //}--}
 //{[{
-            _navigationService.NavigateTo(typeof(Param_ItemNameViewModel).FullName);
+            _navigationService.NavigateTo(typeof(Param_ItemNameViewModel).FullName!);
 //}]}
         }
     }

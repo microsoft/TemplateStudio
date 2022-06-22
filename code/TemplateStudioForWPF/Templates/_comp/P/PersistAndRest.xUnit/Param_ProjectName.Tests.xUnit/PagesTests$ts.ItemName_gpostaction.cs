@@ -4,20 +4,19 @@ using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Services;
 //}]}
-namespace Param_RootNamespace.Tests.XUnit
+namespace Param_RootNamespace.Tests.XUnit;
+
+public class PagesTests
 {
-    public class PagesTests
+    public PagesTests()
     {
-        public PagesTests()
-        {
-            // Core Services
+        // Core Services
 //{[{
-            _container.RegisterType<IFileService, FileService>();
+        _container.RegisterType<IFileService, FileService>();
 //}]}
-            // App Services
+        // App Services
 //{[{
-            _container.RegisterType<IPersistAndRestoreService, PersistAndRestoreService>();
+        _container.RegisterType<IPersistAndRestoreService, PersistAndRestoreService>();
 //}]}
-        }
     }
 }

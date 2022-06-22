@@ -4,38 +4,37 @@ using Param_RootNamespace.Services;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Services;
 //}]}
-namespace Param_RootNamespace
+namespace Param_RootNamespace;
+
+public partial class App : PrismApplication
 {
-    public partial class App : PrismApplication
+    protected override async void OnInitialized()
     {
-        protected override async void OnInitialized()
-        {
 //{[{
-            var persistAndRestoreService = Container.Resolve<IPersistAndRestoreService>();
-            persistAndRestoreService.RestoreData();
+        var persistAndRestoreService = Container.Resolve<IPersistAndRestoreService>();
+        persistAndRestoreService.RestoreData();
 
 //}]}
-        }
+    }
 
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-            // Core Services
+    protected override void RegisterTypes(IContainerRegistry containerRegistry)
+    {
+        // Core Services
 //{[{
-            containerRegistry.Register<IFileService, FileService>();
+        containerRegistry.Register<IFileService, FileService>();
 //}]}
-            // App Services
+        // App Services
 //{[{
-            containerRegistry.Register<IPersistAndRestoreService, PersistAndRestoreService>();
+        containerRegistry.Register<IPersistAndRestoreService, PersistAndRestoreService>();
 //}]}
-        }
+    }
 
-        private void OnExit(object sender, ExitEventArgs e)
-        {
+    private void OnExit(object sender, ExitEventArgs e)
+    {
 //^^
 //{[{
-            var persistAndRestoreService = Container.Resolve<IPersistAndRestoreService>();
-            persistAndRestoreService.PersistData();
+        var persistAndRestoreService = Container.Resolve<IPersistAndRestoreService>();
+        persistAndRestoreService.PersistData();
 //}]}
-        }
     }
 }

@@ -15,6 +15,9 @@ namespace TemplateStudioForUWP.Commands
         public const string guidTemplateStudioForUwpPackageString = "a2b19535-5f6c-47a8-a149-b5df447b8b7f";
         public static Guid guidTemplateStudioForUwpPackage = new Guid(guidTemplateStudioForUwpPackageString);
 
+        public const string guidTemplateStudioForUwpUIContextString = "ad9d5551-71ca-4860-8071-2fdb57a89551";
+        public static Guid guidTemplateStudioForUwpUIContext = new Guid(guidTemplateStudioForUwpUIContextString);
+
         public const string guidTemplateStudioForUwpPackageCmdSetString = "cbdd449a-d644-4c0b-9c47-9ec861b66d36";
         public static Guid guidTemplateStudioForUwpPackageCmdSet = new Guid(guidTemplateStudioForUwpPackageCmdSetString);
 

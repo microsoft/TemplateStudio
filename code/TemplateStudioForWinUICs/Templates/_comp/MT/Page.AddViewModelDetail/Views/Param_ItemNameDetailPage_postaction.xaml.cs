@@ -16,7 +16,7 @@ public sealed partial class Param_ItemNameDetailPage : Page
     public Param_ItemNameDetailPage()
     {
 //{[{
-        ViewModel = App.GetService<Param_ItemNameDetailViewModel>();
+        ViewModel = App.GetService<Param_ItemNameDetailViewModel>()!;
 //}]}
     }
 }

@@ -1,4 +1,4 @@
-﻿微軟.工具組.Mvm套件是一個現代化、快速和模組化的MVVM庫。它是 Windows 社區工具組的一部分。
+﻿Microsoft.Toolkit.Mvvm套件是一個現代化、快速和模組化的MVVM庫。它是 Windows 社區工具組的一部分。
 
 此套件可用於任何應用平臺：UWP、溫格式、WPF、Xamarin、優諾等：並在任何運行時間：。NET原生，。NET核心，。NET框架，或單聲道。API 表面在所有情況下都是相同的，因此非常適合構建共用庫。
 

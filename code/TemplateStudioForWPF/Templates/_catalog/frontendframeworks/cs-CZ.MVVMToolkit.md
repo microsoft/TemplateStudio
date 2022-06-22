@@ -1,4 +1,4 @@
-﻿Balíček Microsoft.Toolkit.Mvvm je moderní, rychlá a modulární knihovna MVVM. Je součástí sady nástrojů komunity systému Windows.
+﻿Balíček CommunityToolkit.Mvvm je moderní, rychlá a modulární knihovna MVVM. Je součástí sady nástrojů komunity systému Windows.
 
 Tento balíček lze použít na jakékoli platformě aplikací: UWP, WinForms, WPF, Xamarin, Uno a další; a v libovolném runtime: .NET Native, .NET Core, .NET Framework nebo Mono. Povrch rozhraní API je ve všech případech identický, takže je ideální pro vytváření sdílených knihoven.
 

@@ -1,10 +1,9 @@
-﻿namespace Param_RootNamespace.XamlIslandApp
+﻿namespace Param_RootNamespace.XamlIslandApp;
+
+sealed partial class App : Microsoft.Toolkit.Win32.UI.XamlHost.XamlApplication
 {
-    sealed partial class App : Microsoft.Toolkit.Win32.UI.XamlHost.XamlApplication
+    public App()
     {
-        public App()
-        {
-            Initialize();
-        }
+        Initialize();
     }
 }

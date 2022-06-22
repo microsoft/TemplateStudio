@@ -1,16 +1,14 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 
-namespace Param_RootNamespace.Contracts.Services
+namespace Param_RootNamespace.Contracts.Services;
+
+public interface IWindowManagerService
 {
-    public interface IWindowManagerService
-    {
-        Window MainWindow { get; }
+    Window MainWindow { get; }
 
-        void OpenInNewWindow(Type pageType, object parameter = null);
+    void OpenInNewWindow(Type pageType, object parameter = null);
 
-        bool? OpenInDialog(Type pageType, object parameter = null);
+    bool? OpenInDialog(Type pageType, object parameter = null);
 
-        Window GetWindow(Type pageType);
-    }
+    Window GetWindow(Type pageType);
 }

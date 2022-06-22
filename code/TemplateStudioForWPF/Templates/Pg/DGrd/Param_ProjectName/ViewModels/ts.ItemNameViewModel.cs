@@ -1,36 +1,34 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Models;
 
-namespace Param_RootNamespace.ViewModels
+namespace Param_RootNamespace.ViewModels;
+
+public class ts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
 {
-    public class ts.ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
+    private readonly ISampleDataService _sampleDataService;
+
+    public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+
+    public ts.ItemNameViewModel(ISampleDataService sampleDataService)
     {
-        private readonly ISampleDataService _sampleDataService;
+        _sampleDataService = sampleDataService;
+    }
 
-        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
+    public async void OnNavigatedTo(Param_OnNavigatedToParams)
+    {
+        Source.Clear();
 
-        public ts.ItemNameViewModel(ISampleDataService sampleDataService)
+        // Replace this with your actual data
+        var data = await _sampleDataService.GetGridDataAsync();
+
+        foreach (var item in data)
         {
-            _sampleDataService = sampleDataService;
+            Source.Add(item);
         }
+    }
 
-        public async void OnNavigatedTo(Param_OnNavigatedToParams)
-        {
-            Source.Clear();
-
-            // Replace this with your actual data
-            var data = await _sampleDataService.GetGridDataAsync();
-
-            foreach (var item in data)
-            {
-                Source.Add(item);
-            }
-        }
-
-        public void OnNavigatedFrom(Param_OnNavigatedFromParams)
-        {
-        }
+    public void OnNavigatedFrom(Param_OnNavigatedFromParams)
+    {
     }
 }

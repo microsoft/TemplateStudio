@@ -1,16 +1,15 @@
 ﻿//{[{
 using MahApps.Metro.Controls;
 //}]}
-namespace Param_RootNamespace.Contracts.Views
+namespace Param_RootNamespace.Contracts.Views;
+
+public interface IShellWindow
 {
-    public interface IShellWindow
-    {
 //^^
 //{[{
 
-        Frame GetRightPaneFrame();
+    Frame GetRightPaneFrame();
 
-        SplitView GetSplitView();
+    SplitView GetSplitView();
 //}]}
-    }
 }

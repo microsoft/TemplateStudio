@@ -1,16 +1,15 @@
-﻿namespace Param_RootNamespace.Tests.XUnit
+﻿namespace Param_RootNamespace.Tests.XUnit;
+
+public class PagesTests
 {
-    public class PagesTests
-    {
 //^^
 //{[{
-        // TODO: Add tests for functionality you add to ts.ItemNameViewModel.
-        [Fact]
-        public void Testts.ItemNameViewModelCreation()
-        {
-            var vm = _container.Resolve<ts.ItemNameViewModel>();
-            Assert.NotNull(vm);
-        }
-//}]}
+    // TODO: Add tests for functionality you add to ts.ItemNameViewModel.
+    [Fact]
+    public void Testts.ItemNameViewModelCreation()
+    {
+        var vm = _container.Resolve<ts.ItemNameViewModel>();
+        Assert.NotNull(vm);
     }
+//}]}
 }

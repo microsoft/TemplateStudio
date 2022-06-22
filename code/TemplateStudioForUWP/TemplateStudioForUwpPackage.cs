@@ -9,13 +9,19 @@ using System.Threading;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.UI.VisualStudio;
 using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 using TemplateStudioForUWP.Commands;
 using Task = System.Threading.Tasks.Task;
 
+// https://docs.microsoft.com/visualstudio/extensibility/how-to-use-asyncpackage-to-load-vspackages-in-the-background?view=vs-2022
+// https://docs.microsoft.com/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2022
+// https://docs.microsoft.com/visualstudio/extensibility/internals/authoring-dot-vsct-files?view=vs-2022
+// https://docs.microsoft.com/visualstudio/extensibility/command-flag-element?view=vs-2022
+
 namespace TemplateStudioForUWP
 {
-    [ProvideAutoLoad(ActivationContextGuid, PackageAutoLoadFlags.BackgroundLoad)]
-    [ProvideUIContextRule(ActivationContextGuid,
+    [ProvideAutoLoad(PackageGuids.guidTemplateStudioForUwpUIContextString, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideUIContextRule(PackageGuids.guidTemplateStudioForUwpUIContextString,
         name: "Load TW4UWP Project Package",
         expression: "HasUWP",
         termNames: new[] { "HasUWP" },
@@ -25,7 +31,6 @@ namespace TemplateStudioForUWP
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class TemplateStudioForUwpPackage : AsyncPackage
     {
-        public const string ActivationContextGuid = "AD9D5551-71CA-4860-8071-2FDB57A89551";
         private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
 
         private RightClickActions RightClickActions => _rightClickActions.Value;
