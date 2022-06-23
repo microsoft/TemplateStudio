@@ -6,7 +6,7 @@
     "shortName": "App Notifications",
     "groupIdentity": "ts.WinUI.Feat.AppNotifications",
     "identity": "ts.WinUI.Feat.AppNotifications",
-    "description": "TBD",
+    "description": "Adaptive and interactive toast notifications let you create flexible pop-up notifications.",
     "tags": {
         "language": "C#",
         "type": "item",

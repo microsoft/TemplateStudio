@@ -1192,9 +1192,6 @@
     <Content Include="Templates\Pg\WebView\.template.config\localize\templatestrings.zh-TW.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\AppNotifications\.template.config\description.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Ft\AppNotifications\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
