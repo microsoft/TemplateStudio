@@ -7,13 +7,17 @@ namespace Param_RootNamespace.Services;
 
 public class MockWebViewService : IWebViewService
 {
-    private WebView2 _webView;
+    private WebView2? _webView;
 
-    public bool CanGoBack => _webView.CanGoBack;
+    public Uri? Source => _webView?.Source;
 
-    public bool CanGoForward => _webView.CanGoForward;
+    [MemberNotNullWhen(true, nameof(_webView))]
+    public bool CanGoBack => _webView != null && _webView.CanGoBack;
 
-    public event EventHandler<CoreWebView2WebErrorStatus> NavigationCompleted;
+    [MemberNotNullWhen(true, nameof(_webView))]
+    public bool CanGoForward => _webView != null && _webView.CanGoForward;
+
+    public event EventHandler<CoreWebView2WebErrorStatus>? NavigationCompleted;
 
     public MockWebViewService()
     {
