@@ -8,6 +8,7 @@ public class MockLocalSettingsService : ILocalSettingsService
     {
         return default;
     }
+
     public async Task SaveSettingAsync<T>(string key, T value)
     {
     }
