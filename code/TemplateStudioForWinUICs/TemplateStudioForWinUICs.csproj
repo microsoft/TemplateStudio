@@ -239,13 +239,13 @@
     <Content Include="Templates\_comp\MT\Test.MSTest.App.AddDataGrid\Param_ProjectName.Tests.MSTest\Mocks\MockSampleDataService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddContentGrid\Param_ProjectName.Tests.MSTest\Mocks\MockNavigationService.cs">
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddCGrid\Param_ProjectName.Tests.MSTest\Mocks\MockNavigationService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddContentGrid\Param_ProjectName.Tests.MSTest\Mocks\MockPageService.cs">
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddCGrid\Param_ProjectName.Tests.MSTest\Mocks\MockPageService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddContentGrid\Param_ProjectName.Tests.MSTest\Mocks\MockSampleDataService.cs">
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddCGrid\Param_ProjectName.Tests.MSTest\Mocks\MockSampleDataService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Test.MSTest.App.AddBlank\Param_ProjectName.Tests.MSTest\Mocks\MockNavigationService.cs">
@@ -257,10 +257,10 @@
     <Content Include="Templates\_comp\MT\Test.MSTest.App.AddBlank\Param_ProjectName.Tests.MSTest\Mocks\MockPageService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddContentGrid\Param_ProjectName.Tests.MSTest\ContentGridDetailViewModelTests.cs">
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddCGrid\Param_ProjectName.Tests.MSTest\ContentGridDetailViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddContentGrid\Param_ProjectName.Tests.MSTest\ContentGridViewModelTests.cs">
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddCGrid\Param_ProjectName.Tests.MSTest\ContentGridViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Test.MSTest.App.AddDataGrid\Param_ProjectName.Tests.MSTest\DataGridViewModelTests.cs">
@@ -427,7 +427,7 @@
     <Content Include="Templates\_comp\MT\Test.MSTest.App.AddBlank\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddContentGrid\.template.config\template.json">
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.AddCGrid\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Test.MSTest.App.AddDataGrid\.template.config\template.json">
