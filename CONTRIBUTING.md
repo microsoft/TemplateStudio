@@ -215,11 +215,26 @@ Each template contains a `.template.config/icon.xaml` file that defines the icon
 
 Note: Composition templates within the _comp folder do not alter the wizard. They only modify the base templates based on the options selected in the wizard.
 
-## Updating the shared code
+## Shared Code
 
-The displayed wizard and the logic that generates an app from the selected templates is in the `SharedFunctionality.UI` and `SharedFunctionality.Core` projects. If wanting to work on these it is important to be working in the `TemplateStudio.sln` file and not a `*.slnf` file. You should also use the `DebugAll` configuration as this ensures that all projects are compiled, which is important as these shared projects are included in all the extensions. Switch to using a configuration specific to the extension you are testing when wanting to debug any changes.
+The displayed wizard and the logic that generates an app from the selected templates is in the `SharedFunctionality.UI` and `SharedFunctionality.Core` projects. When working on these it is important to be working in the `TemplateStudio.sln` file and not a `*.slnf` file. You should also use the `DebugAll` configuration as this ensures that all projects are compiled, which is important as these shared projects are included in all the extensions. Switch to using a configuration specific to the extension you are testing when wanting to debug any changes.
 
-It may also be useful to note that because of the limited support for working with XAML files inside a shared project used by an extension, you may get misleading compilation errors if you have any of the `.xaml` files open in the editor when compiling. Simply close the file(s) and any spurious errors will go away.
+Note that because of the limited support for working with XAML files inside a shared project used by an extension, you may get misleading compilation errors if you have any of the `.xaml` files open in the editor when compiling. Simply close the file(s) and any spurious errors will go away.
+
+## Edit Project Menu
+
+Developers can add Template Studio templates to an existing project by opening the Project context menu and selecting an option in the Add -> New Item (Template Studio) submenu. In order for this menu to be presented, the project must match the project type supported by the extension, and the project must contain Template Studio metadata in either `Package.appxmanifest` or `TemplateStudio.xml` at the root of the project.
+
+The layout and location of this menu are defined in [`.vsct`](code/TemplateStudioForWinUICs/Commands/TemplateStudioForWinuiPackage.vsct) files per extension. See [Author .vsct files](https://docs.microsoft.com/visualstudio/extensibility/internals/authoring-dot-vsct-files) for details. To change the location of the menu, change the `id` of the root `CommandPlacement` element to the ID of the Visual Studio Menu or Group that should contain the menu. These IDs are defined within `C:\Program Files\Microsoft Visual Studio\2022\Community\VSSDK\VisualStudioIntegration\Common\Inc\vsshlids.h`. The easiest way to identify these IDs from the Visual Studio UI is to install Visual Studio 2019 and the [Command Explorer extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CommandExplorer).
+
+Note: If the parent Visual Studio item is a Menu (i.e. begins with `IDM_`), then the root element in the `.vsct` should be a Group. If the parent Visual Studio item is a Group (i.e. begins with `IDG_`), then the root element in the `.vsct` should be a Menu.
+
+The below extensions may be useful when debugging changes to the Edit Project menu:
+
+* [Command Explorer](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CommandExplorer) for identifying Visual Studio Menu and Group IDs
+* [Component Diagnostics](https://marketplace.visualstudio.com/items?itemName=PaulHarrington.ComponentDiagnosticsDev17) for checking if the Menu package is registered properly in the Package Manager
+
+Note: The experimental instance often doesn't recognize changes to the `.vsct` file which can result in the menu not showing up or UI changes not being reflected. Uninstalling all versions of the extension and [resetting the experimental instance](#Validating-changes) sometimes helps. The most reliable way to test menu changes is to build a Release build of the VSIX and install it into the main instance of Visual Studio.
 
 ## Validating changes
 
