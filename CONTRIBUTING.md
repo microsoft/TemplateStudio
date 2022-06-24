@@ -44,7 +44,7 @@ There are also `*.slnf` files that load the subset of projects needed for a spec
 
 Regardless of the solution you load, you need to make sure the extension project you want to work on is set as the startup project, and you need to ensure you select an appropriate Debug or Release configuration specific to that extension (e.g. `DebugWinUICs`/`ReleaseWinUICs`).
 
-When you F5 to debug or start without debugging, Visual Studio will install the extensions in the Visual Studio Experimental Instance. Once loaded, you can test the extensions by creating a new project and selecting the appropriate `Template Studio for *` template.
+When you F5 to debug or start without debugging, Visual Studio will install the extensions in the Visual Studio Experimental Instance. Once loaded, you can test the extensions by creating a new project and selecting the appropriate `Template Studio` project template.
 
 You can also build and run the [VSEmulator](https://github.com/microsoft/TemplateStudio/tree/main/code/test/VsEmulator) to iterate faster on templates without needing to rebuild and redeploy the extensions. The VSEmulator reads template content directly from the local repository so will immediately honor any changes you make to the templates without needing to be rebuilt.
 
@@ -240,11 +240,11 @@ The below extensions may be useful when debugging changes to the Edit Project me
 * [Command Explorer](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CommandExplorer) for identifying Visual Studio Menu and Group IDs
 * [Component Diagnostics](https://marketplace.visualstudio.com/items?itemName=PaulHarrington.ComponentDiagnosticsDev17) for checking if the Menu package is registered properly in the Package Manager
 
-Note: The experimental instance often doesn't recognize changes to the `.vsct` file which can result in the menu not showing up or UI changes not being reflected. Uninstalling all versions of the extension and [resetting the experimental instance](#Validating-changes) sometimes helps. The most reliable way to test menu changes is to build a Release build of the VSIX and install it into the main instance of Visual Studio.
+Note: The Experimental Instance often doesn't recognize changes to the `.vsct` file which can result in the menu not showing up or UI changes not being reflected. Uninstalling all versions of the extension and [resetting the Experimental Instance](#Validating-changes) sometimes helps. The most reliable way to test menu changes is to build a Release build of the VSIX and install it into the main instance of Visual Studio.
 
 ## Validating changes
 
-F5 or start without debugging to launch the extensions in the Visual Studio Experimental Instance and validate changes. Once the Experimental Instance is loaded, create a new project and select the appropriate `Template Studio for *` template.
+F5 or start without debugging to launch the extensions in the Visual Studio Experimental Instance and validate changes. Once the Experimental Instance is loaded, create a new project and select the appropriate `Template Studio` project template.
 
 Below is a checklist to follow when validating changes:
 
@@ -256,7 +256,7 @@ Below is a checklist to follow when validating changes:
 
 Once all changes pass basic validation, submit them for review by filing a pull request.
 
-When developing extensions, the experimental instance of Visual Studio can sometimes become corrupt, preventing deployment and debugging of the extension. This usually surfaces as deployment errors when trying to deploy the extension or as silent failures that result in the Template Studio project templates not showing up in the New Project dialog. To recover from this state, you can reset the experimental instance by closing all instances of Visual Studio, then running `Reset the Visual Studio 2022 Experimental Instance` from the `Visual Studio 2022` folder in the Start Menu. If this doesn't work, uninstalling and reinstalling Visual Studio will always return you to a working state.
+When developing extensions, the Experimental Instance of Visual Studio can sometimes become corrupt, preventing deployment and debugging of the extension. This usually surfaces as deployment errors when trying to deploy the extension or as silent failures that result in the Template Studio project templates not showing up in the New Project dialog. To recover from this state, you can reset the Experimental Instance by closing all instances of Visual Studio, then running `Reset the Visual Studio 2022 Experimental Instance` from the `Visual Studio 2022` folder in the Start Menu. If this doesn't work, uninstalling and reinstalling Visual Studio will always return you to a working state.
 
 ## Filing a pull request
 
