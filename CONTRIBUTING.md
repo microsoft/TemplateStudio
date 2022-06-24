@@ -225,13 +225,15 @@ Note that because of the limited support for working with XAML files inside a sh
 
 ## Edit Project Menu
 
-Developers can add Template Studio templates to an existing project by opening the Project context menu and selecting an option in the Add -> New Item (Template Studio) submenu. In order for this menu to be presented, the project must [match the project type](https://docs.microsoft.com/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions) supported by the extension, and the project must contain Template Studio metadata in either `Package.appxmanifest` or `TemplateStudio.xml` at the root of the project.
+Developers can add Template Studio templates to an existing project by opening the Project context menu and selecting an option in the `Add -> New Item (Template Studio)` submenu. In order for this menu to be presented, the project must [match the project type](https://docs.microsoft.com/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions) supported by the extension, and the project must contain Template Studio metadata in either `Package.appxmanifest` or `TemplateStudio.xml` at the root of the project.
 
 The layout and location of this menu are defined in [`.vsct`](code/TemplateStudioForWinUICs/Commands/TemplateStudioForWinuiPackage.vsct) files per extension. See [Author .vsct files](https://docs.microsoft.com/visualstudio/extensibility/internals/authoring-dot-vsct-files) for details. To change the location of the menu, change the `id` of the root `CommandPlacement` element to the ID of the Visual Studio Menu or Group that should contain the menu. These IDs are defined within `C:\Program Files\Microsoft Visual Studio\2022\Community\VSSDK\VisualStudioIntegration\Common\Inc\vsshlids.h`. The easiest way to identify these IDs from the Visual Studio UI is to install Visual Studio 2019 and the [Command Explorer extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CommandExplorer).
 
 Note: If the parent Visual Studio item is a Menu (i.e. begins with `IDM_`), then the root element in the `.vsct` should be a Group. If the parent Visual Studio item is a Group (i.e. begins with `IDG_`), then the root element in the `.vsct` should be a Menu.
 
 The handlers for the menu items are defined in files like [TemplateStudioForWinUICsPackage.cs](code/TemplateStudioForWinUICs/TemplateStudioForWinUICsPackage.cs) per extension. These handlers include the function to invoke when the menu item is clicked as well as a `RightClickAvailable` function to determine whether to show each of the menu items.
+
+Templates contain a `ts.rightClickEnabled` tag in `template.json` that controls whether they are presented in the wizard when invoked via the Edit Project menu. Set this tag to `true` to enable the template in the wizard and `false` to disable it.
 
 The below extensions may be useful when debugging changes to the Edit Project menu:
 
