@@ -243,7 +243,9 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Commands\Resources\TemplateStudioCommand.png" />
-    <None Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\README.md" />
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\README.md">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <VSCTCompile Include="Commands\TemplateStudioForWinuiPackage.vsct">
       <Generator>VsctGenerator</Generator>
       <ResourceName>Menus.ctmenu</ResourceName>
