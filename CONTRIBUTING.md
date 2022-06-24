@@ -15,6 +15,7 @@ You can contribute to this project by contributing to:
 * [Templates](#Templates)
 * [Shared Code](#Shared-Code)
 * [Edit Project Menu](#Edit-Project-Menu)
+* [Localization](#Localization)
 
 If you intend to contribute code changes, learn how to [set up your development environment](#Set-up-your-development-environment).
 
@@ -241,6 +242,30 @@ The below extensions may be useful when debugging changes to the Edit Project me
 * [Component Diagnostics](https://marketplace.visualstudio.com/items?itemName=PaulHarrington.ComponentDiagnosticsDev17) for checking if the Menu package is registered properly in the Package Manager
 
 Note: The Experimental Instance often doesn't recognize changes to the `.vsct` file which can result in the menu not showing up or UI changes not being reflected. Uninstalling all versions of the extension and [resetting the Experimental Instance](#Validating-changes) sometimes helps. The most reliable way to test menu changes is to build a Release build of the VSIX and install it into the main instance of Visual Studio.
+
+## Localization
+
+Template Studio uses a Microsoft service called TDBuild to handle localization. The [localization pipeline](_build/pipelines/localization.yml) submits English resources to TDBuild on a nightly basis which queues them up for localization. The pipeline publishes localized resources as artifacts, so once localization is finished on the backend, future pipeline runs will include the resources in the published artifacts. Download the `TDBuild.tar.gz` artifact from the pipeline, run `tar -xf TDBuild.tar.gz` to extract the localized resources to a `TDBuild` folder, then from within the repo run [Import-TDBuild](_build/Import-TDBuild.ps1) with the path to the `TDBuild` folder to import the files for submission.
+
+The resources that are submitted to TDBuild include:
+
+* `**/FrontendFrameworks/FrontendFrameworks.json`
+* `**/ProjectTypes/ProjectTypes.json`
+* `**/.template.config/localize/templatestrings.json`
+* `**/SharedResources/Resources.resx`
+
+JSON files use the `resjson` format which includes comments describing the resources that should be localized and how they are presented in the UI. This provides context to translators which helps improve the quality of the translations. For any strings that should not be localized, the comment should be `"{Locked}"`.
+
+Templates are localized using the [pattern](https://github.com/dotnet/templating/wiki/Localization) defined by the .NET Templating Engine. English strings are loaded from `template.json`, but the localizable strings must also be defined in `localize/templatestrings.json` in order for TDBuild to localize them.
+
+Other files that can be localized but are not integrated with TDBuild include:
+
+* `**/*.md`
+* `**/*.vsct`
+* `**/*.vsixmanifest`
+* `**/*.vstemplate`
+
+Either TDBuild doesn't support these file formats, or the strings are already localized and not expected to change very frequently.
 
 ## Validating changes
 
