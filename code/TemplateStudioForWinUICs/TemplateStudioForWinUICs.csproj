@@ -248,15 +248,6 @@
     <Content Include="Templates\_comp\MT\Test.MSTest.App.CGrid\Param_ProjectName.Tests.MSTest\Mocks\MockSampleDataService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Test.MSTest.App.Blank\Param_ProjectName.Tests.MSTest\Mocks\MockNavigationService.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Test.MSTest.App.Blank\Param_ProjectName.Tests.MSTest\Mocks\MockNavigationViewService.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Test.MSTest.App.Blank\Param_ProjectName.Tests.MSTest\Mocks\MockPageService.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_comp\MT\Test.MSTest.App.CGrid\Param_ProjectName.Tests.MSTest\ContentGridDetailViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

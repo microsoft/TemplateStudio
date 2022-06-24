@@ -20,19 +20,7 @@
     "preferNameDirectory": true,
     "PrimaryOutputs": [
         {
-            "path": "Param_ProjectName.Tests.MSTest/ShellViewModelTests.cs"
-        },
-        {
             "path": "Param_ProjectName.Tests.MSTest/MainViewModelTests.cs"
-        },
-        {
-            "path": "Param_ProjectName.Tests.MSTest/Mocks/MockNavigationService.cs"
-        },
-        {
-            "path": "Param_ProjectName.Tests.MSTest/Mocks/MockNavigationViewService.cs"
-        },
-        {
-            "path": "Param_ProjectName.Tests.MSTest/Mocks/MockPageService.cs"
         }
     ],
     "symbols": {
