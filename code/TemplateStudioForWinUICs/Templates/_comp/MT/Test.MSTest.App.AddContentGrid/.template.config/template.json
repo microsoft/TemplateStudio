@@ -23,16 +23,16 @@
             "path": "Param_ProjectName.Tests.MSTest/ContentGridDetailViewModelTests.cs"
         },
         {
-            "path": "Param_ProjectName.Tests.MSTest/ContentGridViewModel.cs"
+            "path": "Param_ProjectName.Tests.MSTest/ContentGridViewModelTests.cs"
         },
         {
             "path": "Param_ProjectName.Tests.MSTest/Mocks/MockNavigationService.cs"
         },
         {
-            "path": "Param_ProjectName.Tests.MSTest/Mocks/MockSampleDataService.cs"
+            "path": "Param_ProjectName.Tests.MSTest/Mocks/MockPageService.cs"
         },
         {
-            "path": "Param_ProjectName.Tests.MSTest/Mocks/MockPageService.cs"
+            "path": "Param_ProjectName.Tests.MSTest/Mocks/MockSampleDataService.cs"
         }
     ],
     "symbols": {
