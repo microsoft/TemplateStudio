@@ -4,7 +4,7 @@ namespace Param_RootNamespace.Services;
 
 public class MockLocalSettingsService : ILocalSettingsService
 {
-    public async Task<T> ReadSettingAsync<T>(string key)
+    public async Task<T?> ReadSettingAsync<T>(string key)
     {
         return default;
     }
