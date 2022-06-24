@@ -1,17 +1,20 @@
-# Template Studio
+# MSTests for Template Studio
 
-Template Studio is a suite of Visual Studio 2022 extensions that accelerate the creation of new WinUI 3, WPF, and UWP apps using a wizard-based experience.
+This guide will demonstrate using dependency injection and service-mocking to test your page View Models.
 
-  * [Template Studio for WinUI (C#)](https://marketplace.visualstudio.com/items?itemName=TemplateStudio.TemplateStudioForWinUICs)
-  * Template Studio for WinUI (C++) (FUTURE)
-  * [Template Studio for WPF](https://marketplace.visualstudio.com/items?itemName=TemplateStudio.TemplateStudioForWPF)
-  * [Template Studio for UWP](https://marketplace.visualstudio.com/items?itemName=TemplateStudio.TemplateStudioForUWP)
+## Unpackaged App
+Settings: <ProjectPriFileName>resources.pri</ProjectPriFileName> to the first PropertyGroup
+(will be handled by post action)
 
-Projects created with these extensions contain well-formed, readable code and incorporate the latest development features while implementing proven patterns and leading practices. The generated code includes links to documentation and TODO comments that provide useful insight and guidance for turning the generated projects into production applications.
+## Packaged App
 
-To get started, install the appropriate extension, then select the corresponding Template Studio project template when creating a new project in Visual Studio. Name your project, then click Create to launch the Template Studio wizard.
+    <PackageReference Include="Microsoft.TestPlatform.TestHost">
+    <Version>17.2.0</Version>
+    <ExcludeAssets>build</ExcludeAssets>
+    </PackageReference>
 
-See the [roadmap](/docs/roadmap.md) to understand project priorities and upcoming milestones.
+    NEED TO FIND RESOURCE FILE FIX
+
 
 <figcaption>VS New Project Dialog</figcaption>
 

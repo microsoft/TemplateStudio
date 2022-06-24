@@ -246,6 +246,12 @@
     <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\README.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.Packaged\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Test.MSTest.App.Packaged\Param_ProjectName.Tests.MSTest_postaction.csproj">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <VSCTCompile Include="Commands\TemplateStudioForWinuiPackage.vsct">
       <Generator>VsctGenerator</Generator>
       <ResourceName>Menus.ctmenu</ResourceName>
@@ -2311,9 +2317,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Templates\_comp\MT\Test.MSTest.Packaged\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />
   <Import Project="..\SharedFunctionality.UI\SharedFunctionality.UI.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
