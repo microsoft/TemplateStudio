@@ -13,6 +13,8 @@ You can contribute to this project by contributing to:
 * [Issues](https://github.com/microsoft/TemplateStudio/issues)
 * [Discussions](https://github.com/microsoft/TemplateStudio/discussions)
 * [Templates](#Templates)
+* [Shared Code](#Shared-Code)
+* [Edit Project Menu](#Edit-Project-Menu)
 
 If you intend to contribute code changes, learn how to [set up your development environment](#Set-up-your-development-environment).
 
