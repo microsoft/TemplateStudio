@@ -167,8 +167,7 @@ namespace TemplateStudioForWinUICs
             ThreadHelper.ThrowIfNotOnUIThread();
 
             var cmd = (OleMenuCommand)sender;
-            cmd.Visible = RightClickActions.VisibleForWinUI()
-                && RightClickActions.TempFolderAvailable();
+            cmd.Visible = RightClickActions.VisibleForWinUI() && RightClickActions.TempFolderAvailable();
         }
     }
 }
