@@ -86,3 +86,5 @@ Settings: <ProjectPriFileName>resources.pri</ProjectPriFileName> to the first Pr
     </PackageReference>
 
     NEED TO FIND RESOURCE FILE FIX
+
+## something abt making mock empty??
