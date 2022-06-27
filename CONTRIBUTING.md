@@ -241,7 +241,7 @@ The below extensions may be useful when debugging changes to the Edit Project me
 * [Command Explorer](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CommandExplorer) for identifying Visual Studio Menu and Group IDs
 * [Component Diagnostics](https://marketplace.visualstudio.com/items?itemName=PaulHarrington.ComponentDiagnosticsDev17) for checking if the Menu package is registered properly in the Package Manager
 
-Note: The Experimental Instance often doesn't recognize changes to the `.vsct` file which can result in the menu not showing up or UI changes not being reflected. Uninstalling all versions of the extension and [resetting the Experimental Instance](#Validating-changes) sometimes helps. The most reliable way to test menu changes is to build a Release build of the VSIX and install it into the main instance of Visual Studio.
+Note: The Experimental Instance often doesn't recognize changes to the `.vsct` file which can result in the menu not showing up or UI changes not being reflected. Running `. "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.exe" /RootSuffix Exp /setup` from PowerShell will trigger the Experimental Instance to rebuild its menus. If that doesn't work, then uninstalling all versions of the extension and [resetting the Experimental Instance](#Validating-changes) sometimes helps. The most reliable way to test menu changes is to build a Release build of the VSIX and install it into the main instance of Visual Studio.
 
 ## Localization
 
