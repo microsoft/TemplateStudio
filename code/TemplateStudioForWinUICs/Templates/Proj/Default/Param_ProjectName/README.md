@@ -1,4 +1,4 @@
-﻿*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor).*
+﻿*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2).*
 
 This project was created using [Microsoft Template Studio](https://aka.ms/templatestudio).
 
