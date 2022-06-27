@@ -8,7 +8,7 @@ This can be done by copying the existing `SampleDataService.cs` into the test pr
 create services that they depend on so that they can be initialized correctly. An example of this is the Navigation Service, which implements the INavigationService interface and requires an instance of an IPageService in
 its constructor.
 
-## Unpackaged Solution
+## Unpackaged Project
 In order to access the `.resw` resources used in App7, this line must be added to the test project's `.csproj` file within the first PropertyGroup:
 
 ```xaml
@@ -16,7 +16,7 @@ In order to access the `.resw` resources used in App7, this line must be added t
 ```
 This way, in the case of testing the SettingsViewModel, for example, the test project can successfully create a `SettingsViewModel` object, which uses `App7/Strings/en-us/Resources.resw`.
 
-## MSIX-Packaged Solution
+## MSIX-Packaged Project
 
 ## DataGrid View Model Testing Implementation (Unpackaged)
 
