@@ -24,17 +24,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
             var fileName = GetFileName(parentGenerationOutputPath);
-            if (Config.SyncGeneration)
-            {
-                var newFiles = BuildNewFilesSection(Resources.SyncSummarySectionNewFiles);
-
-                var modifiedFiles = BuildMergeFileSection(Resources.SyncSummarySectionModifiedFiles, Resources.SyncSummaryTemplateModifiedFile, GenContext.Current.MergeFilesFromProject.Where(f => !GenContext.Current.FailedMergePostActions.Any(m => m.FileName == f.Key)));
-                var failedMergeFiles = BuildMergeFileSection(Resources.SyncSummarySectionFailedMergeFiles, Resources.SyncSummaryTemplateFailedMerges, GenContext.Current.MergeFilesFromProject.Where(f => GenContext.Current.FailedMergePostActions.Any(m => m.FileName == f.Key)));
-                var conflictingFiles = BuildConflictingFilesSection(Resources.SyncSummarySectionConflictingFiles);
-
-                File.WriteAllText(fileName, string.Format(Resources.SyncSummaryTemplate, parentGenerationOutputPath, newFiles, modifiedFiles, failedMergeFiles, conflictingFiles));
-            }
-            else
+            if (!Config.SyncGeneration) 
             {
                 var newFiles = BuildNewFilesSection(Resources.SyncInstructionsSectionNewFiles);
                 var modifiedFiles = BuildMergeFileSection(Resources.SyncInstructionsSectionModifiedFiles, Resources.SyncInstructionsTemplateModifiedFile, GenContext.Current.MergeFilesFromProject);
@@ -42,9 +32,8 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 var unchangedFiles = BuildUnchangedFilesSection(Resources.SyncInstructionsSectionUnchangedFiles);
 
                 File.WriteAllText(fileName, string.Format(Resources.SyncInstructionsTemplate, parentGenerationOutputPath, newFiles, modifiedFiles, conflictingFiles, unchangedFiles));
+                GenContext.Current.FilesToOpen.Add(fileName);
             }
-
-            GenContext.Current.FilesToOpen.Add(fileName);
 
             GenContext.Current.FailedMergePostActions.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
