@@ -24,7 +24,18 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
         {
             var parentGenerationOutputPath = Directory.GetParent(GenContext.Current.GenerationOutputPath).FullName;
             var fileName = GetFileName(parentGenerationOutputPath);
-            if (!Config.SyncGeneration) 
+            if (Config.SyncGeneration)
+            {
+                var failedMergeFiles = BuildMergeFileSection(Resources.SyncSummarySectionFailedMergeFiles, Resources.SyncSummaryTemplateFailedMerges, GenContext.Current.MergeFilesFromProject.Where(f => GenContext.Current.FailedMergePostActions.Any(m => m.FileName == f.Key)));
+                var conflictingFiles = BuildConflictingFilesSection(Resources.SyncSummarySectionConflictingFiles);
+
+                if (failedMergeFiles.Any() || conflictingFiles.Any())
+                {
+                    File.WriteAllText(fileName, string.Format(Resources.SyncSummaryTemplate, parentGenerationOutputPath, failedMergeFiles, conflictingFiles));
+                    GenContext.Current.FilesToOpen.Add(fileName);
+                }
+            }
+            else
             {
                 var newFiles = BuildNewFilesSection(Resources.SyncInstructionsSectionNewFiles);
                 var modifiedFiles = BuildMergeFileSection(Resources.SyncInstructionsSectionModifiedFiles, Resources.SyncInstructionsTemplateModifiedFile, GenContext.Current.MergeFilesFromProject);
@@ -33,6 +44,7 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
 
                 File.WriteAllText(fileName, string.Format(Resources.SyncInstructionsTemplate, parentGenerationOutputPath, newFiles, modifiedFiles, conflictingFiles, unchangedFiles));
                 GenContext.Current.FilesToOpen.Add(fileName);
+
             }
 
             GenContext.Current.FailedMergePostActions.Clear();
