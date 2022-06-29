@@ -17,7 +17,7 @@ In order to access the `.resw` resources used in App7, this line must be added t
 This way, in the case of testing the SettingsViewModel, for example, the test project can successfully create a `SettingsViewModel` object, which uses `App7/Strings/en-us/Resources.resw`.
 
 ## MSIX-Packaged Project
-
+unpackaged test project + packaged 
 ## DataGrid View Model Testing Implementation (Unpackaged)
 
 In the testing file, a public class is created containing an empty test method. Within the TestClass, instances of the DataGridViewModel and the MockSampleDataService can be created. Then, within
