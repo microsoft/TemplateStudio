@@ -246,6 +246,13 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Commands\Resources\TemplateStudioCommand.png" />
+    <Content Include="Templates\_comp\MT\Feature.AppNotifications.Packaged\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\_comp\MT\Feature.AppNotifications.Packaged\Package_postaction.appxmanifest">
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <VSCTCompile Include="Commands\TemplateStudioForWinuiPackage.vsct">
       <Generator>VsctGenerator</Generator>
       <ResourceName>Menus.ctmenu</ResourceName>

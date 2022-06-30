@@ -1,0 +1,21 @@
+﻿<Package
+<!--{[{-->
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+<!--}]}-->
+  IgnorableNamespaces="uap rescap genTemplate">
+      <Extensions>
+<!--{[{-->
+          <desktop:Extension Category="windows.toastNotificationActivation">
+              <desktop:ToastNotificationActivation ToastActivatorCLSID="61d83ff1-510f-48dd-8db0-85f1083a0089" />
+          </desktop:Extension>
+
+          <com:Extension Category="windows.comServer">
+              <com:ComServer>
+                  <com:ExeServer Executable="Param_ProjectName.exe" Arguments="----AppNotificationActivated:" DisplayName="Toast activator">
+                      <com:Class Id="61d83ff1-510f-48dd-8db0-85f1083a0089" DisplayName="Toast activator"/>
+                  </com:ExeServer>
+              </com:ComServer>
+          </com:Extension>
+<!--}]}-->
+      </Extensions>
