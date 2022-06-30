@@ -135,9 +135,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectTemplates\WinUICs\Ts4WinUICsTemplate.csproj">
+    <ProjectReference Include="..\ProjectTemplates\WinUICs\WinUICs.csproj">
       <Project>{7EDD488B-831B-49C8-ADCC-C3E1D9742936}</Project>
-      <Name>Ts4WinUICsTemplate</Name>
+      <Name>WinUICs</Name>
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>

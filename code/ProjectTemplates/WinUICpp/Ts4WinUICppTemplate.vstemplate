@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
     <TemplateData>
-        <Name>Template Studio for WinUI (C++)</Name>
-        <Description>Quickly build an app, using a wizard-based UI, based on leading patterns and best practices.</Description>
+        <Name>Template Studio for WinUI</Name>
+        <Description>Template Studio accelerates the creation of new apps using a wizard-based experience.</Description>
         <Icon>Ts4WinUICppTemplate.png</Icon>
         <ProjectType>VC</ProjectType>
         <LanguageTag>cpp</LanguageTag>
@@ -13,7 +13,7 @@
         <ProvideDefaultName>true</ProvideDefaultName>
         <LanguageTag>XAML</LanguageTag>
         <PlatformTag>Windows</PlatformTag>
-        <ProjectTypeTag>desktop</ProjectTypeTag>
+        <ProjectTypeTag>Desktop</ProjectTypeTag>
         <ProjectTypeTag>WinUI</ProjectTypeTag>
     </TemplateData>
     <TemplateContent>
