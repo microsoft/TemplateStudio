@@ -34,6 +34,7 @@ jobs:
       authId: $(TouchdownApplicationID)
       authKey: $(TouchdownApplicationKey)
       resourceFilePath: |
+        **\ProjectTemplates\**\Template.vstemplate
         **\FrontendFrameworks\FrontendFrameworks.json
         **\ProjectTypes\ProjectTypes.json
         **\.template.config\localize\templatestrings.json
