@@ -6,7 +6,7 @@
       "SharedFunctionality.UI\\SharedFunctionality.UI.shproj",
       "SharedResources\\SharedResources.csproj",
       "TemplateStudioForWinUICs\\TemplateStudioForWinUICs.csproj",
-      "ProjectTemplates\\WinUICs\\WinUICs.csproj",
+      "ProjectTemplates\\WinUICs\\TemplateStudioForWinUICs.ProjectTemplates.csproj",
       "test\\SharedFunctionality.Core.Tests\\SharedFunctionality.Core.Tests.csproj",
       "test\\SharedFunctionality.Tests\\SharedFunctionality.Tests.shproj",
       "test\\SharedFunctionality.UI.Tests\\SharedFunctionality.UI.Tests.csproj",

@@ -68,7 +68,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ts4UwpCsTemplate", "Project
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Ts4UwpVbTemplate", "ProjectTemplates\UWP\Vb\Ts4UwpVbTemplate.vbproj", "{CD3637EA-BD39-4C34-B3AC-2E2B21E35D7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinUICs", "ProjectTemplates\WinUICs\WinUICs.csproj", "{7EDD488B-831B-49C8-ADCC-C3E1D9742936}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateStudioForWinUICs.ProjectTemplates", "ProjectTemplates\WinUICs\TemplateStudioForWinUICs.ProjectTemplates.csproj", "{7EDD488B-831B-49C8-ADCC-C3E1D9742936}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
