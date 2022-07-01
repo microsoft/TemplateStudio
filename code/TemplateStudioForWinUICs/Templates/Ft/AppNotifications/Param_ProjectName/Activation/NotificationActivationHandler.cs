@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using Param_ProjectName.Contracts.Services;
-using Param_ProjectName.Notifications;
+﻿using Param_ProjectName.Contracts.Services;
 using Param_ProjectName.ViewModels;
 
 using Microsoft.UI.Xaml;
@@ -14,10 +10,12 @@ namespace Param_RootNamespace.Activation;
 public class NotificationActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
 {
     private readonly INavigationService _navigationService;
+    private readonly INotificationService _notificationService;
 
-    public NotificationActivationHandler(INavigationService navigationService)
+    public NotificationActivationHandler(INavigationService navigationService, INotificationService notificationService)
     {
         _navigationService = navigationService;
+        _notificationService = notificationService;
     }
 
     protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
@@ -27,20 +25,20 @@ public class NotificationActivationHandler : ActivationHandler<LaunchActivatedEv
 
     protected async override Task HandleInternalAsync(LaunchActivatedEventArgs args)
     {
-        AppActivationArguments activationArgs = AppInstance.GetCurrent().GetActivatedEventArgs();
-        var notificationActivatedEventArgs = (AppNotificationActivatedEventArgs)activationArgs.Data;
-        var action = NotificationService.ExtractParamFromArgs(notificationActivatedEventArgs.Argument, "action");
+        // TODO: Handle notification activations.
 
-        switch (action)
-        {
-            case "CGridPage":
-                _navigationService.NavigateTo(typeof(ContentGridViewModel).FullName);
-                break; 
+        //// Access the AppNotificationActivatedEventArgs.
+        //var activatedEventArgs = (AppNotificationActivatedEventArgs)AppInstance.GetCurrent().GetActivatedEventArgs().Data;
 
-            default:
-                _navigationService.NavigateTo(typeof(MainViewModel).FullName);
-                break;
-        }
+        //// Extract arguments from the notification payload.
+        //var action = _notificationService.ParseArguments(activatedEventArgs.Argument, "action");
+
+        //// Take action based on the arguments. Navigating to a specific page is a common scenario.
+        //if (action == "ContentGridPage")
+        //{
+        //    // Navigate to a specific page based on the payload in the notification.
+        //    _navigationService.NavigateTo(typeof(ContentGridViewModel).FullName!);
+        //}
         await Task.CompletedTask;
     }
 }
