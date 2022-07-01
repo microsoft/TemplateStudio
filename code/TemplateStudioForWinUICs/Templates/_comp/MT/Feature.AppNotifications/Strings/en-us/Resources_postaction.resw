@@ -7,7 +7,7 @@
     &lt;binding template="ToastGeneric"&gt;
       &lt;text&gt;Sample App Notification&lt;/text&gt;
       &lt;text&gt;&lt;/text&gt;
-      &lt;image placement="appLogoOverride" hint-crop="circle" src="C:\Param_ProjectName\Param_ProjectName\Assets\Square150x150Logo.png"/&gt;
+      &lt;image placement="appLogoOverride" hint-crop="circle" src="{0}Assets\Square150x150Logo.png"/&gt;
     &lt;/binding&gt;
   &lt;/visual&gt;
   &lt;actions&gt;
