@@ -20,11 +20,11 @@
         "ts.outputToParent": "true",
         "ts.version": "1.0.0",
         "ts.displayOrder": "0",
-        "ts.licenses": "[Microsoft.WindowsAppSDK](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.1.2/License)"
+        "ts.licenses": "[Microsoft.WindowsAppSDK](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.1.2/License)|[WinUIEx](https://licenses.nuget.org/Apache-2.0)"
     },
     "sourceName": "Param_ProjectName",
     "preferNameDirectory": true,
-    "guids": [ "378ed3d7-d630-4039-8b8e-93310ba6b05e" ],
+    "guids": [ "DA786591-C56F-426F-8ECA-CA016C49F8A2" ],
     "PrimaryOutputs": [
         { "path": "Param_ProjectName/Param_ProjectName.csproj" },
         { "path": "Param_ProjectName.Core/Param_ProjectName.Core.csproj" }
@@ -89,6 +89,17 @@
             "args": {
                 "packageId": "Microsoft.WindowsAppSDK",
                 "version": "1.1.2",
+                "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
+            },
+            "continueOnError": true
+        },
+        {
+            "description": "Add nuget package",
+            "manualInstructions": [],
+            "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+            "args": {
+                "packageId": "WinUIEx",
+                "version": "1.6.0",
                 "projectPath": "Param_ProjectName\\Param_ProjectName.csproj"
             },
             "continueOnError": true
