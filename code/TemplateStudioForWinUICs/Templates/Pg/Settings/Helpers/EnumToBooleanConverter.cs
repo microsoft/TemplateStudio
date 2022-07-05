@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 
 namespace Param_RootNamespace.Helpers;

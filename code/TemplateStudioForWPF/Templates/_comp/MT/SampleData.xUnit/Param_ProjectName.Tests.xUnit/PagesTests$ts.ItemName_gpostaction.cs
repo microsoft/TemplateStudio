@@ -2,16 +2,15 @@
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Services;
 //}]}
-namespace Param_RootNamespace.Tests.XUnit
+namespace Param_RootNamespace.Tests.XUnit;
+
+public class PagesTests
 {
-    public class PagesTests
+    private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
-        private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
-        {
-            // Services
+        // Services
 //{[{
-            services.AddSingleton<ISampleDataService, SampleDataService>();
+        services.AddSingleton<ISampleDataService, SampleDataService>();
 //}]}
-        }
     }
 }

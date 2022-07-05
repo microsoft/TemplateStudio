@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Microsoft.Templates.UI.Controls"
-             xmlns:res="clr-namespace:Microsoft.Templates.Resources;assembly=SharedResources"
+             xmlns:res="clr-namespace:Microsoft.Templates.SharedResources;assembly=SharedResources"
              xmlns:ts="clr-namespace:Microsoft.Templates.UI.TemplateSelectors"
              xmlns:extensions="clr-namespace:Microsoft.Templates.UI.Extensions"
              mc:Ignorable="d"             
-             AutomationProperties.Name="{x:Static res:StringRes.AccessibilityNotificationPanel}"
+             AutomationProperties.Name="{x:Static res:Resources.AccessibilityNotificationPanel}"
              d:DesignHeight="300" d:DesignWidth="300">
 
     <!--<UserControl.Resources>

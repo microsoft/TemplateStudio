@@ -11,10 +11,11 @@ namespace Param_RootNamespace.ViewModels;
 public class ShellViewModel : ObservableRecipient
 {
     private bool _isBackEnabled;
-    private object _selected;
-    private ICommand _menuFileExitCommand;
 
-    public ICommand MenuFileExitCommand => _menuFileExitCommand ??= new RelayCommand(OnMenuFileExit);
+    public ICommand MenuFileExitCommand
+    {
+        get;
+    }
 
     public INavigationService NavigationService
     {
@@ -27,16 +28,12 @@ public class ShellViewModel : ObservableRecipient
         set => SetProperty(ref _isBackEnabled, value);
     }
 
-    public object Selected
-    {
-        get => _selected;
-        set => SetProperty(ref _selected, value);
-    }
-
     public ShellViewModel(INavigationService navigationService)
     {
         NavigationService = navigationService;
         NavigationService.Navigated += OnNavigated;
+
+        MenuFileExitCommand = new RelayCommand(OnMenuFileExit);
     }
 
     private void OnNavigated(object sender, NavigationEventArgs e) => IsBackEnabled = NavigationService.CanGoBack;

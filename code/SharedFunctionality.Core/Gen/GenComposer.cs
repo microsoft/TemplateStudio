@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.Templates.Core.Composition;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Gen
 {
@@ -164,7 +164,7 @@ namespace Microsoft.Templates.Core.Gen
                 }
                 else
                 {
-                    LogOrAlertException(string.Format(StringRes.ErrorDependencyMissing, dependencyItem.Identity));
+                    LogOrAlertException(string.Format(Resources.ErrorDependencyMissing, dependencyItem.Identity));
                 }
             }
         }

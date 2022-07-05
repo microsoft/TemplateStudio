@@ -1,48 +1,48 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/template",
-  "author": "Microsoft",
-  "classifications": [
-    "Universal"
-  ],
-  "name": "Blank",
-  "shortName": "Blank",
-  "identity": "ts.WinUI.Page.Blank",
-  "groupIdentity": "ts.WinUI.Page.Blank",
-  "description": "This is the most basic page. A blank canvas to mold into whatever you wish.",
-  "tags": {
-    "language": "C#",
-    "type": "item",
-    "ts.type": "page",
-    "ts.projecttype": "Blank|SplitView|MenuBar",
-    "ts.frontendframework": "all",
-    "ts.platform": "WinUI",
-    "ts.appmodel": "Desktop",
-    "ts.version": "1.0.0",
-    "ts.displayOrder": "1",
-    "ts.genGroup": "0",
-    "ts.rightClickEnabled":"true"
-  },
-  "sourceName": "Param_ItemName",
-  "preferNameDirectory": true,
-  "PrimaryOutputs": [
-    {
-      "path": "ViewModels/Param_ItemNameViewModel.cs"
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+        "Universal"
+    ],
+    "name": "Blank",
+    "shortName": "Blank",
+    "identity": "ts.WinUI.Page.Blank",
+    "groupIdentity": "ts.WinUI.Page.Blank",
+    "description": "A blank page.",
+    "tags": {
+        "language": "C#",
+        "type": "item",
+        "ts.type": "page",
+        "ts.projecttype": "Blank|NavView|MenuBar",
+        "ts.frontendframework": "all",
+        "ts.platform": "WinUI",
+        "ts.appmodel": "Desktop",
+        "ts.version": "1.0.0",
+        "ts.displayOrder": "1",
+        "ts.genGroup": "0",
+        "ts.rightClickEnabled": "true"
     },
-    {
-      "path": "Views/Param_ItemNamePage.xaml"
-    },
-    {
-      "path": "Views/Param_ItemNamePage.xaml.cs"
+    "sourceName": "Param_ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+        {
+            "path": "ViewModels/Param_ItemNameViewModel.cs"
+        },
+        {
+            "path": "Views/Param_ItemNamePage.xaml"
+        },
+        {
+            "path": "Views/Param_ItemNamePage.xaml.cs"
+        }
+    ],
+    "symbols": {
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        },
+        "baseclass": {
+            "type": "parameter",
+            "replaces": "System.ComponentModel.INotifyPropertyChanged"
+        }
     }
-  ],
-  "symbols": {
-    "ts.rootNamespace": {
-      "type": "parameter",
-      "replaces": "Param_RootNamespace"
-    },
-    "baseclass": {
-      "type": "parameter",
-      "replaces": "System.ComponentModel.INotifyPropertyChanged"
-    }
-  }
 }

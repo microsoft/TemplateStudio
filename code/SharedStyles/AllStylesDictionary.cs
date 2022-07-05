@@ -4,7 +4,7 @@
 
 using System;
 using System.Windows;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.UI.Styles
 {

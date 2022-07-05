@@ -122,10 +122,10 @@ private async Task StartupAsync()
 
 ## More information
 
-[Find out more about sending a local toast notification from desktop C# apps](https://docs.microsoft.com/windows/uwp/design/shell/tiles-and-notifications/send-local-toast-desktop?tabs=desktop).
+[Find out more about sending a local toast notification from desktop C# apps](https://docs.microsoft.com/windows/apps/design/shell/tiles-and-notifications/send-local-toast?tabs=desktop).
 
 Check the Windows Desktop Notification [Sample](https://github.com/WindowsNotifications/desktop-toasts).
 
-Full documentation of the [ToastContent class](https://docs.microsoft.com/dotnet/api/microsoft.toolkit.uwp.notifications.toastcontent).
+Full documentation of the [ToastContent class](https://docs.microsoft.com/dotnet/api/communitytoolkit.winui.notifications.toastcontent).
 
-Use the [visualization app](https://docs.microsoft.com/windows/uwp/controls-and-patterns/tiles-and-notifications-notifications-visualizer) to help design adaptive live tiles and notifications.
+Use the [visualization app](https://docs.microsoft.com/windows/apps/design/shell/tiles-and-notifications/notifications-visualizer) to help design adaptive live tiles and notifications.

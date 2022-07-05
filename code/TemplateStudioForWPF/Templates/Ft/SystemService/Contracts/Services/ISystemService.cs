@@ -1,6 +1,5 @@
-﻿namespace Param_RootNamespace.Contracts.Services
+﻿namespace Param_RootNamespace.Contracts.Services;
+
+public interface ISystemService
 {
-    public interface ISystemService
-    {
-    }
 }

@@ -25,7 +25,11 @@ public sealed partial class Param_ItemNameDetailPage : Page
         if (e.NavigationMode == NavigationMode.Back)
         {
             var navigationService = App.GetService<INavigationService>();
-            navigationService.SetListDataItemForNextConnectedAnimation(ViewModel.Item);
+
+            if (ViewModel.Item != null)
+            {
+                navigationService.SetListDataItemForNextConnectedAnimation(ViewModel.Item);
+            }
         }
     }
 }

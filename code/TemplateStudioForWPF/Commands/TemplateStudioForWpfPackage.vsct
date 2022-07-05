@@ -14,7 +14,7 @@
 		<Menus>
 			<Menu guid="guidTemplateStudioForWpfPackageCmdSet" id="AddItemContextMenu" type="Context" priority="0x0100">
 				<Strings>
-					<ButtonText>Template Studio for WPF</ButtonText>
+					<ButtonText>New Item (Template Studio)</ButtonText>
 				</Strings>
 			</Menu>
 		</Menus>
@@ -26,7 +26,7 @@
 				<CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpPage1" />
 				<Strings>
-					<ButtonText>New page...</ButtonText>
+					<ButtonText>New Page...</ButtonText>
 				</Strings>
 			</Button>
 			<Button guid="guidTemplateStudioForWpfPackageCmdSet" id="AddFeatureCommand" priority="0x0200" type="Button">
@@ -35,7 +35,7 @@
 				<CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpFeature1" />
 				<Strings>
-					<ButtonText>New feature...</ButtonText>
+					<ButtonText>New Feature...</ButtonText>
 				</Strings>
 			</Button>
 			<Button guid="guidTemplateStudioForWpfPackageCmdSet" id="AddServiceCommand" priority="0x0300" type="Button">
@@ -44,7 +44,7 @@
 				<CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpService" />
 				<Strings>
-					<ButtonText>New service...</ButtonText>
+					<ButtonText>New Service...</ButtonText>
 				</Strings>
 			</Button>
 			<Button guid="guidTemplateStudioForWpfPackageCmdSet" id="AddTestingCommand" priority="0x0400" type="Button">
@@ -53,7 +53,7 @@
 				<CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpTesting" />
 				<Strings>
-					<ButtonText>New testing project...</ButtonText>
+					<ButtonText>New Test Project...</ButtonText>
 				</Strings>
 			</Button>
 			<Button guid="guidTemplateStudioForWpfPackageCmdSet" id="OpenTempFolder" priority="0x0500" type="Button">
@@ -62,7 +62,7 @@
 				<CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpOpenTemp" />
 				<Strings>
-					<ButtonText>Open generation folder</ButtonText>
+					<ButtonText>Open Generation Folder</ButtonText>
 				</Strings>
 			</Button>
 		</Buttons>
@@ -71,13 +71,25 @@
 			<Bitmap guid="guidImages" href="Resources\TemplateStudioCommand.png" usedList="bmpFeature1, bmpFeature2, bmpFeature3, bmpFeature4, bmpPage1, bmpWTS, bmpOpenTemp, bmpService, bmpTesting" />
 		</Bitmaps>
 	</Commands>
-	<CommandPlacements>
-		<CommandPlacement guid="guidTemplateStudioForWpfPackageCmdSet" id="AddItemContextGroup" priority="0x0200">
-			<Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE" />
-		</CommandPlacement>
+    <VisibilityConstraints>
+        <VisibilityItem guid="guidTemplateStudioForWpfPackageCmdSet"
+						id="AddPageCommand" context="guidTemplateStudioForWpfUIContext" />
 
+        <VisibilityItem guid="guidTemplateStudioForWpfPackageCmdSet"
+						id="AddFeatureCommand" context="guidTemplateStudioForWpfUIContext" />
+
+        <VisibilityItem guid="guidTemplateStudioForWpfPackageCmdSet"
+						id="AddServiceCommand" context="guidTemplateStudioForWpfUIContext" />
+
+        <VisibilityItem guid="guidTemplateStudioForWpfPackageCmdSet"
+						id="AddTestingCommand" context="guidTemplateStudioForWpfUIContext" />
+
+        <VisibilityItem guid="guidTemplateStudioForWpfPackageCmdSet"
+						id="OpenTempFolder" context="guidTemplateStudioForWpfUIContext" />
+    </VisibilityConstraints>
+	<CommandPlacements>
 		<CommandPlacement guid="guidTemplateStudioForWpfPackageCmdSet" id="AddItemContextMenu" priority="0x0100">
-			<Parent guid="guidTemplateStudioForWpfPackageCmdSet" id="AddItemContextGroup" />
+            <Parent guid="guidSHLMainMenu" id="IDG_VS_CTXT_PROJECT_ADD_ITEMS" />
 		</CommandPlacement>
 
 		<CommandPlacement guid="guidTemplateStudioForWpfPackageCmdSet" id="AddItemContextMenuGroup" priority="0x0100">
@@ -112,6 +124,9 @@
 	<Symbols>
 		<!-- This is the package guid. -->
 		<GuidSymbol name="guidTemplateStudioForWpfPackage" value="{70B059FD-8B08-41EB-ADD7-1EB312B097A0}" />
+
+        <!-- This is the UI Context guid. -->
+        <GuidSymbol name="guidTemplateStudioForWpfUIContext" value="{2ECF80C7-AF46-4304-B2EE-B04C8BD28255}" />
 
 		<!-- This is the guid used to group the menu commands together -->
 		<GuidSymbol name="guidTemplateStudioForWpfPackageCmdSet" value="{31C8BB3D-AD07-4590-9E56-D73AE6702F80}">

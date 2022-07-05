@@ -2,21 +2,20 @@
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Services;
 //}]}
-namespace Param_RootNamespace.Tests.MSTest
+namespace Param_RootNamespace.Tests.MSTest;
+
+[TestClass]
+public class PagesTests
 {
-    [TestClass]
-    public class PagesTests
+    private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
-        private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
-        {
-            // Core Services
+        // Core Services
 //{[{
-            services.AddSingleton<IFileService, FileService>();
+        services.AddSingleton<IFileService, FileService>();
 //}]}
-            // Services
+        // Services
 //{[{
-            services.AddSingleton<IPersistAndRestoreService, PersistAndRestoreService>();
+        services.AddSingleton<IPersistAndRestoreService, PersistAndRestoreService>();
 //}]}
-        }
     }
 }

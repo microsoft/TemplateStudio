@@ -1,0 +1,7 @@
+﻿{
+    "name": "Settings Storage",
+    "description": "Settings storage helps simplify storing data inside your application data folder.",
+
+    "_name.comment": "Label for feature that enables apps to store user settings.",
+    "_description.comment": "Label description for Settings Storage."
+}

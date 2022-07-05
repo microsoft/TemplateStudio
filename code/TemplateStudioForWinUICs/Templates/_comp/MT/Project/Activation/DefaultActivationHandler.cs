@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.ViewModels;
 
@@ -18,12 +16,12 @@ public class DefaultActivationHandler : ActivationHandler<LaunchActivatedEventAr
     protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
     {
         // None of the ActivationHandlers has handled the activation.
-        return _navigationService.Frame.Content == null;
+        return _navigationService.Frame?.Content == null;
     }
 
     protected async override Task HandleInternalAsync(LaunchActivatedEventArgs args)
     {
-        _navigationService.NavigateTo(typeof(Param_HomeNameViewModel).FullName, args.Arguments);
+        _navigationService.NavigateTo(typeof(Param_HomeNameViewModel).FullName!, args.Arguments);
 
         await Task.CompletedTask;
     }

@@ -1,7 +1,6 @@
-﻿namespace Param_RootNamespace.Models
+﻿namespace Param_RootNamespace.Models;
+
+public class AppConfig
 {
-    public class AppConfig
-    {
-        public string PrivacyStatement { get; set; }
-    }
+    public string PrivacyStatement { get; set; }
 }

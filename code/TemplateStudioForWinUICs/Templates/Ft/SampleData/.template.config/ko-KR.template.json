@@ -1,6 +1,0 @@
-﻿{
-  "author": "Microsoft Community",
-  "name": "Sample Data",
-  "description": "SampleData는 생성된 버전의 일부 페이지에 사용된 샘플 데이터를 가지고 있습니다.",
-  "identity": "ts.WinUI.Feat.SampleData"
-}

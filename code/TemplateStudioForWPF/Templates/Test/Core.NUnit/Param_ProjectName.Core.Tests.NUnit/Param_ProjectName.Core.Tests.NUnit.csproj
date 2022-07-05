@@ -5,6 +5,7 @@
     <IsPackable>false</IsPackable>
     <Platforms>x64;x86;AnyCPU</Platforms>
     <RootNamespace>Param_RootNamespace.Core.Tests.NUnit</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">

@@ -15,6 +15,9 @@ namespace TemplateStudioForWPF.Commands
         public const string guidTemplateStudioForWpfPackageString = "70b059fd-8b08-41eb-add7-1eb312b097a0";
         public static Guid guidTemplateStudioForWpfPackage = new Guid(guidTemplateStudioForWpfPackageString);
 
+        public const string guidTemplateStudioForWpfUIContextString = "2ecf80c7-af46-4304-b2ee-b04c8bd28255";
+        public static Guid guidTemplateStudioForWpfUIContext = new Guid(guidTemplateStudioForWpfUIContextString);
+
         public const string guidTemplateStudioForWpfPackageCmdSetString = "31c8bb3d-ad07-4590-9e56-d73ae6702f80";
         public static Guid guidTemplateStudioForWpfPackageCmdSet = new Guid(guidTemplateStudioForWpfPackageCmdSetString);
 

@@ -1,0 +1,12 @@
+﻿[
+    {
+        "name": "MVVMToolkit",
+        "displayName": "MVVM Toolkit",
+        "summary": "Nowoczesna, szybka i modułowa biblioteka MVVM i część zestawu narzędzi społeczności systemu Windows."
+    },
+    {
+        "name": "None",
+        "displayName": "None",
+        "summary": "Brak generowania struktury ani struktury folderów. Tylko minimalny kod jest generowany, aby uzyskać aplikację działa."
+    }
+]

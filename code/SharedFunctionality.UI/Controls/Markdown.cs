@@ -17,7 +17,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.UI.Controls
 {
@@ -489,7 +489,7 @@ namespace Microsoft.Templates.UI.Controls
             var result = Create<Hyperlink, Inline>(RunSpanGamut(linkText));
             result.Command = HyperlinkCommand;
             result.CommandParameter = url;
-            result.ToolTip = StringRes.ExternalHyperlinkTooltipMessage;
+            result.ToolTip = Resources.ExternalHyperlinkTooltipMessage;
             result.SetValue(AutomationProperties.NameProperty, linkText);
             result.Tag = nameof(Inline);
 

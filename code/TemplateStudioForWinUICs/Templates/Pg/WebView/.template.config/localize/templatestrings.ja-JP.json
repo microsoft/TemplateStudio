@@ -1,0 +1,4 @@
+﻿{
+    "name": "Web View",
+    "description": "Web ビュー ページは、WebView2 (クロム付きのマイクロソフト エッジ) を使用して Web コンテンツをレンダリングします。"
+}

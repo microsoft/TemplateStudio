@@ -8,7 +8,7 @@ using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge.CodeStyleProviders;
 using Microsoft.Templates.Core.Test.TestFakes;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Xunit;
 
 namespace Microsoft.Templates.Core.Test.PostActions.Catalog
@@ -55,9 +55,9 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
 
             Exception ex = Assert.Throws<Exception>(() => mergePostAction.Execute());
 
-            Assert.Equal(string.Format(StringRes.PostActionException, typeof(SearchAndReplacePostAction), templateName), ex.Message);
+            Assert.Equal(string.Format(Resources.PostActionException, typeof(SearchAndReplacePostAction), templateName), ex.Message);
             Assert.Equal(typeof(FileNotFoundException), ex.InnerException.GetType());
-            Assert.Equal(string.Format(StringRes.MergeFileNotFoundExceptionMessage, mergeFile, templateName), ex.InnerException.Message);
+            Assert.Equal(string.Format(Resources.MergeFileNotFoundExceptionMessage, mergeFile, templateName), ex.InnerException.Message);
         }
 
         [Fact(Skip = "See issue #4421")]
@@ -84,7 +84,7 @@ namespace Microsoft.Templates.Core.Test.PostActions.Catalog
                     Path.Combine(path, "NoSource_searchreplace.cs"),
                     "temp\\NoSource_failedpostaction.cs",
                     Path.Combine(path, "NoSource_failedpostaction.cs"),
-                    string.Format(StringRes.FailedMergePostActionFileNotFound, "temp\\NoSource.cs", templateName),
+                    string.Format(Resources.FailedMergePostActionFileNotFound, "temp\\NoSource.cs", templateName),
                     MergeFailureType.FileNotFound);
 
             Directory.Delete(path, true);

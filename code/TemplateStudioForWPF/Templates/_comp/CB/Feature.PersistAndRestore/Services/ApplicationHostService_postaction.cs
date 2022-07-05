@@ -1,34 +1,33 @@
-﻿namespace Param_RootNamespace.Services
+﻿namespace Param_RootNamespace.Services;
+
+public class ApplicationHostService : IHostedService
 {
-    public class ApplicationHostService : IHostedService
-    {
-        private readonly INavigationService _navigationService;
+    private readonly INavigationService _navigationService;
 //{[{
-        private readonly IPersistAndRestoreService _persistAndRestoreService;
+    private readonly IPersistAndRestoreService _persistAndRestoreService;
 //}]}
-        public ApplicationHostService(/*{[{*/IPersistAndRestoreService persistAndRestoreService/*}]}*/)
-        {
+    public ApplicationHostService(/*{[{*/IPersistAndRestoreService persistAndRestoreService/*}]}*/)
+    {
 //^^
 //{[{
-            _persistAndRestoreService = persistAndRestoreService;
+        _persistAndRestoreService = persistAndRestoreService;
 //}]}
-        }
+    }
 
-        public async Task StopAsync(CancellationToken cancellationToken)
+    public async Task StopAsync(CancellationToken cancellationToken)
+    {
+//{[{
+        _persistAndRestoreService.PersistData();
+//}]}
+    }
+
+    private async Task InitializeAsync()
+    {
+        if (!_isInitialized)
         {
 //{[{
-            _persistAndRestoreService.PersistData();
+            _persistAndRestoreService.RestoreData();
 //}]}
-        }
-
-        private async Task InitializeAsync()
-        {
-            if (!_isInitialized)
-            {
-//{[{
-                _persistAndRestoreService.RestoreData();
-//}]}
-            }
         }
     }
 }

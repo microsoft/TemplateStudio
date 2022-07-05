@@ -1,56 +1,55 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/template",
-  "author": "Microsoft Community",
-  "classifications": ["Universal"],
-  "name": "Sample Data",
-  "shortName": "Sample Data",
-  "groupIdentity": "ts.WinUI.Feat.SampleData",
-  "identity": "ts.WinUI.Feat.SampleData",
-  "description": "SampleData holds sample data used by the generated version of some pages.",
-  "tags": {
-    "language": "C#",
-    "type": "item",
-    "ts.type": "feature",
-    "ts.projecttype": "Blank|SplitView|MenuBar",
-    "ts.frontendframework": "all",
-	  "ts.platform": "WinUI",
-    "ts.appmodel": "Desktop",
-    "ts.version": "1.0.0",
-    "ts.defaultInstance": "SampleData",
-    "ts.multipleInstance": "false",
-    "ts.isHidden": "true",
-    "ts.genGroup": "0",
-    "ts.rightClickEnabled":"true",
-    "ts.outputToParent": "true"
-  },
-  "sourceName": "Param_ItemName",
-  "preferNameDirectory": true,
-  "PrimaryOutputs": [
-    {
-      "path": "Param_ProjectName.Core/Contracts/Services/ISampleDataService.cs"
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft Community",
+    "classifications": [ "Universal" ],
+    "name": "Sample Data",
+    "shortName": "Sample Data",
+    "groupIdentity": "ts.WinUI.Feat.SampleData",
+    "identity": "ts.WinUI.Feat.SampleData",
+    "description": "SampleData holds sample data used by the generated version of some pages.",
+    "tags": {
+        "language": "C#",
+        "type": "item",
+        "ts.type": "feature",
+        "ts.projecttype": "Blank|NavView|MenuBar",
+        "ts.frontendframework": "all",
+        "ts.platform": "WinUI",
+        "ts.appmodel": "Desktop",
+        "ts.version": "1.0.0",
+        "ts.multipleInstance": "false",
+        "ts.isHidden": "true",
+        "ts.genGroup": "0",
+        "ts.rightClickEnabled": "true",
+        "ts.outputToParent": "true"
     },
-    {
-      "path": "Param_ProjectName.Core/Models/SampleCompany.cs"
-    },
-    {
-      "path": "Param_ProjectName.Core/Models/SampleOrder.cs"
-    },
-    {
-      "path": "Param_ProjectName.Core/Models/SampleOrderDetail.cs"
-    },
-    {
-      "path": "Param_ProjectName.Core/Services/SampleDataService.cs"
+    "sourceName": "Param_ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+        {
+            "path": "Param_ProjectName.Core/Contracts/Services/ISampleDataService.cs"
+        },
+        {
+            "path": "Param_ProjectName.Core/Models/SampleCompany.cs"
+        },
+        {
+            "path": "Param_ProjectName.Core/Models/SampleOrder.cs"
+        },
+        {
+            "path": "Param_ProjectName.Core/Models/SampleOrderDetail.cs"
+        },
+        {
+            "path": "Param_ProjectName.Core/Services/SampleDataService.cs"
+        }
+    ],
+    "symbols": {
+        "ts.projectName": {
+            "type": "parameter",
+            "replaces": "Param_ProjectName",
+            "fileRename": "Param_ProjectName"
+        },
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        }
     }
-  ],
-  "symbols": {
-    "ts.projectName": {
-      "type": "parameter",
-      "replaces": "Param_ProjectName",
-      "fileRename": "Param_ProjectName"
-    },
-    "ts.rootNamespace": {
-      "type": "parameter",
-      "replaces": "Param_RootNamespace"
-    }
-  }
 }

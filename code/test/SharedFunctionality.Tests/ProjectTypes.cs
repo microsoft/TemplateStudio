@@ -10,6 +10,8 @@ namespace Microsoft.Templates.Test
 
         public const string MenuBar = "MenuBar";
 
+        public const string NavView = "NavView";
+
         public const string SplitView = "SplitView";
 
         public const string TabbedNav = "TabbedNav";

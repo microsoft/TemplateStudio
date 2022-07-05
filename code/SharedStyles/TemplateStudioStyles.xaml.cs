@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.ViewModels.Common;
 
@@ -78,7 +78,7 @@ namespace Microsoft.Templates.UI.Styles
         {
             if (textBlock != null)
             {
-                if (textBlock.Text == StringRes.ButtonDetails)
+                if (textBlock.Text == Resources.ButtonDetails)
                 {
                     return true;
                 }

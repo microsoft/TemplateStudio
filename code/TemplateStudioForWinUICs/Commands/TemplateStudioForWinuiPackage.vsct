@@ -4,65 +4,65 @@
 	<Extern href="stdidcmd.h"/>
 	<Extern href="vsshlids.h"/>
 
-	<Commands package="ts4WinuiPackage">
+	<Commands package="guidTemplateStudioForWinUICsPackage">
 		<Groups>
-			<Group guid="ts4WinuiPackageCmdSet" id="AddItemContextGroup" priority="0x0200"/>
-			<Group guid="ts4WinuiPackageCmdSet" id="AddItemContextMenuGroup" priority="0x0200"/>
-			<Group guid="ts4WinuiPackageCmdSet" id="ToolsContextMenuGroup" priority="0x0200"/>
+			<Group guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddItemContextGroup" priority="0x0200"/>
+			<Group guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddItemContextMenuGroup" priority="0x0200"/>
+			<Group guid="guidTemplateStudioForWinUICsPackageCmdSet" id="ToolsContextMenuGroup" priority="0x0200"/>
 		</Groups>
 
 		<Menus>
-			<Menu guid="ts4WinuiPackageCmdSet" id="AddItemContextMenu" type="Context" priority="0x0100">
+			<Menu guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddItemContextMenu" type="Context" priority="0x0100">
 				<Strings>
-					<ButtonText>Template Studio for WinUI</ButtonText>
+					<ButtonText>New Item (Template Studio)</ButtonText>
 				</Strings>
 			</Menu>
 		</Menus>
 
 		<Buttons>
-			<Button guid="ts4WinuiPackageCmdSet" id="AddPageCommand" priority="0x0100" type="Button">
+			<Button guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddPageCommand" priority="0x0100" type="Button">
 				<CommandFlag>DefaultDisabled</CommandFlag>
 				<CommandFlag>DefaultInvisible</CommandFlag>
 				<CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpPage1" />
 				<Strings>
-					<ButtonText>New page...</ButtonText>
+					<ButtonText>New Page...</ButtonText>
 				</Strings>
 			</Button>
-			<Button guid="ts4WinuiPackageCmdSet" id="AddFeatureCommand" priority="0x0200" type="Button">
+			<Button guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddFeatureCommand" priority="0x0200" type="Button">
 				<CommandFlag>DefaultDisabled</CommandFlag>
 				<CommandFlag>DefaultInvisible</CommandFlag>
 				<CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpFeature1" />
 				<Strings>
-					<ButtonText>New feature...</ButtonText>
+					<ButtonText>New Feature...</ButtonText>
 				</Strings>
 			</Button>
-			<Button guid="ts4WinuiPackageCmdSet" id="AddServiceCommand" priority="0x0300" type="Button">
+			<Button guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddServiceCommand" priority="0x0300" type="Button">
 				<CommandFlag>DefaultDisabled</CommandFlag>
 				<CommandFlag>DefaultInvisible</CommandFlag>
 				<CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpService" />
 				<Strings>
-					<ButtonText>New service...</ButtonText>
+					<ButtonText>New Service...</ButtonText>
 				</Strings>
 			</Button>
-			<Button guid="ts4WinuiPackageCmdSet" id="AddTestingCommand" priority="0x0400" type="Button">
+			<Button guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddTestingCommand" priority="0x0400" type="Button">
 				<CommandFlag>DefaultDisabled</CommandFlag>
 				<CommandFlag>DefaultInvisible</CommandFlag>
 				<CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpTesting" />
 				<Strings>
-					<ButtonText>New testing project...</ButtonText>
+					<ButtonText>New Test Project...</ButtonText>
 				</Strings>
 			</Button>
-			<Button guid="ts4WinuiPackageCmdSet" id="OpenTempFolder" priority="0x0500" type="Button">
+			<Button guid="guidTemplateStudioForWinUICsPackageCmdSet" id="OpenTempFolder" priority="0x0500" type="Button">
 				<CommandFlag>DefaultDisabled</CommandFlag>
 				<CommandFlag>DefaultInvisible</CommandFlag>
 				<CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpOpenTemp" />
 				<Strings>
-					<ButtonText>Open generation folder</ButtonText>
+					<ButtonText>Open Generation Folder</ButtonText>
 				</Strings>
 			</Button>
 		</Buttons>
@@ -71,50 +71,65 @@
 			<Bitmap guid="guidImages" href="Resources\TemplateStudioCommand.png" usedList="bmpFeature1, bmpFeature2, bmpFeature3, bmpFeature4, bmpPage1, bmpWTS, bmpOpenTemp, bmpService, bmpTesting" />
 		</Bitmaps>
 	</Commands>
+    <VisibilityConstraints>
+        <VisibilityItem guid="guidTemplateStudioForWinUICsPackageCmdSet"
+						id="AddPageCommand" context="guidTemplateStudioForWinUICsUIContext" />
+
+        <VisibilityItem guid="guidTemplateStudioForWinUICsPackageCmdSet"
+						id="AddFeatureCommand" context="guidTemplateStudioForWinUICsUIContext" />
+
+        <VisibilityItem guid="guidTemplateStudioForWinUICsPackageCmdSet"
+						id="AddServiceCommand" context="guidTemplateStudioForWinUICsUIContext" />
+
+        <VisibilityItem guid="guidTemplateStudioForWinUICsPackageCmdSet"
+						id="AddTestingCommand" context="guidTemplateStudioForWinUICsUIContext" />
+
+        <VisibilityItem guid="guidTemplateStudioForWinUICsPackageCmdSet"
+						id="OpenTempFolder" context="guidTemplateStudioForWinUICsUIContext" />
+    </VisibilityConstraints>
 	<CommandPlacements>
-		<CommandPlacement guid="ts4WinuiPackageCmdSet" id="AddItemContextGroup" priority="0x0200">
-			<Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE" />
+		<CommandPlacement guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddItemContextMenu" priority="0x0100">
+			<Parent guid="guidSHLMainMenu" id="IDG_VS_CTXT_PROJECT_ADD_ITEMS" />
 		</CommandPlacement>
 
-		<CommandPlacement guid="ts4WinuiPackageCmdSet" id="AddItemContextMenu" priority="0x0100">
-			<Parent guid="ts4WinuiPackageCmdSet" id="AddItemContextGroup" />
+		<CommandPlacement guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddItemContextMenuGroup" priority="0x0100">
+			<Parent guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddItemContextMenu" />
 		</CommandPlacement>
 
-		<CommandPlacement guid="ts4WinuiPackageCmdSet" id="AddItemContextMenuGroup" priority="0x0100">
-			<Parent guid="ts4WinuiPackageCmdSet" id="AddItemContextMenu" />
+		<CommandPlacement guid="guidTemplateStudioForWinUICsPackageCmdSet" id="ToolsContextMenuGroup" priority="0x0100">
+			<Parent guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddItemContextMenu" />
 		</CommandPlacement>
 
-		<CommandPlacement guid="ts4WinuiPackageCmdSet" id="ToolsContextMenuGroup" priority="0x0100">
-			<Parent guid="ts4WinuiPackageCmdSet" id="AddItemContextMenu" />
+		<CommandPlacement guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddPageCommand" priority="0x0100">
+			<Parent guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddItemContextMenuGroup" />
 		</CommandPlacement>
 
-		<CommandPlacement guid="ts4WinuiPackageCmdSet" id="AddPageCommand" priority="0x0100">
-			<Parent guid="ts4WinuiPackageCmdSet" id="AddItemContextMenuGroup" />
+		<CommandPlacement guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddFeatureCommand" priority="0x0200">
+			<Parent guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddItemContextMenuGroup" />
 		</CommandPlacement>
 
-		<CommandPlacement guid="ts4WinuiPackageCmdSet" id="AddFeatureCommand" priority="0x0200">
-			<Parent guid="ts4WinuiPackageCmdSet" id="AddItemContextMenuGroup" />
+		<CommandPlacement guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddServiceCommand" priority="0x0300">
+			<Parent guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddItemContextMenuGroup" />
 		</CommandPlacement>
 
-		<CommandPlacement guid="ts4WinuiPackageCmdSet" id="AddServiceCommand" priority="0x0300">
-			<Parent guid="ts4WinuiPackageCmdSet" id="AddItemContextMenuGroup" />
+		<CommandPlacement guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddTestingCommand" priority="0x0400">
+			<Parent guid="guidTemplateStudioForWinUICsPackageCmdSet" id="AddItemContextMenuGroup" />
 		</CommandPlacement>
 
-		<CommandPlacement guid="ts4WinuiPackageCmdSet" id="AddTestingCommand" priority="0x0400">
-			<Parent guid="ts4WinuiPackageCmdSet" id="AddItemContextMenuGroup" />
-		</CommandPlacement>
-
-		<CommandPlacement guid="ts4WinuiPackageCmdSet" id="OpenTempFolder" priority="0x0500">
-			<Parent guid="ts4WinuiPackageCmdSet" id="ToolsContextMenuGroup" />
+		<CommandPlacement guid="guidTemplateStudioForWinUICsPackageCmdSet" id="OpenTempFolder" priority="0x0500">
+			<Parent guid="guidTemplateStudioForWinUICsPackageCmdSet" id="ToolsContextMenuGroup" />
 		</CommandPlacement>
 	</CommandPlacements>
 
 	<Symbols>
 		<!-- This is the package guid. -->
-		<GuidSymbol name="ts4WinuiPackage" value="{0348E2B7-F1A1-438D-A243-028CE03D87DA}" />
+		<GuidSymbol name="guidTemplateStudioForWinUICsPackage" value="{0348E2B7-F1A1-438D-A243-028CE03D87DA}" />
+
+        <!-- This is the UI Context guid. -->
+        <GuidSymbol name="guidTemplateStudioForWinUICsUIContext" value="{476EB402-260C-4EFC-A311-1D8AEDE9A470}" />
 
 		<!-- This is the guid used to group the menu commands together -->
-		<GuidSymbol name="ts4WinuiPackageCmdSet" value="{9808B482-559D-408F-8998-A00CBC1DFC79}">
+		<GuidSymbol name="guidTemplateStudioForWinUICsPackageCmdSet" value="{9808B482-559D-408F-8998-A00CBC1DFC79}">
 			<IDSymbol name="AddItemContextGroup" value="0x0100" />
 			<IDSymbol name="AddItemContextMenu" value="0x0200" />
 			<IDSymbol name="AddItemContextMenuGroup" value="0x0300" />

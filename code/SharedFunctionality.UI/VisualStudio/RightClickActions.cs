@@ -12,7 +12,7 @@ using Microsoft.Templates.Core.Gen.Shell;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.PostActions.Catalog.Merge;
 using Microsoft.Templates.Core.Services;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Launcher;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
@@ -71,12 +71,12 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 SetContext();
                 var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.Project.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Page, WizardTypeEnum.AddPage);
-                var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].Name);
+                var statusBarMessage = string.Format(Resources.StatusBarNewItemAddPageSuccess, userSelection.Pages[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
             catch (WizardBackoutException)
             {
-                _shell.UI.ShowStatusBarMessage(StringRes.StatusBarNewItemAddPageCancelled);
+                _shell.UI.ShowStatusBarMessage(Resources.StatusBarNewItemAddPageCancelled);
             }
         }
 
@@ -88,12 +88,12 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 SetContext();
                 var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.Project.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Feature, WizardTypeEnum.AddFeature);
-                var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].Name);
+                var statusBarMessage = string.Format(Resources.StatusBarNewItemAddFeatureSuccess, userSelection.Features[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
             catch (WizardBackoutException)
             {
-                _shell.UI.ShowStatusBarMessage(StringRes.StatusBarNewItemAddFeatureCancelled);
+                _shell.UI.ShowStatusBarMessage(Resources.StatusBarNewItemAddFeatureCancelled);
             }
         }
 
@@ -105,12 +105,12 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 SetContext();
                 var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.Project.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Service, WizardTypeEnum.AddService);
-                var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddServiceSuccess, userSelection.Services[0].Name);
+                var statusBarMessage = string.Format(Resources.StatusBarNewItemAddServiceSuccess, userSelection.Services[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
             catch (WizardBackoutException)
             {
-                _shell.UI.ShowStatusBarMessage(StringRes.StatusBarNewItemAddServiceCancelled);
+                _shell.UI.ShowStatusBarMessage(Resources.StatusBarNewItemAddServiceCancelled);
             }
         }
 
@@ -122,12 +122,12 @@ namespace Microsoft.Templates.UI.VisualStudio
             {
                 SetContext();
                 var userSelection = WizardLauncher.Instance.StartAddTemplate(_shell.Project.GetActiveProjectLanguage(), new VSStyleValuesProvider(), TemplateType.Testing, WizardTypeEnum.AddTesting);
-                var statusBarMessage = string.Format(StringRes.StatusBarNewItemAddTestingSuccess, userSelection.Testing[0].Name);
+                var statusBarMessage = string.Format(Resources.StatusBarNewItemAddTestingSuccess, userSelection.Testing[0].Name);
                 FinishGeneration(userSelection, statusBarMessage);
             }
             catch (WizardBackoutException)
             {
-                _shell.UI.ShowStatusBarMessage(StringRes.StatusBarNewItemAddTestingCancelled);
+                _shell.UI.ShowStatusBarMessage(Resources.StatusBarNewItemAddTestingCancelled);
             }
         }
 
@@ -183,12 +183,6 @@ namespace Microsoft.Templates.UI.VisualStudio
 
             var projectConfigInfoService = new ProjectConfigInfoService(_shell);
             var configInfo = projectConfigInfoService.ReadProjectConfiguration();
-
-            // Do not allow right click on WinUI Blank project type
-            if (configInfo?.Platform == Platforms.WinUI && configInfo?.ProjectType == BlankProjectType)
-            {
-                return false;
-            }
 
             var rightClickOptions = _availableOptions.FirstOrDefault(o =>
                                         o.Platform == configInfo?.Platform &&

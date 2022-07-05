@@ -1,0 +1,7 @@
+﻿{
+    "name": "MSIX Packaging",
+    "description": "Package with MSIX for sideloading or distribution via the Microsoft Store.",
+
+    "_name.comment": "Label for https://aka.ms/msix.",
+    "_description.comment": "Label description for MSIX Packaging."
+}

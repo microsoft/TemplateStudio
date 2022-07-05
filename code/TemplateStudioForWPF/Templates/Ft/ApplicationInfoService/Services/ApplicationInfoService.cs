@@ -1,12 +1,10 @@
-﻿using System;
-using Param_RootNamespace.Contracts.Services;
+﻿using Param_RootNamespace.Contracts.Services;
 
-namespace Param_RootNamespace.Services
+namespace Param_RootNamespace.Services;
+
+public class ApplicationInfoService : IApplicationInfoService
 {
-    public class ApplicationInfoService : IApplicationInfoService
+    public ApplicationInfoService()
     {
-        public ApplicationInfoService()
-        {
-        }
     }
 }

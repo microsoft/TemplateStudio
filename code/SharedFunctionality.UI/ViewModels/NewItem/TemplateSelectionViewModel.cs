@@ -9,7 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Gen;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
@@ -176,7 +176,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 var missingSdkVersions = missingVersions.Select(v => RequiredVersionService.GetRequirementDisplayName(v));
 
-                var notification = Notification.Warning(string.Format(StringRes.NotificationMissingVersions, missingSdkVersions.Aggregate((i, j) => $"{i}, {j}")), Category.MissingVersion, TimerType.None);
+                var notification = Notification.Warning(string.Format(Resources.NotificationMissingVersions, missingSdkVersions.Aggregate((i, j) => $"{i}, {j}")), Category.MissingVersion, TimerType.None);
                 NotificationsControl.AddNotificationAsync(notification).FireAndForget();
             }
             else

@@ -1,77 +1,71 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/template",
-  "author": "Microsoft",
-  "classifications": [
-    "Universal"
-  ],
-  "name": "MSIX Packaging",
-  "shortName": "MSIX Packaging",
-  "groupIdentity": "ts.WinUI.Feat.MSIXPackaging",
-  "identity": "ts.WinUI.Feat.MSIXPackaging",
-  "description": "Package with MSIX for sideloading or distribution via the Microsoft Store.",
-  "tags": {
-    "language": "C#",
-    "type": "project",
-    "ts.type": "feature",
-    "ts.projecttype": "all",
-    "ts.frontendframework": "all",
-    "ts.platform": "WinUI",
-    "ts.appmodel": "Desktop",
-    "ts.version": "1.0.0",
-    "ts.genGroup": "0",
-    "ts.group": "Deployment",
-    "ts.displayOrder": "1",
-    "ts.defaultInstance": "MSIX Packaging",
-    "ts.multipleInstance": "false",
-    "ts.rightClickEnabled": "false"
-  },
-  "sourceName": "Param_ItemName",
-  "preferNameDirectory": true,
-  "guids": ["07ad151b-a614-4a13-aef0-5378d3f98e67"],
-  "PrimaryOutputs": [
-  ],
-  "symbols": {
-    "ts.rootNamespace": {
-      "type": "parameter",
-      "replaces": "Param_RootNamespace"
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+        "Universal"
+    ],
+    "name": "MSIX Packaging",
+    "shortName": "MSIX Packaging",
+    "groupIdentity": "ts.WinUI.Feat.MSIXPackaging",
+    "identity": "ts.WinUI.Feat.MSIXPackaging",
+    "description": "Package with MSIX for sideloading or distribution via the Microsoft Store.",
+    "tags": {
+        "language": "C#",
+        "type": "project",
+        "ts.type": "feature",
+        "ts.projecttype": "all",
+        "ts.frontendframework": "all",
+        "ts.platform": "WinUI",
+        "ts.appmodel": "Desktop",
+        "ts.version": "1.0.0",
+        "ts.genGroup": "0",
+        "ts.group": "Deployment",
+        "ts.displayOrder": "1",
+        "ts.defaultInstance": "MSIX Packaging",
+        "ts.multipleInstance": "false",
+        "ts.rightClickEnabled": "false"
     },
-    "ts.projectName": {
-      "type": "parameter",
-      "replaces": "Param_ProjectName",
-      "fileRename": "Param_ProjectName"
+    "sourceName": "Param_ItemName",
+    "preferNameDirectory": true,
+    "guids": [ "07ad151b-a614-4a13-aef0-5378d3f98e67" ],
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        },
+        "ts.projectName": {
+            "type": "parameter",
+            "replaces": "Param_ProjectName",
+            "fileRename": "Param_ProjectName"
+        },
+        "ts.userName": {
+            "type": "parameter",
+            "dataType": "string",
+            "replaces": "Param_UserName"
+        },
+        "ts.wizardVersion": {
+            "type": "parameter",
+            "dataType": "string",
+            "replaces": "Param_Wizard.Version"
+        },
+        "ts.generationProjectType": {
+            "type": "parameter",
+            "replaces": "Param_ProjectType"
+        },
+        "ts.generationFrontEndFramework": {
+            "type": "parameter",
+            "replaces": "Param_Framework"
+        },
+        "ts.generationPlatform": {
+            "type": "parameter",
+            "replaces": "Param_Platform"
+        },
+        "ts.generation.appmodel": {
+            "type": "parameter",
+            "replaces": "Param_AppModel"
+        }
     },
-    "ts.userName":
-    {
-      "type": "parameter",
-      "dataType": "string",
-      "replaces": "Param_UserName"
-    },
-    "ts.wizardVersion":
-    {
-      "type": "parameter",
-      "dataType": "string",
-      "replaces": "Param_Wizard.Version"
-    },
-    "ts.generationProjectType":
-    {
-      "type": "parameter",
-      "replaces": "Param_ProjectType"
-    },
-    "ts.generationFrontEndFramework":
-    {
-      "type": "parameter",
-      "replaces": "Param_Framework"
-    },
-    "ts.generationPlatform":
-    {
-      "type": "parameter",
-      "replaces": "Param_Platform"
-    },
-    "ts.generation.appmodel":
-    {
-      "type": "parameter",
-      "replaces": "Param_AppModel"
-    }
-  },
-  "postActions": []
+    "postActions": []
 }

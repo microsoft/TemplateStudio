@@ -49,7 +49,7 @@ The final generated code is the result of a project configuration (project type 
 
 | Design pattern| Description |
 |--------------:|:------------|
-| [MVVM Toolkit](./frameworks/mvvmtoolkit.md) | The [Microsoft.Toolkit.Mvvm package](https://aka.ms/mvvmtoolkit) is a modern, fast, and modular MVVM library. It is part of the Windows Community Toolkit. |
+| [MVVM Toolkit](./frameworks/mvvmtoolkit.md) | The [CommunityToolkit.Mvvm package](https://aka.ms/mvvmtoolkit) is a modern, fast, and modular MVVM library. It is part of the Windows Community Toolkit. |
 
 ### Pages
 

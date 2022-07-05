@@ -12,13 +12,14 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.TemplateEngine.Utils;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.Core.Helpers;
 using Microsoft.Templates.Core.Locations;
 using Microsoft.Templates.Core.Naming;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 using Newtonsoft.Json;
 
 namespace Microsoft.Templates.Core
@@ -97,7 +98,7 @@ namespace Microsoft.Templates.Core
                 }
                 else
                 {
-                    throw new TemplateSynchronizationException(StringRes.TemplatesSynchronizationError);
+                    throw new TemplateSynchronizationException(Resources.TemplatesSynchronizationError);
                 }
             }
         }
@@ -205,13 +206,17 @@ namespace Microsoft.Templates.Core
 
         public TemplateInfo GetTemplateInfo(ITemplateInfo template, UserSelectionContext context)
         {
+            var localizationLocator = CodeGen.Instance.Cache.Localizations.FirstOrDefault(l =>
+                l.Identity == template.Identity &&
+                l.Locale == CultureInfo.CurrentUICulture.Name);
+
             var templateInfo = new TemplateInfo
             {
                 TemplateId = template.Identity,
                 TemplateGroupIdentity = template.GroupIdentity,
-                Name = template.Name,
+                Name = localizationLocator?.Name ?? template.Name,
                 DefaultName = template.GetDefaultName(),
-                Description = template.Description,
+                Description = localizationLocator?.Description ?? template.Description,
                 RichDescription = template.GetRichDescription(),
                 Author = template.Author,
                 Version = template.GetVersion(),
@@ -285,14 +290,14 @@ namespace Microsoft.Templates.Core
 
                         if (template == null)
                         {
-                            LogOrAlertException(string.Format(StringRes.ErrorLayoutNotFound, item.TemplateGroupIdentity, context.FrontEndFramework, context.Platform));
+                            LogOrAlertException(string.Format(Resources.ErrorLayoutNotFound, item.TemplateGroupIdentity, context.FrontEndFramework, context.Platform));
                         }
                         else
                         {
                             var templateType = template.GetTemplateType();
                             if (!templateType.IsItemTemplate())
                             {
-                                LogOrAlertException(string.Format(StringRes.ErrorLayoutType, template.Identity));
+                                LogOrAlertException(string.Format(Resources.ErrorLayoutType, template.Identity));
                             }
                             else
                             {
@@ -374,7 +379,7 @@ namespace Microsoft.Templates.Core
 
                 if (dependencyTemplate == null)
                 {
-                    LogOrAlertException(string.Format(StringRes.ErrorDependencyNotFound, dependency, context.FrontEndFramework, context.BackEndFramework, context.Platform));
+                    LogOrAlertException(string.Format(Resources.ErrorDependencyNotFound, dependency, context.FrontEndFramework, context.BackEndFramework, context.Platform));
                 }
                 else
                 {
@@ -382,15 +387,15 @@ namespace Microsoft.Templates.Core
 
                     if (!templateType.IsItemTemplate())
                     {
-                        LogOrAlertException(string.Format(StringRes.ErrorDependencyType, dependencyTemplate.Identity));
+                        LogOrAlertException(string.Format(Resources.ErrorDependencyType, dependencyTemplate.Identity));
                     }
                     else if (dependencyTemplate.GetMultipleInstance())
                     {
-                        LogOrAlertException(string.Format(StringRes.ErrorDependencyMultipleInstance, dependencyTemplate.Identity));
+                        LogOrAlertException(string.Format(Resources.ErrorDependencyMultipleInstance, dependencyTemplate.Identity));
                     }
                     else if (dependencyList.Any(d => d.Identity == template.Identity && d.GetDependencyList().Contains(template.Identity)))
                     {
-                        LogOrAlertException(string.Format(StringRes.ErrorDependencyCircularReference, template.Identity, dependencyTemplate.Identity));
+                        LogOrAlertException(string.Format(Resources.ErrorDependencyCircularReference, template.Identity, dependencyTemplate.Identity));
                     }
                     else
                     {
@@ -428,7 +433,7 @@ namespace Microsoft.Templates.Core
 
                 if (requirementTemplate == null)
                 {
-                    LogOrAlertException(string.Format(StringRes.ErrorRequirementNotFound, requirementTemplate, context.FrontEndFramework, context.BackEndFramework, context.Platform));
+                    LogOrAlertException(string.Format(Resources.ErrorRequirementNotFound, requirementTemplate, context.FrontEndFramework, context.BackEndFramework, context.Platform));
                 }
                 else
                 {
@@ -436,19 +441,19 @@ namespace Microsoft.Templates.Core
 
                     if (!templateType.IsItemTemplate())
                     {
-                        LogOrAlertException(string.Format(StringRes.ErrorRequirementType, requirementTemplate.Identity));
+                        LogOrAlertException(string.Format(Resources.ErrorRequirementType, requirementTemplate.Identity));
                     }
                     else if (requirementTemplate.GetMultipleInstance())
                     {
-                        LogOrAlertException(string.Format(StringRes.ErrorRequirementMultipleInstance, requirementTemplate.Identity));
+                        LogOrAlertException(string.Format(Resources.ErrorRequirementMultipleInstance, requirementTemplate.Identity));
                     }
                     else if (template.GetRightClickEnabled())
                     {
-                        LogOrAlertException(string.Format(StringRes.ErrorRequirementRightClick, template.Identity));
+                        LogOrAlertException(string.Format(Resources.ErrorRequirementRightClick, template.Identity));
                     }
                     else if (requirementTemplate.GetRequirementsList().Count > 0)
                     {
-                        LogOrAlertException(string.Format(StringRes.ErrorRecursiveRequirement, template.Identity, requirementTemplate.Identity));
+                        LogOrAlertException(string.Format(Resources.ErrorRecursiveRequirement, template.Identity, requirementTemplate.Identity));
                     }
                     else
                     {
@@ -484,7 +489,7 @@ namespace Microsoft.Templates.Core
 
                 if (exclusionTemplate == null)
                 {
-                    LogOrAlertException(string.Format(StringRes.ErrorExclusionNotFound, exclusionTemplate, context.FrontEndFramework, context.BackEndFramework, context.Platform));
+                    LogOrAlertException(string.Format(Resources.ErrorExclusionNotFound, exclusionTemplate, context.FrontEndFramework, context.BackEndFramework, context.Platform));
                 }
                 else
                 {
@@ -492,19 +497,19 @@ namespace Microsoft.Templates.Core
 
                     if (!templateType.IsItemTemplate())
                     {
-                        LogOrAlertException(string.Format(StringRes.ErrorExclusionType, exclusionTemplate.Identity));
+                        LogOrAlertException(string.Format(Resources.ErrorExclusionType, exclusionTemplate.Identity));
                     }
                     else if (template.GetRightClickEnabled())
                     {
-                        LogOrAlertException(string.Format(StringRes.ErrorExclusionRightClick, template.Identity));
+                        LogOrAlertException(string.Format(Resources.ErrorExclusionRightClick, template.Identity));
                     }
                     else if (template.GetDependencyList().Contains(exclusion))
                     {
-                        LogOrAlertException(string.Format(StringRes.ErrorExclusionAndDependency, template.Identity, exclusion));
+                        LogOrAlertException(string.Format(Resources.ErrorExclusionAndDependency, template.Identity, exclusion));
                     }
                     else if (template.GetRequirementsList().Contains(exclusion))
                     {
-                        LogOrAlertException(string.Format(StringRes.ErrorExclusionAndRequirement, template.Identity, exclusion));
+                        LogOrAlertException(string.Format(Resources.ErrorExclusionAndRequirement, template.Identity, exclusion));
                     }
                     else
                     {
@@ -547,16 +552,20 @@ namespace Microsoft.Templates.Core
 
         private IEnumerable<MetadataInfo> GetMetadataInfo(string type)
         {
-            // if (Sync?.CurrentContent != null)
             if (CodeGen.Instance?.Cache?.MountPoint != null)
             {
-                // var folderName = Path.Combine(Sync?.CurrentContent.Path, CurrentPlatform, Catalog);
                 var folderName = Path.Combine(CodeGen.Instance.Cache.MountPoint.MountPointUri, Catalog);
 
                 if (Directory.Exists(folderName))
                 {
-                    var metadataFile = Path.Combine(folderName, $"{type}.json");
-                    var metadataFileLocalized = Path.Combine(folderName, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.{type}.json");
+                    var metadataFile = Directory
+                        .EnumerateFiles(folderName, $"{type}.json", SearchOption.AllDirectories)
+                        .FirstOrDefault();
+                    var metadataFileLocalized = Directory
+                        .EnumerateFiles(folderName, $"*{type}*.json", SearchOption.AllDirectories)
+                        .Where(f => f.Contains(CultureInfo.CurrentUICulture.Name))
+                        .FirstOrDefault();
+
                     if (File.Exists(metadataFile))
                     {
                         var metadata = JsonConvert.DeserializeObject<List<MetadataInfo>>(File.ReadAllText(metadataFile));
@@ -634,7 +643,11 @@ namespace Microsoft.Templates.Core
 
         private static void SetMetadataDescription(MetadataInfo mInfo, string folderName, string type)
         {
-            var descriptionFile = Path.Combine(folderName, type, $"{CultureInfo.CurrentUICulture.IetfLanguageTag}.{mInfo.Name}.md");
+            var descriptionFile = Directory
+                .EnumerateFiles(folderName, $"*{mInfo.Name}*.md", SearchOption.AllDirectories)
+                .Where(f => f.Contains(CultureInfo.CurrentUICulture.Name))
+                .FirstOrDefault();
+
             if (!File.Exists(descriptionFile))
             {
                 descriptionFile = Path.Combine(folderName, type, $"{mInfo.Name}.md");
@@ -681,7 +694,7 @@ namespace Microsoft.Templates.Core
                 }
                 else
                 {
-                    AppHealth.Current.Error.TrackAsync(string.Format(StringRes.NamingErrorConfigFileNotFound, projectNameValidationConfigFile)).FireAndForget();
+                    AppHealth.Current.Error.TrackAsync(string.Format(Resources.NamingErrorConfigFileNotFound, projectNameValidationConfigFile)).FireAndForget();
                 }
             }
 
@@ -695,7 +708,7 @@ namespace Microsoft.Templates.Core
                 }
                 else
                 {
-                    AppHealth.Current.Error.TrackAsync(string.Format(StringRes.NamingErrorConfigFileNotFound, itemNameValidationConfigFile)).FireAndForget();
+                    AppHealth.Current.Error.TrackAsync(string.Format(Resources.NamingErrorConfigFileNotFound, itemNameValidationConfigFile)).FireAndForget();
                 }
             }
         }

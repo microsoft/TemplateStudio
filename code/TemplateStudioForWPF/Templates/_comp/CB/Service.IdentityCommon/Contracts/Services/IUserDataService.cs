@@ -1,14 +1,12 @@
-﻿using System;
-using Param_RootNamespace.Models;
+﻿using Param_RootNamespace.Models;
 
-namespace Param_RootNamespace.Contracts.Services
+namespace Param_RootNamespace.Contracts.Services;
+
+public interface IUserDataService
 {
-    public interface IUserDataService
-    {
-        event EventHandler<UserData> UserDataUpdated;
+    event EventHandler<UserData> UserDataUpdated;
 
-        void Initialize();
+    void Initialize();
 
-        UserData GetUser();
-    }
+    UserData GetUser();
 }

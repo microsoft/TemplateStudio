@@ -1,0 +1,7 @@
+﻿{
+    "name": "Theme Selection",
+    "description": "Adds theming support to your application.",
+
+    "_name.comment": "Label for feature that enables users to change UI color theme.",
+    "_description.comment": "Label description for Theme Selection."
+}

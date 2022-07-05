@@ -1,32 +1,31 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/template",
-  "author": "Microsoft",
-  "classifications": [ "Universal" ],
-  "name": "Settings Storage",
-  "shortName": "Settings Storage",
-  "groupIdentity": "ts.WinUI.Feat.SettingsStorage",
-  "identity": "ts.WinUI.Feat.SettingsStorage",
-  "description": "Setting storage helps simplify storing data inside your application data folder.",
-  "tags": {
-    "language": "C#",
-    "type": "item",
-    "ts.type": "feature",
-    "ts.projecttype": "Blank|SplitView|MenuBar",
-    "ts.frontendframework": "all",
-    "ts.platform": "WinUI",
-    "ts.appmodel": "Desktop",
-    "ts.version": "1.0.0",
-    "ts.displayOrder": "1",
-    "ts.group": "ApplicationLifecycle",
-    "ts.licenses": "[Newtonsoft.Json](https://raw.githubusercontent.com/JamesNK/Newtonsoft.Json/master/LICENSE.md)",
-    "ts.defaultInstance": "SettingsStorage",
-    "ts.multipleInstance": "false",
-    "ts.genGroup": "0",
-    "ts.rightClickEnabled": "true",
-    "ts.outputToParent": "true"
-  },
-  "sourceName": "SettingsStorageFeature",
-  "preferNameDirectory": true,
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [ "Universal" ],
+    "name": "Settings Storage",
+    "shortName": "Settings Storage",
+    "groupIdentity": "ts.WinUI.Feat.SettingsStorage",
+    "identity": "ts.WinUI.Feat.SettingsStorage",
+    "description": "Settings storage helps simplify storing data inside your application data folder.",
+    "tags": {
+        "language": "C#",
+        "type": "item",
+        "ts.type": "feature",
+        "ts.projecttype": "Blank|NavView|MenuBar",
+        "ts.frontendframework": "all",
+        "ts.platform": "WinUI",
+        "ts.appmodel": "Desktop",
+        "ts.version": "1.0.0",
+        "ts.displayOrder": "1",
+        "ts.group": "ApplicationLifecycle",
+        "ts.licenses": "[Newtonsoft.Json](https://raw.githubusercontent.com/JamesNK/Newtonsoft.Json/master/LICENSE.md)",
+        "ts.multipleInstance": "false",
+        "ts.genGroup": "0",
+        "ts.rightClickEnabled": "true",
+        "ts.outputToParent": "true"
+    },
+    "sourceName": "SettingsStorageFeature",
+    "preferNameDirectory": true,
     "PrimaryOutputs": [
         {
             "path": "Param_ProjectName/Helpers/SettingsStorageExtensions.cs"
@@ -50,28 +49,28 @@
             "path": "Param_ProjectName/Services/LocalSettingsServiceUnpackaged.cs"
         }
     ],
-  "symbols": {
-    "ts.projectName": {
-      "type": "parameter",
-      "replaces": "Param_ProjectName",
-      "fileRename": "Param_ProjectName"
+    "symbols": {
+        "ts.projectName": {
+            "type": "parameter",
+            "replaces": "Param_ProjectName",
+            "fileRename": "Param_ProjectName"
+        },
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        }
     },
-    "ts.rootNamespace": {
-      "type": "parameter",
-      "replaces": "Param_RootNamespace"
-    }
-  },
-  "postActions": [
-    {
-      "description": "Add nuget package",
-      "manualInstructions": [],
-      "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
-      "args": {
-        "packageId": "Newtonsoft.Json",
-        "version": "13.0.1",
-        "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
-      },
-      "continueOnError": true
-    }
-  ]
+    "postActions": [
+        {
+            "description": "Add nuget package",
+            "manualInstructions": [],
+            "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+            "args": {
+                "packageId": "Newtonsoft.Json",
+                "version": "13.0.1",
+                "projectPath": "Param_ProjectName.Core\\Param_ProjectName.Core.csproj"
+            },
+            "continueOnError": true
+        }
+    ]
 }

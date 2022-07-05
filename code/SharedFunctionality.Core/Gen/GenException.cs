@@ -5,7 +5,7 @@
 using System;
 using System.Runtime.Serialization;
 
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Gen
 {
@@ -23,7 +23,7 @@ namespace Microsoft.Templates.Core.Gen
         }
 
         public GenException(string name, string template, string reason)
-            : base(string.Format(StringRes.ErrorGenerating, template, name, reason))
+            : base(string.Format(Resources.ErrorGenerating, template, name, reason))
         {
         }
     }

@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.Templates.Core;
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.UI.ViewModels.Common
 {
@@ -11,8 +11,8 @@ namespace Microsoft.Templates.UI.ViewModels.Common
     {
         public QuestionDialogViewModel(MetadataType metadataType)
         {
-            Title = metadataType == MetadataType.ProjectType ? StringRes.ProjectDetailsProjectTypeResetTitle : StringRes.ProjectDetailsFrameworkResetTitle;
-            Description = metadataType == MetadataType.ProjectType ? StringRes.ProjectDetailsProjectTypeResetDescription : StringRes.ProjectDetailsFrameworkResetDescription;
+            Title = metadataType == MetadataType.ProjectType ? Resources.ProjectDetailsProjectTypeResetTitle : Resources.ProjectDetailsFrameworkResetTitle;
+            Description = metadataType == MetadataType.ProjectType ? Resources.ProjectDetailsProjectTypeResetDescription : Resources.ProjectDetailsFrameworkResetDescription;
         }
     }
 }

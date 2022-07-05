@@ -1,15 +1,12 @@
-﻿
-using System;
-using System.Windows.Media.Imaging;
+﻿using System.Windows.Media.Imaging;
 
-namespace Param_RootNamespace.Models
+namespace Param_RootNamespace.Models;
+
+public class UserData
 {
-    public class UserData
-    {
-        public string Name { get; set; }
+    public string Name { get; set; }
 
-        public string UserPrincipalName { get; set; }
+    public string UserPrincipalName { get; set; }
 
-        public BitmapImage Photo { get; set; }
-    }
+    public BitmapImage Photo { get; set; }
 }

@@ -1,0 +1,17 @@
+﻿[
+    {
+        "name": "Blank",
+        "displayName": "Blank",
+        "summary": "Gezinti çerçevesi ve temel hizmetler ve stiller dahildir."
+    },
+    {
+        "name": "NavView",
+        "displayName": "Navigation Pane",
+        "summary": "Sayfalar arasında gezinti için Hamburger Menüsü bulunmaktadır."
+    },
+    {
+        "name": "MenuBar",
+        "displayName": "Menu Bar",
+        "summary": "Sayfalar arasında gezinmek için bir menü eklenir."
+    }
+]

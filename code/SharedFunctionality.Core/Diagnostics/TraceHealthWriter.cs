@@ -6,7 +6,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-using Microsoft.Templates.Resources;
+using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Diagnostics
 {
@@ -17,7 +17,7 @@ namespace Microsoft.Templates.Core.Diagnostics
             string formattedMessage = FormattedWriterMessages.LogEntryStart + $"\t{eventType.ToString()}\t{message}";
             if (ex != null)
             {
-                formattedMessage = formattedMessage + $"\t{StringRes.ExceptionString}:\n\r{ex.ToString()}";
+                formattedMessage = formattedMessage + $"\t{Resources.ExceptionString}:\n\r{ex.ToString()}";
             }
 
             switch (eventType)
@@ -43,7 +43,7 @@ namespace Microsoft.Templates.Core.Diagnostics
 
         public async Task WriteExceptionAsync(Exception ex, string message = null)
         {
-            await WriteTraceAsync(TraceEventType.Critical, StringRes.ExceptionTrackedString, ex);
+            await WriteTraceAsync(TraceEventType.Critical, Resources.ExceptionTrackedString, ex);
         }
 
         private async Task CallAsync(Action action)

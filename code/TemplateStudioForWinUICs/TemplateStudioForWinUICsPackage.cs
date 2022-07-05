@@ -12,20 +12,24 @@ using Microsoft.VisualStudio.Shell;
 using TemplateStudioForWinUICs.Commands;
 using Task = System.Threading.Tasks.Task;
 
+// https://docs.microsoft.com/visualstudio/extensibility/how-to-use-asyncpackage-to-load-vspackages-in-the-background?view=vs-2022
+// https://docs.microsoft.com/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions?view=vs-2022
+// https://docs.microsoft.com/visualstudio/extensibility/internals/authoring-dot-vsct-files?view=vs-2022
+// https://docs.microsoft.com/visualstudio/extensibility/command-flag-element?view=vs-2022
+
 namespace TemplateStudioForWinUICs
 {
-    [ProvideAutoLoad(ActivationContextGuid, PackageAutoLoadFlags.BackgroundLoad)]
-    [ProvideUIContextRule(ActivationContextGuid,
+    [ProvideAutoLoad(PackageGuids.guidTemplateStudioForWinUICsUIContextString, PackageAutoLoadFlags.BackgroundLoad)]
+    [ProvideUIContextRule(PackageGuids.guidTemplateStudioForWinUICsUIContextString,
        name: "Load TS4WinUI C# Project Package",
        expression: "HasWinUI",
        termNames: new[] { "HasWinUI" },
        termValues: new[] { "SolutionHasProjectCapability:WINUI" })]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-    [Guid(PackageGuids.ts4WinuiPackageString)]
+    [Guid(PackageGuids.guidTemplateStudioForWinUICsPackageString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class TemplateStudioForWinUIPackage : AsyncPackage
     {
-        public const string ActivationContextGuid = "{476EB402-260C-4EFC-A311-1D8AEDE9A470}";
         private readonly Lazy<RightClickActions> _rightClickActions = new Lazy<RightClickActions>(() => new RightClickActions());
 
         private RightClickActions RightClickActions => _rightClickActions.Value;
@@ -57,7 +61,7 @@ namespace TemplateStudioForWinUICs
                  this,
                  commandService,
                  PackageIds.AddPageCommand,
-                 PackageGuids.ts4WinuiPackageCmdSet,
+                 PackageGuids.guidTemplateStudioForWinUICsPackageCmdSet,
                  AddPage,
                  RightClickAvailable,
                  TemplateType.Page);
@@ -66,7 +70,7 @@ namespace TemplateStudioForWinUICs
                 this,
                  commandService,
                 PackageIds.AddFeatureCommand,
-                PackageGuids.ts4WinuiPackageCmdSet,
+                PackageGuids.guidTemplateStudioForWinUICsPackageCmdSet,
                 AddFeature,
                 RightClickAvailable,
                 TemplateType.Feature);
@@ -75,7 +79,7 @@ namespace TemplateStudioForWinUICs
                  this,
                  commandService,
                  PackageIds.AddServiceCommand,
-                 PackageGuids.ts4WinuiPackageCmdSet,
+                 PackageGuids.guidTemplateStudioForWinUICsPackageCmdSet,
                  AddService,
                  RightClickAvailable,
                  TemplateType.Service);
@@ -84,7 +88,7 @@ namespace TemplateStudioForWinUICs
                  this,
                  commandService,
                  PackageIds.AddTestingCommand,
-                 PackageGuids.ts4WinuiPackageCmdSet,
+                 PackageGuids.guidTemplateStudioForWinUICsPackageCmdSet,
                  AddTesting,
                  RightClickAvailable,
                  TemplateType.Testing);
@@ -93,7 +97,7 @@ namespace TemplateStudioForWinUICs
                 this,
                  commandService,
                 PackageIds.OpenTempFolder,
-                PackageGuids.ts4WinuiPackageCmdSet,
+                PackageGuids.guidTemplateStudioForWinUICsPackageCmdSet,
                 OpenTempFolder,
                 TempFolderAvailable,
                 TemplateType.Unspecified);
@@ -163,8 +167,7 @@ namespace TemplateStudioForWinUICs
             ThreadHelper.ThrowIfNotOnUIThread();
 
             var cmd = (OleMenuCommand)sender;
-            cmd.Visible = RightClickActions.VisibleForWinUI()
-                && RightClickActions.TempFolderAvailable();
+            cmd.Visible = RightClickActions.VisibleForWinUI() && RightClickActions.TempFolderAvailable();
         }
     }
 }
