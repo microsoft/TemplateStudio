@@ -7,11 +7,18 @@ namespace Param_RootNamespace;
 
 public partial class App : Application
 {
-    public static WindowEx MainWindow { get; } = new() { Backdrop = new MicaSystemBackdrop(), Content = null, PersistenceId = "DA786591-C56F-426F-8ECA-CA016C49F8A2", Title = "AppDisplayName".GetLocalized() };
+    public static WindowEx MainWindow { get; } = new();
 
     public App()
     {
         InitializeComponent();
+
+        MainWindow.Backdrop = new MicaSystemBackdrop();
+        MainWindow.Content = null;
+        MainWindow.MinHeight = 500;
+        MainWindow.MinWidth = 500;
+        MainWindow.PersistenceId = "DA786591-C56F-426F-8ECA-CA016C49F8A2";
+        MainWindow.Title = "AppDisplayName".GetLocalized();
 
         UnhandledException += App_UnhandledException;
     }
