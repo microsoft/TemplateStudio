@@ -88,6 +88,13 @@ namespace Microsoft.Templates.UI.VisualStudio.GenShell
 
             foreach (var project in orderedProject)
             {
+                // This is a(n admittedly horrible) work-around for the issue logged at #4442
+                // Adding this delay enables the deployment option to be enabled for new WinUI3 projects.
+                // There isn't a filter here for only the impacted project types as that would require a bigger rewrite.
+                // Hopefully, eventually, this can be removed when the underlying WinUI3 or VS issue is addressed.
+                // Doing this before starting the stopwatch to avoid artificially inflating the time tracking.
+                await Task.Delay(TimeSpan.FromSeconds(3));
+
                 var chrono = Stopwatch.StartNew();
 
                 await AddProjectToSolutionAsync(project);
