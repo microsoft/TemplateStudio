@@ -2,23 +2,29 @@
 using Param_RootNamespace.Helpers;
 using WinUIEx;
 
-// To learn more about WinUI3, see: https://docs.microsoft.com/windows/apps/winui/winui3/.
 namespace Param_RootNamespace;
 
+// To learn more about WinUI 3, see https://docs.microsoft.com/windows/apps/winui/winui3/.
 public partial class App : Application
 {
-    public static WindowEx MainWindow { get; } = new();
+    public static WindowEx MainWindow { get; } = InitializeMainWindow();
+
+    private static WindowEx InitializeMainWindow()
+    {
+        return new WindowEx()
+        {
+            Backdrop = new MicaSystemBackdrop(),
+            Content = null,
+            MinHeight = 500,
+            MinWidth = 500,
+            PersistenceId = "MainWindow",
+            Title = "AppDisplayName".GetLocalized()
+        };
+    }
 
     public App()
     {
         InitializeComponent();
-
-        MainWindow.Backdrop = new MicaSystemBackdrop();
-        MainWindow.Content = null;
-        MainWindow.MinHeight = 500;
-        MainWindow.MinWidth = 500;
-        MainWindow.PersistenceId = "DA786591-C56F-426F-8ECA-CA016C49F8A2";
-        MainWindow.Title = "AppDisplayName".GetLocalized();
 
         UnhandledException += App_UnhandledException;
     }
