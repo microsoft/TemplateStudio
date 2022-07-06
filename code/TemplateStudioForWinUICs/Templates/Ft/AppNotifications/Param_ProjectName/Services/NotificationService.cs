@@ -30,14 +30,14 @@ public class NotificationService : INotificationService
     {
         // TODO: Handle notification invocations when your app is already running.
 
-        //// Navigate to a specific page based on the notification arguments.
-        //if (ParseArguments(args.Argument, "action") == "Settings")
-        //{
-        //    App.MainWindow.DispatcherQueue.TryEnqueue(() =>
-        //    {
-        //        _navigationService.NavigateTo(typeof(SettingsViewModel).FullName);
-        //    });
-        //}
+        //// // Navigate to a specific page based on the notification arguments.
+        //// if (ParseArguments(args.Argument, "action") == "Settings")
+        //// {
+        ////    App.MainWindow.DispatcherQueue.TryEnqueue(() =>
+        ////     {
+        ////         _navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
+        ////     });
+        //// }
     }
 
     public bool Show(string payload)
@@ -59,4 +59,3 @@ public class NotificationService : INotificationService
         AppNotificationManager.Default.Unregister();
     }
 }
-
