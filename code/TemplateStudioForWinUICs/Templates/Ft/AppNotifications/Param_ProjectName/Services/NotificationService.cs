@@ -38,6 +38,11 @@ public class NotificationService : INotificationService
         ////        _navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
         ////    });
         //// }
+
+        App.MainWindow.DispatcherQueue.TryEnqueue(() =>
+        {
+            App.MainWindow.ShowMessageDialogAsync("TODO: Handle notification invocations when your app is already running.", "Notification Invoked");
+        });
     }
 
     public bool Show(string payload)
