@@ -7,7 +7,6 @@
     xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
     Loaded="OnLoaded"
     Unloaded="OnUnloaded"
-    Background="{ThemeResource SolidBackgroundFillColorBaseBrush}"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
