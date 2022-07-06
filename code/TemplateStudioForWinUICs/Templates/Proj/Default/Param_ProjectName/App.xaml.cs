@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
 using Param_RootNamespace.Helpers;
-using WinUIEx;
 
 namespace Param_RootNamespace;
 
