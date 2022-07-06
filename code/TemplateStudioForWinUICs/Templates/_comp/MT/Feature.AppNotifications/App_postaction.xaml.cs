@@ -17,6 +17,7 @@ using Param_RootNamespace.Notifications;
 //}]}
         base.OnLaunched(args);
 //{[{
+
         App.GetService<INotificationService>()!.Initialize();
         App.GetService<INotificationService>()!.Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
 //}]}
