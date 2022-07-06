@@ -1,4 +1,4 @@
-# MSTests for Template Studio
+﻿# MSTests for Template Studio
 This guide will demonstrate using dependency injection and service-mocking to test your pages' View Models. The example included here is the DataGridViewModel, which uses the Sample Data Service.
 
 ## Mocking Services
