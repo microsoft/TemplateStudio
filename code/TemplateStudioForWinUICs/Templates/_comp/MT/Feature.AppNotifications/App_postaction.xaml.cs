@@ -3,7 +3,7 @@ using Param_RootNamespace.Notifications;
 //}]}
         .CreateDefaultBuilder()
 //{[{
-        .UseContentRoot(System.AppContext.BaseDirectory)
+        .UseContentRoot(AppContext.BaseDirectory)
 //}]}
         .ConfigureServices((context, services) =>
         {
