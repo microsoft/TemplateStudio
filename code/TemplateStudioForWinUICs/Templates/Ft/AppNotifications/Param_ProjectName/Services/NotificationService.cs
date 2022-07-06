@@ -34,9 +34,9 @@ public class NotificationService : INotificationService
         //// if (ParseArguments(args.Argument, "action") == "Settings")
         //// {
         ////    App.MainWindow.DispatcherQueue.TryEnqueue(() =>
-        ////     {
-        ////         _navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
-        ////     });
+        ////    {
+        ////        _navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
+        ////    });
         //// }
     }
 
