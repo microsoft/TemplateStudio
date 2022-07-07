@@ -11,10 +11,9 @@
     &lt;/binding&gt;
   &lt;/visual&gt;
   &lt;actions&gt;
-    &lt;action content="Go to ContentGrid" arguments="action=ContentGridPage"/&gt;
+    &lt;action content="Settings" arguments="action=Settings"/&gt;
   &lt;/actions&gt;
 &lt;/toast&gt;</value>
-    <comment>String payload for Sample App Notification</comment>
   </data>
   <!--}]}-->
 </root>
