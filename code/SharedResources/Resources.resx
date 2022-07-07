@@ -1239,7 +1239,7 @@ These files already exist in your project, no action is necessary:
     <value>*Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)*
 
 # Steps to include new item generation
-Please follow the instructions to include the new item into you project:
+Please follow the instructions to include the new item into your project:
 
 You can find all referenced files in the temporary generation folder: {0}
 
@@ -1302,14 +1302,10 @@ The following changes have been incorporated into your project:
 You can find the files from the generation in the temporary generation folder: {0}
 
 {1}
-{2}
-{3}
-{4}</value>
+{2}</value>
     <comment>{0}: Temp Generation Folder, 
-{1}: New Files, 
-{2}: Modified Files, 
-{3}: Failed Merge Files, 
-{4}: Conflicting Files</comment>
+{1}: Failed Merge Files, 
+{2}: Conflicting Files</comment>
   </data>
   <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
     <value>
