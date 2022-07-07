@@ -30,7 +30,7 @@ namespace Microsoft.Templates.Core
 
         public string BackupFolderPath { get; set; } = @"CoreTemplateStudio/Backups";
 
-        public string TempGenerationFolderPath { get; set; } = "WTSTempGeneration";
+        public string TempGenerationFolderPath { get; set; } = "TemplateStudio";
 
         public TraceEventType DiagnosticsTraceLevel { get; set; } = TraceEventType.Verbose;
 
