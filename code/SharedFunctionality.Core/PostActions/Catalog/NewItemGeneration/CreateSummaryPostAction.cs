@@ -26,13 +26,14 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
             var fileName = GetFileName(parentGenerationOutputPath);
             if (Config.SyncGeneration)
             {
-                var newFiles = BuildNewFilesSection(Resources.SyncSummarySectionNewFiles);
-
-                var modifiedFiles = BuildMergeFileSection(Resources.SyncSummarySectionModifiedFiles, Resources.SyncSummaryTemplateModifiedFile, GenContext.Current.MergeFilesFromProject.Where(f => !GenContext.Current.FailedMergePostActions.Any(m => m.FileName == f.Key)));
                 var failedMergeFiles = BuildMergeFileSection(Resources.SyncSummarySectionFailedMergeFiles, Resources.SyncSummaryTemplateFailedMerges, GenContext.Current.MergeFilesFromProject.Where(f => GenContext.Current.FailedMergePostActions.Any(m => m.FileName == f.Key)));
                 var conflictingFiles = BuildConflictingFilesSection(Resources.SyncSummarySectionConflictingFiles);
 
-                File.WriteAllText(fileName, string.Format(Resources.SyncSummaryTemplate, parentGenerationOutputPath, newFiles, modifiedFiles, failedMergeFiles, conflictingFiles));
+                if (failedMergeFiles.Any() || conflictingFiles.Any())
+                {
+                    File.WriteAllText(fileName, string.Format(Resources.SyncSummaryTemplate, parentGenerationOutputPath, failedMergeFiles, conflictingFiles));
+                    GenContext.Current.FilesToOpen.Add(fileName);
+                }
             }
             else
             {
@@ -42,9 +43,9 @@ namespace Microsoft.Templates.Core.PostActions.Catalog
                 var unchangedFiles = BuildUnchangedFilesSection(Resources.SyncInstructionsSectionUnchangedFiles);
 
                 File.WriteAllText(fileName, string.Format(Resources.SyncInstructionsTemplate, parentGenerationOutputPath, newFiles, modifiedFiles, conflictingFiles, unchangedFiles));
-            }
+                GenContext.Current.FilesToOpen.Add(fileName);
 
-            GenContext.Current.FilesToOpen.Add(fileName);
+            }
 
             GenContext.Current.FailedMergePostActions.Clear();
             GenContext.Current.MergeFilesFromProject.Clear();
