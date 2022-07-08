@@ -28,7 +28,7 @@ public class DataGridViewModelTests
     {
         _mockSampleDataService = new MockSampleDataService();
         _dataGridViewModel = new DataGridViewModel(_mockSampleDataService);
-        _data = mockSampleDataService.GetGridDataAsync();
+        _data = _mockSampleDataService.GetGridDataAsync();
     }
 
     [TestMethod]
@@ -36,7 +36,7 @@ public class DataGridViewModelTests
     {
         _dataGridViewModel.OnNavigatedTo(null);
 
-        Assert.AreNotEqual(_dataGridViewModel_.Source, null, "The DataGridViewModel Source property was not updated.");
+        Assert.AreNotEqual(_dataGridViewModel.Source, null, "The DataGridViewModel Source property was not updated.");
         Assert.AreEqual(_data.Result.Count(), _dataGridViewModel.Source.Count(), "The DataGridViewModel Source property does not have the correct number of items.");
         CollectionAssert.AreEqual(_dataGridViewModel.Source, _data.Result.ToArray());
     }
