@@ -4,6 +4,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
-    <Platforms>AnyCPU;x86;x64</Platforms>
+    <Platforms>x86;x64;arm64</Platforms>
   </PropertyGroup>
 </Project>
