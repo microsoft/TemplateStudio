@@ -78,7 +78,7 @@
             "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
             "args": {
                 "packageId": "MSTest.TestFramework",
-                "version": "2.2.8",
+                "version": "2.2.10",
                 "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
             },
             "continueOnError": true
@@ -89,7 +89,7 @@
             "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
             "args": {
                 "packageId": "MSTest.TestAdapter",
-                "version": "2.2.8",
+                "version": "2.2.10",
                 "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
             },
             "continueOnError": true
