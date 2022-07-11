@@ -14,7 +14,7 @@
 		<Menus>
 			<Menu guid="guidTemplateStudioForUwpPackageCmdSet" id="AddItemContextMenu" type="Context" priority="0x0100">
 				<Strings>
-					<ButtonText>Template Studio for UWP</ButtonText>
+					<ButtonText>New Item (Template Studio)</ButtonText>
 				</Strings>
 			</Menu>
 		</Menus>
@@ -26,7 +26,7 @@
                 <CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpPage1" />
 				<Strings>
-					<ButtonText>New page...</ButtonText>
+					<ButtonText>New Page...</ButtonText>
 				</Strings>
 			</Button>
 			<Button guid="guidTemplateStudioForUwpPackageCmdSet" id="AddFeatureCommand" priority="0x0200" type="Button">
@@ -35,7 +35,7 @@
                 <CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpFeature1" />
 				<Strings>
-					<ButtonText>New feature...</ButtonText>
+					<ButtonText>New Feature...</ButtonText>
 				</Strings>
 			</Button>
 			<Button guid="guidTemplateStudioForUwpPackageCmdSet" id="AddServiceCommand" priority="0x0300" type="Button">
@@ -44,7 +44,7 @@
                 <CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpService" />
 				<Strings>
-					<ButtonText>New service...</ButtonText>
+					<ButtonText>New Service...</ButtonText>
 				</Strings>
 			</Button>
 			<Button guid="guidTemplateStudioForUwpPackageCmdSet" id="AddTestingCommand" priority="0x0400" type="Button">
@@ -53,7 +53,7 @@
 				<CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpTesting" />
 				<Strings>
-					<ButtonText>New testing project...</ButtonText>
+					<ButtonText>New Test Project...</ButtonText>
 				</Strings>
 			</Button>
 			<Button guid="guidTemplateStudioForUwpPackageCmdSet" id="OpenTempFolder" priority="0x0500" type="Button">
@@ -62,7 +62,7 @@
                 <CommandFlag>DynamicVisibility</CommandFlag>
 				<Icon guid="guidImages" id="bmpOpenTemp" />
 				<Strings>
-					<ButtonText>Open generation folder</ButtonText>
+					<ButtonText>Open Generation Folder</ButtonText>
 				</Strings>
 			</Button>
 		</Buttons>
@@ -88,12 +88,8 @@
 						id="OpenTempFolder" context="guidTemplateStudioForUwpUIContext" />
 	</VisibilityConstraints>
 	<CommandPlacements>
-		<CommandPlacement guid="guidTemplateStudioForUwpPackageCmdSet" id="AddItemContextGroup" priority="0x0200">
-			<Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE" />
-		</CommandPlacement>
-
 		<CommandPlacement guid="guidTemplateStudioForUwpPackageCmdSet" id="AddItemContextMenu" priority="0x0100">
-			<Parent guid="guidTemplateStudioForUwpPackageCmdSet" id="AddItemContextGroup" />
+            <Parent guid="guidSHLMainMenu" id="IDG_VS_CTXT_PROJECT_ADD_ITEMS" />
 		</CommandPlacement>
 
 		<CommandPlacement guid="guidTemplateStudioForUwpPackageCmdSet" id="AddItemContextMenuGroup" priority="0x0100">

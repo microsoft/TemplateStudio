@@ -13,6 +13,9 @@ You can contribute to this project by contributing to:
 * [Issues](https://github.com/microsoft/TemplateStudio/issues)
 * [Discussions](https://github.com/microsoft/TemplateStudio/discussions)
 * [Templates](#Templates)
+* [Shared Code](#Shared-Code)
+* [Edit Project Menu](#Edit-Project-Menu)
+* [Localization](#Localization)
 
 If you intend to contribute code changes, learn how to [set up your development environment](#Set-up-your-development-environment).
 
@@ -42,7 +45,7 @@ There are also `*.slnf` files that load the subset of projects needed for a spec
 
 Regardless of the solution you load, you need to make sure the extension project you want to work on is set as the startup project, and you need to ensure you select an appropriate Debug or Release configuration specific to that extension (e.g. `DebugWinUICs`/`ReleaseWinUICs`).
 
-When you F5 to debug or start without debugging, Visual Studio will install the extensions in the Visual Studio Experimental Instance. Once loaded, you can test the extensions by creating a new project and selecting the appropriate `Template Studio for *` template.
+When you F5 to debug or start without debugging, Visual Studio will install the extensions in the Visual Studio Experimental Instance. Once loaded, you can test the extensions by creating a new project and selecting the appropriate `Template Studio` project template.
 
 You can also build and run the [VSEmulator](https://github.com/microsoft/TemplateStudio/tree/main/code/test/VsEmulator) to iterate faster on templates without needing to rebuild and redeploy the extensions. The VSEmulator reads template content directly from the local repository so will immediately honor any changes you make to the templates without needing to be rebuilt.
 
@@ -215,15 +218,58 @@ Each template contains a `.template.config/icon.xaml` file that defines the icon
 
 Note: Composition templates within the _comp folder do not alter the wizard. They only modify the base templates based on the options selected in the wizard.
 
-## Updating the shared code
+## Shared Code
 
-The displayed wizard and the logic that generates an app from the selected templates is in the `SharedFunctionality.UI` and `SharedFunctionality.Core` projects. If wanting to work on these it is important to be working in the `TemplateStudio.sln` file and not a `*.slnf` file. You should also use the `DebugAll` configuration as this ensures that all projects are compiled, which is important as these shared projects are included in all the extensions. Switch to using a configuration specific to the extension you are testing when wanting to debug any changes.
+The displayed wizard and the logic that generates an app from the selected templates is in the `SharedFunctionality.UI` and `SharedFunctionality.Core` projects. When working on these it is important to be working in the `TemplateStudio.sln` file and not a `*.slnf` file. You should also use the `DebugAll` configuration as this ensures that all projects are compiled, which is important as these shared projects are included in all the extensions. Switch to using a configuration specific to the extension you are testing when wanting to debug any changes.
 
-It may also be useful to note that because of the limited support for working with XAML files inside a shared project used by an extension, you may get misleading compilation errors if you have any of the `.xaml` files open in the editor when compiling. Simply close the file(s) and any spurious errors will go away.
+Note that because of the limited support for working with XAML files inside a shared project used by an extension, you may get misleading compilation errors if you have any of the `.xaml` files open in the editor when compiling. Simply close the file(s) and any spurious errors will go away.
+
+## Edit Project Menu
+
+Developers can add Template Studio templates to an existing project by opening the Project context menu and selecting an option in the `Add -> New Item (Template Studio)` submenu. In order for this menu to be presented, the project must [match the project type](https://docs.microsoft.com/visualstudio/extensibility/how-to-use-rule-based-ui-context-for-visual-studio-extensions) supported by the extension, and the project must contain Template Studio metadata in either `Package.appxmanifest` or `TemplateStudio.xml` at the root of the project.
+
+The layout and location of this menu are defined in [`.vsct`](code/TemplateStudioForWinUICs/Commands/TemplateStudioForWinuiPackage.vsct) files per extension. See [Author .vsct files](https://docs.microsoft.com/visualstudio/extensibility/internals/authoring-dot-vsct-files) for details. To change the location of the menu, change the `id` of the root `CommandPlacement` element to the ID of the Visual Studio Menu or Group that should contain the menu. These IDs are defined within `C:\Program Files\Microsoft Visual Studio\2022\Community\VSSDK\VisualStudioIntegration\Common\Inc\vsshlids.h`. The easiest way to identify these IDs from the Visual Studio UI is to install Visual Studio 2019 and the [Command Explorer extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CommandExplorer).
+
+Note: If the parent Visual Studio item is a Menu (i.e. begins with `IDM_`), then the root element in the `.vsct` should be a Group. If the parent Visual Studio item is a Group (i.e. begins with `IDG_`), then the root element in the `.vsct` should be a Menu.
+
+The handlers for the menu items are defined in files like [TemplateStudioForWinUICsPackage.cs](code/TemplateStudioForWinUICs/TemplateStudioForWinUICsPackage.cs) per extension. These handlers include the function to invoke when the menu item is clicked as well as a `RightClickAvailable` function to determine whether to show each of the menu items.
+
+Templates contain a `ts.rightClickEnabled` tag in `template.json` that controls whether they are presented in the wizard when invoked via the Edit Project menu. Set this tag to `true` to enable the template in the wizard and `false` to disable it.
+
+The below extensions may be useful when debugging changes to the Edit Project menu:
+
+* [Command Explorer](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CommandExplorer) for identifying Visual Studio Menu and Group IDs
+* [Component Diagnostics](https://marketplace.visualstudio.com/items?itemName=PaulHarrington.ComponentDiagnosticsDev17) for checking if the Menu package is registered properly in the Package Manager
+
+Note: The Experimental Instance often doesn't recognize changes to the `.vsct` file which can result in the menu not showing up or UI changes not being reflected. Running `. "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.exe" /RootSuffix Exp /setup` from PowerShell will trigger the Experimental Instance to rebuild its menus. If that doesn't work, then uninstalling all versions of the extension and [resetting the Experimental Instance](#Validating-changes) sometimes helps. The most reliable way to test menu changes is to build a Release build of the VSIX and install it into the main instance of Visual Studio.
+
+## Localization
+
+Template Studio uses a Microsoft service called TDBuild to handle localization. The [localization pipeline](_build/pipelines/localization.yml) submits English resources to TDBuild on a nightly basis which queues them up for localization. The pipeline publishes localized resources as artifacts, so once localization is finished on the backend, future pipeline runs will include the resources in the published artifacts. Download the `TDBuild.tar.gz` artifact from the pipeline, run `tar -xf TDBuild.tar.gz` to extract the localized resources to a `TDBuild` folder, then from within the repo run [Import-TDBuild](_build/Import-TDBuild.ps1) with the path to the `TDBuild` folder to import the files for submission.
+
+The resources that are submitted to TDBuild include:
+
+* `**/FrontendFrameworks/FrontendFrameworks.json`
+* `**/ProjectTypes/ProjectTypes.json`
+* `**/.template.config/localize/templatestrings.json`
+* `**/SharedResources/Resources.resx`
+
+JSON files use the `resjson` format which includes comments describing the resources that should be localized and how they are presented in the UI. This provides context to translators which helps improve the quality of the translations. For any strings that should not be localized, the comment should be `"{Locked}"`.
+
+Templates are localized using the [pattern](https://github.com/dotnet/templating/wiki/Localization) defined by the .NET Templating Engine. English strings are loaded from `template.json`, but the localizable strings must also be defined in `localize/templatestrings.json` in order for TDBuild to localize them.
+
+Other files that can be localized but are not integrated with TDBuild include:
+
+* `**/*.md`
+* `**/*.vsct`
+* `**/*.vsixmanifest`
+* `**/*.vstemplate`
+
+Either TDBuild doesn't support these file formats, or the strings are already localized and not expected to change very frequently.
 
 ## Validating changes
 
-F5 or start without debugging to launch the extensions in the Visual Studio Experimental Instance and validate changes. Once the Experimental Instance is loaded, create a new project and select the appropriate `Template Studio for *` template.
+F5 or start without debugging to launch the extensions in the Visual Studio Experimental Instance and validate changes. Once the Experimental Instance is loaded, create a new project and select the appropriate `Template Studio` project template.
 
 Below is a checklist to follow when validating changes:
 
@@ -235,15 +281,7 @@ Below is a checklist to follow when validating changes:
 
 Once all changes pass basic validation, submit them for review by filing a pull request.
 
-When developing extensions, the experimental instance of Visual Studio can sometimes become corrupt, preventing deployment and debugging of the extension. This usually surfaces as deployment errors when trying to deploy the extension or as silent failures that result in the Template Studio project templates not showing up in the New Project dialog. To recover from this state, you can reset the experimental instance by closing all instances of Visual Studio, then running the below command from PowerShell:
-
-```powershell
-& "C:\Program Files\Microsoft Visual Studio\2022\Community\VSSDK\VisualStudioIntegration\Tools\Bin\CreateExpInstance.exe" /Reset /RootSuffix=Exp /VSInstance=<VSInstance>
-```
-
-Replace `<VSInstance>` with the folder name returned by `ls $Env:LOCALAPPDATA/Microsoft/VisualStudio/*.*`. This should return a folder with an `-Exp` suffix and a folder without that suffix. Set `<VSInstance>` to the unsuffixed name (e.g. `17.0_a0adeae7`).
-
-If this doesn't work, uninstalling and reinstalling Visual Studio will always return you to a working state.
+When developing extensions, the Experimental Instance of Visual Studio can sometimes become corrupt, preventing deployment and debugging of the extension. This usually surfaces as deployment errors when trying to deploy the extension or as silent failures that result in the Template Studio project templates not showing up in the New Project dialog. To recover from this state, you can reset the Experimental Instance by closing all instances of Visual Studio, then running `Reset the Visual Studio 2022 Experimental Instance` from the `Visual Studio 2022` folder in the Start Menu. If this doesn't work, uninstalling and reinstalling Visual Studio will always return you to a working state.
 
 ## Filing a pull request
 
