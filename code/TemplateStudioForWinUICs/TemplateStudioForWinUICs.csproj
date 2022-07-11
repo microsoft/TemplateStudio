@@ -135,9 +135,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectTemplates\WinUICs\Ts4WinUICsTemplate.csproj">
+    <ProjectReference Include="..\ProjectTemplates\WinUICs\TemplateStudioForWinUICs.ProjectTemplates.csproj">
       <Project>{7EDD488B-831B-49C8-ADCC-C3E1D9742936}</Project>
-      <Name>Ts4WinUICsTemplate</Name>
+      <Name>TemplateStudioForWinUICs.ProjectTemplates</Name>
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
@@ -219,6 +219,9 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioForWinUICsPackage.cs" />
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Usings.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\Helpers\TitleBarHelper.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

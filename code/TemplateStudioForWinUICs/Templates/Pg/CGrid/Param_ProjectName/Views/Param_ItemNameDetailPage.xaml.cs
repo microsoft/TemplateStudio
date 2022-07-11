@@ -24,7 +24,7 @@ public sealed partial class Param_ItemNameDetailPage : Page
         base.OnNavigatingFrom(e);
         if (e.NavigationMode == NavigationMode.Back)
         {
-            var navigationService = App.GetService<INavigationService>()!;
+            var navigationService = App.GetService<INavigationService>();
 
             if (ViewModel.Item != null)
             {

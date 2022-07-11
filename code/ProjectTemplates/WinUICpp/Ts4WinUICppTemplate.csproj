@@ -62,46 +62,7 @@
     <VSTemplate Include="Ts4WinUICppTemplate.vstemplate" />
   </ItemGroup>
   <ItemGroup>
-    <VSTemplate Include="Ts4WinUICppTemplate.cs-CZ.vstemplate">
-      <Culture>1029</Culture>
-    </VSTemplate>
-    <VSTemplate Include="Ts4WinUICppTemplate.de-DE.vstemplate">
-      <Culture>1031</Culture>
-    </VSTemplate>
-    <VSTemplate Include="Ts4WinUICppTemplate.es-ES.vstemplate">
-      <Culture>3082</Culture>
-    </VSTemplate>
-    <VSTemplate Include="Ts4WinUICppTemplate.fr-FR.vstemplate">
-      <Culture>1036</Culture>
-    </VSTemplate>
-    <VSTemplate Include="Ts4WinUICppTemplate.it-IT.vstemplate">
-      <Culture>1040</Culture>
-    </VSTemplate>
-    <VSTemplate Include="Ts4WinUICppTemplate.ja-JP.vstemplate">
-      <Culture>1041</Culture>
-    </VSTemplate>
-    <VSTemplate Include="Ts4WinUICppTemplate.ko-KR.vstemplate">
-      <Culture>1042</Culture>
-    </VSTemplate>
-    <VSTemplate Include="Ts4WinUICppTemplate.pl-PL.vstemplate">
-      <Culture>1045</Culture>
-    </VSTemplate>
     <None Include="Ts4WinUICppTemplate.png" />
-    <VSTemplate Include="Ts4WinUICppTemplate.pt-BR.vstemplate">
-      <Culture>1046</Culture>
-    </VSTemplate>
-    <VSTemplate Include="Ts4WinUICppTemplate.ru-RU.vstemplate">
-      <Culture>1049</Culture>
-    </VSTemplate>
-    <VSTemplate Include="Ts4WinUICppTemplate.tr-TR.vstemplate">
-      <Culture>1055</Culture>
-    </VSTemplate>
-    <VSTemplate Include="Ts4WinUICppTemplate.zh-CN.vstemplate">
-      <Culture>2052</Culture>
-    </VSTemplate>
-    <VSTemplate Include="Ts4WinUICppTemplate.zh-TW.vstemplate">
-      <Culture>1028</Culture>
-    </VSTemplate>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
