@@ -198,8 +198,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Test\App.MSTest\.template.config\icon.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
@@ -247,12 +245,6 @@
     </Content>
     <Content Include="Commands\Resources\TemplateStudioCommand.png" />
     <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\README.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Test.MSTest.App.Packaged\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Test.MSTest.App.Packaged\Param_ProjectName.Tests.MSTest_postaction.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <VSCTCompile Include="Commands\TemplateStudioForWinuiPackage.vsct">
