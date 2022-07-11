@@ -27,18 +27,15 @@ public class NotificationActivationHandler : ActivationHandler<LaunchActivatedEv
     {
         // TODO: Handle notification activations.
 
-        //// Access the AppNotificationActivatedEventArgs.
-        //var activatedEventArgs = (AppNotificationActivatedEventArgs)AppInstance.GetCurrent().GetActivatedEventArgs().Data;
+        //// // Access the AppNotificationActivatedEventArgs.
+        //// var activatedEventArgs = (AppNotificationActivatedEventArgs)AppInstance.GetCurrent().GetActivatedEventArgs().Data;
 
-        //// Extract arguments from the notification payload.
-        //var action = _notificationService.ParseArguments(activatedEventArgs.Argument, "action");
+        //// // Navigate to a specific page based on the notification arguments.
+        //// if (_notificationService.ParseArguments(activatedEventArgs.Argument, "action") == "Settings")
+        //// {
+        ////     _navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
+        //// }
 
-        //// Take action based on the arguments. Navigating to a specific page is a common scenario.
-        //if (action == "ContentGridPage")
-        //{
-        //    // Navigate to a specific page based on the payload in the notification.
-        //    _navigationService.NavigateTo(typeof(ContentGridViewModel).FullName!);
-        //}
         await Task.CompletedTask;
     }
 }

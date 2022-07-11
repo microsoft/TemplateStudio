@@ -1,6 +1,4 @@
-﻿using Microsoft.Windows.AppNotifications;
-
-namespace Param_RootNamespace.Contracts.Services;
+﻿namespace Param_RootNamespace.Contracts.Services;
 
 public interface INotificationService
 {
@@ -8,7 +6,7 @@ public interface INotificationService
 
     bool Show(string payload);
 
-    string? ParseArguments(string args, string parameter);
+    string? ParseArguments(string arguments, string parameter);
 
     void Unregister();
 }

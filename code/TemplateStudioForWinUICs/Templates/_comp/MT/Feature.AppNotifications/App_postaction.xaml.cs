@@ -3,7 +3,7 @@ using Param_RootNamespace.Notifications;
 //}]}
         .CreateDefaultBuilder()
 //{[{
-        .UseContentRoot(System.AppContext.BaseDirectory)
+        .UseContentRoot(AppContext.BaseDirectory)
 //}]}
         .ConfigureServices((context, services) =>
         {
@@ -17,6 +17,7 @@ using Param_RootNamespace.Notifications;
 //}]}
         base.OnLaunched(args);
 //{[{
-        App.GetService<INotificationService>()!.Initialize();
-        App.GetService<INotificationService>()!.Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
+
+        App.GetService<INotificationService>().Initialize();
+        App.GetService<INotificationService>().Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
 //}]}
