@@ -7,7 +7,7 @@ public class ActivationService : IActivationService
         if (App.MainWindow.Content == null)
         {
 //{[{
-            _shell = App.GetService<ShellPage>()!;
+            _shell = App.GetService<ShellPage>();
 //}]}
         }
     }
