@@ -203,6 +203,9 @@
     <Content Include="Templates\Ft\AppNotifications\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\Proj\Default\Param_ProjectName\MainWindow.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedStyles\AllStylesDictionary.cs">
@@ -225,6 +228,9 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioForWinUICsPackage.cs" />
+    <Content Include="Templates\Proj\Default\Param_ProjectName\MainWindow.xaml.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\Usings.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

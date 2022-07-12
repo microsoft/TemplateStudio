@@ -1,11 +1,7 @@
 ﻿//{[{
 using Param_RootNamespace.Notifications;
 //}]}
-        .CreateDefaultBuilder()
-//{[{
-        .UseContentRoot(AppContext.BaseDirectory)
-//}]}
-        .ConfigureServices((context, services) =>
+        ConfigureServices((context, services) =>
         {
             // Other Activation Handlers
 //{[{
@@ -15,9 +11,13 @@ using Param_RootNamespace.Notifications;
 //{[{
             services.AddSingleton<INotificationService, NotificationService>();
 //}]}
-        base.OnLaunched(args);
+        Build();
 //{[{
 
         App.GetService<INotificationService>().Initialize();
+//}]}
+        base.OnLaunched(args);
+//{[{
+
         App.GetService<INotificationService>().Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
 //}]}
