@@ -13,6 +13,7 @@ namespace TemplateStudioForWinUICs.Tests
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\AddConnectedAnimation\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\ExportParams.Page\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\ExportParams.Project\.template.config\template.json" };
+             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Feature.AppNotifications\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Feature.SampleData\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Feature.SettingsStorage.Packaged\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Feature.SettingsStorage.Unpackaged\.template.config\template.json" };

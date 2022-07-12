@@ -1,4 +1,4 @@
-﻿        .ConfigureServices((context, services) =>
+﻿        ConfigureServices((context, services) =>
         {
             // Views and ViewModels
 //{[{
