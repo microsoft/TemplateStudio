@@ -2,7 +2,7 @@
 
 namespace Param_RootNamespace.Contracts.Services;
 
-public interface INotificationService
+public interface IAppNotificationService
 {
     void Initialize();
 

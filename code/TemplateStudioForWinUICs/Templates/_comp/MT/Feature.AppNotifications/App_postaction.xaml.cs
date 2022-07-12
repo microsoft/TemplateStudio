@@ -5,19 +5,19 @@ using Param_RootNamespace.Notifications;
         {
             // Other Activation Handlers
 //{[{
-            services.AddTransient<IActivationHandler, NotificationActivationHandler>();
+            services.AddTransient<IActivationHandler, AppNotificationActivationHandler>();
 //}]}
             // Services
 //{[{
-            services.AddSingleton<INotificationService, NotificationService>();
+            services.AddSingleton<IAppNotificationService, AppNotificationService>();
 //}]}
         Build();
 //{[{
 
-        App.GetService<INotificationService>().Initialize();
+        App.GetService<IAppNotificationService>().Initialize();
 //}]}
         base.OnLaunched(args);
 //{[{
 
-        App.GetService<INotificationService>().Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
+        App.GetService<IAppNotificationService>().Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
 //}]}

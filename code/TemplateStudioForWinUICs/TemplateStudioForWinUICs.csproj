@@ -237,13 +237,13 @@
     <Content Include="Templates\_comp\MT\Feature.AppNotifications\App_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\AppNotifications\Param_ProjectName\Activation\NotificationActivationHandler.cs">
+    <Content Include="Templates\Ft\AppNotifications\Param_ProjectName\Activation\AppNotificationActivationHandler.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\AppNotifications\Param_ProjectName\Contracts\Services\INotificationService.cs">
+    <Content Include="Templates\Ft\AppNotifications\Param_ProjectName\Contracts\Services\IAppNotificationService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\AppNotifications\Param_ProjectName\Services\NotificationService.cs">
+    <Content Include="Templates\Ft\AppNotifications\Param_ProjectName\Services\AppNotificationService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\Usings.cs">

@@ -7,12 +7,12 @@ using Microsoft.Windows.AppNotifications;
 
 namespace Param_RootNamespace.Activation;
 
-public class NotificationActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
+public class AppNotificationActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
 {
     private readonly INavigationService _navigationService;
-    private readonly INotificationService _notificationService;
+    private readonly IAppNotificationService _notificationService;
 
-    public NotificationActivationHandler(INavigationService navigationService, INotificationService notificationService)
+    public AppNotificationActivationHandler(INavigationService navigationService, IAppNotificationService notificationService)
     {
         _navigationService = navigationService;
         _notificationService = notificationService;

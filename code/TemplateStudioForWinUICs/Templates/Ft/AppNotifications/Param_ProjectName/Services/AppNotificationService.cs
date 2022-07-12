@@ -6,16 +6,16 @@ using System.Web;
 
 namespace Param_RootNamespace.Notifications;
 
-public class NotificationService : INotificationService
+public class AppNotificationService : IAppNotificationService
 {
     private readonly INavigationService _navigationService;
 
-    public NotificationService(INavigationService navigationService)
+    public AppNotificationService(INavigationService navigationService)
     {
         _navigationService = navigationService;
     }
 
-    ~NotificationService()
+    ~AppNotificationService()
     {
         Unregister();
     }
