@@ -1,4 +1,6 @@
-﻿namespace Param_RootNamespace.Contracts.Services;
+﻿using System.Collections.Specialized;
+
+namespace Param_RootNamespace.Contracts.Services;
 
 public interface INotificationService
 {
@@ -6,7 +8,7 @@ public interface INotificationService
 
     bool Show(string payload);
 
-    string? ParseArguments(string arguments, string parameter);
+    NameValueCollection ParseArguments(string arguments);
 
     void Unregister();
 }

@@ -1,6 +1,7 @@
 ﻿using Param_ProjectName.Contracts.Services;
 using Param_ProjectName.ViewModels;
 using Microsoft.Windows.AppNotifications;
+using System.Collections.Specialized;
 using System.Web;
 
 namespace Param_RootNamespace.Notifications;
@@ -31,7 +32,7 @@ public class NotificationService : INotificationService
         // TODO: Handle notification invocations when your app is already running.
 
         //// // Navigate to a specific page based on the notification arguments.
-        //// if (ParseArguments(args.Argument, "action") == "Settings")
+        //// if (ParseArguments(args.Argument)["action"] == "Settings")
         //// {
         ////    App.MainWindow.DispatcherQueue.TryEnqueue(() =>
         ////    {
@@ -56,9 +57,9 @@ public class NotificationService : INotificationService
         return appNotification.Id != 0;
     }
 
-    public string? ParseArguments(string arguments, string parameter)
+    public NameValueCollection ParseArguments(string arguments)
     {
-        return HttpUtility.ParseQueryString(arguments)[parameter];
+        return HttpUtility.ParseQueryString(arguments);
     }
 
     public void Unregister()

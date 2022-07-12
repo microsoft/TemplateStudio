@@ -31,7 +31,7 @@ public class NotificationActivationHandler : ActivationHandler<LaunchActivatedEv
         //// var activatedEventArgs = (AppNotificationActivatedEventArgs)AppInstance.GetCurrent().GetActivatedEventArgs().Data;
 
         //// // Navigate to a specific page based on the notification arguments.
-        //// if (_notificationService.ParseArguments(activatedEventArgs.Argument, "action") == "Settings")
+        //// if (_notificationService.ParseArguments(activatedEventArgs.Argument)["action"] == "Settings")
         //// {
         ////     _navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
         //// }
