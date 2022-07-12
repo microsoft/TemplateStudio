@@ -2,7 +2,7 @@
 using Param_RootNamespace.Models;
 //}]}      
 
-        .ConfigureServices((context, services) =>
+        ConfigureServices((context, services) =>
         {
             // Configuration
 //{[{

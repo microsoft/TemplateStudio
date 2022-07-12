@@ -1,0 +1,53 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [ "Universal" ],
+    "name": "App Notifications",
+    "shortName": "App Notifications",
+    "groupIdentity": "ts.WinUI.Feat.AppNotifications",
+    "identity": "ts.WinUI.Feat.AppNotifications",
+    "description": "Drive user engagement with your app by providing personalized, actionable, and useful app notifications.",
+    "tags": {
+        "language": "C#",
+        "type": "item",
+        "ts.type": "feature",
+        "ts.projecttype": "Blank|NavView|MenuBar",
+        "ts.frontendframework": "all",
+        "ts.platform": "WinUI",
+        "ts.appmodel": "Desktop",
+        "ts.version": "1.0.0",
+        "ts.displayOrder": "1",
+        "ts.group": "UserInteraction",
+        "ts.multipleInstance": "false",
+        "ts.genGroup": "0",
+        "ts.rightClickEnabled": "true",
+        "ts.outputToParent": "true"
+    },
+    "sourceName": "Param_ItemName",
+    "preferNameDirectory": true,
+    "PrimaryOutputs": [
+        {
+            "path": "Param_ProjectName/Activation/AppNotificationActivationHandler.cs"
+        },
+        {
+            "path": "Param_ProjectName/Assets/Square150x150Logo.png"
+        },
+        {
+            "path": "Param_ProjectName/Contracts/Services/IAppNotificationService.cs"
+        },
+        {
+            "path": "Param_ProjectName/Services/AppNotificationService.cs"
+        }
+    ],
+    "symbols": {
+        "ts.projectName": {
+            "type": "parameter",
+            "replaces": "Param_ProjectName",
+            "fileRename": "Param_ProjectName"
+        },
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        }
+    }
+}
