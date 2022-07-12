@@ -1,6 +1,7 @@
 ﻿using Param_ProjectName.Contracts.Services;
 using Param_ProjectName.ViewModels;
 
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppLifecycle;
 using Microsoft.Windows.AppNotifications;
@@ -33,7 +34,11 @@ public class AppNotificationActivationHandler : ActivationHandler<LaunchActivate
         //// // Navigate to a specific page based on the notification arguments.
         //// if (_notificationService.ParseArguments(activatedEventArgs.Argument)["action"] == "Settings")
         //// {
-        ////     _navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
+        ////     // Queue navigation with low priority to allow the UI to initialize.
+        ////     App.MainWindow.DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Low, () =>
+        ////     {
+        ////         _navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
+        ////     });
         //// }
 
         await Task.CompletedTask;

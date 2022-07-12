@@ -30,7 +30,6 @@ public class NavigationViewService : INavigationViewService
         _navigationView = navigationView;
         _navigationView.BackRequested += OnBackRequested;
         _navigationView.ItemInvoked += OnItemInvoked;
-        _navigationView.ApplyTemplate();
     }
 
     public void UnregisterEvents()
