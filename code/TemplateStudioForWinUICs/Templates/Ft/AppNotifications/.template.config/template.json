@@ -27,16 +27,16 @@
     "preferNameDirectory": true,
     "PrimaryOutputs": [
         {
-            "path": "Param_ProjectName/Activation/NotificationActivationHandler.cs"
+            "path": "Param_ProjectName/Activation/AppNotificationActivationHandler.cs"
         },
         {
             "path": "Param_ProjectName/Assets/Square150x150Logo.png"
         },
         {
-            "path": "Param_ProjectName/Contracts/Services/INotificationService.cs"
+            "path": "Param_ProjectName/Contracts/Services/IAppNotificationService.cs"
         },
         {
-            "path": "Param_ProjectName/Services/NotificationService.cs"
+            "path": "Param_ProjectName/Services/AppNotificationService.cs"
         }
     ],
     "symbols": {
