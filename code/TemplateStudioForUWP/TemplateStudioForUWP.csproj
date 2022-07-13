@@ -176,6 +176,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Commands\Resources\TemplateStudioCommand.png" />
+    <Content Include="Templates\Proj\Default\README.md">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Proj\Default._VB\README.md">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Proj\DefaultPrism\README.md">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <VSCTCompile Include="Commands\TemplateStudioForUWPPackage.vsct">
       <Generator>VsctGenerator</Generator>
       <ResourceName>Menus.ctmenu</ResourceName>

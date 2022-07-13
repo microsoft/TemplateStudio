@@ -173,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+	<None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
