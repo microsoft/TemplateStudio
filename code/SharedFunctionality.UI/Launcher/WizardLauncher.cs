@@ -17,6 +17,7 @@ using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewItem;
 using Microsoft.Templates.UI.Views;
 using Microsoft.Templates.UI.Views.Common;
+using Microsoft.Templates.UI.Views.NewItem;
 using Microsoft.Templates.UI.VisualStudio.GenShell;
 using Microsoft.VisualStudio.TemplateWizard;
 
@@ -83,6 +84,8 @@ namespace Microsoft.Templates.UI.Launcher
         private static UserSelection LaunchWizardShell(IWizardShell wizardShell)
         {
             GenContext.ToolBox.Shell.UI.ShowModal(wizardShell as IWindow);
+            UserSelectionItem newBlank = new UserSelectionItem() { Name = "NewMain", TemplateId = "ts.WinUI.Page.Blank" };
+            wizardShell.Result.Pages.Add(newBlank);
             return wizardShell.Result;
         }
 
