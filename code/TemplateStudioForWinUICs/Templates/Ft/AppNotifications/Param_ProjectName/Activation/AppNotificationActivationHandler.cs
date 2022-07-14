@@ -1,5 +1,5 @@
-﻿using Param_ProjectName.Contracts.Services;
-using Param_ProjectName.ViewModels;
+﻿using Param_RootNamespace.Contracts.Services;
+using Param_RootNamespace.ViewModels;
 
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
