@@ -18,6 +18,7 @@ using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.ViewModels.NewProject;
 using Microsoft.Templates.UI.Views.NewItem;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
@@ -38,6 +39,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public static MainViewModel Instance { get; private set; }
 
         public TemplateSelectionViewModel TemplateSelection { get; } = new TemplateSelectionViewModel();
+        public UserSelection userSelection { get; set; }
 
         public ObservableCollection<BreakingChangeMessageViewModel> BreakingChangesErrors { get; set; } = new ObservableCollection<BreakingChangeMessageViewModel>();
 
@@ -168,6 +170,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private UserSelection CreateUserSelection()
         {
             var userSelection = new UserSelection(Context) { HomeName = string.Empty };
+            // turn user selection into list
             var selectedTemplate = new UserSelectionItem { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.TemplateId };
             userSelection.Add(selectedTemplate, TemplateSelection.Template.TemplateType);
 
@@ -258,10 +261,22 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             if (item is TemplateInfoViewModel template)
             {
                 TemplateSelection.SelectTemplate(template);
+                await AddTemplateAsync(template);
             }
 
             await Task.CompletedTask;
         }
+
+        private async Task AddTemplateAsync(TemplateInfoViewModel selectedTemplate)
+        {
+            if (!selectedTemplate.Disabled && selectedTemplate.CanBeAdded)
+            {
+                await TemplateSelection.AddAsync(TemplateOrigin.UserSelection, selectedTemplate);
+                // call add async [contained within templateSelectionViewModel]
+            }
+        }
+
+
 
         public override bool IsSelectionEnabled(MetadataType metadataType) => true;
     }

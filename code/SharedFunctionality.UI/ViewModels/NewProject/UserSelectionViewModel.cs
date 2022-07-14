@@ -121,7 +121,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 var dependencyTemplate = MainViewModel.Instance.GetTemplate(dependency);
                 if (dependencyTemplate == null)
                 {
-                    // Case of hidden templates, it's not found on templat lists
+                    // Case of hidden templates, it's not found on template lists
                     dependencyTemplate = new TemplateInfoViewModel(dependency, _context);
                 }
 
@@ -171,7 +171,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             Groups.ToList().ForEach(g => g.Clear());
         }
 
-        public UserSelection GetUserSelection()
+        public UserSelection GetUserSelection() // creates user selection list
         {
             var selection = new UserSelection(_context);
 
