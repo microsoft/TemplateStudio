@@ -1252,7 +1252,7 @@ namespace Microsoft.Templates.SharedResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A page named {0} is already part of your project. Enter a new name..
+        ///   Looks up a localized string similar to A page named {0} is already part of your project. Enter a new name or choose another page..
         /// </summary>
         public static string NewItemHasNoChangesPage {
             get {

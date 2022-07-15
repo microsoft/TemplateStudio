@@ -246,7 +246,7 @@
     <comment>Feature already added {0}: Feature name</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
-    <value>A page named {0} is already part of your project. Enter a new name.</value>
+    <value>A page named {0} is already part of your project. Enter a new name or choose another page.</value>
     <comment>Page already added {0}: Page name</comment>
   </data>
   <data name="NewItemHasNoChangesService" xml:space="preserve">
