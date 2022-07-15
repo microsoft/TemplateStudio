@@ -81,7 +81,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public ObservableCollection<TemplateGroupViewModel> Groups { get; } = new ObservableCollection<TemplateGroupViewModel>();
 
-        public ObservableCollection<UserSelectionGroup> userSelectionGroups = new ObservableCollection<UserSelectionGroup>();
+        public ObservableCollection<UserSelectionGroup> userSelectionGroups { get;  } = new ObservableCollection<UserSelectionGroup>();
+
+        public bool HasItemsAddedByUser { get; private set; }
+
 
         public TemplateSelectionViewModel()
         {
@@ -163,8 +166,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
 
             // add template to corresponding group (page, feature, or testing
+            // seems to work?
             AddToGroup(template.TemplateType, savedTemplate);
-            // UpdateHasItemsAddedByUser();
+             UpdateHasItemsAddedByUser();
             // BuildLicenses();
             // CheckForMissingVersions();
             /*if (focus)
@@ -172,6 +176,34 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     savedTemplate.IsTextSelected = true;
                 }
             }*/
+        }
+
+        private IEnumerable<SavedTemplateViewModel> AllTemplates
+        {
+            get
+            {
+                foreach (var group in userSelectionGroups)
+                {
+                    foreach (var item in userSelectionGroups.Items)
+                    {
+                        yield return item;
+                    }
+                }
+            }
+        }
+
+        private void UpdateHasItemsAddedByUser()
+        {
+            foreach (var template in AllTemplates)
+            {
+                if (template.TemplateOrigin == TemplateOrigin.UserSelection)
+                {
+                    HasItemsAddedByUser = true;
+                    return;
+                }
+            }
+
+            HasItemsAddedByUser = false;
         }
 
         public UserSelectionGroup GetGroup(TemplateType templateType) => userSelectionGroups.First(t => t.TemplateType == templateType);
