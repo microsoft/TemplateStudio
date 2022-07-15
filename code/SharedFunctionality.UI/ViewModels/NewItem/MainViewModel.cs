@@ -204,6 +204,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public override async Task OnTemplatesAvailableAsync()
         {
             ValidationService.Initialize(GetNames, null);
+            ValidationService.Initialize(TemplateSelection.GetNames, TemplateSelection.GetPageNames);
             TemplateSelection.LoadData(TemplateType, Context);
             WizardStatus.IsLoading = false;
 

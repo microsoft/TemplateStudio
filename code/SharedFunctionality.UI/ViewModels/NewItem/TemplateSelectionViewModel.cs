@@ -106,6 +106,16 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
         }*/
 
+        public IEnumerable<string> GetPageNames()
+            => userSelectionGroups.First(g => g.TemplateType == TemplateType.Page).GetNames(p => p.ItemNameEditable);
+
+        public IEnumerable<string> GetNames()
+        {
+            var names = new List<string>();
+            userSelectionGroups.ToList().ForEach(g => names.AddRange(g.GetNames()));
+            return names;
+        }
+
         public void Focus()
         {
             IsTextSelected = true;
