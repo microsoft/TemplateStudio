@@ -249,12 +249,6 @@
     <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\UnitTest1.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Mocks\MockSampleDataService.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\DataGridViewModelTests.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Usings.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
