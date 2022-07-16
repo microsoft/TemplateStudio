@@ -25,7 +25,7 @@
     },
     "sourceName": "Param_ProjectName",
     "preferNameDirectory": true,
-    "guids": [ "6b17846a-9301-4daa-a8c3-05d101541451" ],
+    "guids": [],
     "PrimaryOutputs": [
         { "path": "Param_ProjectName.Tests.MSTest/Param_ProjectName.Tests.MSTest.csproj" }
     ],
