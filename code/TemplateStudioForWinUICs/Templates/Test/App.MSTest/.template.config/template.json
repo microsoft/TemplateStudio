@@ -42,15 +42,6 @@
     },
     "postActions": [
         {
-            "description": "Generate Test Certificate",
-            "manualInstructions": [],
-            "actionId": "65057255-BD7B-443C-8180-5D82B9DA9E22",
-            "args": {
-                "files": "0"
-            },
-            "continueOnError": true
-        },
-        {
             "description": "Add reference to the main WinUI app",
             "manualInstructions": [],
             "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
