@@ -30,9 +30,6 @@
             "path": "Param_ProjectName/Activation/AppNotificationActivationHandler.cs"
         },
         {
-            "path": "Param_ProjectName/Assets/Square150x150Logo.png"
-        },
-        {
             "path": "Param_ProjectName/Contracts/Services/IAppNotificationService.cs"
         },
         {

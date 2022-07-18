@@ -1243,7 +1243,7 @@ namespace Microsoft.Templates.SharedResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is already part of your project. Please choose another feature..
+        ///   Looks up a localized string similar to {0} is already part of your project..
         /// </summary>
         public static string NewItemHasNoChangesFeature {
             get {
@@ -1252,7 +1252,7 @@ namespace Microsoft.Templates.SharedResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is already part of your project. Please choose another page..
+        ///   Looks up a localized string similar to A page named {0} is already part of your project. Enter a new name or choose another page..
         /// </summary>
         public static string NewItemHasNoChangesPage {
             get {
@@ -1261,7 +1261,7 @@ namespace Microsoft.Templates.SharedResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is already part of your project. Please choose another service..
+        ///   Looks up a localized string similar to {0} is already part of your project..
         /// </summary>
         public static string NewItemHasNoChangesService {
             get {
@@ -1270,7 +1270,7 @@ namespace Microsoft.Templates.SharedResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is already part of your project. Please choose another testing project..
+        ///   Looks up a localized string similar to {0} is already part of your project..
         /// </summary>
         public static string NewItemHasNoChangesTesting {
             get {
