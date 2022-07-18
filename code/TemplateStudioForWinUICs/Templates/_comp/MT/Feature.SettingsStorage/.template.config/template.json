@@ -4,9 +4,9 @@
     "classifications": [
         "Universal"
     ],
-    "name": "ts.WinUI.Feat.SettingsStorage.Unpackaged",
-    "shortName": "ts.WinUI.Feat.SettingsStorage.Unpackaged",
-    "identity": "ts.WinUI.Feat.SettingsStorage.Unpackaged",
+    "name": "ts.WinUI.MVVMToolkit.Feat.SettingsStorage",
+    "shortName": "ts.WinUI.MVVMToolkit.Feat.SettingsStorage",
+    "identity": "ts.WinUI.MVVMToolkit.Feat.SettingsStorage",
     "tags": {
         "language": "C#",
         "type": "item",
