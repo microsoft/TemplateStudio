@@ -4,16 +4,16 @@
     "classifications": [
         "Universal"
     ],
-    "name": "ts.WinUI.MVVMToolkit.Feat.SettingsStorage",
-    "shortName": "ts.WinUI.MVVMToolkit.Feat.SettingsStorage",
-    "identity": "ts.WinUI.MVVMToolkit.Feat.SettingsStorage",
+    "name": "ts.WinUI.Page.Settings.GetVersionDescription",
+    "shortName": "ts.WinUI.Page.Settings.GetVersionDescription",
+    "identity": "ts.WinUI.Page.Settings.GetVersionDescription",
     "tags": {
         "language": "C#",
         "type": "item",
         "ts.type": "composition",
         "ts.platform": "WinUI",
         "ts.version": "1.0.0",
-        "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WinUI.Feat.SettingsStorage"
+        "ts.compositionFilter": "$frontendframework == MVVMToolkit & groupidentity == ts.WinUI.Page.Settings"
     },
     "sourceName": "Param_ItemName",
     "preferNameDirectory": true,
