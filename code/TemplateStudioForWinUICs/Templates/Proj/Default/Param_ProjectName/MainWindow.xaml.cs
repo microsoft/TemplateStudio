@@ -1,5 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-using Param_RootNamespace.Helpers;
+﻿using Param_RootNamespace.Helpers;
 
 namespace Param_RootNamespace;
 
@@ -9,6 +8,7 @@ public sealed partial class MainWindow : WindowEx
     {
         InitializeComponent();
 
+        AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets/WindowIcon.ico"));
         Content = null;
         Title = "AppDisplayName".GetLocalized();
     }

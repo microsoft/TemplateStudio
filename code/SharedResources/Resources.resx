@@ -242,19 +242,19 @@
     <comment>Title on FrameworkPage</comment>
   </data>
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another feature.</value>
+    <value>{0} is already part of your project.</value>
     <comment>Feature already added {0}: Feature name</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another page.</value>
+    <value>A page named {0} is already part of your project. Enter a new name or choose another page.</value>
     <comment>Page already added {0}: Page name</comment>
   </data>
   <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another service.</value>
+    <value>{0} is already part of your project.</value>
     <comment>Service already added {0}: Service name</comment>
   </data>
   <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} is already part of your project. Please choose another testing project.</value>
+    <value>{0} is already part of your project.</value>
     <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
