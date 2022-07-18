@@ -5,6 +5,8 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/templatestudio"
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
   IgnorableNamespaces="uap rescap genTemplate">
 
   <Identity
@@ -41,6 +43,17 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
       <Extensions>
+          <desktop:Extension Category="windows.toastNotificationActivation">
+              <desktop:ToastNotificationActivation ToastActivatorCLSID="61d83ff1-510f-48dd-8db0-85f1083a0089" />
+          </desktop:Extension>
+
+          <com:Extension Category="windows.comServer">
+              <com:ComServer>
+                  <com:ExeServer Executable="Param_ProjectName.exe" Arguments="----AppNotificationActivated:" DisplayName="Toast activator">
+                      <com:Class Id="61d83ff1-510f-48dd-8db0-85f1083a0089" DisplayName="Toast activator"/>
+                  </com:ExeServer>
+              </com:ComServer>
+          </com:Extension>
       </Extensions>
     </Application>
   </Applications>

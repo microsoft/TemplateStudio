@@ -166,6 +166,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TemplateStudioForWpfPackage.cs" />
+    <Content Include="Templates\Proj\Default\ts.ProjectName\README.md">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Proj\Default.Prism\ts.ProjectName\README.md">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Page Include="..\SharedStyles\TemplateStudioStyles.xaml">
       <Link>Styles\TemplateStudioStyles.xaml</Link>
       <Generator>MSBuild:Compile</Generator>

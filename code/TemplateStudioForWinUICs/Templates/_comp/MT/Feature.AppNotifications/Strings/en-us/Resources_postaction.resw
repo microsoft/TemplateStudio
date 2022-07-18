@@ -1,0 +1,19 @@
+﻿<root>
+  <!--^^-->
+  <!--{[{-->
+  <data name="AppNotificationSamplePayload" xml:space="preserve">
+    <value>&lt;toast launch="action=ToastClick"&gt;
+  &lt;visual&gt;
+    &lt;binding template="ToastGeneric"&gt;
+      &lt;text&gt;App Notification&lt;/text&gt;
+      &lt;text&gt;&lt;/text&gt;
+      &lt;image placement="appLogoOverride" hint-crop="circle" src="{0}Assets/WindowIcon.ico"/&gt;
+    &lt;/binding&gt;
+  &lt;/visual&gt;
+  &lt;actions&gt;
+    &lt;action content="Settings" arguments="action=Settings"/&gt;
+  &lt;/actions&gt;
+&lt;/toast&gt;</value>
+  </data>
+  <!--}]}-->
+</root>

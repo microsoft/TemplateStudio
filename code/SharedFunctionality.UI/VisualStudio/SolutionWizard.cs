@@ -97,6 +97,7 @@ namespace Microsoft.Templates.UI.VisualStudio
                 await SafeThreading.JoinableTaskFactory.SwitchToMainThreadAsync();
 
                 await _generationService.GenerateProjectAsync(_userSelection);
+                GenContext.Current.FilesToOpen.Add(Path.Combine(GenContext.Current.GenerationOutputPath, "README.md"));
                 PostGenerationActions();
 
                 AppHealth.Current.Info.TrackAsync(Resources.StatusBarGenerationFinished).FireAndForget();

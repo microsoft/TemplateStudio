@@ -28,7 +28,7 @@
 	  </CustomParameters>
   </TemplateContent>
   <WizardExtension>
-	  <Assembly>TemplateStudio4UWP, Version=5.0.0.0, Culture=neutral, PublicKeyToken=6dbc4347ed494013</Assembly>
+	  <Assembly>TemplateStudioForUWP, Version=5.0.0.0, Culture=neutral, PublicKeyToken=6dbc4347ed494013</Assembly>
 	  <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizard</FullClassName>
   </WizardExtension>
 </VSTemplate>

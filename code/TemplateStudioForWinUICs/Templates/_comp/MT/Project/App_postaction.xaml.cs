@@ -14,15 +14,38 @@ namespace Param_RootNamespace;
 
 public partial class App : Application
 {
-//{[{
+    //{[{
     // The .NET Generic Host provides dependency injection, configuration, logging, and other services.
     // https://docs.microsoft.com/dotnet/core/extensions/generic-host
     // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
     // https://docs.microsoft.com/dotnet/core/extensions/configuration
     // https://docs.microsoft.com/dotnet/core/extensions/logging
-    private static readonly IHost _host = Host
-        .CreateDefaultBuilder()
-        .ConfigureServices((context, services) =>
+    public IHost Host
+    {
+        get;
+    }
+
+    public static T GetService<T>()
+        where T : class
+    {
+        if ((App.Current as App)!.Host.Services.GetService(typeof(T)) is not T service)
+        {
+            throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
+        }
+
+        return service;
+    }
+    //}]}
+
+    public App()
+    {
+        InitializeComponent();
+//{[{
+
+        Host = Microsoft.Extensions.Hosting.Host.
+        CreateDefaultBuilder().
+        UseContentRoot(AppContext.BaseDirectory).
+        ConfigureServices((context, services) =>
         {
             // Default Activation Handler
             services.AddTransient<ActivationHandler<LaunchActivatedEventArgs>, DefaultActivationHandler>();
@@ -40,21 +63,9 @@ public partial class App : Application
             // Views and ViewModels
 
             // Configuration
-        })
-        .Build();
-
-    public static T GetService<T>()
-        where T : class
-    {
-        if (_host.Services.GetService(typeof(T)) is not T service)
-        {
-            throw new ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
-        }
-
-        return service;
-    }
-    //}]}
-
+        }).
+        Build();
+//}]}
     protected async override void OnLaunched(LaunchActivatedEventArgs args)
     {
 //^^

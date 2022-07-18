@@ -1243,7 +1243,7 @@ namespace Microsoft.Templates.SharedResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is already part of your project. Please choose another feature..
+        ///   Looks up a localized string similar to {0} is already part of your project..
         /// </summary>
         public static string NewItemHasNoChangesFeature {
             get {
@@ -1252,7 +1252,7 @@ namespace Microsoft.Templates.SharedResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is already part of your project. Please choose another page..
+        ///   Looks up a localized string similar to A page named {0} is already part of your project. Enter a new name or choose another page..
         /// </summary>
         public static string NewItemHasNoChangesPage {
             get {
@@ -1261,7 +1261,7 @@ namespace Microsoft.Templates.SharedResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is already part of your project. Please choose another service..
+        ///   Looks up a localized string similar to {0} is already part of your project..
         /// </summary>
         public static string NewItemHasNoChangesService {
             get {
@@ -1270,7 +1270,7 @@ namespace Microsoft.Templates.SharedResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is already part of your project. Please choose another testing project..
+        ///   Looks up a localized string similar to {0} is already part of your project..
         /// </summary>
         public static string NewItemHasNoChangesTesting {
             get {
@@ -2218,7 +2218,7 @@ namespace Microsoft.Templates.SharedResources {
         ///   Looks up a localized string similar to *Recommended Markdown viewer: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)*
         ///
         ///# Steps to include new item generation
-        ///Please follow the instructions to include the new item into you project:
+        ///Please follow the instructions to include the new item into your project:
         ///
         ///You can find all referenced files in the temporary generation folder: {0}
         ///
@@ -2326,9 +2326,7 @@ namespace Microsoft.Templates.SharedResources {
         ///You can find the files from the generation in the temporary generation folder: {0}
         ///
         ///{1}
-        ///{2}
-        ///{3}
-        ///{4}.
+        ///{2}.
         /// </summary>
         public static string SyncSummaryTemplate {
             get {

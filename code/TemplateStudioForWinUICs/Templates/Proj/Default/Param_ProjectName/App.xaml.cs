@@ -6,20 +6,7 @@ namespace Param_RootNamespace;
 // To learn more about WinUI 3, see https://docs.microsoft.com/windows/apps/winui/winui3/.
 public partial class App : Application
 {
-    public static WindowEx MainWindow { get; } = InitializeMainWindow();
-
-    private static WindowEx InitializeMainWindow()
-    {
-        return new WindowEx()
-        {
-            Backdrop = new MicaSystemBackdrop(),
-            Content = null,
-            MinHeight = 500,
-            MinWidth = 500,
-            PersistenceId = "MainWindow",
-            Title = "AppDisplayName".GetLocalized()
-        };
-    }
+    public static WindowEx MainWindow { get; } = new MainWindow();
 
     public App()
     {
