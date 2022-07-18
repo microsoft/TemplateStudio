@@ -1,7 +1,9 @@
-﻿using System.Windows.Input;
+﻿using System.Reflection;
+using System.Windows.Input;
 using Microsoft.UI.Xaml;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Helpers;
+using Windows.ApplicationModel;
 
 namespace Param_RootNamespace.ViewModels;
 
@@ -47,5 +49,23 @@ public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChan
 
     private static string GetVersionDescription()
     {
+        Version version;
+
+        if (RuntimeHelper.IsMSIX)
+        {
+            version = new
+            (
+                Package.Current.Id.Version.Major,
+                Package.Current.Id.Version.Minor,
+                Package.Current.Id.Version.Build,
+                Package.Current.Id.Version.Revision
+            );
+        }
+        else
+        {
+            version = Assembly.GetExecutingAssembly().GetName().Version!;
+        }
+
+        return $"{"AppDisplayName".GetLocalized()} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
     }
 }

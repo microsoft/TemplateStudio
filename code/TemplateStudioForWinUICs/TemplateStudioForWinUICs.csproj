@@ -228,6 +228,9 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioForWinUICsPackage.cs" />
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Helpers\RuntimeHelper.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Services\LocalSettingsService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2290,12 +2293,6 @@
     <Content Include="Templates\Proj\Default\Param_ProjectName.Core\Services\FileService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.Settings.Packaged\ViewModels\Param_ItemNameViewModel_postaction.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Page.Settings.Unpackaged\ViewModels\Param_ItemNameViewModel_postaction.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_comp\MT\Project.NavView\Helpers\NavigationHelper.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2315,12 +2312,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Feature.SettingsStorage\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Page.Settings.Packaged\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Page.Settings.Unpackaged\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\Properties\launchsettings.json">
