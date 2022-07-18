@@ -2,5 +2,5 @@
         {
             // Services
 //{[{
-            services.AddSingleton<ILocalSettingsService, LocalSettingsServicePackaged>();
+            services.AddSingleton<ILocalSettingsService, LocalSettingsService>();
 //}]}

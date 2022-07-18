@@ -228,13 +228,10 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioForWinUICsPackage.cs" />
+    <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Services\LocalSettingsService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\UnitTest1.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Mocks\MockSampleDataService.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\DataGridViewModelTests.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Usings.cs">
@@ -2287,12 +2284,6 @@
     <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Models\LocalSettingsOptions.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Services\LocalSettingsServicePackaged.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Services\LocalSettingsServiceUnpackaged.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName.Core\Contracts\Services\IFileService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2308,10 +2299,7 @@
     <Content Include="Templates\_comp\MT\Project.NavView\Helpers\NavigationHelper.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Feature.SettingsStorage.Packaged\App_postaction.xaml.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Feature.SettingsStorage.Unpackaged\App_postaction.xaml.cs">
+    <Content Include="Templates\_comp\MT\Feature.SettingsStorage\App_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\Param_ProjectName_postaction.csproj">
@@ -2326,10 +2314,7 @@
     <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Param_ProjectName_postaction.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Feature.SettingsStorage.Packaged\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Feature.SettingsStorage.Unpackaged\.template.config\template.json">
+    <Content Include="Templates\_comp\MT\Feature.SettingsStorage\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Page.Settings.Packaged\.template.config\template.json">
@@ -2342,7 +2327,9 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Mocks\" />
+  </ItemGroup>
   <Import Project="..\SharedFunctionality.Core\SharedFunctionality.Core.projitems" Label="Shared" />
   <Import Project="..\SharedFunctionality.UI\SharedFunctionality.UI.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

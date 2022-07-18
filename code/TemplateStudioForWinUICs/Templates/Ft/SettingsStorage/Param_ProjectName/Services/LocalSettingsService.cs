@@ -2,12 +2,16 @@
 using Param_RootNamespace.Core.Contracts.Services;
 using Param_RootNamespace.Core.Helpers;
 using Param_RootNamespace.Models;
+
 using Microsoft.Extensions.Options;
+using Windows.ApplicationModel;
+using Windows.Storage;
 
 namespace Param_RootNamespace.Services;
 
-public class LocalSettingsServiceUnpackaged : ILocalSettingsService
+public class LocalSettingsService : ILocalSettingsService
 {
+    // if packaged, no need for constructor
     private const string _defaultApplicationDataFolder = "Param_ProjectName/ApplicationData";
     private const string _defaultLocalSettingsFile = "LocalSettings.json";
 
@@ -21,8 +25,9 @@ public class LocalSettingsServiceUnpackaged : ILocalSettingsService
     private IDictionary<string, object> _settings;
 
     private bool _isInitialized;
+    private readonly bool _isPackaged;
 
-    public LocalSettingsServiceUnpackaged(IFileService fileService, IOptions<LocalSettingsOptions> options)
+    public LocalSettingsService(IFileService fileService, IOptions<LocalSettingsOptions> options)
     {
         _fileService = fileService;
         _options = options.Value;
@@ -31,9 +36,20 @@ public class LocalSettingsServiceUnpackaged : ILocalSettingsService
         _localsettingsFile = _options.LocalSettingsFile ?? _defaultLocalSettingsFile;
 
         _settings = new Dictionary<string, object>();
+
+        try
+        {
+            var package = Package.Current;
+            _isPackaged = true;
+        }
+        catch (InvalidOperationException)
+        {
+            _isPackaged = false;
+        }
+
     }
 
-    private async Task InitializeAsync()
+    private async Task InitializeAsync() // for unpackaged
     {
         if (!_isInitialized)
         {
@@ -45,24 +61,42 @@ public class LocalSettingsServiceUnpackaged : ILocalSettingsService
 
     public async Task<T?> ReadSettingAsync<T>(string key)
     {
-        await InitializeAsync();
-
-        object? obj;
-
-        if (_settings != null && _settings.TryGetValue(key, out obj))
+        if (_isPackaged)
         {
-            return await Json.ToObjectAsync<T>((string)obj);
+            if (ApplicationData.Current.LocalSettings.Values.TryGetValue(key, out var obj))
+            {
+                return await Json.ToObjectAsync<T>((string)obj);
+            }
+            return default;
         }
+        else
+        {
+            await InitializeAsync();
 
-        return default;
+            object? obj;
+
+            if (_settings != null && _settings.TryGetValue(key, out obj))
+            {
+                return await Json.ToObjectAsync<T>((string)obj);
+            }
+
+            return default;
+        }
     }
 
     public async Task SaveSettingAsync<T>(string key, T value)
     {
-        await InitializeAsync();
+        if (_isPackaged)
+        {
+            ApplicationData.Current.LocalSettings.Values[key] = await Json.StringifyAsync(value);
+        }
+        else
+        {
+            await InitializeAsync();
 
-        _settings[key] = await Json.StringifyAsync(value);
+            _settings[key] = await Json.StringifyAsync(value);
 
-        await Task.Run(() => _fileService.Save(_applicationDataFolder, _localsettingsFile, _settings));
+            await Task.Run(() => _fileService.Save(_applicationDataFolder, _localsettingsFile, _settings));
+        }
     }
 }
