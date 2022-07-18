@@ -6,7 +6,7 @@
     "shortName": "MSTest",
     "groupIdentity": "ts.WinUI.Testing.App.MSTest",
     "identity": "ts.WinUI.Testing.App.MSTest",
-    "description": "Add a project for unit tests against the app using MSTest.",
+    "description": "Add an MSTest project to write unit tests.",
     "tags": {
         "language": "C#",
         "type": "project",

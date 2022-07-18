@@ -1,0 +1,7 @@
+{
+    "name": "MSTest",
+    "description": "Add an MSTest project to write unit tests.",
+
+    "_name.comment": "Label for an MSTest project.",
+    "_description.comment": "Label description for MSTest."
+}
