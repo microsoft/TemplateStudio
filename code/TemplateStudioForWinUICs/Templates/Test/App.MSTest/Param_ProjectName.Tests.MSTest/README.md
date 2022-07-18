@@ -12,65 +12,40 @@ One of the many benefits of this approach is improved testability, since tests c
 
 ## Example
 
-The below example demonstrates testing the ViewModel for the DataGrid page. `DataGridViewModel` depends on `ISampleDataService`, so a `MockSampleDataService` class is introduced that implements the interface with stub data, and then an instance of that class is passed into the `DataGridViewModel` constructor. The `OnNavigatedToTest` then calls `OnNavigatedTo` on the `DataGridViewModel` and validates that its state is updated appropriately.
+The below example demonstrates testing the ViewModel for the Settings page. `SettingsViewModel` depends on `IThemeSelectorService`, so a `MockThemeSelectorService` class is introduced that implements the interface with stub implementations, and then an instance of that class is passed into the `SettingsViewModel` constructor. The `VerifyVersionDescription` test then validates that the `VersionDescription` property of the `SettingsViewModel` returns the expected value.
 
 ```csharp
-[TestClass]
-public class DataGridViewModelTests
-{
-    private readonly ISampleDataService _mockSampleDataService;
-    private readonly DataGridViewModel _dataGridViewModel;
-    private readonly Task<IEnumerable<SampleOrder>> _data;
+// SettingsViewModelTests.cs
 
-    public DataGridViewModelTests()
+[TestClass]
+public class SettingsViewModelTests
+{
+    private readonly SettingsViewModel _viewModel;
+
+    public SettingsViewModelTests()
     {
-        _mockSampleDataService = new MockSampleDataService();
-        _dataGridViewModel = new DataGridViewModel(_mockSampleDataService);
-        _data = _mockSampleDataService.GetGridDataAsync();
+        _viewModel = new SettingsViewModel(new MockThemeSelectorService());
     }
 
     [TestMethod]
-    public void OnNavigatedToTest()
+    public void VerifyVersionDescription()
     {
-        _dataGridViewModel.OnNavigatedTo(null);
-
-        Assert.AreNotEqual(_dataGridViewModel.Source, null, "The DataGridViewModel Source property was not updated.");
-        Assert.AreEqual(_data.Result.Count(), _dataGridViewModel.Source.Count(), "The DataGridViewModel Source property does not have the correct number of items.");
-        CollectionAssert.AreEqual(_dataGridViewModel.Source, _data.Result.ToArray());
+        Assert.AreEqual("App1 - 1.0.0.0", _viewModel.VersionDescription);
     }
 }
 ```
 
-## Unpackaged Project
+```csharp
+// Mocks/MockThemeSelectorService.cs
 
-In order to access the `.resw` resources used in App7, this line must be added to the test project's `.csproj` file within the first PropertyGroup:
+internal class MockThemeSelectorService : IThemeSelectorService
+{
+    public ElementTheme Theme => ElementTheme.Default;
 
-```xaml
-	<ProjectPriFileName>resources.pri</ProjectPriFileName>
+    public Task InitializeAsync() => Task.CompletedTask;
+
+    public Task SetRequestedThemeAsync() => Task.CompletedTask;
+
+    public Task SetThemeAsync(ElementTheme theme) => Task.CompletedTask;
+}
 ```
-This way, in the case of testing the SettingsViewModel, for example, the test project can successfully create a `SettingsViewModel` object, which uses `App7/Strings/en-us/Resources.resw`.
-
-## MSIX-Packaged Project
-unpackaged test project + packaged 
-## DataGrid View Model Testing Implementation (Unpackaged)
-
-In the testing file, a public class is created containing an empty test method. Within the TestClass, instances of the DataGridViewModel and the MockSampleDataService can be created. Then, within
-a constructor, these can initialized to then be used within the TestMethods. There is also a data variable for the Mock Sample Data Service's contents:
-
-
-## WORKING NOTES:
-
-## Unpackaged App
-Settings: <ProjectPriFileName>resources.pri</ProjectPriFileName> to the first PropertyGroup
-(will be handled by post action)
-
-## Packaged App
-
-    <PackageReference Include="Microsoft.TestPlatform.TestHost">
-    <Version>17.2.0</Version>
-    <ExcludeAssets>build</ExcludeAssets>
-    </PackageReference>
-
-    NEED TO FIND RESOURCE FILE FIX
-
-## something abt making mock empty??
