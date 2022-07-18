@@ -1,6 +1,6 @@
-﻿# MSTest with Template Studio
+﻿*Recommended Markdown Viewer: [Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)*
 
-## Introduction
+## Getting Started
 
 [Get started with unit testing](https://docs.microsoft.com/visualstudio/test/getting-started-with-unit-testing?view=vs-2022&tabs=dotnet%2Cmstest), [Use the MSTest framework in unit tests](https://docs.microsoft.com/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests), and [Run unit tests with Test Explorer](https://docs.microsoft.com/visualstudio/test/run-unit-tests-with-test-explorer) provide an overview of the MSTest framework and Test Explorer.
 
@@ -15,14 +15,12 @@ One of the many benefits of this approach is improved testability, since tests c
 The below example demonstrates testing the ViewModel for the DataGrid page. `DataGridViewModel` depends on `ISampleDataService`, so a `MockSampleDataService` class is introduced that implements the interface with stub data, and then an instance of that class is passed into the `DataGridViewModel` constructor. The `OnNavigatedToTest` then calls `OnNavigatedTo` on the `DataGridViewModel` and validates that its state is updated appropriately.
 
 ```csharp
-namespace TestProject1;
-
 [TestClass]
 public class DataGridViewModelTests
 {
-    public ISampleDataService _mockSampleDataService;
-    public DataGridViewModel _dataGridViewModel;
-    public Task<IEnumerable<SampleOrder>> _data;
+    private readonly ISampleDataService _mockSampleDataService;
+    private readonly DataGridViewModel _dataGridViewModel;
+    private readonly Task<IEnumerable<SampleOrder>> _data;
 
     public DataGridViewModelTests()
     {

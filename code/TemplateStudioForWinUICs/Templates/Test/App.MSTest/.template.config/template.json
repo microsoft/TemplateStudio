@@ -25,7 +25,7 @@
     },
     "sourceName": "Param_ProjectName",
     "preferNameDirectory": true,
-    "guids": [ "6b17846a-9301-4daa-a8c3-05d101541451" ],
+    "guids": [],
     "PrimaryOutputs": [
         { "path": "Param_ProjectName.Tests.MSTest/Param_ProjectName.Tests.MSTest.csproj" }
     ],
@@ -41,15 +41,6 @@
         }
     },
     "postActions": [
-        {
-            "description": "Generate Test Certificate",
-            "manualInstructions": [],
-            "actionId": "65057255-BD7B-443C-8180-5D82B9DA9E22",
-            "args": {
-                "files": "0"
-            },
-            "continueOnError": true
-        },
         {
             "description": "Add reference to the main WinUI app",
             "manualInstructions": [],

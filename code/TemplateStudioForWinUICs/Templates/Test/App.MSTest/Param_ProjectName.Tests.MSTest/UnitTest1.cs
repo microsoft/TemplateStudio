@@ -1,4 +1,4 @@
-﻿namespace Param_ProjectName.Tests.MSTest;
+﻿namespace Param_RootNamespace.Tests.MSTest;
 
 [TestClass]
 public class UnitTest1
