@@ -30,7 +30,7 @@ public class SettingsViewModelTests
     [TestMethod]
     public void VerifyVersionDescription()
     {
-        Assert.AreEqual("App1 - 1.0.0.0", _viewModel.VersionDescription);
+        Assert.IsTrue(Regex.IsMatch(_viewModel.VersionDescription, @"App1 - \d\.\d\.\d\.\d"));
     }
 }
 ```
