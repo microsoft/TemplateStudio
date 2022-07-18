@@ -1,8 +1,34 @@
-﻿namespace Param_RootNamespace.Tests.MSTest;
+﻿using System.Diagnostics;
+
+namespace Param_RootNamespace.Tests.MSTest;
 
 [TestClass]
 public class UnitTest1
 {
+    [ClassInitialize()]
+    public static void ClassInitialize(TestContext context)
+    {
+        Debug.WriteLine("ClassInitialize");
+    }
+
+    [ClassCleanup()]
+    public static void ClassCleanup()
+    {
+        Debug.WriteLine("ClassCleanup");
+    }
+
+    [TestInitialize()]
+    public void Initialize()
+    {
+        Debug.WriteLine("TestInitialize");
+    }
+
+    [TestCleanup()]
+    public void Cleanup()
+    {
+        Debug.WriteLine("TestCleanup");
+    }
+
     [TestMethod]
     public void TestMethod1()
     {
