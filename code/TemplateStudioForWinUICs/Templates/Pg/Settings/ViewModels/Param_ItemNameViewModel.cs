@@ -53,13 +53,9 @@ public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChan
 
         if (RuntimeHelper.IsMSIX)
         {
-            version = new
-            (
-                Package.Current.Id.Version.Major,
-                Package.Current.Id.Version.Minor,
-                Package.Current.Id.Version.Build,
-                Package.Current.Id.Version.Revision
-            );
+            var packageVersion = Package.Current.Id.Version;
+
+            version = new(packageVersion.Major, packageVersion.Minor, packageVersion.Build, packageVersion.Revision);
         }
         else
         {
