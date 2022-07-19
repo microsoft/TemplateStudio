@@ -116,7 +116,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             var selection = new UserSelection(_context);
 
-            var pages = userSelectionGroups.First(g => g.TemplateType == TemplateType.Page).Items;
+            foreach (var page in GetGroup(TemplateType.Page).Items)
+            {
+                var selectedPage = new UserSelectionItem { Name = page.Name, TemplateId = page.Identity };
+                selection.Add(selectedPage, page.TemplateType);
+            }
+
+            /*var pages = userSelectionGroups.First(g => g.TemplateType == TemplateType.Page).Items;
             selection.HomeName = pages.FirstOrDefault()?.Name ?? string.Empty;
             selection.Pages.AddRange(pages.Select(i => i.ToUserSelectionItem()));
 
@@ -127,7 +133,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             selection.Services.AddRange(services.Select(i => i.ToUserSelectionItem()));
 
             var tests = userSelectionGroups.First(g => g.TemplateType == TemplateType.Testing).Items;
-            selection.Testing.AddRange(tests.Select(i => i.ToUserSelectionItem()));
+            selection.Testing.AddRange(tests.Select(i => i.ToUserSelectionItem()));*/
             return selection;
         }
 
@@ -167,7 +173,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             var savedTemplate = new SavedTemplateViewModel(template, templateOrigin, isReadOnly);
 
             // name setting
-            if (template.MultipleInstance) // add condition for OR not already added
+            if (!IsTemplateAdded(template) || template.MultipleInstance) // add condition for OR not already added
             {
                 if (!string.IsNullOrEmpty(layoutName))
                 {
@@ -199,6 +205,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 }
             }*/
         }
+
+        public bool IsTemplateAdded(TemplateInfoViewModel template) => GetCollection(template.TemplateType).Any(t => t.Equals(template));
+
+        private ObservableCollection<SavedTemplateViewModel> GetCollection(TemplateType templateType)
+        {
+            return userSelectionGroups.First(g => g.TemplateType == templateType).Items;
+        }
+
 
         private void UpdateHasItemsAddedByUser()
         {

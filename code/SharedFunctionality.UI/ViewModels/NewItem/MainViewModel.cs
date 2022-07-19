@@ -161,7 +161,8 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private async Task<NewItemGenerationResult> CleanupAndGenerateNewItemAsync()
         {
             NewItemGenController.Instance.CleanupTempGeneration();
-            var userSelection = CreateUserSelection();
+            var userSelection = TemplateSelection.GetUserSelection();
+            //var userSelection = CreateUserSelection();
             await _generationService.GenerateNewItemAsync(TemplateSelection.Template.TemplateType, userSelection);
             return NewItemGenController.Instance.CompareOutputAndProject();
         }
