@@ -18,13 +18,13 @@ public class UnitTest1
     }
 
     [TestInitialize()]
-    public void Initialize()
+    public void TestInitialize()
     {
         Debug.WriteLine("TestInitialize");
     }
 
     [TestCleanup()]
-    public void Cleanup()
+    public void TestCleanup()
     {
         Debug.WriteLine("TestCleanup");
     }
