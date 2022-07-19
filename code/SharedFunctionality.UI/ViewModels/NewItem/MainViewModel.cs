@@ -39,7 +39,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public static MainViewModel Instance { get; private set; }
 
         public TemplateSelectionViewModel TemplateSelection { get; } = new TemplateSelectionViewModel();
-        public UserSelection userSelection { get; set; }
 
         public ObservableCollection<BreakingChangeMessageViewModel> BreakingChangesErrors { get; set; } = new ObservableCollection<BreakingChangeMessageViewModel>();
 
@@ -185,14 +184,20 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void OnFinish(object sender, EventArgs e)
         {
+            // get group
+            // set as result of new item wizard
             var userSelection = new UserSelection(Context);
-            userSelection.Add(
-                new UserSelectionItem()
-                {
-                    Name = TemplateSelection.Name,
-                    TemplateId = TemplateSelection.Template.TemplateId,
-                }, TemplateType);
-            NewItemWizardShell.Current.Result = userSelection;
+
+            /*            userSelection.Add(
+                            new UserSelectionItem()
+                            {
+                                Name = TemplateSelection.Name,
+                                TemplateId = TemplateSelection.Template.TemplateId,
+                            }, TemplateType);
+                        NewItemWizardShell.Current.Result = userSelection;
+                        NewItemWizardShell.Current.Result.ItemGenerationType = ChangesSummary.DoNotMerge ? ItemGenerationType.Generate : ItemGenerationType.GenerateAndMerge;*/
+
+            NewItemWizardShell.Current.Result = TemplateSelection.GetUserSelection();
             NewItemWizardShell.Current.Result.ItemGenerationType = ChangesSummary.DoNotMerge ? ItemGenerationType.Generate : ItemGenerationType.GenerateAndMerge;
         }
 
@@ -261,7 +266,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             if (item is TemplateInfoViewModel template)
             {
-                TemplateSelection.SelectTemplate(template);
+                //TemplateSelection.SelectTemplate(template);
                 await AddTemplateAsync(template);
             }
 

@@ -102,12 +102,34 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
 
+        private UserSelectionContext _context;
+
+
         public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
 
 
         /*public TemplateSelectionViewModel()
         {
         }*/
+
+        public UserSelection GetUserSelection() // creates user selection list
+        {
+            var selection = new UserSelection(_context);
+
+            var pages = userSelectionGroups.First(g => g.TemplateType == TemplateType.Page).Items;
+            selection.HomeName = pages.FirstOrDefault()?.Name ?? string.Empty;
+            selection.Pages.AddRange(pages.Select(i => i.ToUserSelectionItem()));
+
+            var features = userSelectionGroups.First(g => g.TemplateType == TemplateType.Feature).Items;
+            selection.Features.AddRange(features.Select(i => i.ToUserSelectionItem()));
+
+            var services = userSelectionGroups.First(g => g.TemplateType == TemplateType.Service).Items;
+            selection.Services.AddRange(services.Select(i => i.ToUserSelectionItem()));
+
+            var tests = userSelectionGroups.First(g => g.TemplateType == TemplateType.Testing).Items;
+            selection.Testing.AddRange(tests.Select(i => i.ToUserSelectionItem()));
+            return selection;
+        }
 
         public IEnumerable<string> GetPageNames()
             => userSelectionGroups.First(g => g.TemplateType == TemplateType.Page).GetNames(p => p.ItemNameEditable);
@@ -168,7 +190,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             // add template to corresponding group (page, feature, or testing
             // seems to work?
             AddToGroup(template.TemplateType, savedTemplate);
-             UpdateHasItemsAddedByUser();
+            UpdateHasItemsAddedByUser();
             // BuildLicenses();
             // CheckForMissingVersions();
             /*if (focus)
@@ -178,32 +200,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }*/
         }
 
-        private IEnumerable<SavedTemplateViewModel> AllTemplates
-        {
-            get
-            {
-                foreach (var group in userSelectionGroups)
-                {
-                    foreach (var item in userSelectionGroups.Items)
-                    {
-                        yield return item;
-                    }
-                }
-            }
-        }
-
         private void UpdateHasItemsAddedByUser()
         {
-            foreach (var template in AllTemplates)
+            /*foreach (var template in AllTemplates)
             {
                 if (template.TemplateOrigin == TemplateOrigin.UserSelection)
                 {
                     HasItemsAddedByUser = true;
                     return;
                 }
-            }
+            }*/
 
-            HasItemsAddedByUser = false;
+            //HasItemsAddedByUser = false;
+            // if user has added an item:
+            HasItemsAddedByUser = true; ;
+
         }
 
         public UserSelectionGroup GetGroup(TemplateType templateType) => userSelectionGroups.First(t => t.TemplateType == templateType);
