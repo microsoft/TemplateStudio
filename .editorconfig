@@ -175,6 +175,14 @@ csharp_style_prefer_method_group_conversion = true:silent
 curly_bracket_next_line = true
 indent_brace_style = Allman
 
+# JSON files
+[*.json]
+charset = utf-8-bom
+
+# MD files
+[*.md]
+charset = utf-8-bom
+
 # xaml files
 [*.xaml]
 charset = utf-8-bom
