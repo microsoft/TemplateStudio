@@ -173,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Content Include="TemplateStudio.targetsize-128.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Ft\SelfContained\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1279,10 +1283,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="ru-RU\Extension.vsixlangpack">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="TemplateStudio_Logo_90x90.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\Assets\LockScreenLogo.scale-200.png">
