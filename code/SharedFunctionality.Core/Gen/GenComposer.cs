@@ -22,7 +22,6 @@ namespace Microsoft.Templates.Core.Gen
             {
                 return genQueue;
             }
-            // make add project conditional
             AddProject(userSelection, genQueue);
             AddTemplates(userSelection.Pages, genQueue, userSelection, newItemGeneration: false);
             AddTemplates(userSelection.Features, genQueue, userSelection, newItemGeneration: false);
