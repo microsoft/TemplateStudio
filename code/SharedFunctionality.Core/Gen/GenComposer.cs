@@ -23,10 +23,7 @@ namespace Microsoft.Templates.Core.Gen
                 return genQueue;
             }
             // make add project conditional
-            if (addProjectDependencies)
-            {
-                AddProject(userSelection, genQueue);
-            }
+            AddProject(userSelection, genQueue);
             AddTemplates(userSelection.Pages, genQueue, userSelection, newItemGeneration: false);
             AddTemplates(userSelection.Features, genQueue, userSelection, newItemGeneration: false);
             AddTemplates(userSelection.Services, genQueue, userSelection, newItemGeneration: false);
@@ -55,11 +52,7 @@ namespace Microsoft.Templates.Core.Gen
                 }
             }
 
-            if (addProjectDependencies)
-            {
-                genQueue = AddInCompositionTemplates(genQueue, userSelection, false);
-            }
-
+            genQueue = AddInCompositionTemplates(genQueue, userSelection, false);
             return genQueue;
         }
 

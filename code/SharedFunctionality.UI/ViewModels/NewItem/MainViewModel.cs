@@ -187,7 +187,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             // get group
             // set as result of new item wizard
-            var userSelection = new UserSelection(Context);
+            //var userSelection = new UserSelection(Context);
 
             /*            userSelection.Add(
                             new UserSelectionItem()
@@ -278,12 +278,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             if (!selectedTemplate.Disabled && selectedTemplate.CanBeAdded)
             {
-                await TemplateSelection.AddAsync(TemplateOrigin.UserSelection, selectedTemplate);
                 // call add async [contained within templateSelectionViewModel]
+                await TemplateSelection.AddAsync(TemplateOrigin.UserSelection, selectedTemplate);
             }
         }
-
-
 
         public override bool IsSelectionEnabled(MetadataType metadataType) => true;
     }
