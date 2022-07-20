@@ -103,8 +103,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
 
         private UserSelectionContext _context;
-
-
+        private bool _isInitialized;
         public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
 
 
@@ -112,17 +111,44 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
         }*/
 
+        public void Initialize(UserSelectionContext context)
+        {
+            _context = context;
+
+            if (_isInitialized)
+            {
+                userSelectionGroups.ToList().ForEach(g => g.Clear());
+            }
+
+            _isInitialized = true;
+        }
+
         public UserSelection GetUserSelection() // creates user selection list
         {
             var selection = new UserSelection(_context);
 
-            foreach (var page in GetGroup(TemplateType.Page).Items)
+            /*foreach (var page in GetGroup(TemplateType.Page).Items)
             {
                 var selectedPage = new UserSelectionItem { Name = page.Name, TemplateId = page.Identity };
                 selection.Add(selectedPage, page.TemplateType);
             }
+            foreach (var feature in GetGroup(TemplateType.Feature).Items)
+            {
+                var selectedFeature = new UserSelectionItem { Name = feature.Name, TemplateId = feature.Identity };
+                selection.Add(selectedFeature, feature.TemplateType);
+            }
+            foreach (var service in GetGroup(TemplateType.Service).Items)
+            {
+                var selectedService = new UserSelectionItem { Name = service.Name, TemplateId = service.Identity };
+                selection.Add(selectedService, service.TemplateType);
+            }
+            foreach(var test in GetGroup(TemplateType.Service).Items)
+            {
+                var selectedTest = new UserSelectionItem { Name = test.Name, TemplateId = test.Identity };
+                selection.Add(selectedTest, test.TemplateType);
+            }*/
 
-            /*var pages = userSelectionGroups.First(g => g.TemplateType == TemplateType.Page).Items;
+            var pages = userSelectionGroups.First(g => g.TemplateType == TemplateType.Page).Items;
             selection.HomeName = pages.FirstOrDefault()?.Name ?? string.Empty;
             selection.Pages.AddRange(pages.Select(i => i.ToUserSelectionItem()));
 
@@ -133,7 +159,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             selection.Services.AddRange(services.Select(i => i.ToUserSelectionItem()));
 
             var tests = userSelectionGroups.First(g => g.TemplateType == TemplateType.Testing).Items;
-            selection.Testing.AddRange(tests.Select(i => i.ToUserSelectionItem()));*/
+            selection.Testing.AddRange(tests.Select(i => i.ToUserSelectionItem()));
             return selection;
         }
 

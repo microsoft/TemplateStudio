@@ -88,7 +88,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             TemplateType = templateType;
             WizardStatus.Title = GetNewItemTitle(templateType);
-
+            TemplateSelection.Initialize(context);
             Initialize(context);
         }
 
