@@ -2,41 +2,41 @@
 
 namespace Param_RootNamespace.Tests.MSTest;
 
+// TODO: Write unit tests.
+// https://docs.microsoft.com/visualstudio/test/getting-started-with-unit-testing
+// https://docs.microsoft.com/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests
+// https://docs.microsoft.com/visualstudio/test/run-unit-tests-with-test-explorer
+
 [TestClass]
-public class UnitTest1
+public class TestClass
 {
-    [ClassInitialize()]
+    [ClassInitialize]
     public static void ClassInitialize(TestContext context)
     {
         Debug.WriteLine("ClassInitialize");
     }
 
-    [ClassCleanup()]
+    [ClassCleanup]
     public static void ClassCleanup()
     {
         Debug.WriteLine("ClassCleanup");
     }
 
-    [TestInitialize()]
+    [TestInitialize]
     public void TestInitialize()
     {
         Debug.WriteLine("TestInitialize");
     }
 
-    [TestCleanup()]
+    [TestCleanup]
     public void TestCleanup()
     {
         Debug.WriteLine("TestCleanup");
     }
 
     [TestMethod]
-    public void TestMethod1()
+    public void TestMethod()
     {
-        // TODO: Write unit tests.
-        // https://docs.microsoft.com/visualstudio/test/getting-started-with-unit-testing
-        // https://docs.microsoft.com/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests
-        // https://docs.microsoft.com/visualstudio/test/run-unit-tests-with-test-explorer
-
         Assert.IsTrue(true);
     }
 }
