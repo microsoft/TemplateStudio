@@ -21,7 +21,8 @@
         "ts.defaultInstance": "MSTest",
         "ts.multipleInstance": "false",
         "ts.genGroup": "0",
-        "ts.rightClickEnabled": "true"
+        "ts.rightClickEnabled": "true",
+        "ts.licenses": "[MSTest](https://github.com/microsoft/testfx/blob/main/LICENSE)"
     },
     "sourceName": "Param_ProjectName",
     "preferNameDirectory": true,
@@ -58,7 +59,7 @@
             "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
             "args": {
                 "packageId": "Microsoft.NET.Test.Sdk",
-                "version": "17.1.0",
+                "version": "17.2.0",
                 "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
             },
             "continueOnError": true
