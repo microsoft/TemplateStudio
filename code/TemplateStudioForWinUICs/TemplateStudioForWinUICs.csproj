@@ -183,7 +183,7 @@
     <Content Include="Templates\Proj\Default\Param_ProjectName\Assets\WindowIcon.ico">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\UnitTest1.cs">
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\TestClass.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.NavView.AddNavViewItem.WebView\Views\ShellPage_postaction.xaml">
@@ -213,6 +213,12 @@
     <Content Include="Templates\Test\App.MSTest\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\App.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\MainWindow.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedStyles\AllStylesDictionary.cs">
@@ -235,6 +241,12 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioForWinUICsPackage.cs" />
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\App.xaml.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\MainWindow.xaml.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Initialize.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -288,6 +300,15 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName.Core\README.md">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Properties\PublishProfiles\win10-arm64.pubxml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Properties\PublishProfiles\win10-x64.pubxml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Properties\PublishProfiles\win10-x86.pubxml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <VSCTCompile Include="Commands\TemplateStudioForWinuiPackage.vsct">
