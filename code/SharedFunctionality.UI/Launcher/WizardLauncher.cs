@@ -84,8 +84,8 @@ namespace Microsoft.Templates.UI.Launcher
         private static UserSelection LaunchWizardShell(IWizardShell wizardShell)
         {
             GenContext.ToolBox.Shell.UI.ShowModal(wizardShell as IWindow);
-            UserSelectionItem newBlank = new UserSelectionItem() { Name = "NewMain", TemplateId = "ts.WinUI.Page.Blank" };
-            wizardShell.Result.Pages.Add(newBlank);
+            //UserSelectionItem newBlank = new UserSelectionItem() { Name = "NewMain", TemplateId = "ts.WinUI.Page.Blank" };
+            //wizardShell.Result.Pages.Add(newBlank);
             return wizardShell.Result;
         }
 

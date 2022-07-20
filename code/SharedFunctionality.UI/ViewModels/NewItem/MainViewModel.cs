@@ -162,7 +162,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             NewItemGenController.Instance.CleanupTempGeneration();
             var userSelection = TemplateSelection.GetUserSelection();
-            //var userSelection = CreateUserSelection();
             await _generationService.GenerateNewItemAsync(TemplateSelection.Template.TemplateType, userSelection);
             return NewItemGenController.Instance.CompareOutputAndProject();
         }
@@ -185,19 +184,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         private void OnFinish(object sender, EventArgs e)
         {
-            // get group
-            // set as result of new item wizard
-            //var userSelection = new UserSelection(Context);
-
-            /*            userSelection.Add(
-                            new UserSelectionItem()
-                            {
-                                Name = TemplateSelection.Name,
-                                TemplateId = TemplateSelection.Template.TemplateId,
-                            }, TemplateType);
-                        NewItemWizardShell.Current.Result = userSelection;
-                        NewItemWizardShell.Current.Result.ItemGenerationType = ChangesSummary.DoNotMerge ? ItemGenerationType.Generate : ItemGenerationType.GenerateAndMerge;*/
-
             NewItemWizardShell.Current.Result = TemplateSelection.GetUserSelection();
             NewItemWizardShell.Current.Result.ItemGenerationType = ChangesSummary.DoNotMerge ? ItemGenerationType.Generate : ItemGenerationType.GenerateAndMerge;
         }
@@ -267,7 +253,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             if (item is TemplateInfoViewModel template)
             {
-                //TemplateSelection.SelectTemplate(template);
                 await AddTemplateAsync(template);
             }
 
@@ -278,7 +263,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             if (!selectedTemplate.Disabled && selectedTemplate.CanBeAdded)
             {
-                // call add async [contained within templateSelectionViewModel]
                 await TemplateSelection.AddAsync(TemplateOrigin.UserSelection, selectedTemplate);
             }
         }

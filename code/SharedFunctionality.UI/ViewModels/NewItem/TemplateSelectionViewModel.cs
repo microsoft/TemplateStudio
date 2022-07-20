@@ -194,12 +194,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             //check for exclusions, requirements, and exclusivities
             // get dependencies
-            // increase selection (template.IncreaseSelection)
             template.IncreaseSelection();
             var savedTemplate = new SavedTemplateViewModel(template, templateOrigin, isReadOnly);
 
-            // name setting
-            if (!IsTemplateAdded(template) || template.MultipleInstance) // add condition for OR not already added
+            if (!IsTemplateAdded(template) || template.MultipleInstance)
             {
                 if (!string.IsNullOrEmpty(layoutName))
                 {
@@ -218,9 +216,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     }
                 }
             }
-
-            // add template to corresponding group (page, feature, or testing
-            // seems to work?
             AddToGroup(template.TemplateType, savedTemplate);
             UpdateHasItemsAddedByUser();
             // BuildLicenses();
@@ -258,7 +253,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         public UserSelectionGroup GetGroup(TemplateType templateType) => userSelectionGroups.First(t => t.TemplateType == templateType);
-
 
         private void AddToGroup(TemplateType templateType, SavedTemplateViewModel savedTemplate)
         {
