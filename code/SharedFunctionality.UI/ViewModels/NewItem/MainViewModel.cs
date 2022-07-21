@@ -165,23 +165,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             await _generationService.GenerateNewItemAsync(TemplateSelection.Template.TemplateType, userSelection);
             return NewItemGenController.Instance.CompareOutputAndProject();
         }
-
-        private UserSelection CreateUserSelection()
-        {
-            var userSelection = new UserSelection(Context) { HomeName = string.Empty };
-            // turn user selection into list
-            var selectedTemplate = new UserSelectionItem { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.TemplateId };
-            userSelection.Add(selectedTemplate, TemplateSelection.Template.TemplateType);
-
-            foreach (var dependencyTemplate in TemplateSelection.Template.Dependencies)
-            {
-                var selectedTemplateDependency = new UserSelectionItem { Name = dependencyTemplate.DefaultName, TemplateId = dependencyTemplate.TemplateId };
-                userSelection.Add(selectedTemplateDependency, dependencyTemplate.TemplateType);
-            }
-
-            return userSelection;
-        }
-
         private void OnFinish(object sender, EventArgs e)
         {
             NewItemWizardShell.Current.Result = TemplateSelection.GetUserSelection();

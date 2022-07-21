@@ -127,28 +127,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public UserSelection GetUserSelection() // creates user selection list
         {
             var selection = new UserSelection(_context);
-
-            /*foreach (var page in GetGroup(TemplateType.Page).Items)
-            {
-                var selectedPage = new UserSelectionItem { Name = page.Name, TemplateId = page.Identity };
-                selection.Add(selectedPage, page.TemplateType);
-            }
-            foreach (var feature in GetGroup(TemplateType.Feature).Items)
-            {
-                var selectedFeature = new UserSelectionItem { Name = feature.Name, TemplateId = feature.Identity };
-                selection.Add(selectedFeature, feature.TemplateType);
-            }
-            foreach (var service in GetGroup(TemplateType.Service).Items)
-            {
-                var selectedService = new UserSelectionItem { Name = service.Name, TemplateId = service.Identity };
-                selection.Add(selectedService, service.TemplateType);
-            }
-            foreach(var test in GetGroup(TemplateType.Service).Items)
-            {
-                var selectedTest = new UserSelectionItem { Name = test.Name, TemplateId = test.Identity };
-                selection.Add(selectedTest, test.TemplateType);
-            }*/
-
             var pages = userSelectionGroups.First(g => g.TemplateType == TemplateType.Page).Items;
             selection.HomeName = pages.FirstOrDefault()?.Name ?? string.Empty;
             selection.Pages.AddRange(pages.Select(i => i.ToUserSelectionItem()));
@@ -190,14 +168,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        //Add Async called from MainViewModel
         public async Task AddAsync(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
-
-            // set name, licenses, get dependencies, get required sdks,
-            // get dependencies
-            template.IncreaseSelection();
-
+            template.IncreaseSelection(); // for UI?
             // set name
             var savedTemplate = new SavedTemplateViewModel(template, templateOrigin, isReadOnly);
             if (!IsTemplateAdded(template) || template.MultipleInstance)
@@ -215,7 +188,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     }
                     else
                     {
-                        savedTemplate.SetName(template.Template.DefaultName); // set unchangeable default name
+                        savedTemplate.SetName(template.Template.DefaultName); // set permanent default name
                     }
                 }
             }
@@ -229,17 +202,33 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             LicensesService.SyncLicenses(licenses, Licenses);
 
             //get dependencies
+            Dependencies.Clear();
             foreach (var dependency in template.Dependencies)
             {
-                var dependencyTemplate = new UserSelectionItem { Name = dependency.DefaultName, TemplateId = dependency.Identity };
+                Dependencies.Add(dependency);
             }
 
-            // CheckForMissingVersions();
-            /*if (focus)
-                {
-                    savedTemplate.IsTextSelected = true;
-                }
+            // check requiredSdks
+            RequiredSdks.Clear();
+            foreach (var requiredSdk in template.RequiredSdks)
+            {
+                RequiredSdks.Add(requiredSdk);
+            }
+
+            // what do these do ?
+            OnPropertyChanged(nameof(Licenses));
+            OnPropertyChanged(nameof(Dependencies));
+            OnPropertyChanged(nameof(RequiredSdks));
+            CheckForMissingSdks(template);
+
+            NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+            WizardStatus.Current.HasValidationErrors = false;
+
+            /*if (template.ItemNameEditable)
+            {
+                Focus();
             }*/
+
         }
 
         public bool IsTemplateAdded(TemplateInfoViewModel template) => GetCollection(template.TemplateType).Any(t => t.Equals(template));
@@ -249,22 +238,29 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             return userSelectionGroups.First(g => g.TemplateType == templateType).Items;
         }
 
-
+        private IEnumerable<SavedTemplateViewModel> AllTemplates
+        {
+            get
+            {
+                foreach (var group in userSelectionGroups)
+                {
+                    foreach (var item in group.Items)
+                    {
+                        yield return item;
+                    }
+                }
+            }
+        }
         private void UpdateHasItemsAddedByUser()
         {
-            /*foreach (var template in AllTemplates)
+            foreach (var template in AllTemplates)
             {
                 if (template.TemplateOrigin == TemplateOrigin.UserSelection)
                 {
                     HasItemsAddedByUser = true;
                     return;
                 }
-            }*/
-
-            //HasItemsAddedByUser = false;
-            // if user has added an item:
-            HasItemsAddedByUser = true; ;
-
+            }
         }
 
         public UserSelectionGroup GetGroup(TemplateType templateType) => userSelectionGroups.First(t => t.TemplateType == templateType);
@@ -328,7 +324,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 OnPropertyChanged(nameof(Licenses));
                 OnPropertyChanged(nameof(Dependencies));
                 OnPropertyChanged(nameof(RequiredSdks));
-                CheckForMissingSdks();
+                CheckForMissingSdks(template);
 
                 NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
                 WizardStatus.Current.HasValidationErrors = false;
@@ -339,11 +335,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        private void CheckForMissingSdks()
+        private void CheckForMissingSdks(TemplateInfoViewModel template)
         {
             var missingVersions = new List<RequiredVersionInfo>();
 
-            foreach (var requiredVersion in Template.RequiredVersions)
+            foreach (var requiredVersion in template.Template.RequiredVersions)
             {
                 var requirementInfo = RequiredVersionService.GetVersionInfo(requiredVersion);
                 var isInstalled = RequiredVersionService.Instance.IsVersionInstalled(requirementInfo);
