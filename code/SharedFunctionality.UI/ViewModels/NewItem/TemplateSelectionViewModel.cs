@@ -17,6 +17,7 @@ using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewProject;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TextManager.Interop;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
@@ -192,11 +193,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         //Add Async called from MainViewModel
         public async Task AddAsync(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
-            //check for exclusions, requirements, and exclusivities
+
+            // set name, licenses, get dependencies, get required sdks,
             // get dependencies
             template.IncreaseSelection();
-            var savedTemplate = new SavedTemplateViewModel(template, templateOrigin, isReadOnly);
 
+            // set name
+            var savedTemplate = new SavedTemplateViewModel(template, templateOrigin, isReadOnly);
             if (!IsTemplateAdded(template) || template.MultipleInstance)
             {
                 if (!string.IsNullOrEmpty(layoutName))
@@ -216,9 +219,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     }
                 }
             }
+
+            // add to userSelection
             AddToGroup(template.TemplateType, savedTemplate);
             UpdateHasItemsAddedByUser();
-            // BuildLicenses();
+
+            // get licenses
+            var licenses = GenContext.ToolBox.Repo.GetAllLicences(template.Template.TemplateId, MainViewModel.Instance.Context);
+            LicensesService.SyncLicenses(licenses, Licenses);
+
+            //get dependencies
+            foreach (var dependency in template.Dependencies)
+            {
+                var dependencyTemplate = new UserSelectionItem { Name = dependency.DefaultName, TemplateId = dependency.Identity };
+            }
+
             // CheckForMissingVersions();
             /*if (focus)
                 {
