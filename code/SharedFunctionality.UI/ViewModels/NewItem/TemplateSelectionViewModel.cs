@@ -29,8 +29,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private bool _hasErrors;
         private bool _isFocused;
         private bool _isTextSelected;
-        private ICommand _setFocusCommand;
-        private ICommand _lostKeyboardFocusCommand;
+        private bool _isInitialized;
+        private UserSelectionContext _context;
+        /*private ICommand _setFocusCommand;
+        private ICommand _lostKeyboardFocusCommand;*/
 
         public string Name
         {
@@ -101,11 +103,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public ObservableCollection<string> RequiredSdks { get; protected set; } = new ObservableCollection<string>();
 
-        public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
+        //public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
 
-        private UserSelectionContext _context;
-        private bool _isInitialized;
-        public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
+        //public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
 
 
         /*public TemplateSelectionViewModel()
@@ -170,7 +170,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public async Task AddAsync(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
-            template.IncreaseSelection(); // for UI?
+             template.IncreaseSelection(); // for UI?
             // set name
             var savedTemplate = new SavedTemplateViewModel(template, templateOrigin, isReadOnly);
             if (!IsTemplateAdded(template) || template.MultipleInstance)
@@ -191,39 +191,35 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                         savedTemplate.SetName(template.Template.DefaultName); // set permanent default name
                     }
                 }
+                AddToGroup(template.TemplateType, savedTemplate);
+                UpdateHasItemsAddedByUser();
+
+                var licenses = GenContext.ToolBox.Repo.GetAllLicences(template.Template.TemplateId, MainViewModel.Instance.Context);
+                LicensesService.SyncLicenses(licenses, Licenses);
+
+                //get dependencies
+                Dependencies.Clear();
+                foreach (var dependency in template.Dependencies)
+                {
+                    Dependencies.Add(dependency);
+                }
+
+                // check requiredSdks
+                RequiredSdks.Clear();
+                foreach (var requiredSdk in template.RequiredSdks)
+                {
+                    RequiredSdks.Add(requiredSdk);
+                }
+
+                // what do these do ?
+                OnPropertyChanged(nameof(Licenses));
+                OnPropertyChanged(nameof(Dependencies));
+                OnPropertyChanged(nameof(RequiredSdks));
+                CheckForMissingSdks(template);
+
+                NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                WizardStatus.Current.HasValidationErrors = false;
             }
-
-            // add to userSelection
-            AddToGroup(template.TemplateType, savedTemplate);
-            UpdateHasItemsAddedByUser();
-
-            // get licenses
-            var licenses = GenContext.ToolBox.Repo.GetAllLicences(template.Template.TemplateId, MainViewModel.Instance.Context);
-            LicensesService.SyncLicenses(licenses, Licenses);
-
-            //get dependencies
-            Dependencies.Clear();
-            foreach (var dependency in template.Dependencies)
-            {
-                Dependencies.Add(dependency);
-            }
-
-            // check requiredSdks
-            RequiredSdks.Clear();
-            foreach (var requiredSdk in template.RequiredSdks)
-            {
-                RequiredSdks.Add(requiredSdk);
-            }
-
-            // what do these do ?
-            OnPropertyChanged(nameof(Licenses));
-            OnPropertyChanged(nameof(Dependencies));
-            OnPropertyChanged(nameof(RequiredSdks));
-            CheckForMissingSdks(template);
-
-            NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
-            WizardStatus.Current.HasValidationErrors = false;
-
             /*if (template.ItemNameEditable)
             {
                 Focus();
