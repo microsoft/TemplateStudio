@@ -88,6 +88,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Validators\HasPivotValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validators\IBreakingChangeValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\BaseDialogViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\BaseSelectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\CompositionTool\CompositionFile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\CompositionTool\CompositionToolViewModel.cs" />
@@ -147,7 +148,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\CodeViewer.xaml.cs"/>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\CodeViewer.xaml.cs" />
     <Page Include="$(MSBuildThisFileDirectory)Controls\MarkdownBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
