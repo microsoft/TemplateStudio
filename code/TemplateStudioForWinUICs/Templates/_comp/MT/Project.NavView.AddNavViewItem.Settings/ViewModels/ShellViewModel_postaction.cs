@@ -7,6 +7,7 @@ public class ShellViewModel : ObservableRecipient
     {
         IsBackEnabled = NavigationService.CanGoBack;
 //{[{
+
         if (e.SourcePageType == typeof(Param_ItemNamePage))
         {
             Selected = NavigationViewService.SettingsItem;

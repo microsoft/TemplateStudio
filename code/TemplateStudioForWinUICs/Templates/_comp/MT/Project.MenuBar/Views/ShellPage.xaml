@@ -15,7 +15,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" x:Name="AppTitleBar">
-            <Image Source="/Assets/WindowIcon.png" HorizontalAlignment="Left" Width="16" Height="16" Margin="8,0"/>
+            <Image Source="/Assets/WindowIcon.ico" HorizontalAlignment="Left" Width="16" Height="16" Margin="8,0"/>
             <TextBlock x:Name="AppTitleBarText" VerticalAlignment="Center" TextWrapping="NoWrap" Style="{StaticResource CaptionTextBlockStyle}" Margin="32, 0, 0, 0"/>
         </Grid>
         <Grid Grid.Row="1">

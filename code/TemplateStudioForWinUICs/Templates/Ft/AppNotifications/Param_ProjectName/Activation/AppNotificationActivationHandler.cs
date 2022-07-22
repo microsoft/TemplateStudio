@@ -1,5 +1,5 @@
-﻿using Param_ProjectName.Contracts.Services;
-using Param_ProjectName.ViewModels;
+﻿using Param_RootNamespace.Contracts.Services;
+using Param_RootNamespace.ViewModels;
 
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
@@ -40,6 +40,11 @@ public class AppNotificationActivationHandler : ActivationHandler<LaunchActivate
         ////         _navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
         ////     });
         //// }
+
+        App.MainWindow.DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Low, () =>
+        {
+            App.MainWindow.ShowMessageDialogAsync("TODO: Handle notification activations.", "Notification Activation");
+        });
 
         await Task.CompletedTask;
     }

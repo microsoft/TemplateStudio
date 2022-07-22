@@ -173,13 +173,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Content Include="Templates\Ft\AppNotifications\Param_ProjectName\Assets\Square150x150Logo.png">
+    <Content Include="TemplateStudio.targetsize-128.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\SelfContained\.template.config\icon.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\Param_ProjectName\Assets\WindowIcon.png">
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Assets\WindowIcon.ico">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\TestClass.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\MT\Project.NavView.AddNavViewItem.WebView\Views\ShellPage_postaction.xaml">
@@ -206,6 +210,9 @@
     <Content Include="Templates\Proj\Default\Param_ProjectName\MainWindow.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\Test\App.MSTest\.template.config\icon.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SharedStyles\AllStylesDictionary.cs">
@@ -228,6 +235,18 @@
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
     <Compile Include="TemplateStudioForWinUICsPackage.cs" />
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Initialize.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Usings.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Proj\Default\Param_ProjectName\Helpers\RuntimeHelper.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Services\LocalSettingsService.cs">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\MainWindow.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -246,9 +265,6 @@
     <Content Include="Templates\Ft\AppNotifications\Param_ProjectName\Services\AppNotificationService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Proj\Default\Param_ProjectName\Usings.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\Helpers\TitleBarHelper.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -263,6 +279,15 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\AppNotifications\.template.config\localize\description.md">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\README.md">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\.template.config\localize\templatestrings.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Proj\Default\Param_ProjectName.Core\README.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <VSCTCompile Include="Commands\TemplateStudioForWinuiPackage.vsct">
@@ -392,6 +417,17 @@
     <Content Include="Templates\_comp\_shared\Page.AddBackground.Blank\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Templates\Test\App.MSTest\.template.config\localize\description.md">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\.template.config\template.json">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Templates\Test\App.MSTest\Param_ProjectName.Tests.MSTest\Param_ProjectName.Tests.MSTest.csproj">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Templates\Ft\MSIX\.template.config\localize\templatestrings.it-IT.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -1249,10 +1285,6 @@
     <Content Include="ru-RU\Extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="TemplateStudio_Logo_90x90.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Ft\MSIX\Assets\LockScreenLogo.scale-200.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2048,9 +2080,6 @@
     <Content Include="Templates\_comp\MT\Project.Blank\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Project.Blank\README_postaction.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_comp\MT\Project.MenuBar.AddMenuItem.Settings\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2066,9 +2095,6 @@
     <Content Include="Templates\_comp\MT\Project.MenuBar\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Project.MenuBar\README_postaction.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_comp\MT\Project.MenuBar\Strings\en-us\Resources_postaction.resw">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -2078,13 +2104,7 @@
     <Content Include="Templates\_comp\MT\Project.NavView\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Project.NavView\README_postaction.md">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_comp\MT\Project\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Project\README_postaction.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\_shared\Page.AddTitle.Blank\.template.config\template.json">
@@ -2121,9 +2141,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\_comp\_shared\Proj.Core.Platforms\Param_ProjectName.Core\Param_ProjectName.Core_postaction.csproj">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Proj\Default\Param_ProjectName.Core\README.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\TemplateStudio.xml">
@@ -2270,31 +2287,16 @@
     <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Models\LocalSettingsOptions.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Services\LocalSettingsServicePackaged.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Services\LocalSettingsServiceUnpackaged.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName.Core\Contracts\Services\IFileService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName.Core\Services\FileService.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Page.Settings.Packaged\ViewModels\Param_ItemNameViewModel_postaction.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Page.Settings.Unpackaged\ViewModels\Param_ItemNameViewModel_postaction.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Templates\_comp\MT\Project.NavView\Helpers\NavigationHelper.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Feature.SettingsStorage.Packaged\App_postaction.xaml.cs">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Feature.SettingsStorage.Unpackaged\App_postaction.xaml.cs">
+    <Content Include="Templates\_comp\MT\Feature.SettingsStorage\App_postaction.xaml.cs">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Ft\MSIX\Param_ProjectName_postaction.csproj">
@@ -2309,16 +2311,7 @@
     <Content Include="Templates\Ft\SettingsStorage\Param_ProjectName\Param_ProjectName_postaction.csproj">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Templates\_comp\MT\Feature.SettingsStorage.Packaged\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Feature.SettingsStorage.Unpackaged\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Page.Settings.Packaged\.template.config\template.json">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Templates\_comp\MT\Page.Settings.Unpackaged\.template.config\template.json">
+    <Content Include="Templates\_comp\MT\Feature.SettingsStorage\.template.config\template.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Templates\Proj\Default\Param_ProjectName\Properties\launchsettings.json">
