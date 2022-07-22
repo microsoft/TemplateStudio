@@ -1,5 +1,22 @@
 ﻿[
     {
+        "name": "Blank",
+        "displayName": "Blank",
+        "summary": "A navigation frame and basic services and styles are included.",
+        "author": "Microsoft",
+        "order": "3",
+        "platform": "WinUI",
+        "languages": [ "C#" ],
+
+        "_name.comment": "{Locked}",
+        "_displayName.comment": "Label for a blank application.",
+        "_summary.comment": "Label description for Blank.",
+        "_author.comment": "{Locked}",
+        "_order.comment": "{Locked}",
+        "_platform.comment": "{Locked}",
+        "_languages.comment": "{Locked}"
+    },
+    {
         "name": "NavView",
         "displayName": "Navigation Pane",
         "summary": "A navigation pane is included for navigation between pages.",
@@ -28,23 +45,6 @@
         "_name.comment": "{Locked}",
         "_displayName.comment": "Label for an application menu bar.",
         "_summary.comment": "Label description for Menu Bar.",
-        "_author.comment": "{Locked}",
-        "_order.comment": "{Locked}",
-        "_platform.comment": "{Locked}",
-        "_languages.comment": "{Locked}"
-    },
-    {
-        "name": "Blank",
-        "displayName": "Blank",
-        "summary": "A navigation frame and basic services and styles are included.",
-        "author": "Microsoft",
-        "order": "3",
-        "platform": "WinUI",
-        "languages": [ "C#" ],
-
-        "_name.comment": "{Locked}",
-        "_displayName.comment": "Label for a blank application.",
-        "_summary.comment": "Label description for Blank.",
         "_author.comment": "{Locked}",
         "_order.comment": "{Locked}",
         "_platform.comment": "{Locked}",

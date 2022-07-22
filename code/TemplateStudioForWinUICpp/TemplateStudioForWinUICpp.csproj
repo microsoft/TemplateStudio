@@ -286,7 +286,7 @@
     <Content Include="ru-RU\Extension.vsixlangpack">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="TemplateStudio_Logo_90x90.png">
+    <Content Include="TemplateStudio.targetsize-128.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

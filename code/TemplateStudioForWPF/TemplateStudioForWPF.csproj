@@ -166,6 +166,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TemplateStudioForWpfPackage.cs" />
+    <Content Include="TemplateStudio.targetsize-128.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Templates\Proj\Default\ts.ProjectName\README.md">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -258,10 +262,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Content\EULA.zh-TW.rtf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="TemplateStudio_Logo_90x90.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

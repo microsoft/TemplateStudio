@@ -45,7 +45,7 @@ public class NavigationViewService : INavigationViewService
     {
         if (_navigationView != null)
         {
-            return GetSelectedItem(_navigationView.MenuItems, pageType);
+            return GetSelectedItem(_navigationView.MenuItems, pageType) ?? GetSelectedItem(_navigationView.FooterMenuItems, pageType);
         }
 
         return null;

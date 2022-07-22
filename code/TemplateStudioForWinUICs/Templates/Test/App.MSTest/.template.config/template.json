@@ -1,0 +1,101 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [ "Universal" ],
+    "name": "MSTest",
+    "shortName": "MSTest",
+    "groupIdentity": "ts.WinUI.Testing.App.MSTest",
+    "identity": "ts.WinUI.Testing.App.MSTest",
+    "description": "Add an MSTest project to write unit tests.",
+    "tags": {
+        "language": "C#",
+        "type": "project",
+        "ts.type": "testing",
+        "ts.projecttype": "Blank|NavView|MenuBar",
+        "ts.outputToParent": "true",
+        "ts.frontendframework": "all",
+        "ts.platform": "WinUI",
+        "ts.appmodel": "Desktop",
+        "ts.version": "1.0.0",
+        "ts.displayOrder": "1",
+        "ts.defaultInstance": "MSTest",
+        "ts.multipleInstance": "false",
+        "ts.genGroup": "0",
+        "ts.rightClickEnabled": "true",
+        "ts.licenses": "[MSTest](https://github.com/microsoft/testfx/blob/main/LICENSE)"
+    },
+    "sourceName": "Param_ProjectName",
+    "preferNameDirectory": true,
+    "guids": [],
+    "PrimaryOutputs": [
+        { "path": "Param_ProjectName.Tests.MSTest/Param_ProjectName.Tests.MSTest.csproj" }
+    ],
+    "symbols": {
+        "ts.projectName": {
+            "type": "parameter",
+            "replaces": "Param_ProjectName",
+            "fileRename": "Param_ProjectName"
+        },
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        }
+    },
+    "postActions": [
+        {
+            "description": "Add reference to the main WinUI app",
+            "manualInstructions": [],
+            "actionId": "849AAEB8-487D-45B3-94B9-77FA74E83A01",
+            "args": {
+                "fileIndex": "0",
+                "projectPath": "Param_ProjectName\\Param_ProjectName.csproj",
+                "specifiedPathIsTarget": "true"
+            },
+            "continueOnError": true
+        },
+        {
+            "description": "Add nuget package",
+            "manualInstructions": [],
+            "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+            "args": {
+                "packageId": "Microsoft.NET.Test.Sdk",
+                "version": "17.2.0",
+                "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
+            },
+            "continueOnError": true
+        },
+        {
+            "description": "Add nuget package",
+            "manualInstructions": [],
+            "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+            "args": {
+                "packageId": "MSTest.TestFramework",
+                "version": "2.2.10",
+                "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
+            },
+            "continueOnError": true
+        },
+        {
+            "description": "Add nuget package",
+            "manualInstructions": [],
+            "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+            "args": {
+                "packageId": "MSTest.TestAdapter",
+                "version": "2.2.10",
+                "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
+            },
+            "continueOnError": true
+        },
+        {
+            "description": "Add nuget package",
+            "manualInstructions": [],
+            "actionId": "0B814718-16A3-4F7F-89F1-69C0F9170EAD",
+            "args": {
+                "packageId": "coverlet.collector",
+                "version": "3.1.2",
+                "projectPath": "Param_ProjectName.Tests.MSTest\\Param_ProjectName.Tests.MSTest.csproj"
+            },
+            "continueOnError": true
+        }
+    ]
+}
