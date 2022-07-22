@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.UI.Xaml.Controls;
 
 namespace Param_RootNamespace.Tests.MSTest;
 
@@ -38,5 +39,11 @@ public class TestClass
     public void TestMethod()
     {
         Assert.IsTrue(true);
+    }
+
+    [UITestMethod]
+    public void UITestMethod()
+    {
+        Assert.AreEqual(0, new Grid().ActualWidth);
     }
 }

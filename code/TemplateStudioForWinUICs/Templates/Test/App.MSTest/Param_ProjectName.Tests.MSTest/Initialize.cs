@@ -1,5 +1,7 @@
 ﻿using Microsoft.Windows.ApplicationModel.DynamicDependency;
 
+[assembly: WinUITestTarget(typeof(Param_RootNamespace.App))]
+
 namespace Param_RootNamespace.Tests.MSTest;
 
 [TestClass]

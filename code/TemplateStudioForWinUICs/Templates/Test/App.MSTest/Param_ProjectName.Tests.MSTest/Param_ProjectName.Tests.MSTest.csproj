@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <Platforms>x86;x64;arm64</Platforms>
+    <UseWinUI>true</UseWinUI>
+	<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <ProjectPriFileName>resources.pri</ProjectPriFileName>
   </PropertyGroup>
 </Project>
