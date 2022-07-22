@@ -33,26 +33,22 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private UserSelectionContext _context;
         /*private ICommand _setFocusCommand;
         private ICommand _lostKeyboardFocusCommand;*/
-
         public string Name
         {
             get => _name;
             set => SetName(value);
         }
-
         public bool NameEditable
         {
             get => _nameEditable;
             set => SetProperty(ref _nameEditable, value);
         }
-
         public bool HasErrors
         {
             get => _hasErrors;
             set => SetProperty(ref _hasErrors, value);
         }
-
-        public bool IsFocused
+        /*public bool IsFocused
         {
             get => _isFocused;
             set
@@ -64,8 +60,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
                 SetProperty(ref _isFocused, value);
             }
-        }
-
+        }*/
         public bool IsTextSelected
         {
             get => _isTextSelected;
@@ -79,16 +74,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 SetProperty(ref _isTextSelected, value);
             }
         }
-
         public TemplateInfo Template { get; private set; }
-
         public ObservableCollection<TemplateGroupViewModel> Groups { get; } = new ObservableCollection<TemplateGroupViewModel>();
-
-        public ObservableCollection<UserSelectionGroup> userSelectionGroups { get;  } = new ObservableCollection<UserSelectionGroup>();
-
+        public ObservableCollection<UserSelectionGroup> userSelectionGroups { get; } = new ObservableCollection<UserSelectionGroup>();
         public bool HasItemsAddedByUser { get; private set; }
-
-
         public TemplateSelectionViewModel()
         {
             userSelectionGroups.Add(new UserSelectionGroup(TemplateType.Page, Resources.ProjectDetailsPagesSectionTitle, true));
@@ -96,21 +85,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             userSelectionGroups.Add(new UserSelectionGroup(TemplateType.Service, Resources.ProjectDetailsServicesSectionTitle));
             userSelectionGroups.Add(new UserSelectionGroup(TemplateType.Testing, Resources.ProjectDetailsTestingSectionTitle));
         }
-
         public ObservableCollection<LicenseViewModel> Licenses { get; } = new ObservableCollection<LicenseViewModel>();
-
         public ObservableCollection<BasicInfoViewModel> Dependencies { get; } = new ObservableCollection<BasicInfoViewModel>();
-
         public ObservableCollection<string> RequiredSdks { get; protected set; } = new ObservableCollection<string>();
 
         //public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
 
         //public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
-
-
-        /*public TemplateSelectionViewModel()
-        {
-        }*/
 
         public void Initialize(UserSelectionContext context)
         {
@@ -144,7 +125,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public IEnumerable<string> GetPageNames()
             => userSelectionGroups.First(g => g.TemplateType == TemplateType.Page).GetNames(p => p.ItemNameEditable);
-
         public IEnumerable<string> GetNames()
         {
             var names = new List<string>();
@@ -170,8 +150,9 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public async Task AddAsync(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
-             template.IncreaseSelection(); // for UI?
-            // set name
+            template.IncreaseSelection(); // for UI?
+
+            // naming
             var savedTemplate = new SavedTemplateViewModel(template, templateOrigin, isReadOnly);
             if (!IsTemplateAdded(template) || template.MultipleInstance)
             {
@@ -184,7 +165,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     if (template.ItemNameEditable)
                     {
                         savedTemplate.SetName(ValidationService.InferTemplateName(template.Name)); // set temp name for template
-                        // focus = true ?
                     }
                     else
                     {
@@ -239,7 +219,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             {
                 Focus();
             }*/
-
         }
 
         public bool IsTemplateAdded(TemplateInfoViewModel template) => GetCollection(template.TemplateType).Any(t => t.Equals(template));
@@ -248,7 +227,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             return userSelectionGroups.First(g => g.TemplateType == templateType).Items;
         }
-
         private IEnumerable<SavedTemplateViewModel> AllTemplates
         {
             get
