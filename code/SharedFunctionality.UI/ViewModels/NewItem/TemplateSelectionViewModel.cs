@@ -191,6 +191,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                         savedTemplate.SetName(template.Template.DefaultName); // set permanent default name
                     }
                 }
+                Template = template.Template;
                 AddToGroup(template.TemplateType, savedTemplate);
                 UpdateHasItemsAddedByUser();
 
@@ -199,10 +200,24 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
                 //get dependencies
                 Dependencies.Clear();
+
+                // converts to correct type
                 foreach (var dependency in template.Dependencies)
                 {
                     Dependencies.Add(dependency);
                 }
+
+                foreach (var dep in Template.Dependencies)
+                {
+                    var dependencyTemplate = MainViewModel.Instance.GetTemplate(dep);
+                    if (dependencyTemplate == null)
+                    {
+                        // for hidden templates not on list
+                        dependencyTemplate = new TemplateInfoViewModel(dep, _context);
+                    }
+                    await AddAsync(templateOrigin, dependencyTemplate);
+                }
+
 
                 // check requiredSdks
                 RequiredSdks.Clear();

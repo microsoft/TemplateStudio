@@ -14,12 +14,14 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
 using Microsoft.Templates.UI.ViewModels.NewProject;
 using Microsoft.Templates.UI.Views.NewItem;
+using Microsoft.Templates.UI.Views.NewProject;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -37,6 +39,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public TemplateType TemplateType { get; set; }
 
         public static MainViewModel Instance { get; private set; }
+        public Dictionary<TemplateType, TemplatesStepViewModel> StepsViewModels { get; } = new Dictionary<TemplateType, TemplatesStepViewModel>();
 
         public TemplateSelectionViewModel TemplateSelection { get; } = new TemplateSelectionViewModel();
 
@@ -90,6 +93,39 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             WizardStatus.Title = GetNewItemTitle(templateType);
             TemplateSelection.Initialize(context);
             Initialize(context);
+            BuildStepViewModelAsync(TemplateType.Page);
+            BuildStepViewModelAsync(TemplateType.Feature);
+            BuildStepViewModelAsync(TemplateType.Service);
+            BuildStepViewModelAsync(TemplateType.Testing);
+        }
+
+        private async Task BuildStepViewModelAsync(TemplateType templateType)
+        {
+            var hasTemplates = DataService.HasTemplatesFromType(templateType, Context);
+            var stepId = templateType.GetNewProjectStepId();
+            var isStepAdded = StepsViewModels.ContainsKey(templateType);
+            if (hasTemplates)
+            {
+                if (!isStepAdded)
+                {
+                    var stepTitle = templateType.GetNewProjectStepTitle();
+                    var pageTitle = templateType.GetStepPageTitle();
+                    var step = new TemplatesStepViewModel(templateType, Context, pageTitle);
+                    step.LoadData();
+                    StepsViewModels.Add(templateType, step);
+                    WizardNavigation.Current.AddNewStep(stepId, stepTitle, () => new TemplatesStepPage(templateType));
+                }
+                else
+                {
+                    var step = StepsViewModels[templateType];
+                    step.ResetData();
+                }
+            }
+            else if (!hasTemplates && isStepAdded)
+            {
+                StepsViewModels.Remove(templateType);
+                await WizardNavigation.Current.RemoveStepAsync(stepId);
+            }
         }
 
         private string GetNewItemTitle(TemplateType templateType)
@@ -174,6 +210,21 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public IEnumerable<string> GetNames()
         {
             return TemplateSelection.Dependencies.Select(i => i.DefaultName);
+        }
+
+        public TemplateInfoViewModel GetTemplate(TemplateInfo templateInfo)
+        {
+            var groups = StepsViewModels[templateInfo.TemplateType].Groups;
+            foreach (var group in groups)
+            {
+                var template = group.GetTemplate(templateInfo);
+                if (template != null)
+                {
+                    return template;
+                }
+            }
+
+            return null;
         }
 
         public override async Task OnTemplatesAvailableAsync()
