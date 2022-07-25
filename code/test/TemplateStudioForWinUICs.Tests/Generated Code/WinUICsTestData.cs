@@ -15,15 +15,12 @@ namespace TemplateStudioForWinUICs.Tests
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\ExportParams.Project\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Feature.AppNotifications\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Feature.SampleData\.template.config\template.json" };
-             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Feature.SettingsStorage.Packaged\.template.config\template.json" };
-             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Feature.SettingsStorage.Unpackaged\.template.config\template.json" };
+             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Feature.SettingsStorage\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Feature.ThemeSelection\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.AddBackCommand\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.AddCommandNS\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.AddViewModel\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.AddViewModelDetail\.template.config\template.json" };
-             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.Settings.Packaged\.template.config\template.json" };
-             yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.Settings.Unpackaged\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Page.WebView\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project\.template.config\template.json" };
              yield return new object[] { @"..\..\TemplateStudioForWinUICs\Templates\_comp\MT\Project.Blank\.template.config\template.json" };
