@@ -29,8 +29,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private bool _isTextSelected;
         private bool _isInitialized;
         private UserSelectionContext _context;
-        /*private ICommand _setFocusCommand;
-        private ICommand _lostKeyboardFocusCommand;*/
         public string Name
         {
             get => _name;
@@ -46,19 +44,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             get => _hasErrors;
             set => SetProperty(ref _hasErrors, value);
         }
-        /*public bool IsFocused
-        {
-            get => _isFocused;
-            set
-            {
-                if (_isFocused == value)
-                {
-                    SetProperty(ref _isFocused, false);
-                }
-
-                SetProperty(ref _isFocused, value);
-            }
-        }*/
         public bool IsTextSelected
         {
             get => _isTextSelected;
@@ -87,10 +72,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public ObservableCollection<BasicInfoViewModel> Dependencies { get; } = new ObservableCollection<BasicInfoViewModel>();
         public ObservableCollection<string> RequiredSdks { get; protected set; } = new ObservableCollection<string>();
 
-        //public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
-
-        //public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
-
         public void Initialize(UserSelectionContext context)
         {
             _context = context;
@@ -105,29 +86,14 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public UserSelection GetUserSelection() // creates user selection list
         {
-            var selection = new UserSelection(_context);
-            var pages = userSelectionGroups.First(g => g.TemplateType == TemplateType.Page).Items;
-            selection.HomeName = pages.FirstOrDefault()?.Name ?? string.Empty;
-            selection.Pages.AddRange(pages.Select(i => i.ToUserSelectionItem()));
-
-            var features = userSelectionGroups.First(g => g.TemplateType == TemplateType.Feature).Items;
-            selection.Features.AddRange(features.Select(i => i.ToUserSelectionItem()));
-
-            var services = userSelectionGroups.First(g => g.TemplateType == TemplateType.Service).Items;
-            selection.Services.AddRange(services.Select(i => i.ToUserSelectionItem()));
-
-            var tests = userSelectionGroups.First(g => g.TemplateType == TemplateType.Testing).Items;
-            selection.Testing.AddRange(tests.Select(i => i.ToUserSelectionItem()));
-            return selection;
+            return BaseSelectionViewModel.GetUserSelection(userSelectionGroups, _context);
         }
 
         public IEnumerable<string> GetPageNames()
-            => userSelectionGroups.First(g => g.TemplateType == TemplateType.Page).GetNames(p => p.ItemNameEditable);
+            => BaseSelectionViewModel.GetPageNames(userSelectionGroups);
         public IEnumerable<string> GetNames()
         {
-            var names = new List<string>();
-            userSelectionGroups.ToList().ForEach(g => names.AddRange(g.GetNames()));
-            return names;
+            return BaseSelectionViewModel.GetNames(userSelectionGroups);
         }
 
         public void Focus()
@@ -152,7 +118,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
             // naming
             var savedTemplate = new SavedTemplateViewModel(template, templateOrigin, isReadOnly);
-            if (!IsTemplateAdded(template) || template.MultipleInstance)
+            if (!BaseSelectionViewModel.IsTemplateAdded(template, userSelectionGroups) || template.MultipleInstance)
             {
                 if (!string.IsNullOrEmpty(layoutName))
                 {
@@ -170,7 +136,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     }
                 }
                 Template = template.Template;
-                AddToGroup(template.TemplateType, savedTemplate);
+                BaseSelectionViewModel.AddToGroup(template.TemplateType, savedTemplate, userSelectionGroups);
                 UpdateHasItemsAddedByUser();
 
                 var licenses = GenContext.ToolBox.Repo.GetAllLicences(template.Template.TemplateId, MainViewModel.Instance.Context);
@@ -218,8 +184,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 Focus();
             }*/
         }
-
-        public bool IsTemplateAdded(TemplateInfoViewModel template) => GetCollection(template.TemplateType).Any(t => t.Equals(template));
 
         private ObservableCollection<SavedTemplateViewModel> GetCollection(TemplateType templateType)
         {

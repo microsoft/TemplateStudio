@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
@@ -14,6 +15,7 @@ using Microsoft.Templates.UI.Controls;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.VisualStudio.Shell.Events;
 
 namespace Microsoft.Templates.UI.ViewModels.NewProject
 {
@@ -27,7 +29,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
     {
         private bool _isInitialized;
         private UserSelectionContext _context;
-
         public ObservableCollection<LicenseViewModel> Licenses { get; } = new ObservableCollection<LicenseViewModel>();
 
         public bool HasItemsAddedByUser { get; private set; }
@@ -77,13 +78,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public IEnumerable<string> GetNames()
         {
-            var names = new List<string>();
-            Groups.ToList().ForEach(g => names.AddRange(g.GetNames()));
-            return names;
+            return BaseSelectionViewModel.GetNames(Groups);
         }
 
         public IEnumerable<string> GetPageNames()
-            => Groups.First(g => g.TemplateType == TemplateType.Page).GetNames(p => p.ItemNameEditable);
+            => BaseSelectionViewModel.GetPageNames(Groups);
+
+
 
         public async Task AddAsync(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
         {
@@ -108,7 +109,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
             if (template.IsGroupExclusiveSelection)
             {
-                var collection = GetCollection(template.TemplateType);
+                var collection = BaseSelectionViewModel.GetCollection(template.TemplateType, Groups);
                 var exclusiveSelectionAddedTemplates = collection.Where(f => f.Group == template.Group).ToList();
                 foreach (var exclusiveFeature in exclusiveSelectionAddedTemplates)
                 {
@@ -131,7 +132,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             template.IncreaseSelection();
             var savedTemplate = new SavedTemplateViewModel(template, templateOrigin, isReadOnly);
             var focus = false;
-            if (!IsTemplateAdded(template) || template.MultipleInstance)
+            if (!BaseSelectionViewModel.IsTemplateAdded(template, Groups) || template.MultipleInstance)
             {
                 if (!string.IsNullOrEmpty(layoutName))
                 {
@@ -150,7 +151,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                     }
                 }
 
-                AddToGroup(template.TemplateType, savedTemplate);
+                BaseSelectionViewModel.AddToGroup(template.TemplateType, savedTemplate, Groups);
                 UpdateHasItemsAddedByUser();
                 BuildLicenses();
                 CheckForMissingVersions();
@@ -162,8 +163,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             }
         }
 
-        public bool IsTemplateAdded(TemplateInfoViewModel template) => GetCollection(template.TemplateType).Any(t => t.Equals(template));
-
         public void ResetUserSelection()
         {
             HasItemsAddedByUser = false;
@@ -173,21 +172,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
 
         public UserSelection GetUserSelection() // creates user selection list
         {
-            var selection = new UserSelection(_context);
-
-            var pages = Groups.First(g => g.TemplateType == TemplateType.Page).Items;
-            selection.HomeName = pages.FirstOrDefault()?.Name ?? string.Empty;
-            selection.Pages.AddRange(pages.Select(i => i.ToUserSelectionItem()));
-
-            var features = Groups.First(g => g.TemplateType == TemplateType.Feature).Items;
-            selection.Features.AddRange(features.Select(i => i.ToUserSelectionItem()));
-
-            var services = Groups.First(g => g.TemplateType == TemplateType.Service).Items;
-            selection.Services.AddRange(services.Select(i => i.ToUserSelectionItem()));
-
-            var tests = Groups.First(g => g.TemplateType == TemplateType.Testing).Items;
-            selection.Testing.AddRange(tests.Select(i => i.ToUserSelectionItem()));
-            return selection;
+            return BaseSelectionViewModel.GetUserSelection(Groups, _context);
         }
 
         public async Task DeleteSavedTemplateAsync(SavedTemplateViewModel template)
@@ -220,11 +205,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
                 group.SelectedItem = group.Items.ElementAt(newIndex);
                 group.SelectedItem.IsFocused = true;
             }
-        }
-
-        private ObservableCollection<SavedTemplateViewModel> GetCollection(TemplateType templateType)
-        {
-            return Groups.First(g => g.TemplateType == templateType).Items;
         }
 
         private void AddToGroup(TemplateType templateType, SavedTemplateViewModel savedTemplate)
@@ -290,6 +270,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
             var dependencies = GetSavedTemplateDependencies(savedTemplate);
             if (!dependencies.Any())
             {
+                //var group = BaseSelectionViewModel.GetGroup(savedTemplate.TemplateType, Groups);
                 var group = GetGroup(savedTemplate.TemplateType);
                 if (group.Items.Contains(savedTemplate))
                 {
@@ -318,6 +299,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewProject
         }
 
         public UserSelectionGroup GetGroup(TemplateType templateType) => Groups.First(t => t.TemplateType == templateType);
+        //public UserSelectionGroup GetGroup(TemplateType templateType) => BaseSelectionViewModel.GetGroup(templateType, Groups);
 
         private async Task TryRemoveHiddenDependenciesAsync(SavedTemplateViewModel savedTemplate)
         {

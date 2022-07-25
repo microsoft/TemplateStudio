@@ -82,10 +82,6 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         { 
             get
             {
-                /*yield return StepData.MainStep(TemplateType.Page.GetNewProjectStepId(), "1", TemplateType.Page.GetStepPageTitle(), () => new TemplatesStepPage(TemplateType.Page));
-                yield return StepData.MainStep(TemplateType.Feature.GetNewProjectStepId(), "2", TemplateType.Feature.GetStepPageTitle(), () => new TemplatesStepPage(TemplateType.Feature));
-                yield return StepData.MainStep(TemplateType.Service.GetNewProjectStepId(), "3", TemplateType.Service.GetStepPageTitle(), () => new TemplatesStepPage(TemplateType.Service));
-                yield return StepData.MainStep(TemplateType.Testing.GetNewProjectStepId(), "4", TemplateType.Testing.GetStepPageTitle(), () => new TemplatesStepPage(TemplateType.Testing));*/
                 //yield return StepData.MainStep(NewItemStepTemplateSelection, "1", Resources.NewItemStepOne, () => new TemplateSelectionPage(), true, true);
                 yield return StepData.MainStep(NewItemStepChangesSummary, "2", Resources.NewItemStepTwo, () => new ChangesSummaryPage(_output));
             }
@@ -97,10 +93,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             WizardStatus.Title = GetNewItemTitle(templateType);
             TemplateSelection.Initialize(context);
             Initialize(context);
-            BuildStepViewModelAsync(TemplateType.Page);
-            BuildStepViewModelAsync(TemplateType.Feature);
-            BuildStepViewModelAsync(TemplateType.Service);
-            BuildStepViewModelAsync(TemplateType.Testing);
+            BuildStepViewModelAsync(templateType);
         }
 
         private async Task BuildStepViewModelAsync(TemplateType templateType)
@@ -125,11 +118,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                     step.ResetData();
                 }
             }
-            else if (!hasTemplates && isStepAdded)
+
+            // if we want multiple selection pages in the edit menu
+            /*else if (!hasTemplates && isStepAdded)
             {
                 StepsViewModels.Remove(templateType);
                 await WizardNavigation.Current.RemoveStepAsync(stepId);
-            }
+            }*/
         }
 
         private string GetNewItemTitle(TemplateType templateType)
@@ -218,6 +213,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public TemplateInfoViewModel GetTemplate(TemplateInfo templateInfo)
         {
+            StepsViewModels[templateInfo.TemplateType].LoadData();
             var groups = StepsViewModels[templateInfo.TemplateType].Groups;
             foreach (var group in groups)
             {
@@ -233,7 +229,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
 
         public override async Task OnTemplatesAvailableAsync()
         {
-            ValidationService.Initialize(GetNames, null);
+            //ValidationService.Initialize(GetNames, null);
             ValidationService.Initialize(TemplateSelection.GetNames, TemplateSelection.GetPageNames);
             TemplateSelection.LoadData(TemplateType, Context);
             WizardStatus.IsLoading = false;
