@@ -64,9 +64,10 @@ We will be refactoring and optimizing our CI pipelines to support the new multi-
 DISCLAIMER: The roadmap is subject to change.
 
 ## Upcoming releases
-- [5.2 - August 2022](https://github.com/microsoft/TemplateStudio/milestone/35)
+- [5.3 - Fall 2022](https://github.com/microsoft/TemplateStudio/milestone/36)
 
 ## Past releases
+- [5.2 - July 2022](https://github.com/microsoft/TemplateStudio/releases/tag/v5.2)
 - [5.1 - June 2022](https://github.com/microsoft/TemplateStudio/releases/tag/v5.1)
 - [5.0 - April 2022](https://github.com/microsoft/TemplateStudio/releases/tag/v5.0)
 - [4.1 - June 2021](https://github.com/microsoft/TemplateStudio/milestone/32)
