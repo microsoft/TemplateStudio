@@ -124,6 +124,16 @@
                 "specifiedPathIsTarget": "true"
             },
             "continueOnError": true
+        },
+        {
+            "description": "Enable Deploy in the Configuration Manager",
+            "manualInstructions": [ ],
+            "actionId": "F74F9FBA-D4F5-494E-970E-D99DF5E3F4F3",
+            "args": {
+                "projectName": "Param_ProjectName\\Param_ProjectName.csproj",
+                "deploy": true
+            },
+            "continueOnError": true
         }
     ]
 }
