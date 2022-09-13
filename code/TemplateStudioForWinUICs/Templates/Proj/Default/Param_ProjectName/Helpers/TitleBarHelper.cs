@@ -29,7 +29,7 @@ internal class TitleBarHelper
             {
                 theme = Application.Current.RequestedTheme == ApplicationTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
             }
-                
+
             Application.Current.Resources["WindowCaptionForeground"] = theme switch
             {
                 ElementTheme.Dark => new SolidColorBrush(Colors.White),
