@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
+    <TargetFramework>net7.0-windows10.0.19041.0</TargetFramework>
     <RootNamespace>Param_RootNamespace.Tests.MSTest</RootNamespace>
     <Platforms>x86;x64;arm64</Platforms>
     <IsPackable>false</IsPackable>
