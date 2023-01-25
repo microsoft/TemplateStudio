@@ -2,7 +2,7 @@
   "version": "1.0",
   "components": [
     "Microsoft.Component.MSBuild",
-    "Microsoft.NetCore.Component.Runtime.6.0",
+    "Microsoft.NetCore.Component.Runtime.7.0",
     "Microsoft.NetCore.Component.SDK",
     "Microsoft.VisualStudio.Component.ManagedDesktop.Core",
     "Microsoft.VisualStudio.Component.ManagedDesktop.Prerequisites",
