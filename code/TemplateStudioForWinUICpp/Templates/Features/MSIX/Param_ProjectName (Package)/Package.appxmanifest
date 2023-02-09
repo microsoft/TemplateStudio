@@ -2,6 +2,7 @@
 
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/templatestudio"
@@ -12,7 +13,9 @@
     Publisher="CN=Param_UserName"
     Version="1.0.0.0" />
 
-  <Properties>
+   <mp:PhoneIdentity PhoneProductId="07ad151b-a614-4a13-aef0-5378d3f98e67" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+    <Properties>
     <DisplayName>Param_ProjectName (Package)</DisplayName>
     <PublisherDisplayName>Param_UserName</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
