@@ -80,7 +80,7 @@ jobs:
       scriptName: _build/CodeSign_ExtractFilesToSign.ps1
       arguments: -vsixFilePath $(Build.SourcesDirectory)\code\TemplateStudioFor$(Moniker)\bin\$(BuildConfiguration)\TemplateStudioFor$(Moniker).vsix -outputPath $(Build.ArtifactStagingDirectory)\signing\TemplateStudioFor$(Moniker)
 
-  - task: EsrpCodeSigning@1
+  - task: EsrpCodeSigning@2
     displayName: Sign Assemblies
     inputs:
       ConnectedServiceName: ESRP CodeSigning - Template Studio
@@ -100,18 +100,18 @@ jobs:
               "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
             },
             "ToolName" : "sign",
-            "ToolVersion" : "1.0"
+            "ToolVersion" : "2.0"
           },
           {
             "KeyCode" : "CP-230012",
             "OperationCode" : "SigntoolVerify",
             "Parameters" : {},
             "ToolName" : "sign",
-            "ToolVersion" : "1.0"
+            "ToolVersion" : "2.0"
           }
         ]
 
-  - task: EsrpCodeSigning@1
+  - task: EsrpCodeSigning@2
     displayName: Sign JS
     inputs:
       ConnectedServiceName: ESRP CodeSigning - Template Studio
@@ -131,14 +131,14 @@ jobs:
               "TimeStamp" : "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
             },
             "ToolName" : "sign",
-            "ToolVersion" : "1.0"
+            "ToolVersion" : "2.0"
           },
           {
             "KeyCode" : "CP-230012",
             "OperationCode" : "SigntoolVerify",
             "Parameters" : {},
             "ToolName" : "sign",
-            "ToolVersion" : "1.0"
+            "ToolVersion" : "2.0"
           }
         ]
 
@@ -148,7 +148,7 @@ jobs:
       scriptName: _build/CodeSign_IncludeSignedFiles.ps1
       arguments: -vsixFilePath $(Build.SourcesDirectory)\code\TemplateStudioFor$(Moniker)\bin\$(BuildConfiguration)\TemplateStudioFor$(Moniker).vsix -inputPath $(Build.ArtifactStagingDirectory)\signing\TemplateStudioFor$(Moniker)
 
-  - task: EsrpCodeSigning@1
+  - task: EsrpCodeSigning@2
     displayName: Sign VSIX
     inputs:
       ConnectedServiceName: ESRP CodeSigning - Template Studio
@@ -164,14 +164,14 @@ jobs:
                 "FileDigest" : "/fd SHA256"
             },
             "ToolName" : "sign",
-            "ToolVersion" : "1.0"
+            "ToolVersion" : "2.0"
           },
           {
             "KeyCode" : "CP-233016",
             "OperationCode" : "OpcVerify",
             "Parameters" : {},
             "ToolName" : "sign",
-            "ToolVersion" : "1.0"
+            "ToolVersion" : "2.0"
           }
         ]
 
