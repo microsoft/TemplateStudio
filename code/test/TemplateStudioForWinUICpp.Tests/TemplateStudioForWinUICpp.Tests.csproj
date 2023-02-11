@@ -102,10 +102,10 @@
       <Version>3.1.4097</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.TemplateEngine.Edge">
-      <Version>6.0.200</Version>
+      <Version>7.0.102</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects">
-      <Version>6.0.200</Version>
+      <Version>7.0.102</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.ProjectSystem">
       <Version>17.0.1313-pre</Version>
