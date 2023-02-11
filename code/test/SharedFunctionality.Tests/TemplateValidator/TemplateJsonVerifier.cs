@@ -703,14 +703,14 @@ namespace TemplateValidator
         {
             if (template.TagsCollection.ContainsKey("ts.licenses") && !string.IsNullOrEmpty(template.TagsCollection["ts.licenses"]))
             {
-                if (template.PostActions?.Count == 0)
+                if (template.PostActionInfos?.Count == 0)
                 {
                     results.Add($"No postaction found for license defined on template {template.Identity}");
                 }
             }
             else
             {
-                if (template.PostActions != null && template.PostActions.Any(p => p.ToString("D") == "0B814718-16A3-4F7F-89F1-69C0F9170EAD"))
+                if (template.PostActionInfos != null && template.PostActionInfos.Any(p => p.ActionId == "0B814718-16A3-4F7F-89F1-69C0F9170EAD"))
                 {
                     results.Add($"Missing license on template {template.Identity}");
                 }
@@ -719,11 +719,10 @@ namespace TemplateValidator
 
         private static void VerifyPostactionsPath(ValidationTemplateInfo template, List<string> results)
         {
-            // TODO: TemplateEngine 7.x packages changed PostActions to just a list of GUIDs. Unclear how to implement this.
-            //if (template.PostActions != null && template.PostActions.Any(p => p.Args.Any(a => a.Key == "projectPath" && a.Value.Contains("/"))))
-            //{
-            //    results.Add("Post-action projectPath should use '\\' instead of '/' to indicate the project file path");
-            //}
+            if (template.PostActionInfos != null && template.PostActionInfos.Any(p => p.Args.Any(a => a.Key == "projectPath" && a.Value.Contains("/"))))
+            {
+                results.Add("Post-action projectPath should use '\\' instead of '/' to indicate the project file path");
+            }
         }
 
         private static void EnsureValidPrimaryOutputPaths(ValidationTemplateInfo template, List<string> results)

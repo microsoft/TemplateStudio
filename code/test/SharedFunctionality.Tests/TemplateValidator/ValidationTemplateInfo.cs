@@ -8,6 +8,7 @@ using ApiAnalysis;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Abstractions.Constraints;
 using Microsoft.TemplateEngine.Abstractions.Parameters;
+using Microsoft.Templates.Core.PostActions;
 using Newtonsoft.Json;
 
 namespace TemplateValidator
@@ -103,7 +104,12 @@ namespace TemplateValidator
         public IParameterDefinitionSet ParameterDefinitions { get; }
 
         [ApiAnalysisOptional]
-        public IReadOnlyList<Guid> PostActions { get; set; }
+        [JsonProperty("postActions")]
+        public List<PostActionInfo> PostActionInfos { get; set; }
+
+        [ApiAnalysisOptional]
+        [JsonIgnore]
+        IReadOnlyList<Guid> ITemplateInfo.PostActions { get; }
 
         public string SourceName { get; set; }
 
