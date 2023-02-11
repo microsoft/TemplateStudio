@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using ApiAnalysis;
 using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.TemplateEngine.Abstractions.Constraints;
+using Microsoft.TemplateEngine.Abstractions.Parameters;
 using Newtonsoft.Json;
 
 namespace TemplateValidator
@@ -95,7 +97,13 @@ namespace TemplateValidator
         public IReadOnlyDictionary<string, SymbolInfo> Symbols { get; set; }
 
         [ApiAnalysisOptional]
-        public List<PostActionInfo> PostActions { get; set; }
+        public IReadOnlyList<TemplateConstraintInfo> Constraints { get; }
+
+        [ApiAnalysisOptional]
+        public IParameterDefinitionSet ParameterDefinitions { get; }
+
+        [ApiAnalysisOptional]
+        public IReadOnlyList<Guid> PostActions { get; set; }
 
         public string SourceName { get; set; }
 

@@ -132,7 +132,7 @@ namespace Microsoft.Templates.Core.Gen
 
                     foreach (var dependency in genInfo?.Template.GetDependencyList())
                     {
-                        if (genInfo.Template.Parameters.Any(p => p.Name == dependency))
+                        if (genInfo.Template.ParameterDefinitions.Any(p => p.Name == dependency))
                         {
                             var dependencyName = genQueue.FirstOrDefault(t => t.Template.Identity == dependency).Name;
                             genInfo.Parameters.Add(dependency, dependencyName);

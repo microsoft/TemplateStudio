@@ -5,6 +5,8 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.TemplateEngine.Abstractions.Constraints;
+using Microsoft.TemplateEngine.Abstractions.Parameters;
 
 namespace Microsoft.Templates.Core.Test.Composition
 {
@@ -69,5 +71,11 @@ namespace Microsoft.Templates.Core.Test.Composition
         public string MountPointUri { get; set; }
 
         public IReadOnlyList<string> ShortNameList { get; set; }
+
+        IParameterDefinitionSet ITemplateInfo.ParameterDefinitions { get; }
+
+        IReadOnlyList<Guid> ITemplateInfo.PostActions { get; }
+
+        IReadOnlyList<TemplateConstraintInfo> ITemplateInfo.Constraints { get; }
     }
 }

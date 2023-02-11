@@ -13,6 +13,7 @@ using ApiAnalysis;
 using Microsoft.Templates.Core;
 using Microsoft.Templates.Core.Composition;
 using Microsoft.Templates.Core.Gen;
+using Microsoft.Templates.Core.PostActions;
 using Newtonsoft.Json;
 
 namespace TemplateValidator
@@ -709,7 +710,7 @@ namespace TemplateValidator
             }
             else
             {
-                if (template.PostActions != null && template.PostActions.Any(p => p.ActionId == "0B814718-16A3-4F7F-89F1-69C0F9170EAD"))
+                if (template.PostActions != null && template.PostActions.Any(p => p.ToString("D") == "0B814718-16A3-4F7F-89F1-69C0F9170EAD"))
                 {
                     results.Add($"Missing license on template {template.Identity}");
                 }
@@ -718,10 +719,11 @@ namespace TemplateValidator
 
         private static void VerifyPostactionsPath(ValidationTemplateInfo template, List<string> results)
         {
-            if (template.PostActions != null && template.PostActions.Any(p => p.Args.Any(a => a.Key == "projectPath" && a.Value.Contains("/"))))
-            {
-                results.Add("Post-action projectPath should use '\\' instead of '/' to indicate the project file path");
-            }
+            // TODO: TemplateEngine 7.x packages changed PostActions to just a list of GUIDs. Unclear how to implement this.
+            //if (template.PostActions != null && template.PostActions.Any(p => p.Args.Any(a => a.Key == "projectPath" && a.Value.Contains("/"))))
+            //{
+            //    results.Add("Post-action projectPath should use '\\' instead of '/' to indicate the project file path");
+            //}
         }
 
         private static void EnsureValidPrimaryOutputPaths(ValidationTemplateInfo template, List<string> results)
