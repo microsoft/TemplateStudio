@@ -1,4 +1,4 @@
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Microsoft.Web.WebView2.Core;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.ViewModels;
@@ -68,13 +68,6 @@ public partial class Param_ItemNameViewModel : System.ComponentModel.INotifyProp
             WebViewService.GoBack();
         }
     }
-    [RelayCommand]
-    private void OnRetry()
-    {
-        hasFailures = false;
-        IsLoading = true;
-        WebViewService?.Reload();
-    }
     public void OnNavigatedTo(object parameter)
     {
         WebViewService.NavigationCompleted += OnNavigationCompleted;
@@ -95,5 +88,12 @@ public partial class Param_ItemNameViewModel : System.ComponentModel.INotifyProp
         {
             hasFailures = true;
         }
+    }
+    [RelayCommand]
+    private void OnRetry()
+    {
+        hasFailures = false;
+        IsLoading = true;
+        WebViewService?.Reload();
     }
 }
