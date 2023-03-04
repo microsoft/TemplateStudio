@@ -9,7 +9,7 @@ namespace Param_RootNamespace.ViewModels;
 // https://docs.microsoft.com/microsoft-edge/webview2/get-started/winui
 // https://docs.microsoft.com/microsoft-edge/webview2/concepts/developer-guide
 // https://docs.microsoft.com/microsoft-edge/webview2/concepts/distribution
-public partial class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
+public partial class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
 {
     // TODO: Set the default URL to display.
     private Uri _source = new("https://docs.microsoft.com/windows/apps/");
