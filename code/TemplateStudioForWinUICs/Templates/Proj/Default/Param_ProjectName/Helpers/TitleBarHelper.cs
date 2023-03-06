@@ -1,8 +1,9 @@
-﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using Windows.UI;
+using Windows.UI.ViewManagement;
 
 namespace Param_RootNamespace.Helpers;
 
@@ -25,6 +26,22 @@ internal class TitleBarHelper
     {
         if (App.MainWindow.ExtendsContentIntoTitleBar)
         {
+            if (theme == ElementTheme.Default)
+            {
+                var uiSettings = new UISettings();
+                var color = uiSettings.GetColorValue(UIColorType.Background);
+
+                if (color.ToString() == "#FFFFFFFF")
+                {
+                    theme = ElementTheme.Light;
+                }
+                else
+                {
+                    theme = ElementTheme.Dark;
+                }
+
+            }
+            
             if (theme == ElementTheme.Default)
             {
                 theme = Application.Current.RequestedTheme == ApplicationTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
