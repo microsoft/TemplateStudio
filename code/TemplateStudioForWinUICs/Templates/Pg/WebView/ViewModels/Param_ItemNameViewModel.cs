@@ -1,4 +1,4 @@
-﻿using System.Windows.Input;
+using System.Windows.Input;
 using Microsoft.Web.WebView2.Core;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.ViewModels;
@@ -9,12 +9,11 @@ namespace Param_RootNamespace.ViewModels;
 // https://docs.microsoft.com/microsoft-edge/webview2/get-started/winui
 // https://docs.microsoft.com/microsoft-edge/webview2/concepts/developer-guide
 // https://docs.microsoft.com/microsoft-edge/webview2/concepts/distribution
-public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
+public partial class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
 {
     // TODO: Set the default URL to display.
     private Uri _source = new("https://docs.microsoft.com/windows/apps/");
     private bool _isLoading = true;
-    private bool _hasFailures;
 
     public IWebViewService WebViewService
     {
@@ -33,48 +32,42 @@ public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChan
         set => SetProperty(ref _isLoading, value);
     }
 
-    public bool HasFailures
-    {
-        get => _hasFailures;
-        set => SetProperty(ref _hasFailures, value);
-    }
-
-    public ICommand BrowserBackCommand
-    {
-        get;
-    }
-
-    public ICommand BrowserForwardCommand
-    {
-        get;
-    }
-
-    public ICommand ReloadCommand
-    {
-        get;
-    }
-
-    public ICommand RetryCommand
-    {
-        get;
-    }
-
-    public ICommand OpenInBrowserCommand
-    {
-        get;
-    }
+    [ObservableProperty]
+    private bool hasFailures;
 
     public Param_ItemNameViewModel(IWebViewService webViewService)
     {
         WebViewService = webViewService;
-
-        BrowserBackCommand = new RelayCommand(() => WebViewService.GoBack(), () => WebViewService.CanGoBack);
-        BrowserForwardCommand = new RelayCommand(() => WebViewService.GoForward(), () => WebViewService.CanGoForward);
-        ReloadCommand = new RelayCommand(() => WebViewService.Reload());
-        RetryCommand = new RelayCommand(OnRetry);
-        OpenInBrowserCommand = new RelayCommand(async () => await Windows.System.Launcher.LaunchUriAsync(WebViewService.Source), () => WebViewService.Source != null);
     }
-
+    [RelayCommand]
+    private async Task OpenInBrowser()
+    {
+        if (WebViewService.Source != null)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(WebViewService.Source);
+        }
+    }
+    [RelayCommand]
+    private void Reload()
+    {
+        WebViewService.Reload();
+    }
+    [RelayCommand]
+    private void BrowserForward()
+    {
+        if (WebViewService.CanGoForward)
+        {
+            WebViewService.GoForward();
+        }
+    }
+    [RelayCommand]
+    private void BrowserBack()
+    {
+        if (WebViewService.CanGoBack)
+        {
+            WebViewService.GoBack();
+        }
+    }
     public void OnNavigatedTo(object parameter)
     {
         WebViewService.NavigationCompleted += OnNavigationCompleted;
@@ -93,13 +86,13 @@ public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChan
         OnPropertyChanged(nameof(BrowserForwardCommand));
         if (webErrorStatus != default)
         {
-            HasFailures = true;
+            hasFailures = true;
         }
     }
-
+    [RelayCommand]
     private void OnRetry()
     {
-        HasFailures = false;
+        hasFailures = false;
         IsLoading = true;
         WebViewService?.Reload();
     }
