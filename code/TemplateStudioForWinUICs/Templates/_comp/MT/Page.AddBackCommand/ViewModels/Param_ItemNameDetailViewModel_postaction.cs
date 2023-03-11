@@ -7,12 +7,15 @@ using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels;
 
-public class Param_ItemNameDetailViewModel : ObservableRecipient, INavigationAware
+public partial class Param_ItemNameDetailViewModel : ObservableRecipient, INavigationAware
 {
+    private readonly ISampleDataService _sampleDataService;
 //{[{
+
     private readonly INavigationService _navigationService;
 //}]}
-
+    [ObservableProperty]
+    private SampleOrder? item;
 //^^
 //{[{
     public ICommand GoBackCommand

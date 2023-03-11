@@ -9,34 +9,21 @@ namespace Param_RootNamespace.ViewModels;
 // https://docs.microsoft.com/microsoft-edge/webview2/get-started/winui
 // https://docs.microsoft.com/microsoft-edge/webview2/concepts/developer-guide
 // https://docs.microsoft.com/microsoft-edge/webview2/concepts/distribution
-public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
+public partial class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
 {
     // TODO: Set the default URL to display.
-    private Uri _source = new("https://docs.microsoft.com/windows/apps/");
-    private bool _isLoading = true;
-    private bool _hasFailures;
+    [ObservableProperty]
+    private Uri source = new("https://docs.microsoft.com/windows/apps/");
+
+    [ObservableProperty]
+    private bool isLoading = true;
+
+    [ObservableProperty]
+    private bool hasFailures;
 
     public IWebViewService WebViewService
     {
         get;
-    }
-
-    public Uri Source
-    {
-        get => _source;
-        set => SetProperty(ref _source, value);
-    }
-
-    public bool IsLoading
-    {
-        get => _isLoading;
-        set => SetProperty(ref _isLoading, value);
-    }
-
-    public bool HasFailures
-    {
-        get => _hasFailures;
-        set => SetProperty(ref _hasFailures, value);
     }
 
     public ICommand BrowserBackCommand

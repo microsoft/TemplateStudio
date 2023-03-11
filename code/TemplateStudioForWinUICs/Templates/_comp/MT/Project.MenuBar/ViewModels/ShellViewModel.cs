@@ -8,9 +8,10 @@ using Param_RootNamespace.Contracts.Services;
 
 namespace Param_RootNamespace.ViewModels;
 
-public class ShellViewModel : ObservableRecipient
+public partial class ShellViewModel : ObservableRecipient
 {
-    private bool _isBackEnabled;
+    [ObservableProperty]
+    private bool isBackEnabled;
 
     public ICommand MenuFileExitCommand
     {
@@ -20,12 +21,6 @@ public class ShellViewModel : ObservableRecipient
     public INavigationService NavigationService
     {
         get;
-    }
-
-    public bool IsBackEnabled
-    {
-        get => _isBackEnabled;
-        set => SetProperty(ref _isBackEnabled, value);
     }
 
     public ShellViewModel(INavigationService navigationService)
