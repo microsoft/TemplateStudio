@@ -3017,6 +3017,33 @@ namespace Microsoft.Templates.SharedResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}WinUI/frameworks/mvvmtoolkit-upgrate-to-version8.md.
+        /// </summary>
+        public static string ValidatorUsesMvvmToolkitSevenLink {
+            get {
+                return ResourceManager.GetString("ValidatorUsesMvvmToolkitSevenLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See documentation to update..
+        /// </summary>
+        public static string ValidatorUsesMvvmToolkitSevenLinkMessage {
+            get {
+                return ResourceManager.GetString("ValidatorUsesMvvmToolkitSevenLinkMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update to MVVM Toolkit version 8.
+        /// </summary>
+        public static string ValidatorUsesMvvmToolkitSevenMessage {
+            get {
+                return ResourceManager.GetString("ValidatorUsesMvvmToolkitSevenMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Template Studio.
         /// </summary>
         public static string WindowsTemplateStudio {

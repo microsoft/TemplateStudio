@@ -1,6 +1,6 @@
 ﻿namespace Param_RootNamespace.ViewModels;
 
-public class ShellViewModel : ObservableRecipient
+public partial class ShellViewModel : ObservableRecipient
 {
     public ICommand MenuFileExitCommand
     {

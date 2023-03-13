@@ -1,6 +1,6 @@
 ﻿namespace Param_RootNamespace.ViewModels;
 
-public class ShellViewModel : ObservableRecipient
+public partial class ShellViewModel : ObservableRecipient
 {
 
     private void OnNavigated(object sender, NavigationEventArgs e)

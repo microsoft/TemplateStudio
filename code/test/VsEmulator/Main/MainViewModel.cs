@@ -499,6 +499,8 @@ namespace Microsoft.Templates.VsEmulator.Main
 
         private void LoadProject()
         {
+            Microsoft.Templates.UI.Styles.AllStylesDictionary.UseEmulator = true;
+
             var newProject = new GeneratedProjectInfo();
             newProject.SetContext();
             var loadProjectInfo = ShowLoadProjectDialog();
@@ -512,22 +514,71 @@ namespace Microsoft.Templates.VsEmulator.Main
                         .Union(Directory.EnumerateFiles(destinationParent, "*.vbproj", SearchOption.AllDirectories))
                         .Union(Directory.EnumerateFiles(destinationParent, "*.vcxproj", SearchOption.AllDirectories)).FirstOrDefault();
 
+                var platform = Platforms.WinUI;
+
                 string language = string.Empty;
                 switch (Path.GetExtension(projFile))
                 {
                     case ".vbproj":
                         language = ProgrammingLanguages.VisualBasic;
+                        platform = Platforms.Uwp;
                         break;
                     case ".csproj":
                         language = ProgrammingLanguages.CSharp;
+
+                        var fileContents = File.ReadAllText(projFile);
+
+                        if (fileContents.Contains("<UseWinUI>"))
+                        {
+                            platform = Platforms.WinUI;
+                        }
+                        else if (fileContents.Contains("<UseWPF>"))
+                        {
+                            platform = Platforms.Wpf;
+                        }
+                        else
+                        {
+                            platform = Platforms.Uwp;
+                        }
+
                         break;
                     case ".vcxproj":
                         language = ProgrammingLanguages.Cpp;
+                        platform = Platforms.WinUI;
                         break;
                 }
                 var projectName = Path.GetFileNameWithoutExtension(projFile);
                 var destinationPath = Path.GetDirectoryName(projFile);
                 newProject.SetBasicInfo(projectName, destinationPath);
+
+                TemplatesSource ts = null;
+
+                switch (platform)
+                {
+                    case Platforms.Uwp:
+                        ts = new UwpTestsTemplatesSource();
+                        break;
+                    case Platforms.Wpf:
+                        ts = new WpfTestsTemplatesSource();
+                        break;
+                    case Platforms.WinUI:
+                        if (language == ProgrammingLanguages.CSharp)
+                            ts = new WinUICsTestsTemplatesSource();
+                        else if (language == ProgrammingLanguages.Cpp)
+                            ts = new WinUICppTestsTemplatesSource();
+                        break;
+                    default:
+                        ts = null;
+                        break;
+                }
+
+                GenContext.Bootstrap(
+                    ts,
+                    new FakeGenShell(platform, language, msg => SetState(msg), l => AddLog(l), _host),
+                    WizardVersion,
+                    platform,
+                    language);
+
                 var projectConfigInfoService = new ProjectConfigInfoService(GenContext.ToolBox.Shell);
                 var config = projectConfigInfoService.ReadProjectConfiguration();
                 SetCurrentLanguage(language);

@@ -1,6 +1,12 @@
-{
+﻿{
     "RemoteTelemetryKey": "<RemoteTelemetryKey>",
     "LogFileFolderPath": "TS4WinUICs\\Logs",
     "RepositoryFolderName": "TS4WinUICs",
-    "DiagnosticsTraceLevel": "Verbose"
+    "DiagnosticsTraceLevel": "Verbose",
+    "BreakingChangesVersions": [
+        {
+            "Name": "UsesVersionSevenOfMvvmToolkit",
+            "BreakingVersion": "5.3"
+        }
+    ]
 }

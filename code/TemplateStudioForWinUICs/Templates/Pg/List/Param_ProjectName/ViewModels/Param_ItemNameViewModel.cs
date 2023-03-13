@@ -6,16 +6,12 @@ using Param_RootNamespace.Core.Models;
 
 namespace Param_RootNamespace.ViewModels;
 
-public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
+public partial class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChanged, INavigationAware
 {
     private readonly ISampleDataService _sampleDataService;
-    private SampleOrder? _selected;
 
-    public SampleOrder? Selected
-    {
-        get => _selected;
-        set => SetProperty(ref _selected, value);
-    }
+    [ObservableProperty]
+    private SampleOrder? selected;
 
     public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
 
@@ -43,9 +39,6 @@ public class Param_ItemNameViewModel : System.ComponentModel.INotifyPropertyChan
 
     public void EnsureItemSelected()
     {
-        if (Selected == null)
-        {
-            Selected = SampleItems.First();
-        }
+        Selected ??= SampleItems.First();
     }
 }
