@@ -20,6 +20,7 @@ namespace Microsoft.Templates.UI.Services
             new HasOldNavigationViewValidator(),
             new HasPivotValidator(),
             new HasNoCoreProjectValidator(),
+            new UsesVersionSevenOfMvvmToolkitValidator(),
         };
 
         public static ValidationResult Validate()

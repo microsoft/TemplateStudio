@@ -10,7 +10,7 @@ namespace Microsoft.Templates.UI.Styles
 {
     public static class AllStylesDictionary
     {
-        // This allows the use of the VSEmulator with neeeding a specific config option
+        // This allows the use of the VSEmulator with needing a specific config option
         public static bool UseEmulator { get; set; } = false;
 
         public static ResourceDictionary GetMergeDictionary()
