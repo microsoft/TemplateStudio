@@ -1,5 +1,4 @@
-﻿using System.Windows.Input;
-using Microsoft.Web.WebView2.Core;
+﻿using Microsoft.Web.WebView2.Core;
 using Param_RootNamespace.Contracts.Services;
 using Param_RootNamespace.Contracts.ViewModels;
 
@@ -26,40 +25,52 @@ public partial class Param_ItemNameViewModel : System.ComponentModel.INotifyProp
         get;
     }
 
-    public ICommand BrowserBackCommand
-    {
-        get;
-    }
-
-    public ICommand BrowserForwardCommand
-    {
-        get;
-    }
-
-    public ICommand ReloadCommand
-    {
-        get;
-    }
-
-    public ICommand RetryCommand
-    {
-        get;
-    }
-
-    public ICommand OpenInBrowserCommand
-    {
-        get;
-    }
-
     public Param_ItemNameViewModel(IWebViewService webViewService)
     {
         WebViewService = webViewService;
+    }
 
-        BrowserBackCommand = new RelayCommand(() => WebViewService.GoBack(), () => WebViewService.CanGoBack);
-        BrowserForwardCommand = new RelayCommand(() => WebViewService.GoForward(), () => WebViewService.CanGoForward);
-        ReloadCommand = new RelayCommand(() => WebViewService.Reload());
-        RetryCommand = new RelayCommand(OnRetry);
-        OpenInBrowserCommand = new RelayCommand(async () => await Windows.System.Launcher.LaunchUriAsync(WebViewService.Source), () => WebViewService.Source != null);
+    [RelayCommand]
+    private async Task OpenInBrowser()
+    {
+        if (WebViewService.Source != null)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(WebViewService.Source);
+        }
+    }
+
+    [RelayCommand]
+    private void Reload()
+    {
+        WebViewService.Reload();
+    }
+
+    [RelayCommand(CanExecute = nameof(BrowserCanGoForward))]
+    private void BrowserForward()
+    {
+        if (WebViewService.CanGoForward)
+        {
+            WebViewService.GoForward();
+        }
+    }
+
+    private bool BrowserCanGoForward()
+    {
+        return WebViewService.CanGoForward;
+    }
+
+    [RelayCommand(CanExecute = nameof(BrowserCanGoBack))]
+    private void BrowserBack()
+    {
+        if (WebViewService.CanGoBack)
+        {
+            WebViewService.GoBack();
+        }
+    }
+
+    private bool BrowserCanGoBack()
+    {
+        return WebViewService.CanGoBack;
     }
 
     public void OnNavigatedTo(object parameter)
@@ -76,14 +87,16 @@ public partial class Param_ItemNameViewModel : System.ComponentModel.INotifyProp
     private void OnNavigationCompleted(object? sender, CoreWebView2WebErrorStatus webErrorStatus)
     {
         IsLoading = false;
-        OnPropertyChanged(nameof(BrowserBackCommand));
-        OnPropertyChanged(nameof(BrowserForwardCommand));
+        BrowserBackCommand.NotifyCanExecuteChanged();
+        BrowserForwardCommand.NotifyCanExecuteChanged();
+
         if (webErrorStatus != default)
         {
             HasFailures = true;
         }
     }
 
+    [RelayCommand]
     private void OnRetry()
     {
         HasFailures = false;
