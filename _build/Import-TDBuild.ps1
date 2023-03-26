@@ -27,3 +27,7 @@ ForEach-Object {
 
     Copy-Item $_ (Join-Path $targetPath $targetFileName) -Verbose
 }
+
+Push-Location $repositoryRoot\_utils
+.\Set-All-Text-File-Template-Encodings.ps1
+Pop-Location
