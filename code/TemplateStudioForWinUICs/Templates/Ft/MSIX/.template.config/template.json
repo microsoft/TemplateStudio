@@ -21,7 +21,7 @@
         "ts.genGroup": "0",
         "ts.group": "Deployment",
         "ts.displayOrder": "1",
-        "ts.defaultInstance": "MSIX Packaging",
+        "ts.defaultInstance": "(it-IT) MSIX Packaging",
         "ts.multipleInstance": "false",
         "ts.rightClickEnabled": "true"
     },

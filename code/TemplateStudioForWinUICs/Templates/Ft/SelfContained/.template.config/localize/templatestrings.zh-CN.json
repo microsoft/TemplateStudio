@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "自包含",
   "description": "将 Windows App SDK 依赖项作为应用程序的一部分进行交付。"
 }

@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "MSIX 패키징",
   "description": "Microsoft Store를 통한 사이드 로딩 또는 배포를 위한 패키지 생성을 허용합니다."
 }

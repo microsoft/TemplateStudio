@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "MSIX 打包",
   "description": "允许通过 Microsoft Store 创建旁加载或分发包。"
 }
