@@ -5,7 +5,7 @@ using Param_RootNamespace.Core.Models;
 
 namespace Param_RootNamespace.ViewModels;
 
-public class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
+public partial class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
 {
     private readonly ISampleDataService _sampleDataService;
 

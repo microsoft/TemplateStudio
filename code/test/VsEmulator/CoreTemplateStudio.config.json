@@ -1,4 +1,4 @@
-{
+﻿{
   "Environment": "LocalEnvTS",
   "CdnUrl": "",
   "RemoteTelemetryKey": "VSIX Key",
@@ -19,26 +19,30 @@
     "26859EB6CDE0744E0B5DA300681265837D0B9F8CFCBB8071C914367EF5C6E14EA806BA770281F64077536C97F477BF55AE7083EEC93F0EC376DA6D357F1F6699",
     "1169442A8101239FB64210B8FC9AA07E4152551A685E184B1711C3FF9ABA9FF7782D332C87E74014D6D384B2F9A141459F2DD76618CF9AF91763E81E75A86A0A"
   ],
-  "BreakingChangesVersions": [
-    {
-      "Name": "HasHamburgerMenu",
-      "BreakingVersion": "2.0.18100.1"
-    },
-    {
-      "Name": "OldMvvmLightLocator",
-      "BreakingVersion": "2.4.18260.1"
-    },
-    {
-      "Name": "HasOldNavigationView",
-      "BreakingVersion": "2.4.18260.1"
-    },
-    {
-      "Name": "HasPivot",
-      "BreakingVersion": "2.5.18319.1"
-    },
-    {
-      "Name": "HasNoCoreProject",
-      "BreakingVersion": "2.5.18319.1"
-    }
-  ]
+    "BreakingChangesVersions": [
+        {
+            "Name": "HasHamburgerMenu",
+            "BreakingVersion": "2.0.18100.1"
+        },
+        {
+            "Name": "OldMvvmLightLocator",
+            "BreakingVersion": "2.4.18260.1"
+        },
+        {
+            "Name": "HasOldNavigationView",
+            "BreakingVersion": "2.4.18260.1"
+        },
+        {
+            "Name": "HasPivot",
+            "BreakingVersion": "2.5.18319.1"
+        },
+        {
+            "Name": "HasNoCoreProject",
+            "BreakingVersion": "2.5.18319.1"
+        },
+        {
+            "Name": "UsesVersionSevenOfMvvmToolkit",
+            "BreakingVersion": "5.3"
+        }
+    ]
 }

@@ -1411,4 +1411,16 @@ See the final result: {2}
     <value>Deployment</value>
     <comment>Group header for Deployment</comment>
   </data>
+  <data name="ValidatorUsesMvvmToolkitSevenLink" xml:space="preserve">
+    <value>{0}WinUI/frameworks/mvvmtoolkit-upgrate-to-version8.md</value>
+    <comment>relative path to documentation about manual upgrade steps</comment>
+  </data>
+  <data name="ValidatorUsesMvvmToolkitSevenLinkMessage" xml:space="preserve">
+    <value>See documentation to update.</value>
+    <comment>Link text shown with link to manual update docs</comment>
+  </data>
+  <data name="ValidatorUsesMvvmToolkitSevenMessage" xml:space="preserve">
+    <value>Update to MVVM Toolkit version 8</value>
+    <comment>Message when a breaking change is detected for MvvmToolkit version</comment>
+  </data>
 </root>

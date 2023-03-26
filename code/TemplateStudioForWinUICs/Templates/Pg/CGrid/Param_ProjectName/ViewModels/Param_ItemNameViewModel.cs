@@ -7,15 +7,10 @@ using Param_RootNamespace.Core.Models;
 
 namespace Param_RootNamespace.ViewModels;
 
-public class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
+public partial class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
 {
     private readonly INavigationService _navigationService;
     private readonly ISampleDataService _sampleDataService;
-
-    public ICommand ItemClickCommand
-    {
-        get;
-    }
 
     public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
@@ -23,8 +18,6 @@ public class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
     {
         _navigationService = navigationService;
         _sampleDataService = sampleDataService;
-
-        ItemClickCommand = new RelayCommand<SampleOrder>(OnItemClick);
     }
 
     public async void OnNavigatedTo(object parameter)
@@ -43,6 +36,7 @@ public class Param_ItemNameViewModel : ObservableRecipient, INavigationAware
     {
     }
 
+    [RelayCommand]
     private void OnItemClick(SampleOrder? clickedItem)
     {
         if (clickedItem != null)
