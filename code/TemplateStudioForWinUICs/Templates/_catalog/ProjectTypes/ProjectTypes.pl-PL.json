@@ -1,17 +1,35 @@
-﻿[
-    {
-        "name": "Blank",
-        "displayName": "Blank",
-        "summary": "W zestawie znajduje się ramka nawigacji oraz podstawowe usługi i style."
-    },
-    {
-        "name": "NavView",
-        "displayName": "Navigation Pane",
-        "summary": "Zawiera on menu typu „hamburger” do nawigowania między stronami."
-    },
-    {
-        "name": "MenuBar",
-        "displayName": "Menu Bar",
-        "summary": "Aby poruszać się między stronami, można dodać menu."
-    }
+[
+  {
+    "name": "Blank",
+    "displayName": "Pusta",
+    "summary": "W zestawie znajduje się ramka nawigacyjna oraz podstawowe usługi i style.",
+    "author": "Microsoft",
+    "order": "3",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "NavView",
+    "displayName": "Okienko nawigacji",
+    "summary": "Do nawigacji między stronami dołączone jest okienko nawigacji.",
+    "author": "Microsoft",
+    "order": "1",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "Pasek menu",
+    "summary": "Do nawigacji między stronami dołączony jest pasek menu.",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  }
 ]

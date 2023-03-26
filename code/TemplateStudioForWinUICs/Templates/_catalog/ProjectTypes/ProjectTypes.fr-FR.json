@@ -1,17 +1,35 @@
-﻿[
-    {
-        "name": "Blank",
-        "displayName": "Blank",
-        "summary": "Un cadre de navigation et des services et styles de base sont inclus."
-    },
-    {
-        "name": "NavView",
-        "displayName": "Navigation Pane",
-        "summary": "Un menu hamburger est inclus, pour permettre de naviguer entre les pages."
-    },
-    {
-        "name": "MenuBar",
-        "displayName": "Menu Bar",
-        "summary": "Un menu est ajouté pour naviguer entre les pages."
-    }
+[
+  {
+    "name": "Blank",
+    "displayName": "Vierge",
+    "summary": "Un volet de navigation ainsi que des styles et des services de base sont inclus.",
+    "author": "Microsoft",
+    "order": "3",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "NavView",
+    "displayName": "Volet de navigation",
+    "summary": "Un volet de navigation est inclus pour permettre de naviguer entre les pages.",
+    "author": "Microsoft",
+    "order": "1",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "Barre de menus",
+    "summary": "Une barre de menus est incluse pour permettre de naviguer entre les pages.",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  }
 ]

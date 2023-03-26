@@ -1,12 +1,26 @@
-﻿[
-    {
-        "name": "MVVMToolkit",
-        "displayName": "MVVM Toolkit",
-        "summary": "現代、快速、模組化的MVVM庫和Windows社區工具組的一部分。"
-    },
-    {
-        "name": "None",
-        "displayName": "None",
-        "summary": "沒有框架或資料夾結構生成。只需生成最低代碼才能運行應用。"
-    }
+[
+  {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "一個快速、模組化、適用不同平台的平台式 MVVM 媒體櫃，為 MvvmLight 的正是替代物。它是 .NET 社群工具組的一部分。",
+    "author": "Microsoft",
+    "order": "1",
+    "licenses": "[Windows Community Toolkit](https://github.com/CommunityToolkit/dotnet/blob/main/License.md)",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "None",
+    "displayName": "無選取項目",
+    "summary": "沒有架構或資料夾結構生成。只需生成最低代碼才能運行應用。",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#",
+      "C++"
+    ]
+  }
 ]

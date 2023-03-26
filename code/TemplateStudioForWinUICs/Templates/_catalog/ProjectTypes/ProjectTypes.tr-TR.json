@@ -1,17 +1,35 @@
-﻿[
-    {
-        "name": "Blank",
-        "displayName": "Blank",
-        "summary": "Gezinti çerçevesi ve temel hizmetler ve stiller dahildir."
-    },
-    {
-        "name": "NavView",
-        "displayName": "Navigation Pane",
-        "summary": "Sayfalar arasında gezinti için Hamburger Menüsü bulunmaktadır."
-    },
-    {
-        "name": "MenuBar",
-        "displayName": "Menu Bar",
-        "summary": "Sayfalar arasında gezinmek için bir menü eklenir."
-    }
+[
+  {
+    "name": "Blank",
+    "displayName": "Boş",
+    "summary": "Gezinme çerçevesi ve temel hizmetler ile stiller eklendi.",
+    "author": "Microsoft",
+    "order": "3",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "NavView",
+    "displayName": "Gezinti Bölmesi",
+    "summary": "Sayfalar arasında gezinmek için gezinti bölgesi eklendi.",
+    "author": "Microsoft",
+    "order": "1",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "Menü Çubuğu",
+    "summary": "Sayfalar arasında gezinmek için menü çubuğu eklendi.",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  }
 ]

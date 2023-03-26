@@ -1,4 +1,4 @@
-﻿{
-    "name": "Web View",
-    "description": "Web ビュー ページは、WebView2 (クロム付きのマイクロソフト エッジ) を使用して Web コンテンツをレンダリングします。"
+{
+  "name": "Web 表示",
+  "description": "Web ビュー ページは、WebView2 (Microsoft Edge with Chromium) を使用して Web コンテンツをレンダリングします。"
 }

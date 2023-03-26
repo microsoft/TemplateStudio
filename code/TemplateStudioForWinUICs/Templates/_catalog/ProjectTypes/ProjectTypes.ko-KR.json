@@ -1,17 +1,35 @@
-﻿[
-    {
-        "name": "Blank",
-        "displayName": "Blank",
-        "summary": "내비게이션 프레임과 기본 서비스 및 스타일이 포함되어 있습니다."
-    },
-    {
-        "name": "NavView",
-        "displayName": "Navigation Pane",
-        "summary": "햄버거 메뉴는 페이지 간 탐색을 위해 제공됩니다."
-    },
-    {
-        "name": "MenuBar",
-        "displayName": "Menu Bar",
-        "summary": "다른 페이지로 이동할 수 있는 메뉴가 추가되었습니다."
-    }
+[
+  {
+    "name": "Blank",
+    "displayName": "비어 있음",
+    "summary": "탐색 프레임 및 기본 서비스와 스타일이 포함됩니다.",
+    "author": "Microsoft",
+    "order": "3",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "NavView",
+    "displayName": "탐색 창",
+    "summary": "탐색 창은 페이지 간 탐색을 위해 포함됩니다.",
+    "author": "Microsoft",
+    "order": "1",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "메뉴 모음",
+    "summary": "메뉴 모음은 페이지 간 탐색을 위해 포함됩니다.",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  }
 ]

@@ -1,4 +1,4 @@
-﻿{
-    "name": "Web View",
-    "description": "網頁查看頁面使用 WebView2（微軟邊緣與鉻）呈現 Web 內容。"
+{
+  "name": "Web 檢視",
+  "description": "Web 檢視頁面會使用 WebView2 (內含 Chromium 的 Microsoft Edge) 來呈現 Web 內容。"
 }

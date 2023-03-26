@@ -1,12 +1,26 @@
-﻿[
-    {
-        "name": "MVVMToolkit",
-        "displayName": "MVVM Toolkit",
-        "summary": "Nowoczesna, szybka i modułowa biblioteka MVVM i część zestawu narzędzi społeczności systemu Windows."
-    },
-    {
-        "name": "None",
-        "displayName": "None",
-        "summary": "Brak generowania struktury ani struktury folderów. Tylko minimalny kod jest generowany, aby uzyskać aplikację działa."
-    }
+[
+  {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "Szybka, modularna, niezależna od platformy biblioteka MVVM, która jest oficjalnym następcą biblioteki MvvmLight. Jest częścią zestawu narzędziowego .NET Community Toolkit.",
+    "author": "Microsoft",
+    "order": "1",
+    "licenses": "[Windows Community Toolkit](https://github.com/CommunityToolkit/dotnet/blob/main/License.md)",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "None",
+    "displayName": "Brak",
+    "summary": "Struktury ani foldery nie są generowane. Generowany jest tylko minimalny kod do uruchomienia aplikacji.",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#",
+      "C++"
+    ]
+  }
 ]

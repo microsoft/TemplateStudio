@@ -1,17 +1,35 @@
-﻿[
-    {
-        "name": "Blank",
-        "displayName": "Blank",
-        "summary": "Incluye un marco de navegación, servicios y estilos básicos."
-    },
-    {
-        "name": "NavView",
-        "displayName": "Navigation Pane",
-        "summary": "Incluye un menú de hamburguesa para poder navegar entre las páginas."
-    },
-    {
-        "name": "MenuBar",
-        "displayName": "Menu Bar",
-        "summary": "Se añade un menú para desplazarse entre las páginas."
-    }
+[
+  {
+    "name": "Blank",
+    "displayName": "En blanco",
+    "summary": "Se incluye un marco de navegación, así como servicios y estilos básicos.",
+    "author": "Microsoft",
+    "order": "3",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "NavView",
+    "displayName": "Panel de navegación",
+    "summary": "Incluye un panel de navegación, servicios y estilos básicos.",
+    "author": "Microsoft",
+    "order": "1",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "Barra de menús",
+    "summary": "Incluye una barra de menús para poder navegar entre las páginas.",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  }
 ]

@@ -1,17 +1,35 @@
-﻿[
-    {
-        "name": "Blank",
-        "displayName": "Blank",
-        "summary": "ナビゲーション フレームと基本的なサービスとスタイルが含まれています。"
-    },
-    {
-        "name": "NavView",
-        "displayName": "Navigation Pane",
-        "summary": "ページ間の移動に使用されるハンバーガー メニューが含まれています。"
-    },
-    {
-        "name": "MenuBar",
-        "displayName": "Menu Bar",
-        "summary": "ページ間を移動するためのメニューが付加されます。"
-    }
+[
+  {
+    "name": "Blank",
+    "displayName": "空白",
+    "summary": "ナビゲーション フレームと、基本的なサービスおよびスタイルが含まれています。",
+    "author": "Microsoft",
+    "order": "3",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "NavView",
+    "displayName": "ナビゲーション ウィンドウ",
+    "summary": "ページ間の移動に使用するナビゲーション ウィンドウが含まれています。",
+    "author": "Microsoft",
+    "order": "1",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "メニュー バー",
+    "summary": "ページ間の移動に使用するメニュー バーが含まれています。",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  }
 ]

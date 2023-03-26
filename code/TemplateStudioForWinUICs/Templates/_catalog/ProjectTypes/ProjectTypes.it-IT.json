@@ -1,17 +1,35 @@
-﻿[
-    {
-        "name": "Blank",
-        "displayName": "Blank",
-        "summary": "Sono inclusi un frame di navigazione e servizi e stili di base."
-    },
-    {
-        "name": "NavView",
-        "displayName": "Navigation Pane",
-        "summary": "Un menu Hamburger è incluso per spostarsi tra le pagine."
-    },
-    {
-        "name": "MenuBar",
-        "displayName": "Menu Bar",
-        "summary": "Un menu è aggiunto per eseguire lo spostamento tra le pagine."
-    }
+[
+  {
+    "name": "Blank",
+    "displayName": "Vuota",
+    "summary": "Sono inclusi una frame di spostamento, i servizi e gli stili di base.",
+    "author": "Microsoft",
+    "order": "3",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "NavView",
+    "displayName": "Riquadro di spostamento",
+    "summary": "È inclusa un frame di spostamento per lo spostamento tra le pagine.",
+    "author": "Microsoft",
+    "order": "1",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "Barra dei menu",
+    "summary": "È inclusa una barra dei menu per lo spostamento tra le pagine.",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  }
 ]

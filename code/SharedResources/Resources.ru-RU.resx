@@ -117,82 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddTestingAction" xml:space="preserve">
-    <value>Добавление тестирования</value>
-  </data>
-  <data name="AddServiceAction" xml:space="preserve">
-    <value>Добавление службы</value>
-  </data>
-  <data name="AddFeatureAction" xml:space="preserve">
-    <value>Добавить функцию</value>
-  </data>
-  <data name="AddPageAction" xml:space="preserve">
-    <value>Добавить страницу</value>
-  </data>
-  <data name="AddProjectAction" xml:space="preserve">
-    <value>Добавить проект</value>
-  </data>
-  <data name="UIMessageBoxTitlePattern" xml:space="preserve">
-    <value>Template Studio: {0}</value>
-    <comment>Generic MessageBox Title</comment>
-  </data>
-  <data name="UIStatusMsgPattern" xml:space="preserve">
-    <value>Template Studio: {0}</value>
-  </data>
-  <data name="UnexpectedExPattern" xml:space="preserve">
-    <value>Непредвиденное исключение.\n{0}</value>
-  </data>
-  <data name="AccessibilityCodeViewerControl" xml:space="preserve">
-    <value>Средство просмотра кода</value>
-    <comment>Code viewer label to accessibility</comment>
-  </data>
-  <data name="AccessibilityDesignPatternList" xml:space="preserve">
-    <value>Design patterns</value>
-    <comment>Design pattern list to accessibility</comment>
-  </data>
-  <data name="AccessibilityEditPageItem" xml:space="preserve">
-    <value>Имя страницы</value>
-    <comment>Edit page label to accessibility</comment>
-  </data>
-  <data name="AccessibilityErrorDialogDescriptionTextboxName" xml:space="preserve">
-    <value>Текст описания ошибки</value>
-    <comment>Error dialog accessible name to description textbox</comment>
-  </data>
-  <data name="AccessibilityNavigationMenu" xml:space="preserve">
-    <value>Меню навигации</value>
-    <comment>Navigation menu label</comment>
-  </data>
-  <data name="AccessibilityNewItemFileIcon" xml:space="preserve">
-    <value>Значок файла для нового элемента</value>
-    <comment>New item file icon label to accessibility</comment>
-  </data>
-  <data name="AccessibilityNotificationPanel" xml:space="preserve">
-    <value>Панель уведомлений</value>
-    <comment> Notification panel label to accessibility</comment>
-  </data>
-  <data name="AccessibilityProjectTypesList" xml:space="preserve">
-    <value>Типы проектов</value>
-    <comment>Project types list label to accessibility</comment>
-  </data>
-  <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
-    <value>Управление последовательными потоками</value>
-    <comment>Sequential flow control label to accessibility</comment>
-  </data>
-  <data name="AccessibilityTemplatesList" xml:space="preserve">
-    <value>Список шаблонов</value>
-    <comment>Templates list label to accessibility</comment>
-  </data>
-  <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
-    <value>Выбранные пользователем страницы</value>
-    <comment>User selection page list to accessibility</comment>
-  </data>
   <data name="AddFeaturesTitle" xml:space="preserve">
     <value>Добавить компоненты</value>
     <comment>AddFeatures title on AddFeaturesPage</comment>
-  </data>
-  <data name="AddPagesTitle" xml:space="preserve">
-    <value>Добавить страницы</value>
-    <comment>Add pages title on AddPagesPage</comment>
   </data>
   <data name="AddServiceTitle" xml:space="preserve">
     <value>Добавление служб</value>
@@ -202,13 +129,9 @@
     <value>Добавление тестирования</value>
     <comment>AddTesting title on AddTestingPage</comment>
   </data>
-  <data name="BreakingChanges" xml:space="preserve">
-    <value>Критические изменения</value>
-    <comment>Breaking changes title</comment>
-  </data>
-  <data name="BreakingChangesDialogMessage" xml:space="preserve">
-    <value>Обнаружена несовместимость между проектом и последней версией шаблонов. Ознакомьтесь с изменениями:</value>
-    <comment>Breaking change window dialog message description</comment>
+  <data name="AddPagesTitle" xml:space="preserve">
+    <value>Добавить страницы</value>
+    <comment>Add pages title on AddPagesPage</comment>
   </data>
   <data name="ButtonBack" xml:space="preserve">
     <value>Назад</value>
@@ -222,23 +145,9 @@
     <value>Закрыть</value>
     <comment>Notification button close</comment>
   </data>
-  <data name="ButtonCompositionTool" xml:space="preserve">
-    <value>Средство композиции</value>
-  </data>
   <data name="ButtonCreate" xml:space="preserve">
     <value>Создать</value>
     <comment>MainPage Create button</comment>
-  </data>
-  <data name="ButtonDetails" xml:space="preserve">
-    <value>Сведения</value>
-    <comment>Details button</comment>
-  </data>
-  <data name="ButtonDetailsHelpText" xml:space="preserve">
-    <value>Сведения {0}</value>
-    <comment>Button details help text. {0}: name of template</comment>
-  </data>
-  <data name="ButtonMaximize" xml:space="preserve">
-    <value>максимизировать</value>
   </data>
   <data name="ButtonNext" xml:space="preserve">
     <value>Далее</value>
@@ -259,9 +168,6 @@
   <data name="ButtonRemove" xml:space="preserve">
     <value>Удалить</value>
     <comment>Remove template button</comment>
-  </data>
-  <data name="ButtonRestore" xml:space="preserve">
-    <value>восстанавливать</value>
   </data>
   <data name="ButtonYes" xml:space="preserve">
     <value>Да</value>
@@ -319,30 +225,6 @@
     <value>Не удается внести требуемые изменения. При необходимости вы можете открыть созданный файл по завершении.</value>
     <comment>Changes summary description for: Warning files</comment>
   </data>
-  <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
-    <value>Дополнительные сведения</value>
-    <comment>Changes summary more info link</comment>
-  </data>
-  <data name="DeprecatedMessage" xml:space="preserve">
-    <value>Устаревшие</value>
-    <comment>Text used to indicate a deprecated option in the wizard</comment>
-  </data>
-  <data name="ErrorAddingItemsToProject" xml:space="preserve">
-    <value>Ошибка при добавлении элементов в проект {0}</value>
-    <comment>Error message for adding items to project</comment>
-  </data>
-  <data name="ErrorAddingProject" xml:space="preserve">
-    <value>Ошибка при добавлении проекта {0}</value>
-    <comment>Error message for adding projects</comment>
-  </data>
-  <data name="ErrorAddingReferencesBetweenProjects" xml:space="preserve">
-    <value>Ошибка при добавлении ссылок между проектами</value>
-    <comment>Error message for adding items to project</comment>
-  </data>
-  <data name="ErrorAddingSdksToProject" xml:space="preserve">
-    <value>Ошибка при добавлении sdk в проект {0}.</value>
-    <comment>Error message for adding items to project</comment>
-  </data>
   <data name="ErrorDialogShowDetails" xml:space="preserve">
     <value>Показать сведения</value>
     <comment>Error dialog show details link button</comment>
@@ -351,81 +233,28 @@
     <value>Что-то пошло не так :-(</value>
     <comment>Error dialog title</comment>
   </data>
-  <data name="ErrorInvalidRequirementType" xml:space="preserve">
-    <value>Тип недействительных требований {0}</value>
-  </data>
-  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
-    <value>Install-Package -Id {0} -Version {1}</value>
-    <comment>{0}: package id, {1}: version</comment>
-  </data>
-  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
-    <value>Не удалось добавить некоторые пакеты NuGet в ваш проект {0}. Возможно, вы были не в сети. 
-Проверьте следующий список пакетов, требуемых кодом вашего проекта, и вручную добавьте недостающие: 
-{1}</value>
-    <comment>{0}: projectPath, {1}: package Info</comment>
-  </data>
-  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
-    <value>Проект {0} не найден.</value>
-    <comment>{0}: projectPath</comment>
-  </data>
-  <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
-    <value>Не смог открыть обзор проекта.</value>
-    <comment>Error message for unable to open project overview dialog</comment>
-  </data>
-  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
-    <value>Не удалось задать конфигурацию решения по умолчанию</value>
-    <comment>Error message for unable to set default solution configuration.</comment>
-  </data>
-  <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
-    <value>При свертывании дерева решений произошла ошибка. Пример:</value>
-    <comment>Error message for VS GenShell collapse solution Items</comment>
-  </data>
-  <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
-    <value>При отображении сообщения о состоянии произошла ошибка. Пример:</value>
-    <comment>Error message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="ExternalHyperlinkTooltipMessage" xml:space="preserve">
-    <value>Открыть в новой вкладке браузера</value>
-    <comment>External hyperlink tooltip message</comment>
+  <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
+    <value>Дополнительные сведения</value>
+    <comment>Changes summary more info link</comment>
   </data>
   <data name="FrameworkTitle" xml:space="preserve">
     <value>Выбрать design pattern</value>
     <comment>Title on FrameworkPage</comment>
   </data>
-  <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
-    <value>Нажмите клавишу ВВОД, чтобы добавить {0}.</value>
-    <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
-  </data>
-  <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
-    <value>Необходима более поздняя версия</value>
-  </data>
-  <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
-    <value>{0} проекта требуется Visual Studio 2019 Версия {1} или выше.</value>
-    <comment>Error message for Invalid VS Version</comment>
-  </data>
-  <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
-    <value>Отсутствует рабочая нагрузка</value>
-  </data>
-  <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
-    <value>Дополнительные сведения</value>
-  </data>
-  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>Необходимо установить следующие рабочие нагрузки для создания проекта {0}: {1} </value>
-  </data>
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
-    <value>{0} уже является частью проекта. Выберите другой компонент.</value>
+    <value>{0} уже входит в проект.</value>
     <comment>Feature already added {0}: Feature name</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
-    <value>{0} уже является частью проекта. Выберите другую страницу.</value>
+    <value>Страница с {0} уже является частью проекта. Введите новое имя или выберите другую страницу.</value>
     <comment>Page already added {0}: Page name</comment>
   </data>
   <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} уже является частью проекта. Выберите другую службу.</value>
+    <value>{0} уже входит в проект.</value>
     <comment>Service already added {0}: Service name</comment>
   </data>
   <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} уже является частью проекта. Выберите другой проект тестирования.</value>
+    <value>{0} уже входит в проект.</value>
     <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
@@ -460,29 +289,9 @@
     <value>Новая страница</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewItemTitleService" xml:space="preserve">
-    <value>Новая служба</value>
-    <comment>New item: new service title</comment>
-  </data>
-  <data name="NewItemTitleTesting" xml:space="preserve">
-    <value>Новый проект тестирования</value>
-    <comment>New item: new testing project title</comment>
-  </data>
-  <data name="NewProjectStepDesignPattern" xml:space="preserve">
-    <value>Design pattern</value>
-    <comment>New project: Navigation step design pattern</comment>
-  </data>
   <data name="NewProjectStepFeatures" xml:space="preserve">
     <value>Компоненты</value>
     <comment>New project: Navigation step features</comment>
-  </data>
-  <data name="NewProjectStepPages" xml:space="preserve">
-    <value>Страницы</value>
-    <comment>New project: Navigation step pages</comment>
-  </data>
-  <data name="NewProjectStepProjectType" xml:space="preserve">
-    <value>Тип проекта</value>
-    <comment>New project: Navigation step project type</comment>
   </data>
   <data name="NewProjectStepServices" xml:space="preserve">
     <value>Службы</value>
@@ -492,46 +301,29 @@
     <value>Тестирование</value>
     <comment>New project: Navigation step testing</comment>
   </data>
+  <data name="NewProjectStepProjectType" xml:space="preserve">
+    <value>Тип проекта</value>
+    <comment>New project: Navigation step project type</comment>
+  </data>
+  <data name="NewProjectStepPages" xml:space="preserve">
+    <value>Страницы</value>
+    <comment>New project: Navigation step pages</comment>
+  </data>
+  <data name="NewProjectStepDesignPattern" xml:space="preserve">
+    <value>Шаблон дизайна</value>
+    <comment>New project: Navigation step design pattern</comment>
+  </data>
   <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>Новое приложение универсальной платформы Windows</value>
     <comment>Wizard title on WizardShell page for UWP projects</comment>
-  </data>
-  <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>Новое приложение WinUI 3 Desktop</value>
-  </data>
-  <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>Новое приложение WinUI 3 UWP</value>
   </data>
   <data name="NewProjectTitleWPF" xml:space="preserve">
     <value>Новое приложение WPF</value>
     <comment>Wizard title on WizardShell page for WPF projects</comment>
   </data>
-  <data name="NoContentPanelMessage" xml:space="preserve">
-    <value>Содержимое недоступно.</value>
-    <comment>Message in no content panel</comment>
-  </data>
-  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
-    <value>Вы не можете добавить **{0}**, так как следующие шаблоны не совместимы: {1}.</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
-    <value>Вы не можете добавить **{0}**, так как для этого сначала необходимо добавить один из следующих шаблонов: {1}</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationMissingVersions" xml:space="preserve">
-    <value>Следующие версии отсутствуют, пожалуйста, установите их и перезапустить Visual Studio: {0}</value>
-  </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>Невозможно удалить **{0}**, так как от него зависят следующие шаблоны: {1}</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
-    <value>Вы не можете удалить **{0}**, потому что это необходимо для выбранного типа проекта.</value>
-    <comment>Remove error message: Template is read only</comment>
-  </data>
-  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
-    <value>Невозможно удалить **{0}**, так как он необходим для: {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
     <value>Произошла ошибка при обновлении шаблонов. Дополнительные сведения см. в окне вывода.</value>
@@ -541,25 +333,17 @@
     <value>Доступны новые шаблоны (версия {0}). Идет скачивание… {1} %</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
-  <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
-    <value>Проверяется наличие обновлений…</value>
-    <comment>Notification message for Sync Status: CheckingForUpdates</comment>
-  </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>Ошибка при скачивании шаблонов (версия {0}). Мы повторим попытку позже.</value>
     <comment>Notification message for Sync Error, {0}:Version</comment>
   </data>
   <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
-    <value>Доступна версия Template Studio {0}. Обновите расширение, чтобы оценить новейшие функции.</value>
+    <value>Доступна версия Template Studio {0}. Обновите расширение, чтобы оценить новейшие функции.</value>
     <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
   </data>
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
     <value>Подготавливаются шаблоны (версия {0})… {1}%</value>
     <comment>Notification message for Sync Status: Preparing, {0}:Version, {1}: Progress amount</comment>
-  </data>
-  <data name="NotificationSyncStatus_Updated" xml:space="preserve">
-    <value>Шаблоны обновлены.</value>
-    <comment>Notification message for Sync Status: Updated</comment>
   </data>
   <data name="NotificationSyncStatus_Updating" xml:space="preserve">
     <value>Обновляется кэш шаблонов…</value>
@@ -577,39 +361,17 @@
     <value>Имя не может быть пустым</value>
     <comment>Validation error message: Empty</comment>
   </data>
-  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
-    <value>Имя не может заканчиваться словом "Page", так как оно будет добавлено автоматически. [Дополнительные сведения об именовании.]({0}naming.md)</value>
-    <comment>Validation error message: Wrong Page Suffix</comment>
-  </data>
-  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
-    <value>Название проекта не соответствует названию папки проекта. Пожалуйста, отрегулируйте, чтобы обеспечить правильное поколение.</value>
-  </data>
-  <data name="NotificationValidationError_Regex" xml:space="preserve">
-    <value>Проверка RegEx {0} не пройдена.</value>
-    <comment>Validation error message: RegEx</comment>
-  </data>
   <data name="NotificationValidationError_ReservedName" xml:space="preserve">
     <value>Имя зарезервировано</value>
     <comment>Validation error message: Reserved name</comment>
-  </data>
-  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
-    <value>Слово "Page" будет добавлено в конец указанного имени. [Дополнительные сведения об именовании.]({0}naming.md)</value>
-    <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
     <value>Не удается найти метаданные конфигурации проекта в файле Package.appxmanifest. Укажите конфигурацию, выбранную при создании проекта.</value>
     <comment>ProjectConfiguration view description</comment>
   </data>
-  <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
-    <value>Выберите AppModel</value>
-  </data>
   <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
     <value>Выберите design pattern:</value>
     <comment>Project configuration window select framework title</comment>
-  </data>
-  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
-    <value>Выбор платформы</value>
-    <comment>Project configuration window select platform title</comment>
   </data>
   <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
     <value>Выберите тип проекта:</value>
@@ -618,10 +380,6 @@
   <data name="ProjectConfigurationTitleText" xml:space="preserve">
     <value>Выберите конфигурацию проекта</value>
     <comment>Project configuration window title</comment>
-  </data>
-  <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
-    <value>Сообщить о проблеме</value>
-    <comment>Project details about section report lssue link</comment>
   </data>
   <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
     <value>Template Studio</value>
@@ -643,6 +401,14 @@
     <value>Компоненты</value>
     <comment>Feature list header on project details</comment>
   </data>
+  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
+    <value>Службы</value>
+    <comment>Services list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
+    <value>Тестирование</value>
+    <comment>Testing list header on project details</comment>
+  </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
     <value>Вы изменили выбор design pattern. Это приведет к потере выбранных страниц и компонентов. Продолжить?</value>
     <comment>Framework changed message</comment>
@@ -652,7 +418,7 @@
     <comment>Framework changed title</comment>
   </data>
   <data name="ProjectDetailsFrameworkSectionTitle" xml:space="preserve">
-    <value>Design pattern</value>
+    <value>Шаблон дизайна</value>
     <comment>Framework combobox header on project details</comment>
   </data>
   <data name="ProjectDetailsLicensesSectionTitle" xml:space="preserve">
@@ -675,14 +441,6 @@
     <value>Тип проекта</value>
     <comment>Project type combobox header on project details</comment>
   </data>
-  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
-    <value>Службы</value>
-    <comment>Services list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
-    <value>Тестирование</value>
-    <comment>Testing list header on project details</comment>
-  </data>
   <data name="ProjectDetailsTitle" xml:space="preserve">
     <value>Сведения о проекте</value>
     <comment>Project details header on MainPage</comment>
@@ -691,36 +449,41 @@
     <value>Выбрать тип проекта</value>
     <comment>ProjectType Title on ProjectTypePage</comment>
   </data>
-  <data name="ReorderPageHelpText" xml:space="preserve">
-    <value>Используйте клавиши CTRL+СТРЕЛКА ВВЕРХ или CTRL+СТРЕЛКА ВНИЗ для изменения порядка страниц</value>
-    <comment>Reorder selected user pages message in accessibility help text</comment>
+  <data name="TemplateDetailsAuthor" xml:space="preserve">
+    <value>Автор:</value>
+    <comment>Template details: Autor</comment>
   </data>
-  <data name="SeparatorOr" xml:space="preserve">
-    <value>или</value>
+  <data name="TemplateDetailsDependencies" xml:space="preserve">
+    <value>Зависимости:</value>
+    <comment>Template details: Dependencies</comment>
   </data>
-  <data name="StatusAddingItem" xml:space="preserve">
-    <value>{0} добавляется в проект…</value>
-    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  <data name="TemplateDetailsLicenses" xml:space="preserve">
+    <value>Лицензии:</value>
+    <comment>Template details: Licenses</comment>
   </data>
-  <data name="StatusAddingNuget" xml:space="preserve">
-    <value>Добавление в проект пакета NuGet {0}…</value>
-    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  <data name="TemplateDetailsVersion" xml:space="preserve">
+    <value>Версия:</value>
+    <comment>Template details: Version</comment>
   </data>
-  <data name="StatusAddingProject" xml:space="preserve">
-    <value>Добавление в решение проекта {0}…</value>
-    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  <data name="TemplateSelectionTitle" xml:space="preserve">
+    <value>Выберите шаблон, который хотите добавить</value>
+    <comment>Template selection title</comment>
   </data>
-  <data name="StatusAddingProjectReferences" xml:space="preserve">
-    <value>Добавление ссылок между проектами…</value>
-    <comment>Status bar message for adding project references</comment>
+  <data name="TermsAndConditionsText" xml:space="preserve">
+    <value>Продолжая, вы принимаете условия всех лицензий в разделе лицензирования.</value>
+    <comment>Licenses Terms and conditions text</comment>
   </data>
-  <data name="StatusBarCreatingProject" xml:space="preserve">
-    <value>Создание проекта Windows Template Studio…</value>
-    <comment>Status bar message for solution wizard run finished</comment>
+  <data name="WindowsTemplateStudio" xml:space="preserve">
+    <value>Template Studio</value>
+    <comment>Windows template studio label</comment>
   </data>
   <data name="StatusBarGenerationFinished" xml:space="preserve">
     <value>Создание завершено.</value>
     <comment>Status bar message generation finished</comment>
+  </data>
+  <data name="StatusBarCreatingProject" xml:space="preserve">
+    <value>Создание проекта "{0}"...</value>
+    <comment>Status bar message for solution wizard run finished</comment>
   </data>
   <data name="StatusBarNewItemAddFeatureCancelled" xml:space="preserve">
     <value>Добавление нового компонента отменено.</value>
@@ -754,63 +517,25 @@
     <value>Проект тестирования {0} добавлен</value>
     <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
-  <data name="TemplateAdded" xml:space="preserve">
-    <value>Добавлено</value>
-    <comment>Template added label</comment>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>Проект {0} не найден.</value>
+    <comment>{0}: projectPath</comment>
   </data>
-  <data name="TemplateDetailsAuthor" xml:space="preserve">
-    <value>Автор:</value>
-    <comment>Template details: Autor</comment>
+  <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
+    <value>При свертывании дерева решений произошла ошибка. Пример:</value>
+    <comment>Error message for VS GenShell collapse solution Items</comment>
   </data>
-  <data name="TemplateDetailsDependencies" xml:space="preserve">
-    <value>Зависимости:</value>
-    <comment>Template details: Dependencies</comment>
-  </data>
-  <data name="TemplateDetailsExclusions" xml:space="preserve">
-    <value>Исключения:</value>
-  </data>
-  <data name="TemplateDetailsFrameworks" xml:space="preserve">
-    <value>Framework:</value>
-    <comment>Template details: Frameworks</comment>
-  </data>
-  <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
-    <value>Этот элемент в настоящее время недоступен из-за отсутствия рабочих нагрузок / компонентов Visual Studio.</value>
-  </data>
-  <data name="TemplateDetailsLayout" xml:space="preserve">
-    <value>Включает:</value>
-    <comment>Template details: Includes</comment>
-  </data>
-  <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
-    <value>{0} (необязательно)</value>
-    <comment>The include is optional</comment>
-  </data>
-  <data name="TemplateDetailsLicenses" xml:space="preserve">
-    <value>Лицензии:</value>
-    <comment>Template details: Licenses</comment>
-  </data>
-  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
-    <value>Минимальная базовая версия .NET:</value>
-  </data>
-  <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
-    <value>Необходимые Windows Sdk:</value>
-  </data>
-  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
-    <value>Необходимые рабочие нагрузки / компоненты Visual Studio:</value>
-  </data>
-  <data name="TemplateDetailsRequirements" xml:space="preserve">
-    <value>Требования:</value>
-  </data>
-  <data name="TemplateDetailsVersion" xml:space="preserve">
-    <value>Версия:</value>
-    <comment>Template details: Version</comment>
-  </data>
-  <data name="TemplateGroup_Analytics" xml:space="preserve">
-    <value>Аналитика</value>
-    <comment>Group header for analytics templates</comment>
+  <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
+    <value>При отображении сообщения о состоянии произошла ошибка. Пример:</value>
+    <comment>Error message for Vs GenShell show status bar message</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
     <value>Запуск приложения</value>
     <comment>Group header for Application Launching templates</comment>
+  </data>
+  <data name="TemplateGroup_Packaging" xml:space="preserve">
+    <value>Упаковка</value>
+    <comment>Group header for Packaging templates</comment>
   </data>
   <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
     <value>Жизненный цикл приложения</value>
@@ -824,47 +549,112 @@
     <value>Функции взаимодействия</value>
     <comment>Group header for Connected Experiences templates</comment>
   </data>
-  <data name="TemplateGroup_Data" xml:space="preserve">
-    <value>Данные</value>
-    <comment>Group header for Data templates</comment>
-  </data>
-  <data name="TemplateGroup_Identity" xml:space="preserve">
-    <value>Identity (выберите одно)</value>
-  </data>
-  <data name="TemplateGroup_Packaging" xml:space="preserve">
-    <value>Упаковка</value>
-    <comment>Group header for Packaging templates</comment>
-  </data>
-  <data name="TemplateGroup_Tools" xml:space="preserve">
-    <value>Инструменты</value>
-    <comment>Group header for 'Tools' templates</comment>
-  </data>
   <data name="TemplateGroup_UserInteraction" xml:space="preserve">
     <value>Взаимодействие с пользователем</value>
     <comment>Group header for user interaction templates</comment>
   </data>
-  <data name="TemplateSelectionTitle" xml:space="preserve">
-    <value>Выберите шаблон, который хотите добавить</value>
-    <comment>Template selection title</comment>
+  <data name="ButtonDetails" xml:space="preserve">
+    <value>Сведения</value>
+    <comment>Details button</comment>
   </data>
-  <data name="TermsAndConditionsText" xml:space="preserve">
-    <value>Продолжая, вы принимаете условия всех лицензий в разделе лицензирования.</value>
-    <comment>Licenses Terms and conditions text</comment>
+  <data name="TemplateAdded" xml:space="preserve">
+    <value>Добавлено</value>
+    <comment>Template added label</comment>
   </data>
-  <data name="UWP" xml:space="preserve">
-    <value>UWP</value>
+  <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
+    <value>Проверяется наличие обновлений…</value>
+    <comment>Notification message for Sync Status: CheckingForUpdates</comment>
   </data>
-  <data name="ValidatorHasActivationServiceBeforeIdentityLink" xml:space="preserve">
-    <value>{0}update-activationservice-for-identity.md</value>
-    <comment>Has ActivationService before Identity link documentation</comment>
+  <data name="NotificationSyncStatus_Updated" xml:space="preserve">
+    <value>Шаблоны обновлены.</value>
+    <comment>Notification message for Sync Status: Updated</comment>
   </data>
-  <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
-    <value>Сведения об обновлении см. в документации.</value>
-    <comment>Has ActivationService before Identity link documentation message</comment>
+  <data name="AccessibilityNotificationPanel" xml:space="preserve">
+    <value>Панель уведомлений</value>
+    <comment> Notification panel label to accessibility</comment>
   </data>
-  <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
-    <value>Расширение Template Studio изменило службу ActivationService так, чтобы она могла включать возможности Identity.</value>
-    <comment>Has ActivationService before Identity error message</comment>
+  <data name="AccessibilityEditPageItem" xml:space="preserve">
+    <value>Имя страницы</value>
+    <comment>Edit page label to accessibility</comment>
+  </data>
+  <data name="AccessibilityNavigationMenu" xml:space="preserve">
+    <value>Меню навигации</value>
+    <comment>Navigation menu label</comment>
+  </data>
+  <data name="AccessibilityProjectTypesList" xml:space="preserve">
+    <value>Типы проектов</value>
+    <comment>Project types list label to accessibility</comment>
+  </data>
+  <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
+    <value>Управление последовательными потоками</value>
+    <comment>Sequential flow control label to accessibility</comment>
+  </data>
+  <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
+    <value>Выбранные пользователем страницы</value>
+    <comment>User selection page list to accessibility</comment>
+  </data>
+  <data name="AccessibilityDesignPatternList" xml:space="preserve">
+    <value>Шаблоны дизайна</value>
+    <comment>Design pattern list to accessibility</comment>
+  </data>
+  <data name="AccessibilityTemplatesList" xml:space="preserve">
+    <value>Список шаблонов</value>
+    <comment>Templates list label to accessibility</comment>
+  </data>
+  <data name="ExternalHyperlinkTooltipMessage" xml:space="preserve">
+    <value>Открыть в новой вкладке браузера</value>
+    <comment>External hyperlink tooltip message</comment>
+  </data>
+  <data name="AccessibilityCodeViewerControl" xml:space="preserve">
+    <value>Средство просмотра кода</value>
+    <comment>Code viewer label to accessibility</comment>
+  </data>
+  <data name="AccessibilityNewItemFileIcon" xml:space="preserve">
+    <value>Значок файла для нового элемента</value>
+    <comment>New item file icon label to accessibility</comment>
+  </data>
+  <data name="AccessibilityErrorDialogDescriptionTextboxName" xml:space="preserve">
+    <value>Текст описания ошибки</value>
+    <comment>Error dialog accessible name to description textbox</comment>
+  </data>
+  <data name="ReorderPageHelpText" xml:space="preserve">
+    <value>Используйте клавиши CTRL+СТРЕЛКА ВВЕРХ или CTRL+СТРЕЛКА ВНИЗ для изменения порядка страниц</value>
+    <comment>Reorder selected user pages message in accessibility help text</comment>
+  </data>
+  <data name="ButtonDetailsHelpText" xml:space="preserve">
+    <value>Сведения {0}</value>
+    <comment>Button details help text. {0}: name of template</comment>
+  </data>
+  <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
+    <value>Нажмите клавишу ВВОД, чтобы добавить {0}.</value>
+    <comment>Help text to add template item. {0}: name of template</comment>
+  </data>
+  <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
+    <value>Элемент управления HamburgerMenu устарел. Теперь Windows Template Studio поддерживает NavigationView. </value>
+    <comment>Has hamburger menu validation error message</comment>
+  </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Теперь Windows Template Studio использует горизонтальное представление NavigationView в проектах сводки. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
+    <value>Теперь Windows Template Studio использует NavigationView из библиотеки пользовательского интерфейса Windows.</value>
+    <comment>Has old navigation view validation error message</comment>
+  </data>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>Средство композиции</value>
+  </data>
+  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
+    <value>Выбор платформы</value>
+    <comment>Project configuration window select platform title</comment>
+  </data>
+  <data name="TemplateGroup_Analytics" xml:space="preserve">
+    <value>Аналитика</value>
+    <comment>Group header for analytics templates</comment>
+  </data>
+  <data name="NoContentPanelMessage" xml:space="preserve">
+    <value>Содержимое недоступно.</value>
+    <comment>Message in no content panel</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
     <value>{0}UWP/projectTypes/updatetonavigationview.md</value>
@@ -874,9 +664,80 @@
     <value>Сведения об обновлении см. в документации.</value>
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
-  <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
-    <value>Элемент управления HamburgerMenu устарел. Теперь Windows Template Studio поддерживает NavigationView. </value>
-    <comment>Has hamburger menu validation error message</comment>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>Сведения об обновлении см. в документации.</value>
+    <comment>Has pivot validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetowinuinavigationview.md</value>
+    <comment>Has old navigation view validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
+    <value>Сведения об обновлении см. в документации.</value>
+    <comment>Has old navigation view validation link documentation message</comment>
+  </data>
+  <data name="BreakingChanges" xml:space="preserve">
+    <value>Критические изменения</value>
+    <comment>Breaking changes title</comment>
+  </data>
+  <data name="BreakingChangesDialogMessage" xml:space="preserve">
+    <value>Обнаружена несовместимость между проектом и последней версией шаблонов. Ознакомьтесь с изменениями:</value>
+    <comment>Breaking change window dialog message description</comment>
+  </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>Не удалось задать конфигурацию решения по умолчанию</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>Имя не может заканчиваться словом "Page", так как оно будет добавлено автоматически. [Дополнительные сведения об именовании.]({0}naming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>Слово "Page" будет добавлено в конец указанного имени. [Дополнительные сведения об именовании.]({0}naming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
+    <value>Мы изменили реализацию MVVMLight ViewModelLocator, чтобы она поддерживала MultiView в MVVMLight. </value>
+    <comment>Has old MvvmLight Locator error message</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
+    <value>{0}UWP/frameworks/updatemvvmlightlocator.md</value>
+    <comment>Has old MvvmLight Locator link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
+    <value>Сведения об обновлении см. в документации.</value>
+    <comment>Has old MvvmLight Locator link documentation message</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>Не удалось добавить некоторые пакеты NuGet в проект {0}. Это могло быть вызвано тем, что вы были вне сети. 
+Проверьте следующий список пакетов, необходимых для кода вашего проекта, и вручную добавьте недостающие пакеты: 
+
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Install-Package -Id {0} -Version {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
+  <data name="StatusAddingItem" xml:space="preserve">
+    <value>{0} добавляется в проект…</value>
+    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  </data>
+  <data name="StatusAddingNuget" xml:space="preserve">
+    <value>Добавление в проект пакета NuGet {0}…</value>
+    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  </data>
+  <data name="StatusAddingProject" xml:space="preserve">
+    <value>Добавление в решение проекта {0}…</value>
+    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="StatusAddingProjectReferences" xml:space="preserve">
+    <value>Добавление ссылок между проектами…</value>
+    <comment>Status bar message for adding project references</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
     <value>{0}updatetomultiproject.md</value>
@@ -890,48 +751,103 @@
     <value>Template Studio теперь добавляет базовый проект. </value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
-    <value>{0}UWP/frameworks/updatemvvmlightlocator.md</value>
-    <comment>Has old MvvmLight Locator link documentation</comment>
+  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
+    <value>Вы не можете удалить **{0}**, потому что это необходимо для выбранного типа проекта.</value>
+    <comment>Remove error message: Template is read only</comment>
   </data>
-  <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
+  <data name="TemplateDetailsLayout" xml:space="preserve">
+    <value>Включает:</value>
+    <comment>Template details: Includes</comment>
+  </data>
+  <data name="TemplateDetailsFrameworks" xml:space="preserve">
+    <value>Фреймворк:</value>
+    <comment>Template details: Frameworks</comment>
+  </data>
+  <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
+    <value>{0} (необязательно)</value>
+    <comment>The include is optional</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
+    <value>Сообщить о проблеме</value>
+    <comment>Project details about section report lssue link</comment>
+  </data>
+  <data name="TemplateGroup_Identity" xml:space="preserve">
+    <value>Identity (выберите одно)</value>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
+    <value>Расширение Template Studio изменило службу ActivationService так, чтобы она могла включать возможности Identity.</value>
+    <comment>Has ActivationService before Identity error message</comment>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityLink" xml:space="preserve">
+    <value>{0}update-activationservice-for-identity.md</value>
+    <comment>Has ActivationService before Identity link documentation</comment>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Сведения об обновлении см. в документации.</value>
-    <comment>Has old MvvmLight Locator link documentation message</comment>
+    <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
-  <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
-    <value>Мы изменили реализацию MVVMLight ViewModelLocator, чтобы она поддерживала MultiView в MVVMLight. </value>
-    <comment>Has old MvvmLight Locator error message</comment>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>Данные</value>
+    <comment>Group header for Data templates</comment>
   </data>
-  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
-    <value>{0}UWP/projectTypes/updatetowinuinavigationview.md</value>
-    <comment>Has old navigation view validation link documentation</comment>
+  <data name="TemplateGroup_Tools" xml:space="preserve">
+    <value>Инструменты</value>
+    <comment>Group header for 'Tools' templates</comment>
   </data>
-  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
-    <value>Сведения об обновлении см. в документации.</value>
-    <comment>Has old navigation view validation link documentation message</comment>
+  <data name="NewItemTitleService" xml:space="preserve">
+    <value>Новая служба</value>
+    <comment>New item: new service title</comment>
   </data>
-  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
-    <value>Теперь Windows Template Studio использует NavigationView из библиотеки Windows UI.</value>
-    <comment>Has old navigation view validation error message</comment>
+  <data name="NewItemTitleTesting" xml:space="preserve">
+    <value>Новый проект тестирования</value>
+    <comment>New item: new testing project title</comment>
   </data>
-  <data name="ValidatorHasPivotLink" xml:space="preserve">
-    <value>{0}UWP/projectTypes/updatetohorizontalnavview.md</value>
-    <comment>Has pivot validation link documentation</comment>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>Вы не можете добавить **{0}**, так как для этого сначала необходимо добавить один из следующих шаблонов: {1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
   </data>
-  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
-    <value>Сведения об обновлении см. в документации.</value>
-    <comment>Has pivot validation link documentation message</comment>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>Невозможно удалить **{0}**, так как он необходим для: {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
   </data>
-  <data name="ValidatorHasPivotMessage" xml:space="preserve">
-    <value>Теперь Windows Template Studio использует горизонтальное представление NavigationView в проектах сводки. </value>
-    <comment>Has pivot validation error message</comment>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>или</value>
   </data>
-  <data name="WindowsTemplateStudio" xml:space="preserve">
-    <value>Template Studio</value>
-    <comment>Windows template studio label</comment>
+  <data name="TemplateDetailsRequirements" xml:space="preserve">
+    <value>Требования:</value>
   </data>
-  <data name="WinUI" xml:space="preserve">
-    <value>Windows UI</value>
+  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
+    <value>Вы не можете добавить **{0}**, так как следующие шаблоны не совместимы: {1}.</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
+  </data>
+  <data name="TemplateDetailsExclusions" xml:space="preserve">
+    <value>Исключения:</value>
+  </data>
+  <data name="NotificationValidationError_Regex" xml:space="preserve">
+    <value>Проверка RegEx {0} не пройдена.</value>
+    <comment>Validation error message: RegEx</comment>
+  </data>
+  <data name="ErrorAddingItemsToProject" xml:space="preserve">
+    <value>Ошибка при добавлении элементов в проект {0}</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorAddingProject" xml:space="preserve">
+    <value>Ошибка при добавлении проекта {0}</value>
+    <comment>Error message for adding projects</comment>
+  </data>
+  <data name="ErrorAddingReferencesBetweenProjects" xml:space="preserve">
+    <value>Ошибка при добавлении ссылок между проектами</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorAddingSdksToProject" xml:space="preserve">
+    <value>Ошибка при добавлении sdk в проект {0}.</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="NotificationMissingVersions" xml:space="preserve">
+    <value>Следующие версии отсутствуют, пожалуйста, установите их и перезапустить Visual Studio: {0}</value>
+  </data>
+  <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
+    <value>Необходимые Windows Sdk:</value>
   </data>
   <data name="WorkloadDisplayNameManagedDesktop" xml:space="preserve">
     <value>Разработка настольных компьютеров .NET</value>
@@ -945,8 +861,80 @@
   <data name="WorkloadDisplayNameUniversal" xml:space="preserve">
     <value>Разработка универсальной платформы Windows</value>
   </data>
+  <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
+    <value>Необходима более поздняя версия</value>
+  </data>
+  <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
+    <value>{0} проекта требуется Visual Studio 2019 Версия {1} или выше.</value>
+    <comment>Error message for Invalid VS Version</comment>
+  </data>
+  <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
+    <value>Отсутствует рабочая нагрузка</value>
+  </data>
+  <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
+    <value>Дополнительные сведения</value>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>Необходимо установить следующие рабочие нагрузки для создания проекта {0}: {1} </value>
+  </data>
+  <data name="UWP" xml:space="preserve">
+    <value>UWP</value>
+  </data>
   <data name="WPF" xml:space="preserve">
     <value>WPF (.NET Core)</value>
+  </data>
+  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
+    <value>Необходимые рабочие нагрузки / компоненты Visual Studio:</value>
+  </data>
+  <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
+    <value>Этот элемент в настоящее время недоступен из-за отсутствия рабочих нагрузок / компонентов Visual Studio.</value>
+  </data>
+  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
+    <value>Минимальная базовая версия .NET:</value>
+  </data>
+  <data name="ErrorInvalidRequirementType" xml:space="preserve">
+    <value>Тип недействительных требований {0}</value>
+  </data>
+  <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
+    <value>Новое приложение WinUI 3 Desktop</value>
+  </data>
+  <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
+    <value>Новое приложение WinUI 3 UWP</value>
+  </data>
+  <data name="WinUI" xml:space="preserve">
+    <value>Windows UI</value>
+  </data>
+  <data name="DeprecatedMessage" xml:space="preserve">
+    <value>Устаревшие</value>
+    <comment>Text used to indicate a deprecated option in the wizard</comment>
+  </data>
+  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
+    <value>Название проекта не соответствует названию папки проекта. Пожалуйста, отрегулируйте, чтобы обеспечить правильное поколение.</value>
+  </data>
+  <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
+    <value>Не смог открыть обзор проекта.</value>
+    <comment>Error message for unable to open project overview dialog</comment>
+  </data>
+  <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
+    <value>Выберите AppModel</value>
+  </data>
+  <data name="ButtonMaximize" xml:space="preserve">
+    <value>максимизировать</value>
+  </data>
+  <data name="ButtonRestore" xml:space="preserve">
+    <value>восстанавливать</value>
+  </data>
+  <data name="TemplateStudioForUwp" xml:space="preserve">
+    <value>Template Studio для UWP</value>
+  </data>
+  <data name="TemplateStudioForWpf" xml:space="preserve">
+    <value>Template Studio для WPF</value>
+  </data>
+  <data name="ErrorFailedToGenerateProjectFromTemplates" xml:space="preserve">
+    <value>Исключение при создании проекта</value>
+  </data>
+  <data name="ErrorUnableToReplaceTempProject" xml:space="preserve">
+    <value>Не удается удалить временный проект-заполнитель во время создания.</value>
   </data>
   <data name="AdditionalMessageString" xml:space="preserve">
     <value>Дополнительное сообщение</value>
@@ -968,7 +956,7 @@
     <value>Срок действия текущего содержимого</value>
   </data>
   <data name="ErrorCreatingFolder" xml:space="preserve">
-    <value>Error creating folder '{0}': {1}</value>
+    <value>Ошибка при создании папки "{0}": {1}</value>
     <comment>{0} Name of the folder, {1} exception message</comment>
   </data>
   <data name="ErrorDependencyCircularReference" xml:space="preserve">
@@ -984,7 +972,7 @@
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
   <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>Шаблон зависимостей {0} не найден для framework {1} и платформы {2}.</value>
+    <value>Шаблон зависимостей {0} не найден для фреймворка {1} и платформы {2}.</value>
     <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
   </data>
   <data name="ErrorDependencyType" xml:space="preserve">
@@ -1001,7 +989,7 @@
     <value>Шаблон исключения {0} определяется как исключение и требование для шаблона {1}.</value>
   </data>
   <data name="ErrorExclusionNotFound" xml:space="preserve">
-    <value>Шаблон исключения {0} не найден для framework {1} и платформы {2}.</value>
+    <value>Шаблон исключения {0} не найден для фреймворка {1} и платформы {2}.</value>
     <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
   </data>
   <data name="ErrorExclusionRightClick" xml:space="preserve">
@@ -1012,7 +1000,7 @@
     <comment>Invalid exclusion exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="ErrorExtraWhitespacesInMultiValues" xml:space="preserve">
-    <value>Multivalue field: '{0}' contains trailing or leading whitespaces.</value>
+    <value>Поле с несколькими значениями: "{0}" содержит пробелы в начале или в конце.</value>
     <comment>{0}: multivalue string</comment>
   </data>
   <data name="ErrorGenerating" xml:space="preserve">
@@ -1020,7 +1008,7 @@
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>Шаблон макета {0} не найден для framework {1} и платформы {2}.</value>
+    <value>Шаблон макета {0} не найден для фреймворка {1} и платформы {2}.</value>
     <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
@@ -1030,8 +1018,15 @@
   <data name="ErrorNamingValidationFailed" xml:space="preserve">
     <value>Имя шаблона {0} недопустимо. Ошибки: {1}</value>
   </data>
+  <data name="ErrorProjectAlreadyExists" xml:space="preserve">
+    <value>"{0}" уже существует в папке {1}, выберите другое имя проекта.</value>
+  </data>
   <data name="ErrorProjectNameValidationFailed" xml:space="preserve">
     <value>Имя проекта {0} недопустимо. Ошибки: {1}</value>
+  </data>
+  <data name="ErrorProjectReservedName" xml:space="preserve">
+    <value>"{0}" является зарезервированным именем. Выберите другое имя и попробуйте еще раз.</value>
+    <comment>Message box text for project reserved names.</comment>
   </data>
   <data name="ErrorProjectStartsWith" xml:space="preserve">
     <value>Имя "{0}" недопустимо. Имя проекта не может начинаться с "{1}".</value>
@@ -1050,7 +1045,7 @@
     <comment>Invalid requirement exception message. {0}:Requirement Template id </comment>
   </data>
   <data name="ErrorRequirementNotFound" xml:space="preserve">
-    <value>Необходимый шаблон {0} не найден для framework {1} и платформы {2}.</value>
+    <value>Необходимый шаблон {0} не найден для фреймворка {1} и платформы {2}.</value>
     <comment>Required Template not found exception message. {0}:Requirement Template id, {1}: framework name, {2}: platform</comment>
   </data>
   <data name="ErrorRequirementRightClick" xml:space="preserve">
@@ -1212,37 +1207,19 @@
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>Открытие созданных файлов…</value>
   </data>
-  <data name="String" xml:space="preserve">
-    <value>### Изменения, требуемые в файле "{0}":</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value>{1}</value>
-  </data>
-  <data name="String2" xml:space="preserve">
-    <value>### Изменения в файле "{0}":</value>
-  </data>
-  <data name="String3" xml:space="preserve">
-    <value>Не удалось внедрить следующие изменения: {2}</value>
-  </data>
-  <data name="String4" xml:space="preserve">
-    <value>### Изменения в файле "{0}":</value>
-  </data>
-  <data name="String5" xml:space="preserve">
-    <value>Просмотрите конечный результат: {2}</value>
-  </data>
   <data name="SyncInstructionsFileName" xml:space="preserve">
     <value>Действия для включения нового элемента generation.md</value>
   </data>
   <data name="SyncInstructionsSectionConflictingFiles" xml:space="preserve">
     <value>## Конфликтующие файлы:
-Эти файлы уже существуют в проекте, они были созданы в рамках нового элемента.
-Сравните их и убедитесь, что все стоит на своих местах:
+Эти файлы уже существуют в вашем проекте и также были созданы как часть нового элемента.
+Сравните и убедитесь, что все находится на своем месте:
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
   <data name="SyncInstructionsSectionModifiedFiles" xml:space="preserve">
     <value>## Измененные файлы:
-Чтобы интегрировать новый элемент в существующий проект, примените следующие изменения.
+Чтобы интегрировать новый элемент с существующим проектом, внесите следующие изменения:
 {0}</value>
     <comment>{0}: List of modified files (applying SyncInstructionsTemplateModifiedFiles)</comment>
   </data>
@@ -1253,16 +1230,19 @@
     <comment>{0}: List of new files</comment>
   </data>
   <data name="SyncInstructionsSectionUnchangedFiles" xml:space="preserve">
-    <value>## Неизмененные файлы:
-Эти файлы уже существуют в проекте, действия не требуются:
+    <value>## Файлы без изменений:
+Эти файлы уже существуют в проекте, никаких действий не требуется:
 {0}</value>
     <comment>{0}: List of unchanged files</comment>
   </data>
   <data name="SyncInstructionsTemplate" xml:space="preserve">
-    <value>*Рекомендуемое средство просмотра Markdown: [Расширение VS редактора Markdown](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
-# Шаги для включения нового элемента generation.md
-Следуйте инструкциям, чтобы включить новый элемент в проект.
-Все файлы, на которые указывает ссылка, можно найти во временной папке создания: {0}
+    <value>*Рекомендуемое средство просмотра Markdown: [расширение VS редактора Markdown](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)*
+
+# Действия по включению создания нового элемента
+Следуйте инструкциям, чтобы включить новый элемент в проект:
+
+Все файлы, на которые есть ссылки, можно найти во временной папке создания: {0}
+
 {1}
 {2}
 {3}
@@ -1274,7 +1254,11 @@
 {4}: Unchanged files (SyncInstructionsSectionUnchangedFiles)</comment>
   </data>
   <data name="SyncInstructionsTemplateModifiedFile" xml:space="preserve">
-    <value />
+    <value>
+### Изменения, необходимые в файле "{0}":
+{1}
+Просмотреть изменения в: {2}</value>
+    <comment>{0}:FileName, {1}: Postaction Code, {2}:Preview</comment>
   </data>
   <data name="SyncSummaryFileName" xml:space="preserve">
     <value>GenerationSummary.md</value>
@@ -1284,14 +1268,14 @@
   </data>
   <data name="SyncSummarySectionConflictingFiles" xml:space="preserve">
     <value>## Конфликтующие файлы:
-Эти файлы уже существуют в проекте, они были созданы в рамках нового элемента.
-Сравните их и убедитесь, что все стоит на своих местах.
+Эти файлы уже существуют в вашем проекте и также были созданы как часть нового элемента.
+Сравните и убедитесь, что все находится на своем месте.
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
-    <value>## Неудавшиеся изменения в файлах:
-Сбой объединений в следующих файлах:
+    <value>## Сбой изменения файлов:
+Не удалось объединить следующие файлы:
 {0}</value>
   </data>
   <data name="SyncSummarySectionModifiedFiles" xml:space="preserve">
@@ -1302,7 +1286,7 @@
   </data>
   <data name="SyncSummarySectionNewFiles" xml:space="preserve">
     <value>## Новые файлы:
-Эти файлы были добавлены в проект.
+Эти файлы добавлены в проект.
 {0}</value>
     <comment>{0}: List of new files</comment>
   </data>
@@ -1310,25 +1294,37 @@
     <value>Temp</value>
   </data>
   <data name="SyncSummaryTemplate" xml:space="preserve">
-    <value>*Рекомендуемое средство просмотра Markdown: [Расширение VS редактора Markdown](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
-# Сводка создания
-Следующие изменения были встроены в проект:
-Файлы в рамках создания можно найти во временной папке создания: {0}
+    <value>*Рекомендуемое средство просмотра Markdown: [Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)*
+
+# Сводка по созданию
+В ваш проект были внесены следующие изменения:
+
+Файлы создания можно найти во временной папке создания: {0}
+
 {1}
-{2}
-{3}
-{4}</value>
+{2}</value>
     <comment>{0}: Temp Generation Folder, 
-{1}: New Files, 
-{2}: Modified Files, 
-{3}: Failed Merge Files, 
-{4}: Conflicting Files</comment>
+{1}: Failed Merge Files, 
+{2}: Conflicting Files</comment>
   </data>
   <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
-    <value />
+    <value>
+### изменения в файле "{0}":
+Не удалось интегрировать следующие изменения: {2}
+{1}</value>
+    <comment>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</comment>
   </data>
   <data name="SyncSummaryTemplateModifiedFile" xml:space="preserve">
-    <value />
+    <value>
+### Изменения в файле "{0}":
+См. окончательный результат: {2}
+
+{1}</value>
+    <comment>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</comment>
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
     <value>Недопустимые цифровые подписи в "{0}". Содержимое было незаконно изменено, либо сертификат отсутствует, недопустим или запрещен.  Не удалось продолжить.</value>
@@ -1379,7 +1375,7 @@
     <value>Локальный путь к шаблонам пуст.</value>
   </data>
   <data name="TemplatesSynchronizationError" xml:space="preserve">
-    <value>Error synchronizing templates.</value>
+    <value>Ошибка при синхронизации шаблонов.</value>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
     <value>Произошла ошибка при получении содержимого.</value>
@@ -1408,17 +1404,11 @@
   <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
     <value>Произошла ошибка при чтении файла блокировки экземпляра.</value>
   </data>
-  <data name="{1}" xml:space="preserve">
-    <value>{0}:FileName, 
-{1}: Postaction Code,
-{2}:MergeResult,</value>
+  <data name="TemplateStudioForWinUI" xml:space="preserve">
+    <value>Template Studio для WinUI</value>
   </data>
-  <data name="{1}1" xml:space="preserve">
-    <value>{0}:FileName, 
-{1}: Postaction Code,
-{2}:MergeResult,</value>
-  </data>
-  <data name="Предварительный просмотр изменений в: {2}" xml:space="preserve">
-    <value>{0}:FileName, {1}: Postaction Code, {2}:Preview</value>
+  <data name="TemplateGroup_Deployment" xml:space="preserve">
+    <value>Развертывание</value>
+    <comment>Group header for Deployment</comment>
   </data>
 </root>

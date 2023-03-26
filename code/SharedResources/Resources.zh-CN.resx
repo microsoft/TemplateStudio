@@ -117,82 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddTestingAction" xml:space="preserve">
-    <value>添加测试</value>
-  </data>
-  <data name="AddServiceAction" xml:space="preserve">
-    <value>添加服务</value>
-  </data>
-  <data name="AddFeatureAction" xml:space="preserve">
-    <value>添加功能</value>
-  </data>
-  <data name="AddPageAction" xml:space="preserve">
-    <value>添加页面</value>
-  </data>
-  <data name="AddProjectAction" xml:space="preserve">
-    <value>添加项目</value>
-  </data>
-  <data name="UIMessageBoxTitlePattern" xml:space="preserve">
-    <value>Template Studio:{0}</value>
-    <comment>Generic MessageBox Title</comment>
-  </data>
-  <data name="UIStatusMsgPattern" xml:space="preserve">
-    <value>Template Studio:{0}</value>
-  </data>
-  <data name="UnexpectedExPattern" xml:space="preserve">
-    <value>意外的异常。\n{0}</value>
-  </data>
-  <data name="AccessibilityCodeViewerControl" xml:space="preserve">
-    <value>代码查看器</value>
-    <comment>Code viewer label to accessibility</comment>
-  </data>
-  <data name="AccessibilityDesignPatternList" xml:space="preserve">
-    <value>Design patterns</value>
-    <comment>Design pattern list to accessibility</comment>
-  </data>
-  <data name="AccessibilityEditPageItem" xml:space="preserve">
-    <value>页面名称</value>
-    <comment>Edit page label to accessibility</comment>
-  </data>
-  <data name="AccessibilityErrorDialogDescriptionTextboxName" xml:space="preserve">
-    <value>错误文本描述</value>
-    <comment>Error dialog accessible name to description textbox</comment>
-  </data>
-  <data name="AccessibilityNavigationMenu" xml:space="preserve">
-    <value>导航菜单</value>
-    <comment>Navigation menu label</comment>
-  </data>
-  <data name="AccessibilityNewItemFileIcon" xml:space="preserve">
-    <value>新的项目文件图标</value>
-    <comment>New item file icon label to accessibility</comment>
-  </data>
-  <data name="AccessibilityNotificationPanel" xml:space="preserve">
-    <value>通知面板</value>
-    <comment> Notification panel label to accessibility</comment>
-  </data>
-  <data name="AccessibilityProjectTypesList" xml:space="preserve">
-    <value>项目类型</value>
-    <comment>Project types list label to accessibility</comment>
-  </data>
-  <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
-    <value>顺序流控制</value>
-    <comment>Sequential flow control label to accessibility</comment>
-  </data>
-  <data name="AccessibilityTemplatesList" xml:space="preserve">
-    <value>模板列表</value>
-    <comment>Templates list label to accessibility</comment>
-  </data>
-  <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
-    <value>用户选择页面</value>
-    <comment>User selection page list to accessibility</comment>
-  </data>
   <data name="AddFeaturesTitle" xml:space="preserve">
     <value>添加功能</value>
     <comment>AddFeatures title on AddFeaturesPage</comment>
-  </data>
-  <data name="AddPagesTitle" xml:space="preserve">
-    <value>添加页面</value>
-    <comment>Add pages title on AddPagesPage</comment>
   </data>
   <data name="AddServiceTitle" xml:space="preserve">
     <value>添加服务</value>
@@ -202,13 +129,9 @@
     <value>添加测试</value>
     <comment>AddTesting title on AddTestingPage</comment>
   </data>
-  <data name="BreakingChanges" xml:space="preserve">
-    <value>重大更改</value>
-    <comment>Breaking changes title</comment>
-  </data>
-  <data name="BreakingChangesDialogMessage" xml:space="preserve">
-    <value>我们检测到你的项目与之前模板版本不兼容。请检查更改:</value>
-    <comment>Breaking change window dialog message description</comment>
+  <data name="AddPagesTitle" xml:space="preserve">
+    <value>添加页面</value>
+    <comment>Add pages title on AddPagesPage</comment>
   </data>
   <data name="ButtonBack" xml:space="preserve">
     <value>上一步</value>
@@ -222,23 +145,9 @@
     <value>关闭</value>
     <comment>Notification button close</comment>
   </data>
-  <data name="ButtonCompositionTool" xml:space="preserve">
-    <value>Composition 工具</value>
-  </data>
   <data name="ButtonCreate" xml:space="preserve">
     <value>创建</value>
     <comment>MainPage Create button</comment>
-  </data>
-  <data name="ButtonDetails" xml:space="preserve">
-    <value>详细信息</value>
-    <comment>Details button</comment>
-  </data>
-  <data name="ButtonDetailsHelpText" xml:space="preserve">
-    <value>{0} 的详细信息</value>
-    <comment>Button details help text. {0}: name of template</comment>
-  </data>
-  <data name="ButtonMaximize" xml:space="preserve">
-    <value>最大化</value>
   </data>
   <data name="ButtonNext" xml:space="preserve">
     <value>下一步</value>
@@ -259,9 +168,6 @@
   <data name="ButtonRemove" xml:space="preserve">
     <value>删除</value>
     <comment>Remove template button</comment>
-  </data>
-  <data name="ButtonRestore" xml:space="preserve">
-    <value>恢复</value>
   </data>
   <data name="ButtonYes" xml:space="preserve">
     <value>是</value>
@@ -319,30 +225,6 @@
     <value>我们无法引入所需的修改。如果需要，你可以在完成后访问生成的文件。</value>
     <comment>Changes summary description for: Warning files</comment>
   </data>
-  <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
-    <value>更多信息</value>
-    <comment>Changes summary more info link</comment>
-  </data>
-  <data name="DeprecatedMessage" xml:space="preserve">
-    <value>不推荐使用</value>
-    <comment>Text used to indicate a deprecated option in the wizard</comment>
-  </data>
-  <data name="ErrorAddingItemsToProject" xml:space="preserve">
-    <value>向项目 {0} 添加项时出错</value>
-    <comment>Error message for adding items to project</comment>
-  </data>
-  <data name="ErrorAddingProject" xml:space="preserve">
-    <value>添加 {0} 项目时出错</value>
-    <comment>Error message for adding projects</comment>
-  </data>
-  <data name="ErrorAddingReferencesBetweenProjects" xml:space="preserve">
-    <value>在项目之间添加引用时出错</value>
-    <comment>Error message for adding items to project</comment>
-  </data>
-  <data name="ErrorAddingSdksToProject" xml:space="preserve">
-    <value>将 sdks 添加到项目 {0} 时出错。</value>
-    <comment>Error message for adding items to project</comment>
-  </data>
   <data name="ErrorDialogShowDetails" xml:space="preserve">
     <value>显示详细信息</value>
     <comment>Error dialog show details link button</comment>
@@ -351,81 +233,28 @@
     <value>出现错误 :-(</value>
     <comment>Error dialog title</comment>
   </data>
-  <data name="ErrorInvalidRequirementType" xml:space="preserve">
-    <value>无效要求类型 {0}</value>
-  </data>
-  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
-    <value>Install-Package -ID {0} -Version {1}</value>
-    <comment>{0}: package id, {1}: version</comment>
-  </data>
-  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
-    <value>一些 NuGet 程序包无法添加到项目 {0} 中。离线时可能会出现这种情况。
-请检查下面列出的项目代码所需的程序包，并手动添加缺少的程序包:
-{1}</value>
-    <comment>{0}: projectPath, {1}: package Info</comment>
-  </data>
-  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
-    <value>无法找到项目 {0}</value>
-    <comment>{0}: projectPath</comment>
-  </data>
-  <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
-    <value>无法打开项目概述。</value>
-    <comment>Error message for unable to open project overview dialog</comment>
-  </data>
-  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
-    <value>无法设置默认解决方案配置</value>
-    <comment>Error message for unable to set default solution configuration.</comment>
-  </data>
-  <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
-    <value>折叠解决方案树时出错。例如:</value>
-    <comment>Error message for VS GenShell collapse solution Items</comment>
-  </data>
-  <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
-    <value>显示状态消息时出错。例如:</value>
-    <comment>Error message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="ExternalHyperlinkTooltipMessage" xml:space="preserve">
-    <value>在新的浏览器标签页中打开</value>
-    <comment>External hyperlink tooltip message</comment>
+  <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
+    <value>更多信息</value>
+    <comment>Changes summary more info link</comment>
   </data>
   <data name="FrameworkTitle" xml:space="preserve">
     <value>选择 design pattern</value>
     <comment>Title on FrameworkPage</comment>
   </data>
-  <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
-    <value>按 Enter 以添加 {0}</value>
-    <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
-  </data>
-  <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
-    <value>需要更高版本</value>
-  </data>
-  <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
-    <value>{0}项目创建需要视觉工作室 2019 版本{1}或更高。</value>
-    <comment>Error message for Invalid VS Version</comment>
-  </data>
-  <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
-    <value>缺失工作负载</value>
-  </data>
-  <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
-    <value>更多信息</value>
-  </data>
-  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>您需要安装以下工作负载才能创建一个{0}项目：{1}</value>
-  </data>
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
-    <value>{0} 已是项目的一部分。请选择其他功能。</value>
+    <value>{0} 已是项目的一部分。</value>
     <comment>Feature already added {0}: Feature name</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
-    <value>{0} 已是项目的一部分。请选择其他页面。</value>
+    <value>名为{0}的页面已是项目的一部分。输入新名称或选择其他页面。</value>
     <comment>Page already added {0}: Page name</comment>
   </data>
   <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} 已是项目的一部分。请选择其他服务。</value>
+    <value>{0} 已是项目的一部分。</value>
     <comment>Service already added {0}: Service name</comment>
   </data>
   <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} 已是项目的一部分。请选择其他测试项目。</value>
+    <value>{0} 已是项目的一部分。</value>
     <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
@@ -460,29 +289,9 @@
     <value>新页面</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewItemTitleService" xml:space="preserve">
-    <value>新服务</value>
-    <comment>New item: new service title</comment>
-  </data>
-  <data name="NewItemTitleTesting" xml:space="preserve">
-    <value>新测试项目</value>
-    <comment>New item: new testing project title</comment>
-  </data>
-  <data name="NewProjectStepDesignPattern" xml:space="preserve">
-    <value>Design pattern</value>
-    <comment>New project: Navigation step design pattern</comment>
-  </data>
   <data name="NewProjectStepFeatures" xml:space="preserve">
     <value>功能</value>
     <comment>New project: Navigation step features</comment>
-  </data>
-  <data name="NewProjectStepPages" xml:space="preserve">
-    <value>页面</value>
-    <comment>New project: Navigation step pages</comment>
-  </data>
-  <data name="NewProjectStepProjectType" xml:space="preserve">
-    <value>项目类型</value>
-    <comment>New project: Navigation step project type</comment>
   </data>
   <data name="NewProjectStepServices" xml:space="preserve">
     <value>服务</value>
@@ -492,46 +301,29 @@
     <value>测试</value>
     <comment>New project: Navigation step testing</comment>
   </data>
+  <data name="NewProjectStepProjectType" xml:space="preserve">
+    <value>项目类型</value>
+    <comment>New project: Navigation step project type</comment>
+  </data>
+  <data name="NewProjectStepPages" xml:space="preserve">
+    <value>页面</value>
+    <comment>New project: Navigation step pages</comment>
+  </data>
+  <data name="NewProjectStepDesignPattern" xml:space="preserve">
+    <value>设计模式</value>
+    <comment>New project: Navigation step design pattern</comment>
+  </data>
   <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>全新通用 Windows 平台应用</value>
     <comment>Wizard title on WizardShell page for UWP projects</comment>
-  </data>
-  <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>新的 WinUI 3 桌面应用程序</value>
-  </data>
-  <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>新的 WinUI 3 UWP 应用</value>
   </data>
   <data name="NewProjectTitleWPF" xml:space="preserve">
     <value>全新 WPF 应用</value>
     <comment>Wizard title on WizardShell page for WPF projects</comment>
   </data>
-  <data name="NoContentPanelMessage" xml:space="preserve">
-    <value>无可用内容。</value>
-    <comment>Message in no content panel</comment>
-  </data>
-  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
-    <value>无法添加 **{0}**，因为下列模板不兼容：{1}.</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
-    <value>无法添加 **{0}**，因为它要求先添加以下模板之一:{1}</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationMissingVersions" xml:space="preserve">
-    <value>缺少以下版本，请安装它们并重新启动 Visual Studio：{0}</value>
-  </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>无法删除 **{0}**，因为这些模板依赖于它:{1}</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
-    <value>无法删除 **{0}**，因为它对于所选项目类型是必需的。</value>
-    <comment>Remove error message: Template is read only</comment>
-  </data>
-  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
-    <value>无法删除 **{0}**，因为它是以下项所需的:{1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
     <value>刷新模板时出错。有关更多详细信息，请参阅输出窗口。</value>
@@ -540,10 +332,6 @@
   <data name="NotificationSyncStatus_Acquiring" xml:space="preserve">
     <value>有可用的新模板 (v{0})。正在下载... {1}%</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
-  </data>
-  <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
-    <value>正在检查更新...</value>
-    <comment>Notification message for Sync Status: CheckingForUpdates</comment>
   </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>下载模板 (v{0}) 时出错。我们将稍后重试。</value>
@@ -556,10 +344,6 @@
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
     <value>正在准备模板 (v{0})...{1}%</value>
     <comment>Notification message for Sync Status: Preparing, {0}:Version, {1}: Progress amount</comment>
-  </data>
-  <data name="NotificationSyncStatus_Updated" xml:space="preserve">
-    <value>模板已更新。</value>
-    <comment>Notification message for Sync Status: Updated</comment>
   </data>
   <data name="NotificationSyncStatus_Updating" xml:space="preserve">
     <value>正在刷新模板缓存...</value>
@@ -577,39 +361,17 @@
     <value>名称不能为空</value>
     <comment>Validation error message: Empty</comment>
   </data>
-  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
-    <value>名称不能以“Page”结尾，因为其会自动添加到名称中。[有关命名的详细信息。]({0}naming.md)</value>
-    <comment>Validation error message: Wrong Page Suffix</comment>
-  </data>
-  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
-    <value>项目名称与项目文件夹名称不匹配。请调整以确保正确生成。</value>
-  </data>
-  <data name="NotificationValidationError_Regex" xml:space="preserve">
-    <value>RegEx 验证 {0} 失败。</value>
-    <comment>Validation error message: RegEx</comment>
-  </data>
   <data name="NotificationValidationError_ReservedName" xml:space="preserve">
     <value>名称已保留</value>
     <comment>Validation error message: Reserved name</comment>
-  </data>
-  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
-    <value>请注意，“Page”将添加到指定名称的结尾。[有关命名的详细信息。]({0}naming.md)</value>
-    <comment>Validation error message: View Suffix</comment>
   </data>
   <data name="ProjectConfigurationDescriptionText" xml:space="preserve">
     <value>我们在 Package.appxmanifest 文件中未能找到项目配置元数据。能否请你在项目创建时提供所选的项目配置?</value>
     <comment>ProjectConfiguration view description</comment>
   </data>
-  <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
-    <value>选择应用模型</value>
-  </data>
   <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
     <value>选择 design pattern:</value>
     <comment>Project configuration window select framework title</comment>
-  </data>
-  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
-    <value>选择平台</value>
-    <comment>Project configuration window select platform title</comment>
   </data>
   <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
     <value>选择项目类型:</value>
@@ -618,10 +380,6 @@
   <data name="ProjectConfigurationTitleText" xml:space="preserve">
     <value>选择项目配置</value>
     <comment>Project configuration window title</comment>
-  </data>
-  <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
-    <value>报告问题</value>
-    <comment>Project details about section report lssue link</comment>
   </data>
   <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
     <value>Template Studio</value>
@@ -643,6 +401,14 @@
     <value>功能</value>
     <comment>Feature list header on project details</comment>
   </data>
+  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
+    <value>服务</value>
+    <comment>Services list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
+    <value>测试</value>
+    <comment>Testing list header on project details</comment>
+  </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
     <value>你已更改所选的 design pattern。你选择的页面和功能将会丢失。是否要继续?</value>
     <comment>Framework changed message</comment>
@@ -652,7 +418,7 @@
     <comment>Framework changed title</comment>
   </data>
   <data name="ProjectDetailsFrameworkSectionTitle" xml:space="preserve">
-    <value>Design pattern</value>
+    <value>设计模式</value>
     <comment>Framework combobox header on project details</comment>
   </data>
   <data name="ProjectDetailsLicensesSectionTitle" xml:space="preserve">
@@ -675,14 +441,6 @@
     <value>项目类型</value>
     <comment>Project type combobox header on project details</comment>
   </data>
-  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
-    <value>服务</value>
-    <comment>Services list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
-    <value>测试</value>
-    <comment>Testing list header on project details</comment>
-  </data>
   <data name="ProjectDetailsTitle" xml:space="preserve">
     <value>项目详细信息</value>
     <comment>Project details header on MainPage</comment>
@@ -691,36 +449,41 @@
     <value>选择项目类型</value>
     <comment>ProjectType Title on ProjectTypePage</comment>
   </data>
-  <data name="ReorderPageHelpText" xml:space="preserve">
-    <value>使用 Ctrl+ 向上键或 Ctrl+ 向下键来更改页面顺序</value>
-    <comment>Reorder selected user pages message in accessibility help text</comment>
+  <data name="TemplateDetailsAuthor" xml:space="preserve">
+    <value>作者:</value>
+    <comment>Template details: Autor</comment>
   </data>
-  <data name="SeparatorOr" xml:space="preserve">
-    <value>或</value>
+  <data name="TemplateDetailsDependencies" xml:space="preserve">
+    <value>依赖项:</value>
+    <comment>Template details: Dependencies</comment>
   </data>
-  <data name="StatusAddingItem" xml:space="preserve">
-    <value>正在向项目中添加 {0}...</value>
-    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  <data name="TemplateDetailsLicenses" xml:space="preserve">
+    <value>许可证:</value>
+    <comment>Template details: Licenses</comment>
   </data>
-  <data name="StatusAddingNuget" xml:space="preserve">
-    <value>正在向项目中添加 NuGet 程序包 {0}...</value>
-    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  <data name="TemplateDetailsVersion" xml:space="preserve">
+    <value>版本:</value>
+    <comment>Template details: Version</comment>
   </data>
-  <data name="StatusAddingProject" xml:space="preserve">
-    <value>正在向解决方案中添加项目 {0}...</value>
-    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  <data name="TemplateSelectionTitle" xml:space="preserve">
+    <value>选择你希望添加的模板</value>
+    <comment>Template selection title</comment>
   </data>
-  <data name="StatusAddingProjectReferences" xml:space="preserve">
-    <value>正在项目之间添加引用...</value>
-    <comment>Status bar message for adding project references</comment>
+  <data name="TermsAndConditionsText" xml:space="preserve">
+    <value>如果继续，则表示你同意许可部分中的所有许可条款。</value>
+    <comment>Licenses Terms and conditions text</comment>
   </data>
-  <data name="StatusBarCreatingProject" xml:space="preserve">
-    <value>正在创建 Template Studio 项目...</value>
-    <comment>Status bar message for solution wizard run finished</comment>
+  <data name="WindowsTemplateStudio" xml:space="preserve">
+    <value>Template Studio</value>
+    <comment>Windows template studio label</comment>
   </data>
   <data name="StatusBarGenerationFinished" xml:space="preserve">
     <value>生成已完成</value>
     <comment>Status bar message generation finished</comment>
+  </data>
+  <data name="StatusBarCreatingProject" xml:space="preserve">
+    <value>正在创建“{0}”项目...</value>
+    <comment>Status bar message for solution wizard run finished</comment>
   </data>
   <data name="StatusBarNewItemAddFeatureCancelled" xml:space="preserve">
     <value>已取消添加新功能</value>
@@ -754,63 +517,25 @@
     <value>已成功添加测试项目 {0}</value>
     <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
-  <data name="TemplateAdded" xml:space="preserve">
-    <value>已添加</value>
-    <comment>Template added label</comment>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>无法找到项目 {0}</value>
+    <comment>{0}: projectPath</comment>
   </data>
-  <data name="TemplateDetailsAuthor" xml:space="preserve">
-    <value>作者:</value>
-    <comment>Template details: Autor</comment>
+  <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
+    <value>折叠解决方案树时出错。例如:</value>
+    <comment>Error message for VS GenShell collapse solution Items</comment>
   </data>
-  <data name="TemplateDetailsDependencies" xml:space="preserve">
-    <value>依赖项:</value>
-    <comment>Template details: Dependencies</comment>
-  </data>
-  <data name="TemplateDetailsExclusions" xml:space="preserve">
-    <value>排除：</value>
-  </data>
-  <data name="TemplateDetailsFrameworks" xml:space="preserve">
-    <value>Framework:</value>
-    <comment>Template details: Frameworks</comment>
-  </data>
-  <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
-    <value>由于缺少 Visual Studio 工作负载/组件，此项当前不可用。</value>
-  </data>
-  <data name="TemplateDetailsLayout" xml:space="preserve">
-    <value>包括：</value>
-    <comment>Template details: Includes</comment>
-  </data>
-  <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
-    <value>{0}(可选)</value>
-    <comment>The include is optional</comment>
-  </data>
-  <data name="TemplateDetailsLicenses" xml:space="preserve">
-    <value>许可证:</value>
-    <comment>Template details: Licenses</comment>
-  </data>
-  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
-    <value>最小.NET 核心版本：</value>
-  </data>
-  <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
-    <value>所需的 Windows Sdks：</value>
-  </data>
-  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
-    <value>所需的 Visual Studio 工作负载/组件：</value>
-  </data>
-  <data name="TemplateDetailsRequirements" xml:space="preserve">
-    <value>要求：</value>
-  </data>
-  <data name="TemplateDetailsVersion" xml:space="preserve">
-    <value>版本:</value>
-    <comment>Template details: Version</comment>
-  </data>
-  <data name="TemplateGroup_Analytics" xml:space="preserve">
-    <value>分析</value>
-    <comment>Group header for analytics templates</comment>
+  <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
+    <value>显示状态消息时出错。例如:</value>
+    <comment>Error message for Vs GenShell show status bar message</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
     <value>应用程序启动</value>
     <comment>Group header for Application Launching templates</comment>
+  </data>
+  <data name="TemplateGroup_Packaging" xml:space="preserve">
+    <value>打包</value>
+    <comment>Group header for Packaging templates</comment>
   </data>
   <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
     <value>应用程序生命周期</value>
@@ -824,47 +549,112 @@
     <value>互联体验</value>
     <comment>Group header for Connected Experiences templates</comment>
   </data>
-  <data name="TemplateGroup_Data" xml:space="preserve">
-    <value>数据</value>
-    <comment>Group header for Data templates</comment>
-  </data>
-  <data name="TemplateGroup_Identity" xml:space="preserve">
-    <value>Identity(选择一项)</value>
-  </data>
-  <data name="TemplateGroup_Packaging" xml:space="preserve">
-    <value>打包</value>
-    <comment>Group header for Packaging templates</comment>
-  </data>
-  <data name="TemplateGroup_Tools" xml:space="preserve">
-    <value>工具</value>
-    <comment>Group header for 'Tools' templates</comment>
-  </data>
   <data name="TemplateGroup_UserInteraction" xml:space="preserve">
     <value>用户交互</value>
     <comment>Group header for user interaction templates</comment>
   </data>
-  <data name="TemplateSelectionTitle" xml:space="preserve">
-    <value>选择你希望添加的模板</value>
-    <comment>Template selection title</comment>
+  <data name="ButtonDetails" xml:space="preserve">
+    <value>详细信息</value>
+    <comment>Details button</comment>
   </data>
-  <data name="TermsAndConditionsText" xml:space="preserve">
-    <value>如果继续，则表示你同意许可部分中的所有许可条款。</value>
-    <comment>Licenses Terms and conditions text</comment>
+  <data name="TemplateAdded" xml:space="preserve">
+    <value>已添加</value>
+    <comment>Template added label</comment>
   </data>
-  <data name="UWP" xml:space="preserve">
-    <value>UWP</value>
+  <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
+    <value>正在检查更新...</value>
+    <comment>Notification message for Sync Status: CheckingForUpdates</comment>
   </data>
-  <data name="ValidatorHasActivationServiceBeforeIdentityLink" xml:space="preserve">
-    <value>{0}update-activationservice-for-identity.md</value>
-    <comment>Has ActivationService before Identity link documentation</comment>
+  <data name="NotificationSyncStatus_Updated" xml:space="preserve">
+    <value>模板已更新。</value>
+    <comment>Notification message for Sync Status: Updated</comment>
   </data>
-  <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
-    <value>请参阅文档进行更新。</value>
-    <comment>Has ActivationService before Identity link documentation message</comment>
+  <data name="AccessibilityNotificationPanel" xml:space="preserve">
+    <value>通知面板</value>
+    <comment> Notification panel label to accessibility</comment>
   </data>
-  <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
-    <value>Template Studio 已更改 ActivationService，以将 Identity 功能包括在内。</value>
-    <comment>Has ActivationService before Identity error message</comment>
+  <data name="AccessibilityEditPageItem" xml:space="preserve">
+    <value>页面名称</value>
+    <comment>Edit page label to accessibility</comment>
+  </data>
+  <data name="AccessibilityNavigationMenu" xml:space="preserve">
+    <value>导航菜单</value>
+    <comment>Navigation menu label</comment>
+  </data>
+  <data name="AccessibilityProjectTypesList" xml:space="preserve">
+    <value>项目类型</value>
+    <comment>Project types list label to accessibility</comment>
+  </data>
+  <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
+    <value>顺序流控制</value>
+    <comment>Sequential flow control label to accessibility</comment>
+  </data>
+  <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
+    <value>用户选择页面</value>
+    <comment>User selection page list to accessibility</comment>
+  </data>
+  <data name="AccessibilityDesignPatternList" xml:space="preserve">
+    <value>设计模式</value>
+    <comment>Design pattern list to accessibility</comment>
+  </data>
+  <data name="AccessibilityTemplatesList" xml:space="preserve">
+    <value>模板列表</value>
+    <comment>Templates list label to accessibility</comment>
+  </data>
+  <data name="ExternalHyperlinkTooltipMessage" xml:space="preserve">
+    <value>在新的浏览器标签页中打开</value>
+    <comment>External hyperlink tooltip message</comment>
+  </data>
+  <data name="AccessibilityCodeViewerControl" xml:space="preserve">
+    <value>代码查看器</value>
+    <comment>Code viewer label to accessibility</comment>
+  </data>
+  <data name="AccessibilityNewItemFileIcon" xml:space="preserve">
+    <value>新的项目文件图标</value>
+    <comment>New item file icon label to accessibility</comment>
+  </data>
+  <data name="AccessibilityErrorDialogDescriptionTextboxName" xml:space="preserve">
+    <value>错误文本描述</value>
+    <comment>Error dialog accessible name to description textbox</comment>
+  </data>
+  <data name="ReorderPageHelpText" xml:space="preserve">
+    <value>使用 Ctrl+ 向上键或 Ctrl+ 向下键来更改页面顺序</value>
+    <comment>Reorder selected user pages message in accessibility help text</comment>
+  </data>
+  <data name="ButtonDetailsHelpText" xml:space="preserve">
+    <value>{0} 的详细信息</value>
+    <comment>Button details help text. {0}: name of template</comment>
+  </data>
+  <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
+    <value>按 Enter 以添加 {0}</value>
+    <comment>Help text to add template item. {0}: name of template</comment>
+  </data>
+  <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
+    <value>HamburgerMenu 控件已过时，Template Studio 现在支持 NavigationView。</value>
+    <comment>Has hamburger menu validation error message</comment>
+  </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Template Studio 现在在 Pivot 项目中使用横向 NavigationView。</value>
+    <comment>Has pivot validation error message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
+    <value>Template Studio 现在使用 Windows UI 库提供的 NavigationView。</value>
+    <comment>Has old navigation view validation error message</comment>
+  </data>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>Composition 工具</value>
+  </data>
+  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
+    <value>选择平台</value>
+    <comment>Project configuration window select platform title</comment>
+  </data>
+  <data name="TemplateGroup_Analytics" xml:space="preserve">
+    <value>分析</value>
+    <comment>Group header for analytics templates</comment>
+  </data>
+  <data name="NoContentPanelMessage" xml:space="preserve">
+    <value>无可用内容。</value>
+    <comment>Message in no content panel</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
     <value>{0}UWP/projectTypes/updatetonavigationview.md</value>
@@ -874,9 +664,80 @@
     <value>请参阅文档进行更新。</value>
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
-  <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
-    <value>HamburgerMenu 控件已过时，Template Studio 现在支持 NavigationView。</value>
-    <comment>Has hamburger menu validation error message</comment>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>请参阅文档进行更新。</value>
+    <comment>Has pivot validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetowinuinavigationview.md</value>
+    <comment>Has old navigation view validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
+    <value>请参阅文档进行更新。</value>
+    <comment>Has old navigation view validation link documentation message</comment>
+  </data>
+  <data name="BreakingChanges" xml:space="preserve">
+    <value>重大更改</value>
+    <comment>Breaking changes title</comment>
+  </data>
+  <data name="BreakingChangesDialogMessage" xml:space="preserve">
+    <value>我们检测到你的项目与之前模板版本不兼容。请检查更改:</value>
+    <comment>Breaking change window dialog message description</comment>
+  </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>无法设置默认解决方案配置</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>名称不能以“Page”结尾，因为其会自动添加到名称中。[有关命名的详细信息。]({0}naming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>请注意，“Page”将添加到指定名称的结尾。[有关命名的详细信息。]({0}naming.md)</value>
+    <comment>Validation error message: View Suffix</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
+    <value>我们已更改 MVVMLight ViewModelLocator 实施，以在 MVVMLight 中支持 MultiView。</value>
+    <comment>Has old MvvmLight Locator error message</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
+    <value>{0}UWP/frameworks/updatemvvmlightlocator.md</value>
+    <comment>Has old MvvmLight Locator link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
+    <value>请参阅文档进行更新。</value>
+    <comment>Has old MvvmLight Locator link documentation message</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>无法将某些 NuGet 包添加到项目 {0}。如果处于脱机状态，则可能导致这种情况。
+请验证项目代码所需的以下包列表，并手动添加缺少的包: 
+
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Install-Package -ID {0} -Version {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
+  <data name="StatusAddingItem" xml:space="preserve">
+    <value>正在向项目中添加 {0}...</value>
+    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  </data>
+  <data name="StatusAddingNuget" xml:space="preserve">
+    <value>正在向项目中添加 NuGet 程序包 {0}...</value>
+    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  </data>
+  <data name="StatusAddingProject" xml:space="preserve">
+    <value>正在向解决方案中添加项目 {0}...</value>
+    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="StatusAddingProjectReferences" xml:space="preserve">
+    <value>正在项目之间添加引用...</value>
+    <comment>Status bar message for adding project references</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
     <value>{0}updatetomultiproject.md</value>
@@ -890,48 +751,103 @@
     <value>Template Studio 现在正在添加核心项目。</value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
-    <value>{0}UWP/frameworks/updatemvvmlightlocator.md</value>
-    <comment>Has old MvvmLight Locator link documentation</comment>
+  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
+    <value>无法删除 **{0}**，因为它对于所选项目类型是必需的。</value>
+    <comment>Remove error message: Template is read only</comment>
   </data>
-  <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
+  <data name="TemplateDetailsLayout" xml:space="preserve">
+    <value>包括：</value>
+    <comment>Template details: Includes</comment>
+  </data>
+  <data name="TemplateDetailsFrameworks" xml:space="preserve">
+    <value>框架:</value>
+    <comment>Template details: Frameworks</comment>
+  </data>
+  <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
+    <value>{0}(可选)</value>
+    <comment>The include is optional</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
+    <value>报告问题</value>
+    <comment>Project details about section report lssue link</comment>
+  </data>
+  <data name="TemplateGroup_Identity" xml:space="preserve">
+    <value>Identity(选择一项)</value>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
+    <value>Template Studio 已更改 ActivationService，以将 Identity 功能包括在内。</value>
+    <comment>Has ActivationService before Identity error message</comment>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityLink" xml:space="preserve">
+    <value>{0}update-activationservice-for-identity.md</value>
+    <comment>Has ActivationService before Identity link documentation</comment>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>请参阅文档进行更新。</value>
-    <comment>Has old MvvmLight Locator link documentation message</comment>
+    <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
-  <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
-    <value>我们已更改 MVVMLight ViewModelLocator 实施，以在 MVVMLight 中支持 MultiView。</value>
-    <comment>Has old MvvmLight Locator error message</comment>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>数据</value>
+    <comment>Group header for Data templates</comment>
   </data>
-  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
-    <value>{0}UWP/projectTypes/updatetowinuinavigationview.md</value>
-    <comment>Has old navigation view validation link documentation</comment>
+  <data name="TemplateGroup_Tools" xml:space="preserve">
+    <value>工具</value>
+    <comment>Group header for 'Tools' templates</comment>
   </data>
-  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
-    <value>请参阅文档进行更新。</value>
-    <comment>Has old navigation view validation link documentation message</comment>
+  <data name="NewItemTitleService" xml:space="preserve">
+    <value>新服务</value>
+    <comment>New item: new service title</comment>
   </data>
-  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
-    <value>Template Studio 现在使用 Windows UI Library 提供的 NavigationView。</value>
-    <comment>Has old navigation view validation error message</comment>
+  <data name="NewItemTitleTesting" xml:space="preserve">
+    <value>新测试项目</value>
+    <comment>New item: new testing project title</comment>
   </data>
-  <data name="ValidatorHasPivotLink" xml:space="preserve">
-    <value>{0}UWP/projectTypes/updatetohorizontalnavview.md</value>
-    <comment>Has pivot validation link documentation</comment>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>无法添加 **{0}**，因为它要求先添加以下模板之一:{1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
   </data>
-  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
-    <value>请参阅文档进行更新。</value>
-    <comment>Has pivot validation link documentation message</comment>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>无法删除 **{0}**，因为它是以下项所需的:{1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
   </data>
-  <data name="ValidatorHasPivotMessage" xml:space="preserve">
-    <value>Template Studio 现在在 Pivot 项目中使用横向 NavigationView。</value>
-    <comment>Has pivot validation error message</comment>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>或</value>
   </data>
-  <data name="WindowsTemplateStudio" xml:space="preserve">
-    <value>Template Studio</value>
-    <comment>Windows template studio label</comment>
+  <data name="TemplateDetailsRequirements" xml:space="preserve">
+    <value>要求：</value>
   </data>
-  <data name="WinUI" xml:space="preserve">
-    <value>Windows UI</value>
+  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
+    <value>无法添加 **{0}**，因为下列模板不兼容：{1}.</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
+  </data>
+  <data name="TemplateDetailsExclusions" xml:space="preserve">
+    <value>排除：</value>
+  </data>
+  <data name="NotificationValidationError_Regex" xml:space="preserve">
+    <value>RegEx 验证 {0} 失败。</value>
+    <comment>Validation error message: RegEx</comment>
+  </data>
+  <data name="ErrorAddingItemsToProject" xml:space="preserve">
+    <value>向项目 {0} 添加项时出错</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorAddingProject" xml:space="preserve">
+    <value>添加 {0} 项目时出错</value>
+    <comment>Error message for adding projects</comment>
+  </data>
+  <data name="ErrorAddingReferencesBetweenProjects" xml:space="preserve">
+    <value>在项目之间添加引用时出错</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorAddingSdksToProject" xml:space="preserve">
+    <value>将 sdks 添加到项目 {0} 时出错。</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="NotificationMissingVersions" xml:space="preserve">
+    <value>缺少以下版本，请安装它们并重新启动 Visual Studio：{0}</value>
+  </data>
+  <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
+    <value>所需的 Windows Sdks：</value>
   </data>
   <data name="WorkloadDisplayNameManagedDesktop" xml:space="preserve">
     <value>.NET 桌面开发</value>
@@ -945,8 +861,80 @@
   <data name="WorkloadDisplayNameUniversal" xml:space="preserve">
     <value>通用 Windows 平台开发</value>
   </data>
+  <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
+    <value>需要更高版本</value>
+  </data>
+  <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
+    <value>{0}项目创建需要视觉工作室 2019 版本{1}或更高。</value>
+    <comment>Error message for Invalid VS Version</comment>
+  </data>
+  <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
+    <value>缺失工作负载</value>
+  </data>
+  <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
+    <value>更多信息</value>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>您需要安装以下工作负载才能创建一个{0}项目：{1}</value>
+  </data>
+  <data name="UWP" xml:space="preserve">
+    <value>UWP</value>
+  </data>
   <data name="WPF" xml:space="preserve">
     <value>WPF (.NET Core)</value>
+  </data>
+  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
+    <value>所需的 Visual Studio 工作负载/组件：</value>
+  </data>
+  <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
+    <value>由于缺少 Visual Studio 工作负载/组件，此项当前不可用。</value>
+  </data>
+  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
+    <value>最小.NET 核心版本：</value>
+  </data>
+  <data name="ErrorInvalidRequirementType" xml:space="preserve">
+    <value>无效要求类型 {0}</value>
+  </data>
+  <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
+    <value>新的 WinUI 3 桌面应用程序</value>
+  </data>
+  <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
+    <value>新的 WinUI 3 UWP 应用</value>
+  </data>
+  <data name="WinUI" xml:space="preserve">
+    <value>Windows UI</value>
+  </data>
+  <data name="DeprecatedMessage" xml:space="preserve">
+    <value>不推荐使用</value>
+    <comment>Text used to indicate a deprecated option in the wizard</comment>
+  </data>
+  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
+    <value>项目名称与项目文件夹名称不匹配。请调整以确保正确生成。</value>
+  </data>
+  <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
+    <value>无法打开项目概述。</value>
+    <comment>Error message for unable to open project overview dialog</comment>
+  </data>
+  <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
+    <value>选择应用模型</value>
+  </data>
+  <data name="ButtonMaximize" xml:space="preserve">
+    <value>最大化</value>
+  </data>
+  <data name="ButtonRestore" xml:space="preserve">
+    <value>恢复</value>
+  </data>
+  <data name="TemplateStudioForUwp" xml:space="preserve">
+    <value>用于 UWP 的 Template Studio</value>
+  </data>
+  <data name="TemplateStudioForWpf" xml:space="preserve">
+    <value>用于 WPF 的 Template Studio</value>
+  </data>
+  <data name="ErrorFailedToGenerateProjectFromTemplates" xml:space="preserve">
+    <value>生成项目时出现异常</value>
+  </data>
+  <data name="ErrorUnableToReplaceTempProject" xml:space="preserve">
+    <value>无法在生成期间删除临时占位符项目。</value>
   </data>
   <data name="AdditionalMessageString" xml:space="preserve">
     <value>其他消息</value>
@@ -968,7 +956,7 @@
     <value>当前内容到期</value>
   </data>
   <data name="ErrorCreatingFolder" xml:space="preserve">
-    <value>Error creating folder '{0}': {1}</value>
+    <value>创建文件夹“{0}”时出错: {1}</value>
     <comment>{0} Name of the folder, {1} exception message</comment>
   </data>
   <data name="ErrorDependencyCircularReference" xml:space="preserve">
@@ -984,7 +972,7 @@
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
   <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>未找到 framework {1} 和平台 {2} 的依赖项模板 {0}。</value>
+    <value>未找到框架 {1} 和平台 {2} 的依赖项模板 {0}。</value>
     <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
   </data>
   <data name="ErrorDependencyType" xml:space="preserve">
@@ -1001,7 +989,7 @@
     <value>排除模板 {0} 定义为模板 {1} 的排除项和需求项。</value>
   </data>
   <data name="ErrorExclusionNotFound" xml:space="preserve">
-    <value>未找到 framework {1} 和平台 {2} 的排除项模板 {0}。</value>
+    <value>未找到框架 {1} 和平台 {2} 的排除项模板 {0}。</value>
     <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
   </data>
   <data name="ErrorExclusionRightClick" xml:space="preserve">
@@ -1012,7 +1000,7 @@
     <comment>Invalid exclusion exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="ErrorExtraWhitespacesInMultiValues" xml:space="preserve">
-    <value>Multivalue field: '{0}' contains trailing or leading whitespaces.</value>
+    <value>多值字段:“{0}”包含尾随空格或前导空格。</value>
     <comment>{0}: multivalue string</comment>
   </data>
   <data name="ErrorGenerating" xml:space="preserve">
@@ -1020,7 +1008,7 @@
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>未找到 framework {1} 和平台 {2} 的布局模板 {0}。</value>
+    <value>未找到框架 {1} 和平台 {2} 的布局模板 {0}。</value>
     <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
@@ -1057,7 +1045,7 @@
     <comment>Invalid requirement exception message. {0}:Requirement Template id </comment>
   </data>
   <data name="ErrorRequirementNotFound" xml:space="preserve">
-    <value>未找到 framework {1} 和平台 {2} 的所需模板 {0}。</value>
+    <value>未找到框架 {1} 和平台 {2} 的所需模板 {0}。</value>
     <comment>Required Template not found exception message. {0}:Requirement Template id, {1}: framework name, {2}: platform</comment>
   </data>
   <data name="ErrorRequirementRightClick" xml:space="preserve">
@@ -1219,57 +1207,42 @@
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>正在打开生成的文件...</value>
   </data>
-  <data name="String" xml:space="preserve">
-    <value>### 文件“{0}”中所需的更改:</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value>{1}</value>
-  </data>
-  <data name="String2" xml:space="preserve">
-    <value>### 文件“{0}”中的更改:</value>
-  </data>
-  <data name="String3" xml:space="preserve">
-    <value>无法集成以下更改:{2}</value>
-  </data>
-  <data name="String4" xml:space="preserve">
-    <value>### 文件“{0}”中的更改:</value>
-  </data>
-  <data name="String5" xml:space="preserve">
-    <value>查看最终结果:{2}</value>
-  </data>
   <data name="SyncInstructionsFileName" xml:space="preserve">
     <value>包括新项 generation.md 的步骤</value>
   </data>
   <data name="SyncInstructionsSectionConflictingFiles" xml:space="preserve">
-    <value>## 冲突的文件:
-这些文件已存在于你的项目中，同时也是作为新项目的一部分生成的。
-请比较所有内容并确保其都在正确的位置:
+    <value>## 冲突文件:
+这些文件已存在于项目中，并且也是作为新项的一部分生成的。
+请比较并确保一切位于正确的位置:
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
   <data name="SyncInstructionsSectionModifiedFiles" xml:space="preserve">
-    <value>## 已修改的文件:
-若要将新项集成到现有的项目中，请应用以下更改:
+    <value>## 修改的文件:
+若要将新项与现有项目集成，请应用以下更改:
 {0}</value>
     <comment>{0}: List of modified files (applying SyncInstructionsTemplateModifiedFiles)</comment>
   </data>
   <data name="SyncInstructionsSectionNewFiles" xml:space="preserve">
-    <value>## 新文件:
-将以下文件复制并添加到你的项目:
+    <value>## 个新文件:
+复制并将以下文件添加到项目中:
 {0}</value>
     <comment>{0}: List of new files</comment>
   </data>
   <data name="SyncInstructionsSectionUnchangedFiles" xml:space="preserve">
     <value>## 未更改的文件:
-这些文件已存在于你的项目中，不需要执行任何操作:
+项目中已存在这些文件，无需执行任何操作:
 {0}</value>
     <comment>{0}: List of unchanged files</comment>
   </data>
   <data name="SyncInstructionsTemplate" xml:space="preserve">
-    <value>*建议的 Markdown 查看器:[Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
-# 包括新项 generation.md 的步骤
-请按照说明将新项包括在你的项目中:
-你可以在临时生成文件夹中找到所有引用的文件:{0}
+    <value>*推荐的 Markdown 查看器: [Markdown 编辑器 VS 扩展](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)*
+
+# 步骤包括新项目生成
+请按照说明将新项包含到项目中:
+
+可以在临时生成文件夹中找到所有引用的文件: {0}
+
 {1}
 {2}
 {3}
@@ -1281,7 +1254,11 @@
 {4}: Unchanged files (SyncInstructionsSectionUnchangedFiles)</comment>
   </data>
   <data name="SyncInstructionsTemplateModifiedFile" xml:space="preserve">
-    <value />
+    <value>
+文件 "{0}" 中所需的 ### 更改:
+{1}
+预览中的更改: {2}</value>
+    <comment>{0}:FileName, {1}: Postaction Code, {2}:Preview</comment>
   </data>
   <data name="SyncSummaryFileName" xml:space="preserve">
     <value>GenerationSummary.md</value>
@@ -1290,26 +1267,26 @@
     <value>ProjectFile</value>
   </data>
   <data name="SyncSummarySectionConflictingFiles" xml:space="preserve">
-    <value>## 冲突的文件:
-这些文件已存在于你的项目中，同时也是作为新项目的一部分生成的。
-请比较所有内容并确保其都在正确的位置。
+    <value>## 冲突文件:
+这些文件已存在于项目中，并且也是作为新项的一部分生成的。
+请比较并确保一切位于正确的位置。
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
-    <value>## 文件中的失败更改:
+    <value>## 文件中的更改失败:
 以下文件中的合并失败:
 {0}</value>
   </data>
   <data name="SyncSummarySectionModifiedFiles" xml:space="preserve">
-    <value>## 已修改的文件:
+    <value>## 修改的文件:
 已应用以下更改:
 {0}</value>
     <comment>{0}: List of modified files (applying SyncSummaryTemplateModifiedFiles)</comment>
   </data>
   <data name="SyncSummarySectionNewFiles" xml:space="preserve">
     <value>## 新文件:
-这些文件已添加到你的项目中。
+这些文件已添加到项目中。
 {0}</value>
     <comment>{0}: List of new files</comment>
   </data>
@@ -1317,25 +1294,37 @@
     <value>Temp</value>
   </data>
   <data name="SyncSummaryTemplate" xml:space="preserve">
-    <value>*建议的 Markdown 查看器:[Markdown Editor VS Extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
+    <value>*推荐的 Markdown 查看器: [Markdown 编辑器 VS 扩展](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)*
+
 # 生成摘要
-以下更改已合并到你的项目中:
-你可以在临时生成文件夹中找到生成文件:{0}
+以下更改已合并到项目中:
+
+可以在临时生成文件夹中查找生成中的文件: {0}
+
 {1}
-{2}
-{3}
-{4}</value>
+{2}</value>
     <comment>{0}: Temp Generation Folder, 
-{1}: New Files, 
-{2}: Modified Files, 
-{3}: Failed Merge Files, 
-{4}: Conflicting Files</comment>
+{1}: Failed Merge Files, 
+{2}: Conflicting Files</comment>
   </data>
   <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
-    <value />
+    <value>
+文件 "{0}" 中的 ### 更改:
+无法集成以下更改: {2}
+{1}</value>
+    <comment>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</comment>
   </data>
   <data name="SyncSummaryTemplateModifiedFile" xml:space="preserve">
-    <value />
+    <value>
+文件 "{0}" 中的 ### 更改:
+查看最终结果: {2}
+
+{1}</value>
+    <comment>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</comment>
   </data>
   <data name="TemplatePackageExtractMessage" xml:space="preserve">
     <value>“{0}”中的数字签名无效。内容已篡改，或证书不存在、无效或不允许使用。无法继续。</value>
@@ -1386,7 +1375,7 @@
     <value>模板本地路径为空。</value>
   </data>
   <data name="TemplatesSynchronizationError" xml:space="preserve">
-    <value>Error synchronizing templates.</value>
+    <value>同步模板时出错。</value>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
     <value>获取内容时出错。</value>
@@ -1415,17 +1404,11 @@
   <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
     <value>读取实例锁定文件时出错。</value>
   </data>
-  <data name="{1}" xml:space="preserve">
-    <value>{0}:FileName, 
-{1}: Postaction Code,
-{2}:MergeResult,</value>
+  <data name="TemplateStudioForWinUI" xml:space="preserve">
+    <value>用于 WinUI 的 Template Studio</value>
   </data>
-  <data name="{1}1" xml:space="preserve">
-    <value>{0}:FileName, 
-{1}: Postaction Code,
-{2}:MergeResult,</value>
-  </data>
-  <data name="请在以下位置中预览更改:{2}" xml:space="preserve">
-    <value>{0}:FileName, {1}: Postaction Code, {2}:Preview</value>
+  <data name="TemplateGroup_Deployment" xml:space="preserve">
+    <value>部署</value>
+    <comment>Group header for Deployment</comment>
   </data>
 </root>

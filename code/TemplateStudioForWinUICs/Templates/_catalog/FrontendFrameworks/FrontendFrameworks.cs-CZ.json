@@ -1,12 +1,26 @@
-﻿[
-    {
-        "name": "MVVMToolkit",
-        "displayName": "MVVM Toolkit",
-        "summary": "Moderní, rychlá, modulární knihovna MVVM a součást sady nástrojů Windows Community Toolkit."
-    },
-    {
-        "name": "None",
-        "displayName": "None",
-        "summary": "Žádné rozhraní nebo lešení složek. Pro spuštění aplikace je generován pouze minimální kód."
-    }
+[
+  {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "Rychlá modulární knihovna MVVM nezávislá na platformě, která je oficiálním nástupcem MvvmLight. Je součástí sady .NET Community Toolkit.",
+    "author": "Microsoft",
+    "order": "1",
+    "licenses": "[Windows Community Toolkit](https://github.com/CommunityToolkit/dotnet/blob/main/License.md)",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "None",
+    "displayName": "Žádný",
+    "summary": "Žádný rámec nebo lešení složek. Pro spuštění aplikace je generován pouze minimální kód.",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#",
+      "C++"
+    ]
+  }
 ]

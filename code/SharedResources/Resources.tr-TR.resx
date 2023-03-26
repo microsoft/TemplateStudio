@@ -117,82 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddTestingAction" xml:space="preserve">
-    <value>Test Ekle</value>
-  </data>
-  <data name="AddServiceAction" xml:space="preserve">
-    <value>Hizmet Ekle</value>
-  </data>
-  <data name="AddFeatureAction" xml:space="preserve">
-    <value>Özellik Ekle</value>
-  </data>
-  <data name="AddPageAction" xml:space="preserve">
-    <value>Sayfa Ekle</value>
-  </data>
-  <data name="AddProjectAction" xml:space="preserve">
-    <value>Proje Ekle</value>
-  </data>
-  <data name="UIMessageBoxTitlePattern" xml:space="preserve">
-    <value>Windows Şablon Stüdyosu: {0}</value>
-    <comment>Generic MessageBox Title</comment>
-  </data>
-  <data name="UIStatusMsgPattern" xml:space="preserve">
-    <value>Windows Şablon Stüdyosu: {0}</value>
-  </data>
-  <data name="UnexpectedExPattern" xml:space="preserve">
-    <value>Beklenmeyen Özel Durum.\n{0}</value>
-  </data>
-  <data name="AccessibilityCodeViewerControl" xml:space="preserve">
-    <value>Kod görüntüleyicisi</value>
-    <comment>Code viewer label to accessibility</comment>
-  </data>
-  <data name="AccessibilityDesignPatternList" xml:space="preserve">
-    <value>Design patterns</value>
-    <comment>Design pattern list to accessibility</comment>
-  </data>
-  <data name="AccessibilityEditPageItem" xml:space="preserve">
-    <value>Sayfa adı</value>
-    <comment>Edit page label to accessibility</comment>
-  </data>
-  <data name="AccessibilityErrorDialogDescriptionTextboxName" xml:space="preserve">
-    <value>Hata metni açıklaması</value>
-    <comment>Error dialog accessible name to description textbox</comment>
-  </data>
-  <data name="AccessibilityNavigationMenu" xml:space="preserve">
-    <value>Gezinme menüsü</value>
-    <comment>Navigation menu label</comment>
-  </data>
-  <data name="AccessibilityNewItemFileIcon" xml:space="preserve">
-    <value>Yeni öğe dosyası simgesi</value>
-    <comment>New item file icon label to accessibility</comment>
-  </data>
-  <data name="AccessibilityNotificationPanel" xml:space="preserve">
-    <value>Bildirim paneli</value>
-    <comment> Notification panel label to accessibility</comment>
-  </data>
-  <data name="AccessibilityProjectTypesList" xml:space="preserve">
-    <value>Proje türleri</value>
-    <comment>Project types list label to accessibility</comment>
-  </data>
-  <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
-    <value>Ardışık akış denetimi</value>
-    <comment>Sequential flow control label to accessibility</comment>
-  </data>
-  <data name="AccessibilityTemplatesList" xml:space="preserve">
-    <value>Şablonlar listesi</value>
-    <comment>Templates list label to accessibility</comment>
-  </data>
-  <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
-    <value>Kullanıcı seçimi sayfaları</value>
-    <comment>User selection page list to accessibility</comment>
-  </data>
   <data name="AddFeaturesTitle" xml:space="preserve">
     <value>Özellik ekle</value>
     <comment>AddFeatures title on AddFeaturesPage</comment>
-  </data>
-  <data name="AddPagesTitle" xml:space="preserve">
-    <value>Sayfa ekle</value>
-    <comment>Add pages title on AddPagesPage</comment>
   </data>
   <data name="AddServiceTitle" xml:space="preserve">
     <value>Hizmet ekle</value>
@@ -202,13 +129,9 @@
     <value>Test ekle</value>
     <comment>AddTesting title on AddTestingPage</comment>
   </data>
-  <data name="BreakingChanges" xml:space="preserve">
-    <value>Önemli değişiklikler</value>
-    <comment>Breaking changes title</comment>
-  </data>
-  <data name="BreakingChangesDialogMessage" xml:space="preserve">
-    <value>Projeniz ve son şablon sürümü arasında uyumsuzluklar olduğunu algıladık. Lütfen değişiklikleri gözden geçirin:</value>
-    <comment>Breaking change window dialog message description</comment>
+  <data name="AddPagesTitle" xml:space="preserve">
+    <value>Sayfa ekle</value>
+    <comment>Add pages title on AddPagesPage</comment>
   </data>
   <data name="ButtonBack" xml:space="preserve">
     <value>Geri</value>
@@ -222,23 +145,9 @@
     <value>Kapat</value>
     <comment>Notification button close</comment>
   </data>
-  <data name="ButtonCompositionTool" xml:space="preserve">
-    <value>Oluşturma aracı</value>
-  </data>
   <data name="ButtonCreate" xml:space="preserve">
     <value>Oluştur</value>
     <comment>MainPage Create button</comment>
-  </data>
-  <data name="ButtonDetails" xml:space="preserve">
-    <value>Ayrıntılar</value>
-    <comment>Details button</comment>
-  </data>
-  <data name="ButtonDetailsHelpText" xml:space="preserve">
-    <value>{0} ayrıntıları</value>
-    <comment>Button details help text. {0}: name of template</comment>
-  </data>
-  <data name="ButtonMaximize" xml:space="preserve">
-    <value>Ekranı Kapla</value>
   </data>
   <data name="ButtonNext" xml:space="preserve">
     <value>İleri</value>
@@ -259,9 +168,6 @@
   <data name="ButtonRemove" xml:space="preserve">
     <value>Kaldır</value>
     <comment>Remove template button</comment>
-  </data>
-  <data name="ButtonRestore" xml:space="preserve">
-    <value>Geri yüklemek</value>
   </data>
   <data name="ButtonYes" xml:space="preserve">
     <value>Evet</value>
@@ -319,30 +225,6 @@
     <value>Gerekli değişiklikleri yapamıyoruz. Oluşturulan dosyaya gerekirse bu işlemi tamamladıktan sonra erişebilirsiniz.</value>
     <comment>Changes summary description for: Warning files</comment>
   </data>
-  <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
-    <value>diğer bilgiler</value>
-    <comment>Changes summary more info link</comment>
-  </data>
-  <data name="DeprecatedMessage" xml:space="preserve">
-    <value>Kullanımdan kaldırıldı</value>
-    <comment>Text used to indicate a deprecated option in the wizard</comment>
-  </data>
-  <data name="ErrorAddingItemsToProject" xml:space="preserve">
-    <value>{0} projesine öğe eklenirken hata oluştu</value>
-    <comment>Error message for adding items to project</comment>
-  </data>
-  <data name="ErrorAddingProject" xml:space="preserve">
-    <value>{0} projesi eklenirken hata oluştu</value>
-    <comment>Error message for adding projects</comment>
-  </data>
-  <data name="ErrorAddingReferencesBetweenProjects" xml:space="preserve">
-    <value>Projeler arasında başvurular eklenirken hata oluştu</value>
-    <comment>Error message for adding items to project</comment>
-  </data>
-  <data name="ErrorAddingSdksToProject" xml:space="preserve">
-    <value>{0} projesine SDK'ler eklenirken hata oluştu.</value>
-    <comment>Error message for adding items to project</comment>
-  </data>
   <data name="ErrorDialogShowDetails" xml:space="preserve">
     <value>Ayrıntıları göster</value>
     <comment>Error dialog show details link button</comment>
@@ -351,81 +233,28 @@
     <value>Bir sorun oluştu :-(</value>
     <comment>Error dialog title</comment>
   </data>
-  <data name="ErrorInvalidRequirementType" xml:space="preserve">
-    <value>Geçersiz Gereksinim Türü {0}</value>
-  </data>
-  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
-    <value>Yükleme-Paketi -Kimliği {0} -Sürüm {1}</value>
-    <comment>{0}: package id, {1}: version</comment>
-  </data>
-  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
-    <value>Bazı NuGet paketleri {0} projenize eklenemedi. Bu durum çevrimdışı olmanız nedeniyle olabilir. 
-Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulayın ve eksik paketleri el ile ekleyin: 
-{1}</value>
-    <comment>{0}: projectPath, {1}: package Info</comment>
-  </data>
-  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
-    <value>{0} projesi bulunamıyor</value>
-    <comment>{0}: projectPath</comment>
-  </data>
-  <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
-    <value>Projeye genel bakış açılamadı.</value>
-    <comment>Error message for unable to open project overview dialog</comment>
-  </data>
-  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
-    <value>Varsayılan çözüm yapılandırması ayarlanamıyor</value>
-    <comment>Error message for unable to set default solution configuration.</comment>
-  </data>
-  <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
-    <value>Çözüm ağacı daraltılırken bir hata oluştu. Ör:</value>
-    <comment>Error message for VS GenShell collapse solution Items</comment>
-  </data>
-  <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
-    <value>Durum iletisi gösterilirken bir hata oluştu. Ör:</value>
-    <comment>Error message for Vs GenShell show status bar message</comment>
-  </data>
-  <data name="ExternalHyperlinkTooltipMessage" xml:space="preserve">
-    <value>Yeni tarayıcı sekmesinde aç</value>
-    <comment>External hyperlink tooltip message</comment>
+  <data name="ChangesSummaryMoreInfoLink" xml:space="preserve">
+    <value>diğer bilgiler</value>
+    <comment>Changes summary more info link</comment>
   </data>
   <data name="FrameworkTitle" xml:space="preserve">
     <value>Bir design pattern seçin</value>
     <comment>Title on FrameworkPage</comment>
   </data>
-  <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
-    <value>{0} öğesini eklemek için Enter tuşuna basın</value>
-    <comment>Help text to add page or feature item. {0}: name of page or feature</comment>
-  </data>
-  <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
-    <value>Daha yüksek bir sürüm gerekli</value>
-  </data>
-  <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
-    <value>{0} proje oluşturma visual studio 2019 sürüm {1} veya daha yüksek gerektirir.</value>
-    <comment>Error message for Invalid VS Version</comment>
-  </data>
-  <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
-    <value>İş yükü eksik</value>
-  </data>
-  <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
-    <value>Diğer bilgiler</value>
-  </data>
-  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
-    <value>{0} bir proje oluşturmak için aşağıdaki iş yüklerini yüklemeniz gerekir: {1} </value>
-  </data>
   <data name="NewItemHasNoChangesFeature" xml:space="preserve">
-    <value>{0} zaten projenizin bir parçası. Lütfen başka bir özellik seçin.</value>
+    <value>{0} zaten projenizin bir parçası.</value>
     <comment>Feature already added {0}: Feature name</comment>
   </data>
   <data name="NewItemHasNoChangesPage" xml:space="preserve">
-    <value>{0} zaten projenizin bir parçası. Lütfen başka bir sayfa seçin.</value>
+    <value>{0} sayfası zaten projenizin bir parçası. Yeni bir ad girin veya başka bir sayfa seçin.</value>
     <comment>Page already added {0}: Page name</comment>
   </data>
   <data name="NewItemHasNoChangesService" xml:space="preserve">
-    <value>{0} zaten projenizin bir parçası. Lütfen başka bir hizmet seçin.</value>
+    <value>{0} zaten projenizin bir parçası.</value>
     <comment>Service already added {0}: Service name</comment>
   </data>
   <data name="NewItemHasNoChangesTesting" xml:space="preserve">
-    <value>{0} zaten projenizin bir parçası. Lütfen başka bir test projesi seçin.</value>
+    <value>{0} zaten projenizin bir parçası.</value>
     <comment>Testing project already added {0}: Testing project name</comment>
   </data>
   <data name="NewItemStepOne" xml:space="preserve">
@@ -460,29 +289,9 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Yeni sayfa</value>
     <comment>New item: new page title</comment>
   </data>
-  <data name="NewItemTitleService" xml:space="preserve">
-    <value>Yeni hizmet</value>
-    <comment>New item: new service title</comment>
-  </data>
-  <data name="NewItemTitleTesting" xml:space="preserve">
-    <value>Yeni test projesi</value>
-    <comment>New item: new testing project title</comment>
-  </data>
-  <data name="NewProjectStepDesignPattern" xml:space="preserve">
-    <value>Design pattern</value>
-    <comment>New project: Navigation step design pattern</comment>
-  </data>
   <data name="NewProjectStepFeatures" xml:space="preserve">
     <value>Özellikler</value>
     <comment>New project: Navigation step features</comment>
-  </data>
-  <data name="NewProjectStepPages" xml:space="preserve">
-    <value>Sayfalar</value>
-    <comment>New project: Navigation step pages</comment>
-  </data>
-  <data name="NewProjectStepProjectType" xml:space="preserve">
-    <value>Proje türü</value>
-    <comment>New project: Navigation step project type</comment>
   </data>
   <data name="NewProjectStepServices" xml:space="preserve">
     <value>Hizmetler</value>
@@ -492,46 +301,29 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Test</value>
     <comment>New project: Navigation step testing</comment>
   </data>
+  <data name="NewProjectStepProjectType" xml:space="preserve">
+    <value>Proje türü</value>
+    <comment>New project: Navigation step project type</comment>
+  </data>
+  <data name="NewProjectStepPages" xml:space="preserve">
+    <value>Sayfalar</value>
+    <comment>New project: Navigation step pages</comment>
+  </data>
+  <data name="NewProjectStepDesignPattern" xml:space="preserve">
+    <value>Tasarım deseni</value>
+    <comment>New project: Navigation step design pattern</comment>
+  </data>
   <data name="NewProjectTitleUWP" xml:space="preserve">
     <value>Yeni Evrensel Windows Platformu uygulaması</value>
     <comment>Wizard title on WizardShell page for UWP projects</comment>
-  </data>
-  <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
-    <value>Yeni WinUI 3 Masaüstü uygulaması</value>
-  </data>
-  <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
-    <value>Yeni WinUI 3 UWP uygulaması</value>
   </data>
   <data name="NewProjectTitleWPF" xml:space="preserve">
     <value>Yeni WPF uygulaması</value>
     <comment>Wizard title on WizardShell page for WPF projects</comment>
   </data>
-  <data name="NoContentPanelMessage" xml:space="preserve">
-    <value>içerik yok.</value>
-    <comment>Message in no content panel</comment>
-  </data>
-  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
-    <value>Aşağıdaki şablonlar uyumlu olmadığından **{0}** şablonunu ekleyemezsiniz: {1}.</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
-    <value>Önce aşağıdaki şablonlardan birinin eklenmesini gerektirdiğinden **{0}** şablonunu ekleyemezsiniz: {1}</value>
-    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationMissingVersions" xml:space="preserve">
-    <value>Aşağıdaki sürümler eksik, lütfen yükleyin ve Visual Studio yeniden başlatın: {0}</value>
-  </data>
   <data name="NotificationRemoveError_Dependency" xml:space="preserve">
     <value>Bu şablonlar bağımlı olduğundan **{0}** öğesini kaldıramazsınız: {1}</value>
     <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Dependencies template name. Character * add bold to word</comment>
-  </data>
-  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
-    <value>Seçili proje türü için gerekli olduğundan **{0}** kaldıramazsınız.</value>
-    <comment>Remove error message: Template is read only</comment>
-  </data>
-  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
-    <value>Aşağıdakiler için gerekli olduğundan **{0}** şablonunu kaldıramazsınız. {1}</value>
-    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
   </data>
   <data name="NotificationSyncError_Refresh" xml:space="preserve">
     <value>Şablonlar yenilenirken hata oluştu. Diğer ayrıntılar için çıkış penceresine bakın.</value>
@@ -541,25 +333,17 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Kullanılabilir yeni şablonlar var (v{0}). İndiriliyor… %{1}</value>
     <comment>Notification message for Sync Status: Acquiring, {0}:Version, {1}: Progress amount</comment>
   </data>
-  <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
-    <value>Güncelleştirmeler denetleniyor...</value>
-    <comment>Notification message for Sync Status: CheckingForUpdates</comment>
-  </data>
   <data name="NotificationSyncStatus_ErrorAcquiring" xml:space="preserve">
     <value>Şablonlar indirilirken hata oluştu (v{0}). Daha sonra tekrar deneyeceğiz.</value>
     <comment>Notification message for Sync Error, {0}:Version</comment>
   </data>
   <data name="NotificationSyncStatus_NewWizardVersionAvailable" xml:space="preserve">
-    <value>Windows Şablon Stüdyosu Sürüm {0} kullanılabilir. En yeni özellikleri kullanabilmek için uzantıyı güncelleştirin.</value>
+    <value>Template Studio Sürüm {0} kullanılabilir. En yeni özellikleri kullanabilmek için uzantıyı güncelleştirin.</value>
     <comment>Notification message for Sync Status: New Wizard Version available, {0}:New Version</comment>
   </data>
   <data name="NotificationSyncStatus_Preparing" xml:space="preserve">
     <value>Şablonlar hazırlanıyor (v{0})... {1}%</value>
     <comment>Notification message for Sync Status: Preparing, {0}:Version, {1}: Progress amount</comment>
-  </data>
-  <data name="NotificationSyncStatus_Updated" xml:space="preserve">
-    <value>Şablonlar güncelleştirildi.</value>
-    <comment>Notification message for Sync Status: Updated</comment>
   </data>
   <data name="NotificationSyncStatus_Updating" xml:space="preserve">
     <value>Şablon önbelleği yenileniyor…</value>
@@ -577,17 +361,6 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Ad boş olamaz</value>
     <comment>Validation error message: Empty</comment>
   </data>
-  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
-    <value>Ad adının sonunda "Page" olamaz çünkü bu değer otomatik olarak eklenecektir. [Adlandırma hakkında daha fazla bilgi edinin.]({0}naming.md)</value>
-    <comment>Validation error message: Wrong Page Suffix</comment>
-  </data>
-  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
-    <value>Proje adı proje klasöradıyla eşleşmiyor. Doğru bir nesil sağlamak için lütfen ayarlayın.</value>
-  </data>
-  <data name="NotificationValidationError_Regex" xml:space="preserve">
-    <value>RegEx doğrulaması {0} başarısız oldu.</value>
-    <comment>Validation error message: RegEx</comment>
-  </data>
   <data name="NotificationValidationError_ReservedName" xml:space="preserve">
     <value>Ad ayrıldı</value>
     <comment>Validation error message: Reserved name</comment>
@@ -596,16 +369,9 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Package.appxmanifest dosyasında proje yapılandırma meta verilerini bulamıyoruz. Lütfen proje oluşturulurken seçtiğiniz proje yapılandırmasını belirtin.</value>
     <comment>ProjectConfiguration view description</comment>
   </data>
-  <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
-    <value>AppModel'i seçin</value>
-  </data>
   <data name="ProjectConfigurationSelectFramework" xml:space="preserve">
     <value>Bir design pattern seçin:</value>
     <comment>Project configuration window select framework title</comment>
-  </data>
-  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
-    <value>Platform seç</value>
-    <comment>Project configuration window select platform title</comment>
   </data>
   <data name="ProjectConfigurationSelectProjectType" xml:space="preserve">
     <value>Proje türünü seçin:</value>
@@ -615,12 +381,8 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Proje yapılandırması seçin</value>
     <comment>Project configuration window title</comment>
   </data>
-  <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
-    <value>Sorunu bildir</value>
-    <comment>Project details about section report lssue link</comment>
-  </data>
   <data name="ProjectDetailsAboutSectionLink" xml:space="preserve">
-    <value>Windows Şablon Stüdyosu</value>
+    <value>Template Studio hakkında</value>
     <comment>About section link</comment>
   </data>
   <data name="ProjectDetailsAboutSectionTemplatesVersion" xml:space="preserve">
@@ -639,6 +401,14 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Özellikler</value>
     <comment>Feature list header on project details</comment>
   </data>
+  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
+    <value>Hizmetler</value>
+    <comment>Services list header on project details</comment>
+  </data>
+  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
+    <value>Test</value>
+    <comment>Testing list header on project details</comment>
+  </data>
   <data name="ProjectDetailsFrameworkResetDescription" xml:space="preserve">
     <value>Daha önceki design pattern seçiminizi değiştirdiniz. Seçtiğiniz sayfalar ve özellikler kaybolacak. Devam etmek istiyor musunuz?</value>
     <comment>Framework changed message</comment>
@@ -648,7 +418,7 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <comment>Framework changed title</comment>
   </data>
   <data name="ProjectDetailsFrameworkSectionTitle" xml:space="preserve">
-    <value>Design pattern</value>
+    <value>Tasarım deseni</value>
     <comment>Framework combobox header on project details</comment>
   </data>
   <data name="ProjectDetailsLicensesSectionTitle" xml:space="preserve">
@@ -671,14 +441,6 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Proje türü</value>
     <comment>Project type combobox header on project details</comment>
   </data>
-  <data name="ProjectDetailsServicesSectionTitle" xml:space="preserve">
-    <value>Hizmetler</value>
-    <comment>Services list header on project details</comment>
-  </data>
-  <data name="ProjectDetailsTestingSectionTitle" xml:space="preserve">
-    <value>Test</value>
-    <comment>Testing list header on project details</comment>
-  </data>
   <data name="ProjectDetailsTitle" xml:space="preserve">
     <value>Proje ayrıntılarınız</value>
     <comment>Project details header on MainPage</comment>
@@ -687,36 +449,41 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Proje türünü seçin</value>
     <comment>ProjectType Title on ProjectTypePage</comment>
   </data>
-  <data name="ReorderPageHelpText" xml:space="preserve">
-    <value>Sayfa sırasını değiştirmek için Ctrl+yukarı ok veya Ctrl+aşağı ok tuşlarını kullanın</value>
-    <comment>Reorder selected user pages message in accessibility help text</comment>
+  <data name="TemplateDetailsAuthor" xml:space="preserve">
+    <value>Yazar:</value>
+    <comment>Template details: Autor</comment>
   </data>
-  <data name="SeparatorOr" xml:space="preserve">
-    <value>veya</value>
+  <data name="TemplateDetailsDependencies" xml:space="preserve">
+    <value>Bağımlılıklar:</value>
+    <comment>Template details: Dependencies</comment>
   </data>
-  <data name="StatusAddingItem" xml:space="preserve">
-    <value>{0} projeye ekleniyor...</value>
-    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  <data name="TemplateDetailsLicenses" xml:space="preserve">
+    <value>Lisanslar:</value>
+    <comment>Template details: Licenses</comment>
   </data>
-  <data name="StatusAddingNuget" xml:space="preserve">
-    <value>NuGet paketi {0} projeye ekleniyor...</value>
-    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  <data name="TemplateDetailsVersion" xml:space="preserve">
+    <value>Sürüm:</value>
+    <comment>Template details: Version</comment>
   </data>
-  <data name="StatusAddingProject" xml:space="preserve">
-    <value>{0} projesi çözüme ekleniyor...</value>
-    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  <data name="TemplateSelectionTitle" xml:space="preserve">
+    <value>Eklemek istediğiniz şablonu seçin</value>
+    <comment>Template selection title</comment>
   </data>
-  <data name="StatusAddingProjectReferences" xml:space="preserve">
-    <value>Projeler arasında başvurular ekleniyor...</value>
-    <comment>Status bar message for adding project references</comment>
+  <data name="TermsAndConditionsText" xml:space="preserve">
+    <value>Devam ederseniz lisanslar bölümündeki tüm lisansların koşullarını kabul etmiş olursunuz.</value>
+    <comment>Licenses Terms and conditions text</comment>
   </data>
-  <data name="StatusBarCreatingProject" xml:space="preserve">
-    <value>Windows Şablon Stüdyosu projesi oluşturuluyor...</value>
-    <comment>Status bar message for solution wizard run finished</comment>
+  <data name="WindowsTemplateStudio" xml:space="preserve">
+    <value>Template Studio</value>
+    <comment>Windows template studio label</comment>
   </data>
   <data name="StatusBarGenerationFinished" xml:space="preserve">
     <value>Oluşturma tamamlandı</value>
     <comment>Status bar message generation finished</comment>
+  </data>
+  <data name="StatusBarCreatingProject" xml:space="preserve">
+    <value>'{0}' projesi oluşturuluyor...</value>
+    <comment>Status bar message for solution wizard run finished</comment>
   </data>
   <data name="StatusBarNewItemAddFeatureCancelled" xml:space="preserve">
     <value>Yeni özellik ekleme işlemi iptal edildi</value>
@@ -750,63 +517,25 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>{0} test projesi başarıyla eklendi</value>
     <comment>Status bar message for testing project successfully added, {0}: Testing project name</comment>
   </data>
-  <data name="TemplateAdded" xml:space="preserve">
-    <value>Eklendi</value>
-    <comment>Template added label</comment>
+  <data name="ErrorUnableGetProjectByPath" xml:space="preserve">
+    <value>{0} projesi bulunamıyor</value>
+    <comment>{0}: projectPath</comment>
   </data>
-  <data name="TemplateDetailsAuthor" xml:space="preserve">
-    <value>Yazar:</value>
-    <comment>Template details: Autor</comment>
+  <data name="ErrorVsGenShellCollapseSolutionItemsMessage" xml:space="preserve">
+    <value>Çözüm ağacı daraltılırken bir hata oluştu. Ör:</value>
+    <comment>Error message for VS GenShell collapse solution Items</comment>
   </data>
-  <data name="TemplateDetailsDependencies" xml:space="preserve">
-    <value>Bağımlılıklar:</value>
-    <comment>Template details: Dependencies</comment>
-  </data>
-  <data name="TemplateDetailsExclusions" xml:space="preserve">
-    <value>Dışlamalar:</value>
-  </data>
-  <data name="TemplateDetailsFrameworks" xml:space="preserve">
-    <value>Framework:</value>
-    <comment>Template details: Frameworks</comment>
-  </data>
-  <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
-    <value>Eksik Visual Studio İş Yükleri / Bileşenleri nedeniyle bu öğe şu anda kullanılamıyor.</value>
-  </data>
-  <data name="TemplateDetailsLayout" xml:space="preserve">
-    <value>Içerir:</value>
-    <comment>Template details: Includes</comment>
-  </data>
-  <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
-    <value>{0} (isteğe bağlı)</value>
-    <comment>The include is optional</comment>
-  </data>
-  <data name="TemplateDetailsLicenses" xml:space="preserve">
-    <value>Lisanslar:</value>
-    <comment>Template details: Licenses</comment>
-  </data>
-  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
-    <value>Minimum .NET Çekirdek Versiyonu:</value>
-  </data>
-  <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
-    <value>Gerekli Windows SDK'leri:</value>
-  </data>
-  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
-    <value>Gerekli Visual Studio İş Yükleri / Bileşenleri:</value>
-  </data>
-  <data name="TemplateDetailsRequirements" xml:space="preserve">
-    <value>Gereksinimler:</value>
-  </data>
-  <data name="TemplateDetailsVersion" xml:space="preserve">
-    <value>Sürüm:</value>
-    <comment>Template details: Version</comment>
-  </data>
-  <data name="TemplateGroup_Analytics" xml:space="preserve">
-    <value>Analizler</value>
-    <comment>Group header for analytics templates</comment>
+  <data name="ErrorVsGenShellShowStatusBarMessageMessage" xml:space="preserve">
+    <value>Durum iletisi gösterilirken bir hata oluştu. Ör:</value>
+    <comment>Error message for Vs GenShell show status bar message</comment>
   </data>
   <data name="TemplateGroup_ApplicationLaunching" xml:space="preserve">
     <value>Uygulama Başlatma</value>
     <comment>Group header for Application Launching templates</comment>
+  </data>
+  <data name="TemplateGroup_Packaging" xml:space="preserve">
+    <value>Paket Oluşturma</value>
+    <comment>Group header for Packaging templates</comment>
   </data>
   <data name="TemplateGroup_ApplicationLifecycle" xml:space="preserve">
     <value>Uygulama Yaşam Döngüsü</value>
@@ -820,47 +549,112 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Bağlı Deneyimler</value>
     <comment>Group header for Connected Experiences templates</comment>
   </data>
-  <data name="TemplateGroup_Data" xml:space="preserve">
-    <value>Veriler</value>
-    <comment>Group header for Data templates</comment>
-  </data>
-  <data name="TemplateGroup_Identity" xml:space="preserve">
-    <value>Identity (birini seçin)</value>
-  </data>
-  <data name="TemplateGroup_Packaging" xml:space="preserve">
-    <value>Paket Oluşturma</value>
-    <comment>Group header for Packaging templates</comment>
-  </data>
-  <data name="TemplateGroup_Tools" xml:space="preserve">
-    <value>Araçlar</value>
-    <comment>Group header for 'Tools' templates</comment>
-  </data>
   <data name="TemplateGroup_UserInteraction" xml:space="preserve">
     <value>Kullanıcı Etkileşimi</value>
     <comment>Group header for user interaction templates</comment>
   </data>
-  <data name="TemplateSelectionTitle" xml:space="preserve">
-    <value>Eklemek istediğiniz şablonu seçin</value>
-    <comment>Template selection title</comment>
+  <data name="ButtonDetails" xml:space="preserve">
+    <value>Ayrıntılar</value>
+    <comment>Details button</comment>
   </data>
-  <data name="TermsAndConditionsText" xml:space="preserve">
-    <value>Devam ederseniz lisanslar bölümündeki tüm lisansların koşullarını kabul etmiş olursunuz.</value>
-    <comment>Licenses Terms and conditions text</comment>
+  <data name="TemplateAdded" xml:space="preserve">
+    <value>Eklendi</value>
+    <comment>Template added label</comment>
   </data>
-  <data name="UWP" xml:space="preserve">
-    <value>UWP</value>
+  <data name="NotificationSyncStatus_CheckingForUpdates" xml:space="preserve">
+    <value>Güncelleştirmeler denetleniyor...</value>
+    <comment>Notification message for Sync Status: CheckingForUpdates</comment>
   </data>
-  <data name="ValidatorHasActivationServiceBeforeIdentityLink" xml:space="preserve">
-    <value>{0}update-activationservice-for-identity.md</value>
-    <comment>Has ActivationService before Identity link documentation</comment>
+  <data name="NotificationSyncStatus_Updated" xml:space="preserve">
+    <value>Şablonlar güncelleştirildi.</value>
+    <comment>Notification message for Sync Status: Updated</comment>
   </data>
-  <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
-    <value>Güncelleştirmek için belgelere bakın.</value>
-    <comment>Has ActivationService before Identity link documentation message</comment>
+  <data name="AccessibilityNotificationPanel" xml:space="preserve">
+    <value>Bildirim paneli</value>
+    <comment> Notification panel label to accessibility</comment>
   </data>
-  <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
-    <value>Windows Şablon Stüdyosu, ActivationService hizmetini Identity özelliklerini içerebilecek şekilde değiştirdi.</value>
-    <comment>Has ActivationService before Identity error message</comment>
+  <data name="AccessibilityEditPageItem" xml:space="preserve">
+    <value>Sayfa adı</value>
+    <comment>Edit page label to accessibility</comment>
+  </data>
+  <data name="AccessibilityNavigationMenu" xml:space="preserve">
+    <value>Gezinme menüsü</value>
+    <comment>Navigation menu label</comment>
+  </data>
+  <data name="AccessibilityProjectTypesList" xml:space="preserve">
+    <value>Proje türleri</value>
+    <comment>Project types list label to accessibility</comment>
+  </data>
+  <data name="AccessibilitySequentialFlowControl" xml:space="preserve">
+    <value>Ardışık akış denetimi</value>
+    <comment>Sequential flow control label to accessibility</comment>
+  </data>
+  <data name="AccessibilityUserSelectionPageList" xml:space="preserve">
+    <value>Kullanıcı seçimi sayfaları</value>
+    <comment>User selection page list to accessibility</comment>
+  </data>
+  <data name="AccessibilityDesignPatternList" xml:space="preserve">
+    <value>Tasarım desenleri</value>
+    <comment>Design pattern list to accessibility</comment>
+  </data>
+  <data name="AccessibilityTemplatesList" xml:space="preserve">
+    <value>Şablonlar listesi</value>
+    <comment>Templates list label to accessibility</comment>
+  </data>
+  <data name="ExternalHyperlinkTooltipMessage" xml:space="preserve">
+    <value>Yeni tarayıcı sekmesinde aç</value>
+    <comment>External hyperlink tooltip message</comment>
+  </data>
+  <data name="AccessibilityCodeViewerControl" xml:space="preserve">
+    <value>Kod görüntüleyicisi</value>
+    <comment>Code viewer label to accessibility</comment>
+  </data>
+  <data name="AccessibilityNewItemFileIcon" xml:space="preserve">
+    <value>Yeni öğe dosyası simgesi</value>
+    <comment>New item file icon label to accessibility</comment>
+  </data>
+  <data name="AccessibilityErrorDialogDescriptionTextboxName" xml:space="preserve">
+    <value>Hata metni açıklaması</value>
+    <comment>Error dialog accessible name to description textbox</comment>
+  </data>
+  <data name="ReorderPageHelpText" xml:space="preserve">
+    <value>Sayfa sırasını değiştirmek için Ctrl+yukarı ok veya Ctrl+aşağı ok tuşlarını kullanın</value>
+    <comment>Reorder selected user pages message in accessibility help text</comment>
+  </data>
+  <data name="ButtonDetailsHelpText" xml:space="preserve">
+    <value>{0} ayrıntıları</value>
+    <comment>Button details help text. {0}: name of template</comment>
+  </data>
+  <data name="HelpTextPressEnterToAddItem" xml:space="preserve">
+    <value>{0} öğesini eklemek için Enter tuşuna basın</value>
+    <comment>Help text to add template item. {0}: name of template</comment>
+  </data>
+  <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
+    <value>HamburgerMenu denetimi artık kullanılamıyor. Template Studio artık NavigationView öğesini desteklemektedir. </value>
+    <comment>Has hamburger menu validation error message</comment>
+  </data>
+  <data name="ValidatorHasPivotMessage" xml:space="preserve">
+    <value>Template Studio artık Özet projelerde yatay NavigationView kullanmaktadır. </value>
+    <comment>Has pivot validation error message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
+    <value>Template Studio artık Windows UI Kitaplığı'ndan NavigationView kullanmaktadır.</value>
+    <comment>Has old navigation view validation error message</comment>
+  </data>
+  <data name="ButtonCompositionTool" xml:space="preserve">
+    <value>Oluşturma aracı</value>
+  </data>
+  <data name="ProjectConfigurationSelectPlatform" xml:space="preserve">
+    <value>Platform seç</value>
+    <comment>Project configuration window select platform title</comment>
+  </data>
+  <data name="TemplateGroup_Analytics" xml:space="preserve">
+    <value>Analizler</value>
+    <comment>Group header for analytics templates</comment>
+  </data>
+  <data name="NoContentPanelMessage" xml:space="preserve">
+    <value>içerik yok.</value>
+    <comment>Message in no content panel</comment>
   </data>
   <data name="ValidatorHasHamburgerMenuLink" xml:space="preserve">
     <value>{0}UWP/projectTypes/updatetonavigationview.md</value>
@@ -870,9 +664,80 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Güncelleştirmek için belgelere bakın.</value>
     <comment>Has hamburger menu validation link documentation message</comment>
   </data>
-  <data name="ValidatorHasHamburgerMenuMessage" xml:space="preserve">
-    <value>HamburgerMenu denetimi artık kullanılamıyor. Windows Şablon Stüdyosu artık NavigationView öğesini desteklemektedir. </value>
-    <comment>Has hamburger menu validation error message</comment>
+  <data name="ValidatorHasPivotLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetohorizontalnavview.md</value>
+    <comment>Has pivot validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
+    <value>Güncelleştirmek için belgelere bakın.</value>
+    <comment>Has pivot validation link documentation message</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
+    <value>{0}UWP/projectTypes/updatetowinuinavigationview.md</value>
+    <comment>Has old navigation view validation link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
+    <value>Güncelleştirmek için belgelere bakın.</value>
+    <comment>Has old navigation view validation link documentation message</comment>
+  </data>
+  <data name="BreakingChanges" xml:space="preserve">
+    <value>Önemli değişiklikler</value>
+    <comment>Breaking changes title</comment>
+  </data>
+  <data name="BreakingChangesDialogMessage" xml:space="preserve">
+    <value>Projeniz ve son şablon sürümü arasında uyumsuzluklar olduğunu algıladık. Lütfen değişiklikleri gözden geçirin:</value>
+    <comment>Breaking change window dialog message description</comment>
+  </data>
+  <data name="ErrorUnableToSetDefaultConfiguration" xml:space="preserve">
+    <value>Varsayılan çözüm yapılandırması ayarlanamıyor</value>
+    <comment>Error message for unable to set default solution configuration.</comment>
+  </data>
+  <data name="NotificationValidationError_PageSuffix" xml:space="preserve">
+    <value>Ad adının sonunda "Page" olamaz çünkü bu değer otomatik olarak eklenecektir. [Adlandırma hakkında daha fazla bilgi edinin.]({0}naming.md)</value>
+    <comment>Validation error message: Wrong Page Suffix</comment>
+  </data>
+  <data name="NotificationValidationWarning_ViewSuffix" xml:space="preserve">
+    <value>“Sayfa”nın, belirtilen adın sonuna ekleneceğini unutmayın. [Adlandırma hakkında daha fazla bilgi.]({0}adlandırma.md)</value>
+    <comment>Validation error message: View Suffix</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
+    <value>MVVMLight ViewModelLocator uygulamamızı MVVMLight içinde MultiView desteklenecek şekilde değiştirdik. </value>
+    <comment>Has old MvvmLight Locator error message</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
+    <value>{0}UWP/frameworks/updatemvvmlightlocator.md</value>
+    <comment>Has old MvvmLight Locator link documentation</comment>
+  </data>
+  <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
+    <value>Güncelleştirmek için belgelere bakın.</value>
+    <comment>Has old MvvmLight Locator link documentation message</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesTemplate" xml:space="preserve">
+    <value>Bazı NuGet paketleri {0} projenize eklenemedi. Çevrimdışı olmanız buna neden olmuş olabilir. 
+Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulayın ve eksik paketleri manuel olarak ekleyin: 
+
+{1}</value>
+    <comment>{0}: projectPath, {1}: package Info</comment>
+  </data>
+  <data name="ErrorMissingNugetPackagesInstallTemplate" xml:space="preserve">
+    <value>Yükleme-Paketi -Kimliği {0} -Sürüm {1}</value>
+    <comment>{0}: package id, {1}: version</comment>
+  </data>
+  <data name="StatusAddingItem" xml:space="preserve">
+    <value>{0} projeye ekleniyor...</value>
+    <comment>Status bar message adding item to project. {0}: Item name</comment>
+  </data>
+  <data name="StatusAddingNuget" xml:space="preserve">
+    <value>NuGet paketi {0} projeye ekleniyor...</value>
+    <comment>Status bar message adding nuget package to project. {0}: Nuget Package name</comment>
+  </data>
+  <data name="StatusAddingProject" xml:space="preserve">
+    <value>{0} projesi çözüme ekleniyor...</value>
+    <comment>Status bar message adding project to solution. {0}: Project name</comment>
+  </data>
+  <data name="StatusAddingProjectReferences" xml:space="preserve">
+    <value>Projeler arasında başvurular ekleniyor...</value>
+    <comment>Status bar message for adding project references</comment>
   </data>
   <data name="ValidatorHasNoCoreProjectLink" xml:space="preserve">
     <value>{0}updatetomultiproject.md</value>
@@ -886,48 +751,103 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>Windows Şablon Stüdyosu şu anda bir çekirdek proje ekliyor. </value>
     <comment>Has no core project validation error message</comment>
   </data>
-  <data name="ValidatorHasOldMvvmLightLocatorLink" xml:space="preserve">
-    <value>{0}UWP/frameworks/updatemvvmlightlocator.md</value>
-    <comment>Has old MvvmLight Locator link documentation</comment>
+  <data name="NotificationRemoveError_ReadOnly" xml:space="preserve">
+    <value>Seçili proje türü için gerekli olduğundan **{0}** kaldıramazsınız.</value>
+    <comment>Remove error message: Template is read only</comment>
   </data>
-  <data name="ValidatorHasOldMvvmLightLocatorLinkMessage" xml:space="preserve">
+  <data name="TemplateDetailsLayout" xml:space="preserve">
+    <value>Içerir:</value>
+    <comment>Template details: Includes</comment>
+  </data>
+  <data name="TemplateDetailsFrameworks" xml:space="preserve">
+    <value>Çerçeve:</value>
+    <comment>Template details: Frameworks</comment>
+  </data>
+  <data name="TemplateDetailsLayoutOptional" xml:space="preserve">
+    <value>{0} (isteğe bağlı)</value>
+    <comment>The include is optional</comment>
+  </data>
+  <data name="ProjectDetailsAboutSectionIssuesLink" xml:space="preserve">
+    <value>Sorunu bildir</value>
+    <comment>Project details about section report lssue link</comment>
+  </data>
+  <data name="TemplateGroup_Identity" xml:space="preserve">
+    <value>Identity (birini seçin)</value>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityMessage" xml:space="preserve">
+    <value>Template Studio, ActivationService hizmetini Identity özelliklerini içerebilecek şekilde değiştirdi.</value>
+    <comment>Has ActivationService before Identity error message</comment>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityLink" xml:space="preserve">
+    <value>{0}update-activationservice-for-identity.md</value>
+    <comment>Has ActivationService before Identity link documentation</comment>
+  </data>
+  <data name="ValidatorHasActivationServiceBeforeIdentityLinkMessage" xml:space="preserve">
     <value>Güncelleştirmek için belgelere bakın.</value>
-    <comment>Has old MvvmLight Locator link documentation message</comment>
+    <comment>Has ActivationService before Identity link documentation message</comment>
   </data>
-  <data name="ValidatorHasOldMvvmLightLocatorMessage" xml:space="preserve">
-    <value>MVVMLight ViewModelLocator uygulamamızı MVVMLight içinde MultiView desteklenecek şekilde değiştirdik. </value>
-    <comment>Has old MvvmLight Locator error message</comment>
+  <data name="TemplateGroup_Data" xml:space="preserve">
+    <value>Veriler</value>
+    <comment>Group header for Data templates</comment>
   </data>
-  <data name="ValidatorHasOldNavigationViewLink" xml:space="preserve">
-    <value>{0}UWP/projectTypes/updatetowinuinavigationview.md</value>
-    <comment>Has old navigation view validation link documentation</comment>
+  <data name="TemplateGroup_Tools" xml:space="preserve">
+    <value>Araçlar</value>
+    <comment>Group header for 'Tools' templates</comment>
   </data>
-  <data name="ValidatorHasOldNavigationViewLinkMessage" xml:space="preserve">
-    <value>Güncelleştirmek için belgelere bakın.</value>
-    <comment>Has old navigation view validation link documentation message</comment>
+  <data name="NewItemTitleService" xml:space="preserve">
+    <value>Yeni hizmet</value>
+    <comment>New item: new service title</comment>
   </data>
-  <data name="ValidatorHasOldNavigationViewMessage" xml:space="preserve">
-    <value>Windows Şablon Stüdyosu artık Windows UI Kitaplığı'ndan NavigationView kullanmaktadır.</value>
-    <comment>Has old navigation view validation error message</comment>
+  <data name="NewItemTitleTesting" xml:space="preserve">
+    <value>Yeni test projesi</value>
+    <comment>New item: new testing project title</comment>
   </data>
-  <data name="ValidatorHasPivotLink" xml:space="preserve">
-    <value>{0}UWP/projectTypes/updatetohorizontalnavview.md</value>
-    <comment>Has pivot validation link documentation</comment>
+  <data name="NotificationAdditionError_Requirement" xml:space="preserve">
+    <value>Önce aşağıdaki şablonlardan birinin eklenmesini gerektirdiğinden **{0}** şablonunu ekleyemezsiniz: {1}</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Required template name. Character * add bold to word</comment>
   </data>
-  <data name="ValidatorHasPivotLinkMessage" xml:space="preserve">
-    <value>Güncelleştirmek için belgelere bakın.</value>
-    <comment>Has pivot validation link documentation message</comment>
+  <data name="NotificationRemoveError_Requirement" xml:space="preserve">
+    <value>Aşağıdakiler için gerekli olduğundan **{0}** şablonunu kaldıramazsınız. {1}</value>
+    <comment>Notification message for can not remove template string format. {0}:Template name, {1}:Required for template name. Character * add bold to word</comment>
   </data>
-  <data name="ValidatorHasPivotMessage" xml:space="preserve">
-    <value>Windows Şablon Stüdyosu artık Özet projelerde yatay NavigationView kullanmaktadır. </value>
-    <comment>Has pivot validation error message</comment>
+  <data name="SeparatorOr" xml:space="preserve">
+    <value>veya</value>
   </data>
-  <data name="WindowsTemplateStudio" xml:space="preserve">
-    <value>Windows Şablon Stüdyosu</value>
-    <comment>Windows template studio label</comment>
+  <data name="TemplateDetailsRequirements" xml:space="preserve">
+    <value>Gereksinimler:</value>
   </data>
-  <data name="WinUI" xml:space="preserve">
-    <value>Windows UI</value>
+  <data name="NotificationAdditionError_Exclusion" xml:space="preserve">
+    <value>Aşağıdaki şablonlar uyumlu olmadığından **{0}** şablonunu ekleyemezsiniz: {1}.</value>
+    <comment>Notification message for can not add template string format. {0}:Template name, {1}:Excluded template name. Character * add bold to word</comment>
+  </data>
+  <data name="TemplateDetailsExclusions" xml:space="preserve">
+    <value>Dışlamalar:</value>
+  </data>
+  <data name="NotificationValidationError_Regex" xml:space="preserve">
+    <value>RegEx doğrulaması {0} başarısız oldu.</value>
+    <comment>Validation error message: RegEx</comment>
+  </data>
+  <data name="ErrorAddingItemsToProject" xml:space="preserve">
+    <value>{0} projesine öğe eklenirken hata oluştu</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorAddingProject" xml:space="preserve">
+    <value>{0} projesi eklenirken hata oluştu</value>
+    <comment>Error message for adding projects</comment>
+  </data>
+  <data name="ErrorAddingReferencesBetweenProjects" xml:space="preserve">
+    <value>Projeler arasında başvurular eklenirken hata oluştu</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="ErrorAddingSdksToProject" xml:space="preserve">
+    <value>{0} projesine SDK'ler eklenirken hata oluştu.</value>
+    <comment>Error message for adding items to project</comment>
+  </data>
+  <data name="NotificationMissingVersions" xml:space="preserve">
+    <value>Aşağıdaki sürümler eksik, lütfen yükleyin ve Visual Studio yeniden başlatın: {0}</value>
+  </data>
+  <data name="TemplateDetailsRequiredSdks" xml:space="preserve">
+    <value>Gerekli Windows SDK'leri:</value>
   </data>
   <data name="WorkloadDisplayNameManagedDesktop" xml:space="preserve">
     <value>.NET masaüstü geliştirme</value>
@@ -941,8 +861,80 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   <data name="WorkloadDisplayNameUniversal" xml:space="preserve">
     <value>Evrensel Windows Platformu geliştirme</value>
   </data>
+  <data name="InfoDialogInvalidVersionTitle" xml:space="preserve">
+    <value>Daha yüksek bir sürüm gerekli</value>
+  </data>
+  <data name="InfoDialogInvalidVSVersion" xml:space="preserve">
+    <value>{0} proje oluşturma visual studio 2019 sürüm {1} veya daha yüksek gerektirir.</value>
+    <comment>Error message for Invalid VS Version</comment>
+  </data>
+  <data name="InfoDialogMissingWorkloadTitle" xml:space="preserve">
+    <value>İş yükü eksik</value>
+  </data>
+  <data name="InfoDialogMoreInfoLinkText" xml:space="preserve">
+    <value>Diğer bilgiler</value>
+  </data>
+  <data name="InfoDialogRequiredWorkloadNotFoundMessage" xml:space="preserve">
+    <value>{0} bir proje oluşturmak için aşağıdaki iş yüklerini yüklemeniz gerekir: {1} </value>
+  </data>
+  <data name="UWP" xml:space="preserve">
+    <value>UWP</value>
+  </data>
   <data name="WPF" xml:space="preserve">
     <value>WPF (.NET Core)</value>
+  </data>
+  <data name="TemplateDetailsRequiredVSWorkloads" xml:space="preserve">
+    <value>Gerekli Visual Studio İş Yükleri / Bileşenleri:</value>
+  </data>
+  <data name="TemplateDetailsInfoUnavailableDueToMissingVSWorkload" xml:space="preserve">
+    <value>Eksik Visual Studio İş Yükleri / Bileşenleri nedeniyle bu öğe şu anda kullanılamıyor.</value>
+  </data>
+  <data name="TemplateDetailsRequiredDotNetVersion" xml:space="preserve">
+    <value>Minimum .NET Çekirdek Versiyonu:</value>
+  </data>
+  <data name="ErrorInvalidRequirementType" xml:space="preserve">
+    <value>Geçersiz Gereksinim Türü {0}</value>
+  </data>
+  <data name="NewProjectTitleWinUIDesktop" xml:space="preserve">
+    <value>Yeni WinUI 3 Masaüstü uygulaması</value>
+  </data>
+  <data name="NewProjectTitleWinUIUWP" xml:space="preserve">
+    <value>Yeni WinUI 3 UWP uygulaması</value>
+  </data>
+  <data name="WinUI" xml:space="preserve">
+    <value>Windows UI</value>
+  </data>
+  <data name="DeprecatedMessage" xml:space="preserve">
+    <value>Kullanımdan kaldırıldı</value>
+    <comment>Text used to indicate a deprecated option in the wizard</comment>
+  </data>
+  <data name="NotificationValidationError_ProjectNameAndPathDoNotMatch" xml:space="preserve">
+    <value>Proje adı proje klasöradıyla eşleşmiyor. Doğru bir nesil sağlamak için lütfen ayarlayın.</value>
+  </data>
+  <data name="ErrorUnableToOpenProjectOverview" xml:space="preserve">
+    <value>Projeye genel bakış açılamadı.</value>
+    <comment>Error message for unable to open project overview dialog</comment>
+  </data>
+  <data name="ProjectConfigurationSelectAppModel" xml:space="preserve">
+    <value>AppModel'i seçin</value>
+  </data>
+  <data name="ButtonMaximize" xml:space="preserve">
+    <value>Ekranı Kapla</value>
+  </data>
+  <data name="ButtonRestore" xml:space="preserve">
+    <value>Geri yüklemek</value>
+  </data>
+  <data name="TemplateStudioForUwp" xml:space="preserve">
+    <value>UWP için Template Studio</value>
+  </data>
+  <data name="TemplateStudioForWpf" xml:space="preserve">
+    <value>WPF için Template Studio</value>
+  </data>
+  <data name="ErrorFailedToGenerateProjectFromTemplates" xml:space="preserve">
+    <value>Proje oluşturulurken özel durum oluştu</value>
+  </data>
+  <data name="ErrorUnableToReplaceTempProject" xml:space="preserve">
+    <value>Oluşturma sırasında geçici yer tutucu proje kaldırılamadı.</value>
   </data>
   <data name="AdditionalMessageString" xml:space="preserve">
     <value>Ek İleti</value>
@@ -953,17 +945,18 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   <data name="AssemblyFileVersionString" xml:space="preserve">
     <value>Derleme Dosyası Sürümü</value>
   </data>
+  <data name="CompositionQueryParseMessage" xml:space="preserve">
+    <value>"{0}" sorgusu geçerli değil. İzin verilen operatörler '==' veya '!=' şeklindedir. Birden çok koşul '&amp;' ile ayrılır.</value>
+    <comment>{0}: Query</comment>
+  </data>
   <data name="ConfigurationFileLoadedString" xml:space="preserve">
     <value>Yapılandırma dosyası yüklendi</value>
   </data>
   <data name="CurrentContentExpirationString" xml:space="preserve">
     <value>Geçerli içeriğin kullanım süresi doldu</value>
   </data>
-  <data name="Değişikliklerin önizlemesi için: {2}" xml:space="preserve">
-    <value>{0}:FileName, {1}: Postaction Code, {2}:Preview</value>
-  </data>
   <data name="ErrorCreatingFolder" xml:space="preserve">
-    <value>Error creating folder '{0}': {1}</value>
+    <value>'{0}' klasörü oluşturulamadı: {1}</value>
     <comment>{0} Name of the folder, {1} exception message</comment>
   </data>
   <data name="ErrorDependencyCircularReference" xml:space="preserve">
@@ -979,7 +972,7 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <comment>Invalid dependency exception message. {0}:Dependency Template id </comment>
   </data>
   <data name="ErrorDependencyNotFound" xml:space="preserve">
-    <value>{0} bağımlılık şablonu {1} framework ve {2} platformu için bulunamadı.</value>
+    <value>{0} bağımlılık şablonu {1} çerçevesi ve {2} platformu için bulunamadı.</value>
     <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
   </data>
   <data name="ErrorDependencyType" xml:space="preserve">
@@ -996,7 +989,7 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <value>{0} dışlama şablonu, {1} şablonu için dışlama ve gereksinim olarak tanımlandı.</value>
   </data>
   <data name="ErrorExclusionNotFound" xml:space="preserve">
-    <value>{0} dışlama şablonu {1} framework ve {2} platformu için bulunamadı.</value>
+    <value>{0} dışlama şablonu {1} çerçevesi ve {2} platformu için bulunamadı.</value>
     <comment>Dependency not found exception message. {0}:Dependency Template id, {1}: framework name, {2}: platform</comment>
   </data>
   <data name="ErrorExclusionRightClick" xml:space="preserve">
@@ -1007,7 +1000,7 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <comment>Invalid exclusion exception message. {0}:Dependency Template id</comment>
   </data>
   <data name="ErrorExtraWhitespacesInMultiValues" xml:space="preserve">
-    <value>Multivalue field: '{0}' contains trailing or leading whitespaces.</value>
+    <value>Alan birden fazla değer içeriyor: '{0}' ifadesinden önce veya sonra boşluk geliyor</value>
     <comment>{0}: multivalue string</comment>
   </data>
   <data name="ErrorGenerating" xml:space="preserve">
@@ -1015,7 +1008,7 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <comment>Generating exception message. {0}: Template. {1}: Name, {2}: Reason</comment>
   </data>
   <data name="ErrorLayoutNotFound" xml:space="preserve">
-    <value>{0} düzen şablonu {1} framework ve {2} platformu için bulunamadı.</value>
+    <value>{0} düzen şablonu {1} çerçevesi ve {2} platformu için bulunamadı.</value>
     <comment>Layout Not Found exception message. {0}:Layout group identity, {1}:Framework, {2}: platform</comment>
   </data>
   <data name="ErrorLayoutType" xml:space="preserve">
@@ -1025,8 +1018,19 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   <data name="ErrorNamingValidationFailed" xml:space="preserve">
     <value>{0} şablon adı geçerli değil. Hatalar: {1}</value>
   </data>
+  <data name="ErrorProjectAlreadyExists" xml:space="preserve">
+    <value>"{0}", {1} klasöründe zaten mevcut, lütfen farklı bir proje adı seçin.</value>
+  </data>
   <data name="ErrorProjectNameValidationFailed" xml:space="preserve">
     <value>{0} proje adı geçerli değil. Hatalar: {1}</value>
+  </data>
+  <data name="ErrorProjectReservedName" xml:space="preserve">
+    <value>"{0}" ayrılmış bir addır. Lütfen farklı bir ad seçip yeniden deneyin.</value>
+    <comment>Message box text for project reserved names.</comment>
+  </data>
+  <data name="ErrorProjectStartsWith" xml:space="preserve">
+    <value>"{0}" geçerli bir ad değil. Proje adı "{1}" ile başlayamaz.</value>
+    <comment>Message box text for project name can not start with.</comment>
   </data>
   <data name="ErrorRecursiveRequirement" xml:space="preserve">
     <value>{0} şablonunda {1} ile yinelenen gereksinim algılandı.</value>
@@ -1041,7 +1045,7 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
     <comment>Invalid requirement exception message. {0}:Requirement Template id </comment>
   </data>
   <data name="ErrorRequirementNotFound" xml:space="preserve">
-    <value>Gerekli {0} şablonu {1} framework ve {2} platformu için bulunamadı.</value>
+    <value>Gerekli {0} şablonu {1} çerçevesi ve {2} platformu için bulunamadı.</value>
     <comment>Required Template not found exception message. {0}:Requirement Template id, {1}: framework name, {2}: platform</comment>
   </data>
   <data name="ErrorRequirementRightClick" xml:space="preserve">
@@ -1078,6 +1082,18 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   <data name="FailedMergePostActionFileNotFound" xml:space="preserve">
     <value>Aşağıdaki değişiklikleri içeren "{0}" dosyası bulunamadı. Lütfen gerektiğinde projenize değişiklikleri el ile dahil etmek için kod bloklarını gözden geçirin. İlgili Şablon: '{1}'.</value>
     <comment>{0}:Relative path to original file, {1}: Template identity </comment>
+  </data>
+  <data name="FailedMergePostActionKeyAlreadyDefined" xml:space="preserve">
+    <value>'{0}' anahtarına sahip stil, bu dosyada zaten farklı değer veya öğelerle tanımlanmış. Lütfen projenizde gerekli yerlerde değişiklikleri manuel olarak dâhil etmek için stilleri gözden geçirin. İlgili Şablon: '{1}'.</value>
+    <comment>{0}: Key of XMLNode, {1}: Template Id</comment>
+  </data>
+  <data name="FailedMergePostActionLineNotFound" xml:space="preserve">
+    <value>‘{1}’ dosyasında beklenen satır `{0} ` bulunamadı. Lütfen gönderi dosyasındaki içeriği manuel olarak birleştirin. İlgili Şablon: '{2}'.</value>
+    <comment>{0}: Code line, {1}: Relative path to original file, {2}: Template identity</comment>
+  </data>
+  <data name="FailedMergePostActionMismatchedEncoding" xml:space="preserve">
+    <value>`{0}` dosyası &amp;apos;{1}&amp;apos; kodlamasına sahip; `{2}` dosyasıysa &amp;apos;{3}&amp;apos; kodlamasına sahip; lütfen her iki kodlamanın da aynı olduğundan emin olun.</value>
+    <comment>{0} first file name, {1} first encoding name, {2} other file name, {3} other encoding name</comment>
   </data>
   <data name="FsEnsureFileEditableException" xml:space="preserve">
     <value>{0} dosyasından salt okunur koruma kaldırılamıyor</value>
@@ -1122,6 +1138,14 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   <data name="MarkdownHeader" xml:space="preserve">
     <value>*Önerilen Markdown görüntüleyicisi: [Markdown Düzenleyicisi VS Uzantısı](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*</value>
   </data>
+  <data name="MergeFileNotFoundExceptionMessage" xml:space="preserve">
+    <value>'{0}' dosyası için birleştirme hedefi yok. İlgili Şablon: '{1}'.</value>
+    <comment>{0}: Postaction file path, {1}: Template identity</comment>
+  </data>
+  <data name="MergeLineNotFoundExceptionMessage" xml:space="preserve">
+    <value>'{1}' dosyasında {0} satırı bulunamadı. İlgili Şablon: '{2}'.</value>
+    <comment>{0}: CodeLine, {1}: Original file Path, {2}: Template identity</comment>
+  </data>
   <data name="NamingErrorConfigFileNotFound" xml:space="preserve">
     <value>Adlandırma yapılandırma dosyası {0} bulunamadı.</value>
   </data>
@@ -1130,6 +1154,14 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   </data>
   <data name="PackageCertificateString" xml:space="preserve">
     <value>Paket sertifikası</value>
+  </data>
+  <data name="PostActionContinuerOnErrorWarning" xml:space="preserve">
+    <value>'{0}’ yürütülürken hata oluştu. “Hata Durumunda Devam Et” etkinleştirildiğinden hata yok sayılıyor. İlgili şablon: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
+  </data>
+  <data name="PostActionException" xml:space="preserve">
+    <value>'{0}’ yürütülürken hata oluştu. İlgili şablon: {1}.</value>
+    <comment>{0}:Postaction name,  {1}:Template identity</comment>
   </data>
   <data name="PostActionIdsNotMatchError" xml:space="preserve">
     <value>Şablon içinde tanımlanan PostAction.ActionId "{0}" beklenen sınıf ActionId "{1}" ile eşleşmiyor. Devam edilemiyor. İlgili şablon: {2}.</value>
@@ -1152,34 +1184,36 @@ Lütfen projenizin kodunun gerektirdiği aşağıdaki paket listesini doğrulay�
   <data name="RepositorySynchronizationExceptionMessage" xml:space="preserve">
     <value>Şablonlar eşitlenirken bir hata oluştu. Durum:</value>
   </data>
+  <data name="StatusBarGeneratingFeatureMessage" xml:space="preserve">
+    <value>'{0}' özelliği oluşturuluyor...</value>
+    <comment>Status bar message generating feature. {0}: Feature name</comment>
+  </data>
+  <data name="StatusBarGeneratingPageMessage" xml:space="preserve">
+    <value>'{0}' sayfası oluşturuluyor...</value>
+    <comment>Status bar message generating page. {0}: Page name</comment>
+  </data>
+  <data name="StatusBarGeneratingProjectMessage" xml:space="preserve">
+    <value>'{0}' projesi oluşturuluyor...</value>
+    <comment>Status bar message generating project. {0}: Project name</comment>
+  </data>
+  <data name="StatusBarGeneratingServiceMessage" xml:space="preserve">
+    <value>'{0}' hizmeti oluşturuluyor ...</value>
+    <comment>Status bar message generating service. {0}: Service name</comment>
+  </data>
+  <data name="StatusBarGeneratingTestingMessage" xml:space="preserve">
+    <value>'{0}' testi oluşturuluyor...</value>
+    <comment>Status bar message generating testing. {0}: Testing name</comment>
+  </data>
   <data name="StatusOpeningItems" xml:space="preserve">
     <value>Oluşturulan dosyalar açılıyor...</value>
-  </data>
-  <data name="String" xml:space="preserve">
-    <value>### "{0}" dosyasında yapılması gereken değişiklikler:</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value>{1}</value>
-  </data>
-  <data name="String2" xml:space="preserve">
-    <value>### "{0}" dosyasındaki değişiklikler:</value>
-  </data>
-  <data name="String3" xml:space="preserve">
-    <value>Aşağıdaki değişiklikler tümleştirilemedi: {2}</value>
-  </data>
-  <data name="String4" xml:space="preserve">
-    <value>### "{0}" dosyasındaki değişiklikler:</value>
-  </data>
-  <data name="String5" xml:space="preserve">
-    <value>Kesin sonuca bakın: {2}</value>
   </data>
   <data name="SyncInstructionsFileName" xml:space="preserve">
     <value>Yeni öğe oluşturma.md öğesini dahil etme adımları</value>
   </data>
   <data name="SyncInstructionsSectionConflictingFiles" xml:space="preserve">
     <value>## Çakışan dosyalar:
-Bu dosyalar projenizde zaten var ve yeni öğenin parçası olarak da oluşturuldular.
-Lütfen karşılaştırın ve tüm içeriğin doğru yerde olduğundan emin olun:
+Bu dosyalar projeniz içinde zaten var ve yeni öğenin bir parçası olarak da oluşturuldu.
+Lütfen karşılaştırın ve her şeyin doğru yerde olduğundan emin olun.
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
@@ -1191,21 +1225,24 @@ Yeni öğenizi mevcut projeyle tümleştirmek için aşağıdaki değişiklikler
   </data>
   <data name="SyncInstructionsSectionNewFiles" xml:space="preserve">
     <value>## Yeni dosyalar:
-Aşağıdaki dosyaları kopyalayıp projenize ekleyin:
+Projenize şu dosyaları kopyalayın ve ekleyin:
 {0}</value>
     <comment>{0}: List of new files</comment>
   </data>
   <data name="SyncInstructionsSectionUnchangedFiles" xml:space="preserve">
-    <value>## Değiştirilmeyen dosyalar:
-Bu dosyalar projenizde zaten var. Başka bir işlem yapılması gerekmiyor:
+    <value>## Değiştirilmemiş dosyalar:
+Bu dosyalar projeniz içinde zaten var, herhangi bir eylem gerekmiyor:
 {0}</value>
     <comment>{0}: List of unchanged files</comment>
   </data>
   <data name="SyncInstructionsTemplate" xml:space="preserve">
-    <value>*Önerilen Markdown görüntüleyicisi: [Markdown Düzenleyicisi VS Uzantısı](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
-# Yeni öğe oluşturmayı dahil etme adımları
-Yeni öğeyi projenize dahil etmek için aşağıdaki yönergeleri izleyin:
-Tüm başvurulan dosyaları geçici oluşturma klasöründe bulabilirsiniz: {0}
+    <value>*Önerilen Markdown görüntüleyicisi: [Markdown Editor VS Uzantısı](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)*
+
+# Yeni öğe oluşturmayı ekleme adımları
+Yeni öğeyi projenize eklemek için lütfen yönergeleri izleyin:
+
+Başvurulan tüm dosyaları geçici oluşturma klasöründe bulabilirsiniz: {0}
+
 {1}
 {2}
 {3}
@@ -1217,7 +1254,11 @@ Tüm başvurulan dosyaları geçici oluşturma klasöründe bulabilirsiniz: {0}
 {4}: Unchanged files (SyncInstructionsSectionUnchangedFiles)</comment>
   </data>
   <data name="SyncInstructionsTemplateModifiedFile" xml:space="preserve">
-    <value />
+    <value>
+### ’{0}' dosyasında değişiklikler gerekiyor:
+{1}
+Değişiklikleri önizleme: {2}</value>
+    <comment>{0}:FileName, {1}: Postaction Code, {2}:Preview</comment>
   </data>
   <data name="SyncSummaryFileName" xml:space="preserve">
     <value>GenerationSummary.md</value>
@@ -1227,14 +1268,14 @@ Tüm başvurulan dosyaları geçici oluşturma klasöründe bulabilirsiniz: {0}
   </data>
   <data name="SyncSummarySectionConflictingFiles" xml:space="preserve">
     <value>## Çakışan dosyalar:
-Bu dosyalar projenizde zaten var ve yeni öğenin parçası olarak da oluşturuldular.
-Lütfen karşılaştırın ve tüm içeriğin doğru yerde olduğundan emin olun.
+Bu dosyalar projeniz içinde zaten var ve yeni öğenin bir parçası olarak da oluşturuldu.
+Lütfen karşılaştırın ve her şeyin doğru yerde olduğundan emin olun.
 {0}</value>
     <comment>{0}: List of conflicting files</comment>
   </data>
   <data name="SyncSummarySectionFailedMergeFiles" xml:space="preserve">
-    <value>## Dosyalardaki başarısız olan değişiklikler:
-Aşağıdaki dosyalardaki birleştirmeler başarısız oldu:
+    <value>## Dosyalarda başarısız olan değişiklikler:
+Şu dosyalarda birleştirme başarısız oldu:
 {0}</value>
   </data>
   <data name="SyncSummarySectionModifiedFiles" xml:space="preserve">
@@ -1253,25 +1294,41 @@ Bu dosyalar projenize eklendi.
     <value>Geçici</value>
   </data>
   <data name="SyncSummaryTemplate" xml:space="preserve">
-    <value>*Önerilen Markdown görüntüleyicisi: [Markdown Düzenleyicisi VS Uzantısı](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)*
-# Oluşturma özeti
-Aşağıdaki değişiklikler projenizle birleştirildi:
-Oluşturma işleminden elde edilen dosyaları geçici oluşturma klasöründe bulabilirsiniz: {0}
+    <value>*Önerilen Markdown görüntüleyici: [Markdown Editor VS Uzantısı](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)* 
+
+# Nesil özeti
+Aşağıdaki değişiklikler projenize dâhil edilmiştir: 
+
+Dosyaları geçici nesil klasöründeki nesilden bulabilirsiniz: {0}
+
 {1}
-{2}
-{3}
-{4}</value>
+{2}</value>
     <comment>{0}: Temp Generation Folder, 
-{1}: New Files, 
-{2}: Modified Files, 
-{3}: Failed Merge Files, 
-{4}: Conflicting Files</comment>
+{1}: Failed Merge Files, 
+{2}: Conflicting Files</comment>
   </data>
   <data name="SyncSummaryTemplateFailedMerges" xml:space="preserve">
-    <value />
+    <value>
+### '{0}' dosyasındaki değişiklikler: 
+Şu değişiklikler tümleştirilemedi: {2}
+{1}</value>
+    <comment>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</comment>
   </data>
   <data name="SyncSummaryTemplateModifiedFile" xml:space="preserve">
-    <value />
+    <value>
+### '{0}’ dosyasındaki değişiklikler:
+Son sonuca bakın: {2}
+
+{1}</value>
+    <comment>{0}:FileName, 
+{1}: Postaction Code,
+{2}:MergeResult,</comment>
+  </data>
+  <data name="TemplatePackageExtractMessage" xml:space="preserve">
+    <value>'{0}' içinde geçersiz dijital imzalar. İçerik üzerinde oynanmış veya sertifika yok, geçerli değil veya izin verilmiyor.  Devam edilemiyor.</value>
+    <comment>{0}: FilePath</comment>
   </data>
   <data name="TemplatePackageFindCertificateFoundMessage" xml:space="preserve">
     <value>{2} mağazasında {1} parmak iziyle eşleşen {0} sertifika bulundu</value>
@@ -1301,6 +1358,10 @@ Oluşturma işleminden elde edilen dosyaları geçici oluşturma klasöründe bu
   <data name="TemplatePackageValidatePackageCertificatesMessage" xml:space="preserve">
     <value>Paket imzası, sertifika doğrulamasından geçemedi.</value>
   </data>
+  <data name="TemplatePackageVerifyCertificateMessage" xml:space="preserve">
+    <value>Sertifika '{0}' doğrulaması '{1}' durumuyla tamamlandı</value>
+    <comment>{0}: Certificate subject, {1}: Status</comment>
+  </data>
   <data name="TemplatesContentExtractedToString" xml:space="preserve">
     <value>Şablonların ayıklandığı konum:</value>
   </data>
@@ -1314,7 +1375,7 @@ Oluşturma işleminden elde edilen dosyaları geçici oluşturma klasöründe bu
     <value>Şablonlar yerel yolu boş.</value>
   </data>
   <data name="TemplatesSynchronizationError" xml:space="preserve">
-    <value>Error synchronizing templates.</value>
+    <value>Şablonlar eşitlenirken hata oluştu.</value>
   </data>
   <data name="TemplatesSynchronizationErrorAcquiring" xml:space="preserve">
     <value>İçerik alınırken hata oluştu.</value>
@@ -1343,14 +1404,11 @@ Oluşturma işleminden elde edilen dosyaları geçici oluşturma klasöründe bu
   <data name="TemplatesSynchronizationWarnReadingLockFileMessage" xml:space="preserve">
     <value>Kurulum kilitleme dosyası okunurken bir hata oluştu.</value>
   </data>
-  <data name="{1}" xml:space="preserve">
-    <value>{0}:FileName, 
-{1}: Postaction Code,
-{2}:MergeResult,</value>
+  <data name="TemplateStudioForWinUI" xml:space="preserve">
+    <value>WinUI için Template Studio</value>
   </data>
-  <data name="{1}1" xml:space="preserve">
-    <value>{0}:FileName, 
-{1}: Postaction Code,
-{2}:MergeResult,</value>
+  <data name="TemplateGroup_Deployment" xml:space="preserve">
+    <value>Dağıtım</value>
+    <comment>Group header for Deployment</comment>
   </data>
 </root>

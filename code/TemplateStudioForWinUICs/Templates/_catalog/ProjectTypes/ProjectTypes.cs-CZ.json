@@ -1,17 +1,35 @@
-﻿[
-    {
-        "name": "Blank",
-        "displayName": "Blank",
-        "summary": "Součástí balení je navigační rámec a základní služby a styly."
-    },
-    {
-        "name": "NavView",
-        "displayName": "Navigation Pane",
-        "summary": "Zahrnuje také nabídku typu „hamburger“ pro navigaci mezi stránkami."
-    },
-    {
-        "name": "MenuBar",
-        "displayName": "Menu Bar",
-        "summary": "Je přidána nabídka pro přecházení mezi stránkami."
-    }
+[
+  {
+    "name": "Blank",
+    "displayName": "Prázdná",
+    "summary": "Součástí je navigační rámec a základní služby a styly.",
+    "author": "Microsoft",
+    "order": "3",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "NavView",
+    "displayName": "Podokno navigace",
+    "summary": "K navigaci mezi stránkami slouží navigační panel.",
+    "author": "Microsoft",
+    "order": "1",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "Řádek nabídek",
+    "summary": "K navigaci mezi stránkami slouží lišta s nabídkami.",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  }
 ]

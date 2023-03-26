@@ -1,4 +1,4 @@
-﻿{
-    "name": "Web View",
-    "description": "Stránka webového zobrazení vykresluje webový obsah pomocí WebView2 (Microsoft Edge s Chromium)."
+{
+  "name": "Web View",
+  "description": "Stránka webového zobrazení vykresluje webový obsah pomocí WebView2 (Microsoft Edge s Chromium)."
 }

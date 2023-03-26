@@ -1,17 +1,35 @@
-﻿[
-    {
-        "name": "Blank",
-        "displayName": "Blank",
-        "summary": "包括导航框架、基本服务和样式。"
-    },
-    {
-        "name": "NavView",
-        "displayName": "Navigation Pane",
-        "summary": "提供“汉堡菜单”用于在页面之间进行导航。"
-    },
-    {
-        "name": "MenuBar",
-        "displayName": "Menu Bar",
-        "summary": "添加了菜单，以在页面之间转换。"
-    }
+[
+  {
+    "name": "Blank",
+    "displayName": "空白",
+    "summary": "包含一个导航框架以及基本服务和样式。",
+    "author": "Microsoft",
+    "order": "3",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "NavView",
+    "displayName": "导航窗格",
+    "summary": "包含一个用于页面之间导航的导航窗格。",
+    "author": "Microsoft",
+    "order": "1",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "菜单栏",
+    "summary": "包含一个用于页面之间导航的菜单栏。",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  }
 ]

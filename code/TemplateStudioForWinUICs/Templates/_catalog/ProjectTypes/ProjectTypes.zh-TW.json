@@ -1,17 +1,35 @@
-﻿[
-    {
-        "name": "Blank",
-        "displayName": "Blank",
-        "summary": "包括導航框架、基本服務和樣式。"
-    },
-    {
-        "name": "NavView",
-        "displayName": "Navigation Pane",
-        "summary": "包含「漢堡功能表」好讓您在不同頁面之間導覽。"
-    },
-    {
-        "name": "MenuBar",
-        "displayName": "Menu Bar",
-        "summary": "新增一個功能表，好讓您在不同頁面之間移動。"
-    }
+[
+  {
+    "name": "Blank",
+    "displayName": "空白",
+    "summary": "包含導覽框架，和基本服務與樣式。",
+    "author": "Microsoft",
+    "order": "3",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "NavView",
+    "displayName": "瀏覽窗格",
+    "summary": "包括可在不同頁面間導覽的瀏覽窗格。",
+    "author": "Microsoft",
+    "order": "1",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "功能表列",
+    "summary": "包含可讓使用者在不同頁面間導覽的功能表列。",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  }
 ]

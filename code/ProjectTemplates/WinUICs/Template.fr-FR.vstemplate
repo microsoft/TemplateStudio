@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+    <TemplateData>
+        <Name>Template Studio pour WinUI</Name>
+        <Description>Template Studio accélère la création d’applications à l’aide d’une expérience basée sur un Assistant.</Description>
+        <Icon>Template.ico</Icon>
+        <ProjectType>CSharp</ProjectType>
+        <LanguageTag>csharp</LanguageTag>
+        <SortOrder>10</SortOrder>
+        <TemplateID>21bf0949-fe48-4256-bb6c-0298b53e8a72</TemplateID>
+        <CreateNewFolder>true</CreateNewFolder>
+        <DefaultName>Application</DefaultName>
+        <ProvideDefaultName>true</ProvideDefaultName>
+        <LanguageTag>XAML</LanguageTag>
+        <PlatformTag>Windows</PlatformTag>
+        <ProjectTypeTag>Bureau</ProjectTypeTag>
+        <ProjectTypeTag>WinUI</ProjectTypeTag>
+    </TemplateData>
+    <TemplateContent>
+        <CustomParameters>
+            <CustomParameter Name="$ts.platform$" Value="WinUI"/>
+            <CustomParameter Name="$ts.appmodel$" Value="Desktop"/>
+            <CustomParameter Name="$ts.language$" Value="C#"/>
+            <CustomParameter Name="$ts.category$" Value="TemplateStudio"/>
+            <CustomParameter Name="$ts.requiredversion$" Value="17.0"/>
+            <CustomParameter Name="$ts.requiredworkloads$" Value="Microsoft.VisualStudio.Workload.ManagedDesktop"/>
+        </CustomParameters>
+    </TemplateContent>
+    <WizardExtension>
+        <Assembly>TemplateStudioForWinUICs, Version=5.2.0.0, Culture=neutral, PublicKeyToken=6dbc4347ed494013</Assembly>
+        <FullClassName>Microsoft.Templates.UI.VisualStudio.SolutionWizard</FullClassName>
+    </WizardExtension>
+</VSTemplate>

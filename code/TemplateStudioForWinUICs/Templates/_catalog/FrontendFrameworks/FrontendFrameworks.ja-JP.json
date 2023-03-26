@@ -1,12 +1,26 @@
-﻿[
-    {
-        "name": "MVVMToolkit",
-        "displayName": "MVVM Toolkit",
-        "summary": "最新の高速なモジュール式の MVVM ライブラリと、Windows コミュニティ ツールキットの一部。"
-    },
-    {
-        "name": "None",
-        "displayName": "None",
-        "summary": "フレームワークまたはフォルダー構造の生成はありません。アプリを実行するために最低限のコードが生成されます。"
-    }
+[
+  {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "高速でモジュール式のプラットフォームに依存しない MVVM ライブラリです。これは、MvvmLight の正式な後続機能であり、.NET Community Toolkit の一部です。",
+    "author": "Microsoft",
+    "order": "1",
+    "licenses": "[Windows Community Toolkit](https://github.com/CommunityToolkit/dotnet/blob/main/License.md)",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "None",
+    "displayName": "なし",
+    "summary": "フレームワークまたはフォルダー構造の生成はありません。アプリを実行するために最低限のコードが生成されます。",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#",
+      "C++"
+    ]
+  }
 ]

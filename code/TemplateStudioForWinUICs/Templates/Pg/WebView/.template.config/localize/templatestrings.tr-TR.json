@@ -1,4 +1,4 @@
-﻿{
-    "name": "Web View",
-    "description": "E horo'a te api hi'o na ni'a i te itenati i te mau mea o te itenati ma te faaohipa i te WebView2 (Microsoft Edge e te Chromium)."
+{
+  "name": "Web Görünümü",
+  "description": "Bu sayfa, web içeriklerinş WebView2 üzerinden işler (Chromium ile Microsoft Edge)."
 }

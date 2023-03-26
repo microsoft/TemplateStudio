@@ -1,4 +1,4 @@
-﻿{
-    "name": "Form",
-    "description": "This page contains a basic form page with validators."
+{
+  "name": "表单",
+  "description": "此页面包含一个基本表单页面及验证程序。"
 }

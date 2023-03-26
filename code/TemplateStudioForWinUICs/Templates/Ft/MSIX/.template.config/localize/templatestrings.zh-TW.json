@@ -1,4 +1,4 @@
-﻿{
-    "name": "MSIX Packaging",
-    "description": "允許建立封裝，以便透過 Microsoft Store 進行側載或散發。"
+{
+  "name": "MSIX 封裝",
+  "description": "允許建立封裝，以便透過 Microsoft Store 進行側載或散發。"
 }

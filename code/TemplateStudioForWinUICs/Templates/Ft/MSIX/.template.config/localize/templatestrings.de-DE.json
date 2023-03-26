@@ -1,4 +1,4 @@
-﻿{
-    "name": "MSIX Packaging",
-    "description": "Ermöglicht die Paketerstellung für Sideloading oder die Verteilung über den Microsoft Store."
+{
+  "name": "MSIX-Paketerstellung",
+  "description": "Ermöglicht die Paketerstellung für Sideloading oder die Verteilung über den Microsoft Store."
 }

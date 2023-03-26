@@ -1,4 +1,4 @@
-﻿{
-    "name": "Web View",
-    "description": "La page web rend le contenu Web à l’aide de WebView2 (Microsoft Edge avec Chromium)."
+{
+  "name": "Vue Web",
+  "description": "La page Vue Web rend le contenu Web à l’aide de WebView2 (Microsoft Edge avec Chromium)."
 }

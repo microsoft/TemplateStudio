@@ -1,4 +1,4 @@
-﻿{
-    "name": "Form",
-    "description": "This page contains a basic form page with validators."
+{
+  "name": "양식",
+  "description": "이 페이지에는 유효성 검사기가 있는 기본 양식 페이지가 포함되어 있습니다."
 }

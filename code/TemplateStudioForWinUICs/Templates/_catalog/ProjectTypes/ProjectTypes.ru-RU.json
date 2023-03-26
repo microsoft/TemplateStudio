@@ -1,17 +1,35 @@
-﻿[
-    {
-        "name": "Blank",
-        "displayName": "Blank",
-        "summary": "Включена навигационная рамка и основные услуги и стили."
-    },
-    {
-        "name": "NavView",
-        "displayName": "Navigation Pane",
-        "summary": "Включает \"меню-гамбургер\" для перехода между страницами."
-    },
-    {
-        "name": "MenuBar",
-        "displayName": "Menu Bar",
-        "summary": "Добавленное меню позволяет перемещаться между страницами."
-    }
+[
+  {
+    "name": "Blank",
+    "displayName": "Пусто",
+    "summary": "Включена навигационная рамка и основные услуги и стили.",
+    "author": "Microsoft",
+    "order": "3",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "NavView",
+    "displayName": "Область навигации",
+    "summary": "Область навигации включена для перемещения между страницами.",
+    "author": "Microsoft",
+    "order": "1",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "Строка меню",
+    "summary": "Строка меню включена для перемещения между страницами.",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  }
 ]

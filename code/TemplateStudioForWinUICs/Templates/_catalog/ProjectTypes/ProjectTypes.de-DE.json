@@ -1,17 +1,35 @@
-﻿[
-    {
-        "name": "Blank",
-        "displayName": "Blank",
-        "summary": "Ein Navigationsbereich und grundlegende Dienste und Stile sind enthalten."
-    },
-    {
-        "name": "NavView",
-        "displayName": "Navigation Pane",
-        "summary": "Für die Navigation zwischen den Seiten ist ein Hamburger-Menü enthalten."
-    },
-    {
-        "name": "MenuBar",
-        "displayName": "Menu Bar",
-        "summary": "Für die Navigation zwischen Seiten wurde ein Menü hinzugefügt."
-    }
+[
+  {
+    "name": "Blank",
+    "displayName": "Leer",
+    "summary": "Ein Navigationsbereich und grundlegende Dienste und Stile sind enthalten.",
+    "author": "Microsoft",
+    "order": "3",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "NavView",
+    "displayName": "Navigationsbereich",
+    "summary": "Für die Navigation zwischen Seiten wurde ein Navigationsbereich hinzugefügt.",
+    "author": "Microsoft",
+    "order": "1",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "MenuBar",
+    "displayName": "Menüleiste",
+    "summary": "Für die Navigation zwischen Seiten wurde eine Menüleiste hinzugefügt.",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  }
 ]

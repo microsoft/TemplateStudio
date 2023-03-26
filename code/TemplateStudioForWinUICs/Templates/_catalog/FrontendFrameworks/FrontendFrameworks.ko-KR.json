@@ -1,12 +1,26 @@
-﻿[
-    {
-        "name": "MVVMToolkit",
-        "displayName": "MVVM Toolkit",
-        "summary": "현대적이고 빠르며 모듈식 MVVM 라이브러리와 Windows 커뮤니티 툴킷의 일부입니다."
-    },
-    {
-        "name": "None",
-        "displayName": "None",
-        "summary": "프레임워크 또는 폴더 구조 생성이 없습니다. 앱을 실행하기 위해 최소 코드가 생성됩니다."
-    }
+[
+  {
+    "name": "MVVMToolkit",
+    "displayName": "MVVM Toolkit",
+    "summary": "MvvmLight의 공식 후속 버전인 빠른 모듈식 플랫폼 애그노스틱 MVVM 라이브러리입니다. .NET 커뮤니티 도구 키트의 일부입니다.",
+    "author": "Microsoft",
+    "order": "1",
+    "licenses": "[Windows Community Toolkit](https://github.com/CommunityToolkit/dotnet/blob/main/License.md)",
+    "platform": "WinUI",
+    "languages": [
+      "C#"
+    ]
+  },
+  {
+    "name": "None",
+    "displayName": "없음",
+    "summary": "프레임워크 또는 폴더 스캐폴딩이 없습니다. 앱을 실행하기 위해 최소 코드가 생성됩니다.",
+    "author": "Microsoft",
+    "order": "2",
+    "platform": "WinUI",
+    "languages": [
+      "C#",
+      "C++"
+    ]
+  }
 ]
