@@ -2,12 +2,9 @@
     x:Class="Param_RootNamespace.Views.Param_ItemNamePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:models="using:Param_RootNamespace.Core.Models"
-    xmlns:views="using:Param_RootNamespace.Views"
-    mc:Ignorable="d">
+    xmlns:views="using:Param_RootNamespace.Views">
     <Page.Resources>
         <DataTemplate x:Key="ItemTemplate" x:DataType="models:SampleOrder">
             <Grid Height="60">

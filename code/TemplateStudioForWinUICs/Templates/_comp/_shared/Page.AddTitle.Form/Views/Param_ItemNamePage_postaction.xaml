@@ -1,5 +1,4 @@
-﻿<Page
-    mc:Ignorable="d">
+﻿<Page>
     
     <ScrollViewer>
         <StackPanel

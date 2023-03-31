@@ -3,6 +3,5 @@
     <!--{[{-->
     xmlns:behaviors="using:Param_RootNamespace.Behaviors"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
-    <!--}]}-->
-    mc:Ignorable="d">
+    <!--}]}-->>
 </Page>
