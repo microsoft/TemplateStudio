@@ -1,4 +1,4 @@
 ﻿{
-  "name": "Packaging MSIX",
+  "name": "Empaquetage MSIX",
   "description": "Permet de créer des packages pour le sideloading ou la distribution via le Microsoft Store."
 }
