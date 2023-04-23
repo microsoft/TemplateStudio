@@ -9,7 +9,7 @@ public sealed partial class MainWindow : WindowEx
     {
         InitializeComponent();
 
-        this.SystemBackdrop = new MicaBackdrop();
+        SystemBackdrop = new MicaBackdrop();
 
         AppWindow.SetIcon(Path.Combine(AppContext.BaseDirectory, "Assets/WindowIcon.ico"));
         Content = null;
