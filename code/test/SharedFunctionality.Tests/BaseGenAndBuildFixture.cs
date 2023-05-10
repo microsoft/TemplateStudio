@@ -417,7 +417,8 @@ namespace Microsoft.Templates.Test
                 }
             }
         }
-
+        // Find a better way to get the installed VS root as well as pick one if there are multiple VS instances installed
+        // issue link : https://github.com/microsoft/TemplateStudio/issues/4667
         public static string GetVsInstallRoot()
         {
             var VsEditions = new List<string> { "Enterprise", "Preview", "Professional", "Community" };
