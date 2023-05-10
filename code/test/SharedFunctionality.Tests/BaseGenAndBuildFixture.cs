@@ -423,7 +423,7 @@ namespace Microsoft.Templates.Test
             var VsEditions = new List<string> { "Enterprise", "Preview", "Professional", "Community" };
 
             // Try both of these to allow for wonderful inconsistencies in resolving
-            var progFileLocations = new List<string> { Environment.GetEnvironmentVariable("ProgramW6432"), Environment.GetEnvironmentVariable("ProgramFiles") };
+            var progFileLocations = new List<string> { Environment.GetEnvironmentVariable("ProgramW6432"), Environment.GetEnvironmentVariable("ProgramFiles"), "D:\\Program Files" };
 
             var basePath = "{0}\\Microsoft Visual Studio\\2022\\{1}\\";
 
