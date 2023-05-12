@@ -33,7 +33,7 @@ internal class TitleBarHelper
 
                 theme = background == Colors.White ? ElementTheme.Light : ElementTheme.Dark;
             }
-            
+
             if (theme == ElementTheme.Default)
             {
                 theme = Application.Current.RequestedTheme == ApplicationTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
@@ -116,5 +116,4 @@ internal class TitleBarHelper
             UpdateTitleBar(frame.ActualTheme);
         }
     }
-
 }
