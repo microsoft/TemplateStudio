@@ -417,13 +417,14 @@ namespace Microsoft.Templates.Test
                 }
             }
         }
-
+        // Find a better way to get the installed VS root as well as pick one if there are multiple VS instances installed
+        // issue link : https://github.com/microsoft/TemplateStudio/issues/4667
         public static string GetVsInstallRoot()
         {
             var VsEditions = new List<string> { "Enterprise", "Preview", "Professional", "Community" };
 
             // Try both of these to allow for wonderful inconsistencies in resolving
-            var progFileLocations = new List<string> { Environment.GetEnvironmentVariable("ProgramW6432"), Environment.GetEnvironmentVariable("ProgramFiles") };
+            var progFileLocations = new List<string> { Environment.GetEnvironmentVariable("ProgramW6432"), Environment.GetEnvironmentVariable("ProgramFiles"), "D:\\Program Files" };
 
             var basePath = "{0}\\Microsoft Visual Studio\\2022\\{1}\\";
 

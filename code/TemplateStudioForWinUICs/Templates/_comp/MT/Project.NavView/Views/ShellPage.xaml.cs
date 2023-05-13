@@ -36,6 +36,8 @@ public sealed partial class ShellPage : Page
 
     private void OnLoaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
+        TitleBarHelper.UpdateTitleBar(RequestedTheme);
+
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu));
         KeyboardAccelerators.Add(BuildKeyboardAccelerator(VirtualKey.GoBack));
     }
@@ -45,6 +47,7 @@ public sealed partial class ShellPage : Page
         var resource = args.WindowActivationState == WindowActivationState.Deactivated ? "WindowCaptionForegroundDisabled" : "WindowCaptionForeground";
 
         AppTitleBarText.Foreground = (SolidColorBrush)App.Current.Resources[resource];
+        App.AppTitlebar = AppTitleBarText as UIElement;
     }
 
     private void NavigationViewControl_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
