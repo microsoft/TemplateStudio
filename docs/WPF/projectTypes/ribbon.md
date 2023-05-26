@@ -1,6 +1,6 @@
 # Ribbon project type
 
-Adds a ribbon control from `Fluent.Ribbon` nuget package which consists of several tabs, grouped by functionality to represent the menu actions of an application. For more info on `Fluent.Ribbon` see https://fluentribbon.github.io/.
+Adds a ribbon control from `Fluent.Ribbon` nuget package which consists of several tabs, grouped by functionality to represent the menu actions of an application. For more info on `Fluent.Ribbon` see <https://fluentribbon.github.io/>.
 
 The Ribbon control is placed on the `ShellWindow` and the DataContext of this Ribbon control is the `ShellViewModel`, but most of times, the ribbon tabs should be configured from active pages, to solve this Ribbon projects has infrastructure to add Ribbon tabs from pages and also add Groups to the main tab in the Ribbon control.
 
@@ -84,7 +84,6 @@ public ListDetailsPage(ListDetailsViewModel viewModel)
 ```
 
 ![Screenshot of app with ribbon tabs from a ListDetails page](../resources/modifications/RibbonTabsFromPage.png)
-
 
 ## Add Ribbon Home Tab groups from a page
 

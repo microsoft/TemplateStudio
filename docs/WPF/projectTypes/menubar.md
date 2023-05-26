@@ -107,6 +107,4 @@ The following code snippets show how to add a new menu "Help" with a menu entry 
 <!-- End of block -->
 ```
 
-
-
 Menu bar projects use [MahApps.Metro](../mahapps-metro.md) to add modern styles to the user interface.

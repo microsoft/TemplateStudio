@@ -3,7 +3,7 @@
 Here we provide a checklist you can use to ensure that your pull request meets the accessibility requirements.
 
 For more info, read:
-- [Accessibility overview](https://docs.microsoft.com/windows/apps/design/accessibility/accessibility-overview) 
+- [Accessibility overview](https://docs.microsoft.com/windows/apps/design/accessibility/accessibility-overview)
 - [Accessibility checklist](https://docs.microsoft.com/windows/apps/design/accessibility/accessibility-checklist)
 - [WPF Accessibility best practices](https://docs.microsoft.com/dotnet/framework/ui-automation/accessibility-best-practices)
 
