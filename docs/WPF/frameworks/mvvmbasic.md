@@ -1,6 +1,6 @@
 # MVVM Basic
 
-**Notice: MVVM Basic has been superseded by the [MVVM Toolkit](./mvvmtoolkit.md) and will be removed as an option in a future version of Template Studio.**
+**Notice: MVVM Basic has been superseded by the [MVVM Toolkit](./mvvmtoolkit.md) and has been removed as an option from Template Studio.**
 
 A guide is available if you want to use the new MVVM Toolkit and are [migrating from MvvmBasic](https://docs.microsoft.com/windows/communitytoolkit/mvvm/migratingfrommvvmbasic?WT.mc_id=WDIT-MVP-5001397).
 
