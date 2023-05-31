@@ -28,14 +28,6 @@ internal class TitleBarHelper
         {
             if (theme == ElementTheme.Default)
             {
-                var uiSettings = new UISettings();
-                var background = uiSettings.GetColorValue(UIColorType.Background);
-
-                theme = background == Colors.White ? ElementTheme.Light : ElementTheme.Dark;
-            }
-
-            if (theme == ElementTheme.Default)
-            {
                 theme = Application.Current.RequestedTheme == ApplicationTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
             }
 
