@@ -1,0 +1,70 @@
+﻿{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Microsoft",
+    "classifications": [
+        "Universal"
+    ],
+    "name": "Single Instance",
+    "shortName": "Single Instance",
+    "groupIdentity": "ts.WinUI.Feat.SingleInstance",
+    "identity": "ts.WinUI.Feat.SingleInstance",
+    "description": "Limits the number of instances for your application to one.",
+    "tags": {
+        "language": "C#",
+        "type": "project",
+        "ts.type": "feature",
+        "ts.projecttype": "all",
+        "ts.frontendframework": "all",
+        "ts.platform": "WinUI",
+        "ts.appmodel": "Desktop",
+        "ts.version": "1.0.0",
+        "ts.genGroup": "0",
+        "ts.group": "UserInteraction",
+        "ts.displayOrder": "1",
+        "ts.multipleInstance": "false",
+        "ts.rightClickEnabled": "true"
+    },
+    "sourceName": "Param_ItemName",
+    "preferNameDirectory": true,
+    "guids": [],
+    "PrimaryOutputs": [
+    ],
+    "symbols": {
+        "ts.rootNamespace": {
+            "type": "parameter",
+            "replaces": "Param_RootNamespace"
+        },
+        "ts.projectName": {
+            "type": "parameter",
+            "replaces": "Param_ProjectName",
+            "fileRename": "Param_ProjectName"
+        },
+        "ts.userName": {
+            "type": "parameter",
+            "dataType": "string",
+            "replaces": "Param_UserName"
+        },
+        "ts.wizardVersion": {
+            "type": "parameter",
+            "dataType": "string",
+            "replaces": "Param_Wizard.Version"
+        },
+        "ts.generationProjectType": {
+            "type": "parameter",
+            "replaces": "Param_ProjectType"
+        },
+        "ts.generationFrontEndFramework": {
+            "type": "parameter",
+            "replaces": "Param_Framework"
+        },
+        "ts.generationPlatform": {
+            "type": "parameter",
+            "replaces": "Param_Platform"
+        },
+        "ts.generation.appmodel": {
+            "type": "parameter",
+            "replaces": "Param_AppModel"
+        }
+    },
+    "postActions": []
+}
