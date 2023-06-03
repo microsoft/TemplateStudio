@@ -22,6 +22,9 @@ internal class TitleBarHelper
     [DllImport("user32.dll", CharSet = CharSet.Auto)]
     private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, IntPtr lParam);
 
+    [DllImport("dwmapi.dll")]
+    private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+
     public static void UpdateTitleBar(ElementTheme theme)
     {
         if (App.MainWindow.ExtendsContentIntoTitleBar)
@@ -95,6 +98,14 @@ internal class TitleBarHelper
                 SendMessage(hwnd, WMACTIVATE, WAACTIVE, IntPtr.Zero);
                 SendMessage(hwnd, WMACTIVATE, WAINACTIVE, IntPtr.Zero);
             }
+
+            var isDarkModeInt = theme switch
+            {
+                ElementTheme.Dark => 1,
+                ElementTheme.Light => 0,
+                _ => 0
+            };
+            DwmSetWindowAttribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, ref isDarkModeInt, sizeof(int));
         }
     }
 
