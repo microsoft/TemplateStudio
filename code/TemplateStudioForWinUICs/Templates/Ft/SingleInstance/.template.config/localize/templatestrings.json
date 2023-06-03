@@ -1,0 +1,7 @@
+﻿{
+    "name": "Single Instance",
+    "description": "Limits the number of instances for your application to one.",
+
+    "_name.comment": "Label for feature that enables users to change UI color theme.",
+    "_description.comment": "Label description for Theme Selection."
+}
