@@ -1,1 +1,1 @@
-﻿This feature allows you to change your app's theme between Light/Dark and WindowsDefault.
+﻿This feature allows you to define a limitation of the number of instance for your application to one.
