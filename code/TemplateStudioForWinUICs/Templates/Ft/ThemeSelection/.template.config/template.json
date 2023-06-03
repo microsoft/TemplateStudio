@@ -16,7 +16,7 @@
         "ts.platform": "WinUI",
         "ts.appmodel": "Desktop",
         "ts.version": "1.0.0",
-        "ts.displayOrder": "1",
+        "ts.displayOrder": "2",
         "ts.group": "UserInteraction",
         "ts.multipleInstance": "false",
         "ts.genGroup": "0",
