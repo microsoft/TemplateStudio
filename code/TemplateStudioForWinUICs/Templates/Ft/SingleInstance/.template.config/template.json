@@ -11,7 +11,7 @@
     "description": "Limits the number of instances for your application to one.",
     "tags": {
         "language": "C#",
-        "type": "project",
+        "type": "item",
         "ts.type": "feature",
         "ts.projecttype": "all",
         "ts.frontendframework": "all",
@@ -19,7 +19,7 @@
         "ts.appmodel": "Desktop",
         "ts.version": "1.0.0",
         "ts.genGroup": "0",
-        "ts.group": "UserInteraction",
+        "ts.group": "ApplicationLifecycle",
         "ts.displayOrder": "1",
         "ts.multipleInstance": "false",
         "ts.rightClickEnabled": "true"
