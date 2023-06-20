@@ -1,7 +1,7 @@
 ﻿{
     "name": "Trimmable",
-    "description": "Ship Windows App SDK dependencies as part of your application.",
+    "description": "Deploy your app with reduced size.",
 
-    "_name.comment": "Label for https://docs.microsoft.com/windows/apps/package-and-deploy/deploy-overview",
-    "_description.comment": "Label description for Self-Contained."
+    "_name.comment": "Label for https://docs.microsoft.com/dotnet/core/deploying/trimming/trim-self-contained",
+    "_description.comment": "Label description for Trimmable."
 }
