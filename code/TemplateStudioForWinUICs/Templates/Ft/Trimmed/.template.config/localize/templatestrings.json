@@ -1,5 +1,5 @@
 ﻿{
-    "name": "Trimmable",
+    "name": "Trimmed",
     "description": "Deploy your app with reduced size.",
 
     "_name.comment": "Label for https://docs.microsoft.com/dotnet/core/deploying/trimming/trim-self-contained",

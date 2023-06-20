@@ -4,10 +4,10 @@
     "classifications": [
         "Universal"
     ],
-    "name": "Trimmable",
-    "shortName": "Trimmable",
-    "groupIdentity": "ts.WinUI.Feat.Trimmable",
-    "identity": "ts.WinUI.Feat.Trimmable",
+    "name": "Trimmed",
+    "shortName": "Trimmed",
+    "groupIdentity": "ts.WinUI.Feat.Trimmed",
+    "identity": "ts.WinUI.Feat.Trimmed",
     "description": "Deploy your app with reduced size.",
     "tags": {
         "language": "C#",
