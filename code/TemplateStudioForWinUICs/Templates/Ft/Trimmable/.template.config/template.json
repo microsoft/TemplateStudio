@@ -8,7 +8,7 @@
     "shortName": "Trimmable",
     "groupIdentity": "ts.WinUI.Feat.Trimmable",
     "identity": "ts.WinUI.Feat.Trimmable",
-    "description": "Ship Windows App SDK dependencies as part of your application.",
+    "description": "Deploy your app with reduced size.",
     "tags": {
         "language": "C#",
         "type": "project",
@@ -22,6 +22,7 @@
         "ts.group": "Deployment",
         "ts.displayOrder": "1",
         "ts.multipleInstance": "false",
+        "ts.dependencies": "ts.WinUI.Feat.SelfContained",
         "ts.rightClickEnabled": "true"
     },
     "sourceName": "Param_ItemName",

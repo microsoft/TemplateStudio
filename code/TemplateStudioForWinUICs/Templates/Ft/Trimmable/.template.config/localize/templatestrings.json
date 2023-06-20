@@ -1,0 +1,7 @@
+﻿{
+    "name": "Trimmable",
+    "description": "Ship Windows App SDK dependencies as part of your application.",
+
+    "_name.comment": "Label for https://docs.microsoft.com/windows/apps/package-and-deploy/deploy-overview",
+    "_description.comment": "Label description for Self-Contained."
+}
