@@ -4,11 +4,12 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:genTemplate="http://schemas.microsoft.com/appx/developer/templatestudio"
   xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
   xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
-  IgnorableNamespaces="uap rescap genTemplate">
+  IgnorableNamespaces="uap uap5 rescap genTemplate">
 
   <Identity
     Name="07ad151b-a614-4a13-aef0-5378d3f98e67"
@@ -57,6 +58,13 @@
                   </com:ExeServer>
               </com:ComServer>
           </com:Extension>
+
+        <uap5:Extension Category="windows.appExecutionAlias">
+          <uap5:AppExecutionAlias>
+            <uap5:ExecutionAlias Alias="Param_ProjectName.exe"/>
+          </uap5:AppExecutionAlias>
+        </uap5:Extension>
+
       </Extensions>
     </Application>
   </Applications>
