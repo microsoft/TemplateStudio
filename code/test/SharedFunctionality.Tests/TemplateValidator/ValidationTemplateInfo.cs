@@ -109,7 +109,7 @@ namespace TemplateValidator
 
         [ApiAnalysisOptional]
         [JsonIgnore]
-        IReadOnlyList<Guid> ITemplateInfo.PostActions { get; }
+        public IReadOnlyList<Guid> PostActions { get; }
 
         public string SourceName { get; set; }
 
@@ -130,5 +130,8 @@ namespace TemplateValidator
 
         [ApiAnalysisShouldNotBeInJson("We don't use it.")]
         public IReadOnlyList<string> ShortNameList { get; }
+
+        public bool PreferDefaultName { get; }
+
     }
 }

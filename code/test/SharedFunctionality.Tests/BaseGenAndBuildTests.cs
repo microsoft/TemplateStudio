@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -17,6 +17,7 @@ using Microsoft.Templates.Core.Naming;
 using Microsoft.Templates.Fakes;
 using Microsoft.Templates.UI.Services;
 using Xunit;
+
 
 namespace Microsoft.Templates.Test
 {
@@ -108,8 +109,10 @@ namespace Microsoft.Templates.Test
 
         protected async Task<(string projectName, string projectPath)> GenerateAllPagesAndFeaturesAsync(UserSelectionContext context)
         {
+            //Microsoft.TemplateEngine.Utils.TemplateInfoExtensions
             // get first item from each exclusive selection group
-            var exclusiveSelectionGroups = GenContext.ToolBox.Repo.GetAll().Where(t =>
+             IEnumerable<ITemplateInfo> foo = GenContext.ToolBox.Repo.GetAll();
+            var exclusiveSelectionGroups = foo.Where(t =>
                 t.GetTemplateType().IsItemTemplate()
                 && (t.GetProjectTypeList().Contains(context.ProjectType) || t.GetProjectTypeList().Contains(All))
                 && (t.GetFrontEndFrameworkList().Contains(context.FrontEndFramework) || t.GetFrontEndFrameworkList().Contains(All))
@@ -183,8 +186,13 @@ namespace Microsoft.Templates.Test
             try
             {
                 var scanResult = CodeGen.Instance.Scanner.Scan(mountpoint);
-
-                return scanResult.Templates;
+                var list = new List<ITemplateInfo>();
+                foreach (var q in scanResult.Templates)
+                {
+                    var b = Microsoft.TemplateEngine.Utils.IScanTemplateInfoExtensions.ToITemplateInfo(q);
+                    list.Add(b);
+                }
+                return list;
             }
             catch (Exception exc)
             {

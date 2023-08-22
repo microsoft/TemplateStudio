@@ -83,41 +83,44 @@
     <PackageReference Include="Microsoft.ApplicationInsights">
       <Version>2.20.0</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Build.Framework">
+      <Version>17.7.0</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers">
       <Version>7.0.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.ServiceHub.Framework">
-      <Version>3.1.4097</Version>
+      <Version>4.3.50</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.TemplateEngine.Edge">
-      <Version>7.0.102</Version>
+      <Version>8.0.100-preview.7.23375.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects">
-      <Version>7.0.102</Version>
+      <Version>8.0.100-preview.7.23375.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.ProjectSystem">
-      <Version>17.0.1313-pre</Version>
+      <Version>17.2.402-pre</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.2.32505.173" ExcludeAssets="runtime">
+    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.6.36389" ExcludeAssets="runtime">
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface">
-      <Version>17.2.32505.113</Version>
+      <Version>17.5.33428.366</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.5.4072">
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.6.2164">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="NuGet.VisualStudio">
-      <Version>6.0.0</Version>
+      <Version>17.7.0</Version>
     </PackageReference>
     <PackageReference Include="NuGet.VisualStudio.Contracts">
-      <Version>6.0.0</Version>
+      <Version>17.7.0</Version>
     </PackageReference>
     <PackageReference Include="StreamJsonRpc">
-      <Version>2.11.35</Version>
+      <Version>2.16.36</Version>
     </PackageReference>
     <PackageReference Include="WriteableBitmapEx">
       <Version>1.6.8</Version>

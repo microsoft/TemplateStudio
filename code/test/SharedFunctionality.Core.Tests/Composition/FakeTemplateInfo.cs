@@ -72,10 +72,12 @@ namespace Microsoft.Templates.Core.Test.Composition
 
         public IReadOnlyList<string> ShortNameList { get; set; }
 
-        IParameterDefinitionSet ITemplateInfo.ParameterDefinitions { get; }
+        public IParameterDefinitionSet ParameterDefinitions { get; }
 
-        IReadOnlyList<Guid> ITemplateInfo.PostActions { get; }
+        public IReadOnlyList<Guid> PostActions { get; }
 
-        IReadOnlyList<TemplateConstraintInfo> ITemplateInfo.Constraints { get; }
+        public IReadOnlyList<TemplateConstraintInfo> Constraints { get; }
+
+        public bool PreferDefaultName { get; }
     }
 }

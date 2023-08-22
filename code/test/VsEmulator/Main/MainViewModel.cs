@@ -343,7 +343,13 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     var path = Path.Combine(Environment.CurrentDirectory, @"..\..\..\TemplateStudioForUWP.Tests\TestData\UWP");
                     var scanResult = CodeGen.Instance.Scanner.Scan(path);
-                    styleCopTemplates = scanResult.Templates.Where(t => t.GetLanguage() == language);
+                    var list = new List<ITemplateInfo>();
+                    foreach (var q in scanResult.Templates)
+                    {
+                        var b = Microsoft.TemplateEngine.Utils.IScanTemplateInfoExtensions.ToITemplateInfo(q);
+                        list.Add(b);
+                    }
+                    styleCopTemplates = list.Where(t => t.GetLanguage() == language);
                     GenContext.ToolBox.Repo.AddAdditionalTemplates(styleCopTemplates);
 
                     switch (language)
@@ -362,7 +368,13 @@ namespace Microsoft.Templates.VsEmulator.Main
 
                     var wpfScPath = Path.Combine(Environment.CurrentDirectory, @"..\..\..\TemplateStudioForWPF.Tests\TestData\WPF");
                     var wpfScanResult = CodeGen.Instance.Scanner.Scan(wpfScPath);
-                    styleCopTemplates = wpfScanResult.Templates.Where(t => t.GetLanguage() == language);
+                    var tlist = new List<ITemplateInfo>();
+                    foreach (var q in wpfScanResult.Templates)
+                    {
+                        var b = Microsoft.TemplateEngine.Utils.IScanTemplateInfoExtensions.ToITemplateInfo(q);
+                        tlist.Add(b);
+                    }
+                    styleCopTemplates = tlist.Where(t => t.GetLanguage() == language);
                     GenContext.ToolBox.Repo.AddAdditionalTemplates(styleCopTemplates);
 
                     styleCopTemplate = "ts.WPF.Feat.StyleCop";

@@ -7,11 +7,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
 using Microsoft.TemplateEngine.Abstractions;
+using Microsoft.TemplateEngine.Edge.Settings;
 using Microsoft.TemplateEngine.Utils;
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Extensions;
@@ -118,8 +120,13 @@ namespace Microsoft.Templates.Core
         {
             // var queryResult = CodeGen.Instance.Cache.List(true, WellKnownSearchFilters.LanguageFilter(CurrentLanguage));
             var queryResult = CodeGen.Instance.Cache.Templates; // List(true, WellKnownSearchFilters.LanguageFilter(CurrentLanguage));
-
-            return queryResult
+            var list = new List<ITemplateInfo>();
+            foreach (var q in queryResult)
+            {
+                var b = IScanTemplateInfoExtensions.ToITemplateInfo(q);
+                list.Add(b);
+            }
+            return list
                         .Where(r => r.GetLanguage().Equals(CurrentLanguage, StringComparison.OrdinalIgnoreCase))
                         .Where(r => r.GetPlatform().Equals(CurrentPlatform, StringComparison.OrdinalIgnoreCase))
                         .ToList();
@@ -206,10 +213,10 @@ namespace Microsoft.Templates.Core
 
         public TemplateInfo GetTemplateInfo(ITemplateInfo template, UserSelectionContext context)
         {
+
             var localizationLocator = CodeGen.Instance.Cache.Localizations.FirstOrDefault(l =>
                 l.Identity == template.Identity &&
                 l.Locale == CultureInfo.CurrentUICulture.Name);
-
             var templateInfo = new TemplateInfo
             {
                 TemplateId = template.Identity,
