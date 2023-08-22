@@ -342,7 +342,9 @@ namespace Microsoft.Templates.VsEmulator.Main
                 case Platforms.Uwp:
 
                     var path = Path.Combine(Environment.CurrentDirectory, @"..\..\..\TemplateStudioForUWP.Tests\TestData\UWP");
-                    var scanResult = CodeGen.Instance.Scanner.Scan(path);
+
+                    var scanResult = Task.Run(async () => await CodeGen.Instance.Scanner.ScanAsync(path)).Result;
+
                     var list = new List<ITemplateInfo>();
                     foreach (var q in scanResult.Templates)
                     {
@@ -367,7 +369,7 @@ namespace Microsoft.Templates.VsEmulator.Main
                 case Platforms.Wpf:
 
                     var wpfScPath = Path.Combine(Environment.CurrentDirectory, @"..\..\..\TemplateStudioForWPF.Tests\TestData\WPF");
-                    var wpfScanResult = CodeGen.Instance.Scanner.Scan(wpfScPath);
+                    var wpfScanResult = Task.Run(async () => await CodeGen.Instance.Scanner.ScanAsync(wpfScPath)).Result;
                     var tlist = new List<ITemplateInfo>();
                     foreach (var q in wpfScanResult.Templates)
                     {

@@ -48,7 +48,8 @@ namespace Microsoft.Templates.Core.Locations
             CurrentContentFolder = _content.TemplatesFolder;
 
             //// Doing this here rather than as a part of the downloading & checking for new templates flow
-            CodeGen.Instance.Cache = CodeGen.Instance.Scanner.Scan(_content.TemplatesFolder);
+            var result = Task.Run(async () => await CodeGen.Instance.Scanner.ScanAsync(_content.TemplatesFolder)).Result;
+            CodeGen.Instance.Cache = result;
         }
 
         public async Task EnsureContentAsync(bool force = false, CancellationToken ct = default)
@@ -243,7 +244,8 @@ namespace Microsoft.Templates.Core.Locations
         {
             try
             {
-                CodeGen.Instance.Cache = CodeGen.Instance.Scanner.Scan(_content.TemplatesFolder);
+                var result = Task.Run(async () => await CodeGen.Instance.Scanner.ScanAsync(_content.TemplatesFolder)).Result;
+                CodeGen.Instance.Cache = result;
 
                 SyncStatusChanged?.Invoke(this, new SyncStatusEventArgs { Status = SyncStatus.Ready });
             }

@@ -185,7 +185,9 @@ namespace Microsoft.Templates.Test
             // The following relies on the TemplateRepository having been initilized - but that should be done during fixture initialization.
             try
             {
-                var scanResult = CodeGen.Instance.Scanner.Scan(mountpoint);
+                //// Doing this here rather than as a part of the downloading & checking for new templates flow
+                var scanResult = Task.Run(async () => await CodeGen.Instance.Scanner.ScanAsync(mountpoint)).Result;
+
                 var list = new List<ITemplateInfo>();
                 foreach (var q in scanResult.Templates)
                 {

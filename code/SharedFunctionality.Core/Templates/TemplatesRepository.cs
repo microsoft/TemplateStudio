@@ -11,7 +11,7 @@ using System.Security.Principal;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-
+using EnvDTE;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Edge.Settings;
 using Microsoft.TemplateEngine.Utils;
@@ -213,10 +213,19 @@ namespace Microsoft.Templates.Core
 
         public TemplateInfo GetTemplateInfo(ITemplateInfo template, UserSelectionContext context)
         {
-
-            var localizationLocator = CodeGen.Instance.Cache.Localizations.FirstOrDefault(l =>
-                l.Identity == template.Identity &&
+            ILocalizationLocator localizationLocator = null;
+            var scantemplates = CodeGen.Instance.Cache.Templates;
+            foreach (var q in scantemplates)
+            {
+                localizationLocator = q.Localizations.Values.FirstOrDefault(l =>
+                q.Identity == template.Identity &&
                 l.Locale == CultureInfo.CurrentUICulture.Name);
+                if (localizationLocator != null) break;
+            }
+
+            //var localizationLocator = CodeGen.Instance.Cache.Localizations.FirstOrDefault(l =>
+            //    l.Identity == template.Identity &&
+            //    l.Locale == CultureInfo.CurrentUICulture.Name);
             var templateInfo = new TemplateInfo
             {
                 TemplateId = template.Identity,
