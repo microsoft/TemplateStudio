@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net481</TargetFramework>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <IsPackable>false</IsPackable>
     <LangVersion>8</LangVersion>
@@ -225,15 +225,19 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.TemplateEngine.Edge" Version="8.0.100-preview.7.23375.4" />
-    <PackageReference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects" Version="8.0.100-preview.7.23375.4" />
+    <PackageReference Include="Microsoft.TemplateEngine.Abstractions" Version="7.0.307" />
+    <PackageReference Include="Microsoft.TemplateEngine.Core" Version="7.0.307" />
+    <PackageReference Include="Microsoft.TemplateEngine.Core.Contracts" Version="7.0.307" />
+    <PackageReference Include="Microsoft.TemplateEngine.Edge" Version="7.0.307" />
+    <PackageReference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects" Version="7.0.307" />
+    <PackageReference Include="Microsoft.TemplateSearch.Common" Version="7.0.307" />
     <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface" Version="17.5.33428.366" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NuGet.Frameworks" Version="6.7.0" />
     <PackageReference Include="NuGet.VisualStudio" Version="17.7.0" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0-preview.7.23375.6" />
     <PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" />
-    <PackageReference Include="System.IO.Packaging" Version="6.0.0" />
+    <PackageReference Include="System.IO.Packaging" Version="8.0.0-preview.7.23375.6" />
     <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.analyzers" Version="0.10.0" />

@@ -4,7 +4,6 @@
 
 using System;
 using System.Runtime.Serialization;
-
 using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Gen

@@ -4,7 +4,6 @@
 
 using System;
 using System.Diagnostics;
-
 using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Diagnostics

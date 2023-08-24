@@ -4,12 +4,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using Microsoft.TemplateEngine.Abstractions;
 using Microsoft.TemplateEngine.Abstractions.Mount;
 using Microsoft.TemplateEngine.Edge;
 using Microsoft.TemplateEngine.Edge.Template;
 using Microsoft.TemplateEngine.Utils;
+using static Microsoft.TemplateEngine.Abstractions.TemplateFiltering.MatchInfo;
 
 namespace Microsoft.Templates.Core
 {
@@ -105,16 +107,18 @@ namespace Microsoft.Templates.Core
 
         private static ITemplateEngineHost CreateHost(string locationId, string hostVersion)
         {
-            // return new TemplateEngine.Edge.DefaultTemplateEngineHost($"{locationId}", hostVersion, new Dictionary<string, string>());
+            //return new TemplateEngine.Edge.DefaultTemplateEngineHost($"{locationId}", hostVersion, new Dictionary<string, string>());
+
             var builtIns = new List<(Type, IIdentifiedComponent)>();
             builtIns.AddRange(TemplateEngine.Edge.Components.AllComponents);
             builtIns.AddRange(Microsoft.TemplateEngine.Orchestrator.RunnableProjects.Components.AllComponents);
-
             var prefs = new Dictionary<string, string>();
 
-            var host = new TemplateEngine.Edge.DefaultTemplateEngineHost(locationId, hostVersion, prefs, builtIns);
+            //return new TemplateStudioHost(locationId, hostVersion, null, null, Array.Empty<string>(), null);
+            //return new TemplateStudioHost(locationId, hostVersion, prefs, builtIns, Array.Empty<string>(), null);
 
-            return host;
+            return new TemplateEngine.Edge.DefaultTemplateEngineHost(locationId, hostVersion, prefs, builtIns);
+
         }
     }
 }

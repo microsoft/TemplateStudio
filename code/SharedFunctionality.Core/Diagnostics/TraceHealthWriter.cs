@@ -5,7 +5,6 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
 using Microsoft.Templates.SharedResources;
 
 namespace Microsoft.Templates.Core.Diagnostics

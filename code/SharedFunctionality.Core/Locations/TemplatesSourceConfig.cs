@@ -10,7 +10,6 @@ using System.Text;
 
 using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.SharedResources;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 

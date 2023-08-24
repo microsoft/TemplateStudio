@@ -116,17 +116,28 @@ namespace Microsoft.Templates.Core
             _cts?.Cancel();
         }
 
+        //public IEnumerable<ITemplateInfo> GetAll()
+        //{
+        //    // var queryResult = CodeGen.Instance.Cache.List(true, WellKnownSearchFilters.LanguageFilter(CurrentLanguage));
+        //    var queryResult = CodeGen.Instance.Cache.Templates; // List(true, WellKnownSearchFilters.LanguageFilter(CurrentLanguage));
+        //    var list = new List<ITemplateInfo>();
+        //    foreach (var q in queryResult)
+        //    {
+        //        var b = IScanTemplateInfoExtensions.ToITemplateInfo(q);
+        //        list.Add(b);
+        //    }
+        //    return list
+        //                .Where(r => r.GetLanguage().Equals(CurrentLanguage, StringComparison.OrdinalIgnoreCase))
+        //                .Where(r => r.GetPlatform().Equals(CurrentPlatform, StringComparison.OrdinalIgnoreCase))
+        //                .ToList();
+        //}
+
         public IEnumerable<ITemplateInfo> GetAll()
         {
             // var queryResult = CodeGen.Instance.Cache.List(true, WellKnownSearchFilters.LanguageFilter(CurrentLanguage));
             var queryResult = CodeGen.Instance.Cache.Templates; // List(true, WellKnownSearchFilters.LanguageFilter(CurrentLanguage));
-            var list = new List<ITemplateInfo>();
-            foreach (var q in queryResult)
-            {
-                var b = IScanTemplateInfoExtensions.ToITemplateInfo(q);
-                list.Add(b);
-            }
-            return list
+
+            return queryResult
                         .Where(r => r.GetLanguage().Equals(CurrentLanguage, StringComparison.OrdinalIgnoreCase))
                         .Where(r => r.GetPlatform().Equals(CurrentPlatform, StringComparison.OrdinalIgnoreCase))
                         .ToList();
@@ -213,19 +224,20 @@ namespace Microsoft.Templates.Core
 
         public TemplateInfo GetTemplateInfo(ITemplateInfo template, UserSelectionContext context)
         {
-            ILocalizationLocator localizationLocator = null;
-            var scantemplates = CodeGen.Instance.Cache.Templates;
-            foreach (var q in scantemplates)
-            {
-                localizationLocator = q.Localizations.Values.FirstOrDefault(l =>
-                q.Identity == template.Identity &&
-                l.Locale == CultureInfo.CurrentUICulture.Name);
-                if (localizationLocator != null) break;
-            }
-
-            //var localizationLocator = CodeGen.Instance.Cache.Localizations.FirstOrDefault(l =>
-            //    l.Identity == template.Identity &&
+            //ILocalizationLocator localizationLocator = null;
+            //var scantemplates = CodeGen.Instance.Cache.Templates;
+            //foreach (var q in scantemplates)
+            //{
+            //    localizationLocator = q.Localizations.Values.FirstOrDefault(l =>
+            //    q.Identity == template.Identity &&
             //    l.Locale == CultureInfo.CurrentUICulture.Name);
+            //    if (localizationLocator != null) break;
+            //}
+
+            var localizationLocator = CodeGen.Instance.Cache.Localizations.FirstOrDefault(l =>
+                l.Identity == template.Identity &&
+                l.Locale == CultureInfo.CurrentUICulture.Name);
+
             var templateInfo = new TemplateInfo
             {
                 TemplateId = template.Identity,

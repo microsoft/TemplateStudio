@@ -193,6 +193,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)PostActions\PostActionFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PostActions\TemplateDefinedPostAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ProgrammingLanguages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TemplateStudioHost.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Templates\ITemplateInfoExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Templates\LayoutItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Templates\MetadataInfo.cs" />

@@ -186,15 +186,18 @@ namespace Microsoft.Templates.Test
             try
             {
                 //// Doing this here rather than as a part of the downloading & checking for new templates flow
-                var scanResult = Task.Run(async () => await CodeGen.Instance.Scanner.ScanAsync(mountpoint)).Result;
+                var scanResult = CodeGen.Instance.Scanner.Scan(mountpoint);
 
-                var list = new List<ITemplateInfo>();
-                foreach (var q in scanResult.Templates)
-                {
-                    var b = Microsoft.TemplateEngine.Utils.IScanTemplateInfoExtensions.ToITemplateInfo(q);
-                    list.Add(b);
-                }
-                return list;
+                return scanResult.Templates;
+                //var scanResult = Task.Run(async () => await CodeGen.Instance.Scanner.ScanAsync(mountpoint)).Result;
+
+                //var list = new List<ITemplateInfo>();
+                //foreach (var q in scanResult.Templates)
+                //{
+                //    var b = Microsoft.TemplateEngine.Utils.IScanTemplateInfoExtensions.ToITemplateInfo(q);
+                //    list.Add(b);
+                //}
+                //return list;
             }
             catch (Exception exc)
             {
