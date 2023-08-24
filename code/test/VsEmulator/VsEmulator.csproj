@@ -338,7 +338,7 @@
       <Version>7.0.307</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.ProjectSystem">
-      <Version>17.2.402-pre</Version>
+      <Version>15.8.243</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SDK">
       <Version>17.6.36389</Version>

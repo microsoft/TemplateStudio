@@ -233,11 +233,12 @@
     <PackageReference Include="Microsoft.TemplateSearch.Common" Version="7.0.307" />
     <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface" Version="17.5.33428.366" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NuGet.Common" Version="6.7.0" />
     <PackageReference Include="NuGet.Frameworks" Version="6.7.0" />
     <PackageReference Include="NuGet.VisualStudio" Version="17.7.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0-preview.7.23375.6" />
     <PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" />
-    <PackageReference Include="System.IO.Packaging" Version="8.0.0-preview.7.23375.6" />
+    <PackageReference Include="System.IO.Packaging" Version="7.0.0" />
     <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.analyzers" Version="0.10.0" />
