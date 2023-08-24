@@ -14,7 +14,7 @@
     <RootNamespace>Ts4UwpVbTemplate</RootNamespace>
     <AssemblyName>Ts4UwpVbTemplate</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <OptionExplicit>On</OptionExplicit>
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>

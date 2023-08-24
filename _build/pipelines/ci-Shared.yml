@@ -41,7 +41,7 @@ jobs:
 - template: templates/shared.yml
   parameters:
     Moniker: Core
-    FrameworkDirectory: net472
+    FrameworkDirectory: net481
     BuildConfiguration: DebugALL
     BuildPlatform: Any CPU
     Group: Minimum
