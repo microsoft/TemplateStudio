@@ -88,7 +88,7 @@
       <Version>2.22.0-beta3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Build.Framework">
-      <Version>17.7.0</Version>
+      <Version>17.7.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers">
       <Version>8.0.0-preview.23364.2</Version>
@@ -108,7 +108,7 @@
       <Version>17.2.402-pre</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SDK">
-      <Version>17.6.36389</Version>
+      <Version>17.7.37357</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface">
       <Version>17.5.33428.366</Version>
