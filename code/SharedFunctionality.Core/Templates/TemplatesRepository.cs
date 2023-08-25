@@ -131,9 +131,9 @@ namespace Microsoft.Templates.Core
             //            .Where(r => r.GetPlatform().Equals(CurrentPlatform, StringComparison.OrdinalIgnoreCase))
             //            .ToList();
 
-             return queryResult
-                        .Where(r => r.GetLanguage().Equals(CurrentLanguage, StringComparison.OrdinalIgnoreCase))
-                        .Where(r => r.GetPlatform().Equals(CurrentPlatform, StringComparison.OrdinalIgnoreCase))
+            return queryResult
+                        .Where(r => TemplateInfoExtensions.GetLanguage(r).Equals(CurrentLanguage, StringComparison.OrdinalIgnoreCase))
+                        //.Where(r => r.GetPlatform().Equals(CurrentPlatform, StringComparison.OrdinalIgnoreCase))
                         .ToList();
 
         }
