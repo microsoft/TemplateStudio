@@ -225,8 +225,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.TemplateEngine.Edge" Version="7.0.307" />
-    <PackageReference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects" Version="7.0.307" />
+    <PackageReference Include="Microsoft.TemplateEngine.Edge" Version="8.0.100-preview.7.23375.4" />
+    <PackageReference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects" Version="8.0.100-preview.7.23375.4" />
     <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface" Version="17.5.33428.366" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="NuGet.Frameworks" Version="6.7.0" />

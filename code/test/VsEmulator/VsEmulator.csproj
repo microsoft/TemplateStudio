@@ -323,10 +323,10 @@
       <Version>4.3.50</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.TemplateEngine.Edge">
-      <Version>7.0.307</Version>
+      <Version>8.0.100-preview.7.23375.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.TemplateEngine.Orchestrator.RunnableProjects">
-      <Version>7.0.307</Version>
+      <Version>8.0.100-preview.7.23375.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.ProjectSystem">
       <Version>17.2.402-pre</Version>
