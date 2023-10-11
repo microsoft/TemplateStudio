@@ -39,13 +39,6 @@ internal class TitleBarHelper
                 theme = Application.Current.RequestedTheme == ApplicationTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
             }
 
-            App.MainWindow.AppWindow.TitleBar.ButtonForegroundColor = theme switch
-            {
-                ElementTheme.Dark => Colors.White,
-                ElementTheme.Light => Colors.Black,
-                _ => Colors.Transparent
-            };
-
             App.MainWindow.AppWindow.TitleBar.ButtonHoverForegroundColor = theme switch
             {
                 ElementTheme.Dark => Colors.White,
