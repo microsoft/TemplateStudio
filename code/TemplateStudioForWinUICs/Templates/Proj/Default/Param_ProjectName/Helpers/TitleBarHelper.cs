@@ -102,15 +102,6 @@ internal class TitleBarHelper
         var frame = App.AppTitlebar as FrameworkElement;
         if (frame != null)
         {
-            if (frame.ActualTheme == ElementTheme.Dark)
-            {
-                App.MainWindow.AppWindow.TitleBar.ButtonForegroundColor = Colors.White;
-            }
-            else
-            {
-                App.MainWindow.AppWindow.TitleBar.ButtonForegroundColor = Colors.Black;
-            }
-
             UpdateTitleBar(frame.ActualTheme);
         }
     }
