@@ -3,6 +3,7 @@
 
 	<Extern href="stdidcmd.h"/>
 	<Extern href="vsshlids.h"/>
+    <Include href="KnownImageIds.vsct"/>
 
 	<Commands package="guidTemplateStudioForWinUICsPackage">
 		<Groups>
@@ -51,7 +52,8 @@
 				<CommandFlag>DefaultDisabled</CommandFlag>
 				<CommandFlag>DefaultInvisible</CommandFlag>
 				<CommandFlag>DynamicVisibility</CommandFlag>
-				<Icon guid="guidImages" id="bmpTesting" />
+                <CommandFlag>IconIsMoniker</CommandFlag>
+                <Icon guid="ImageCatalogGuid" id="AddTest" />
 				<Strings>
 					<ButtonText>New Test Project...</ButtonText>
 				</Strings>
@@ -60,7 +62,8 @@
 				<CommandFlag>DefaultDisabled</CommandFlag>
 				<CommandFlag>DefaultInvisible</CommandFlag>
 				<CommandFlag>DynamicVisibility</CommandFlag>
-				<Icon guid="guidImages" id="bmpOpenTemp" />
+                <CommandFlag>IconIsMoniker</CommandFlag>
+                <Icon guid="ImageCatalogGuid" id="OpenFolder" />
 				<Strings>
 					<ButtonText>Open Generation Folder</ButtonText>
 				</Strings>
