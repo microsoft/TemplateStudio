@@ -69,20 +69,6 @@ internal class TitleBarHelper
 
             App.MainWindow.AppWindow.TitleBar.BackgroundColor = Colors.Transparent;
 
-            Application.Current.Resources["WindowCaptionForeground"] = theme switch
-            {
-                ElementTheme.Dark => new SolidColorBrush(Colors.White),
-                ElementTheme.Light => new SolidColorBrush(Colors.Black),
-                _ => new SolidColorBrush(Colors.Transparent)
-            };
-
-            Application.Current.Resources["WindowCaptionForegroundDisabled"] = theme switch
-            {
-                ElementTheme.Dark => new SolidColorBrush(Color.FromArgb(0x66, 0xFF, 0xFF, 0xFF)),
-                ElementTheme.Light => new SolidColorBrush(Color.FromArgb(0x66, 0x00, 0x00, 0x00)),
-                _ => new SolidColorBrush(Colors.Transparent)
-            };
-
             var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.MainWindow);
             if (hwnd == GetActiveWindow())
             {
