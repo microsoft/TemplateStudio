@@ -44,7 +44,8 @@
 				<CommandFlag>DefaultDisabled</CommandFlag>
 				<CommandFlag>DefaultInvisible</CommandFlag>
 				<CommandFlag>DynamicVisibility</CommandFlag>
-				<Icon guid="guidImages" id="bmpService" />
+				<CommandFlag>IconIsMoniker</CommandFlag>
+                <Icon guid="ImageCatalogGuid" id="NewItem" />
 				<Strings>
 					<ButtonText>New Service...</ButtonText>
 				</Strings>
