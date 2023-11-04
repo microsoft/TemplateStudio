@@ -54,7 +54,7 @@
 				<CommandFlag>DefaultInvisible</CommandFlag>
 				<CommandFlag>DynamicVisibility</CommandFlag>
                 <CommandFlag>IconIsMoniker</CommandFlag>
-                <Icon guid="ImageCatalogGuid" id="AddTest" />
+                <Icon guid="ImageCatalogGuid" id="NewTest" />
 				<Strings>
 					<ButtonText>New Test Project...</ButtonText>
 				</Strings>
