@@ -146,15 +146,7 @@
 		</GuidSymbol>
 
 		<GuidSymbol name="guidImages" value="{4060629C-FD00-4D0F-8C97-92747BFB7F28}" >
-			<IDSymbol name="bmpFeature1" value="1" />
-			<IDSymbol name="bmpFeature2" value="2" />
-			<IDSymbol name="bmpFeature3" value="3" />
-			<IDSymbol name="bmpFeature4" value="4" />
-			<IDSymbol name="bmpPage1" value="5" />
-			<IDSymbol name="bmpWTS" value="6" />
-			<IDSymbol name="bmpOpenTemp" value="7" />
 			<IDSymbol name="bmpService" value="8" />
-			<IDSymbol name="bmpTesting" value="9" />
 		</GuidSymbol>
 	</Symbols>
 </CommandTable>
