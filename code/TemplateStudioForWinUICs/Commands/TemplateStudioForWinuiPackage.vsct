@@ -71,10 +71,6 @@
 				</Strings>
 			</Button>
 		</Buttons>
-
-		<Bitmaps>
-			<Bitmap guid="guidImages" href="Resources\TemplateStudioCommand.png" usedList="bmpFeature1, bmpFeature2, bmpFeature3, bmpFeature4, bmpPage1, bmpWTS, bmpOpenTemp, bmpService, bmpTesting" />
-		</Bitmaps>
 	</Commands>
     <VisibilityConstraints>
         <VisibilityItem guid="guidTemplateStudioForWinUICsPackageCmdSet"
@@ -144,10 +140,6 @@
 			<IDSymbol name="AddServiceCommand" value="0x0600"/>
 			<IDSymbol name="AddTestingCommand" value="0x0700"/>
 			<IDSymbol name="OpenTempFolder" value="0x0800"/>
-		</GuidSymbol>
-
-		<GuidSymbol name="guidImages" value="{4060629C-FD00-4D0F-8C97-92747BFB7F28}" >
-			<IDSymbol name="bmpService" value="8" />
 		</GuidSymbol>
 	</Symbols>
 </CommandTable>
