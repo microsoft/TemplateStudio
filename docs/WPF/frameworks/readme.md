@@ -6,7 +6,7 @@ The following design patterns are supported in WPF apps.
 - [Code Behind](./codebehind.md)
 - [Prism](./prism.md)
 
-The following are deprecated but still available.
+The following are deprecated and no longer available.
 
 - [MVVM Light](./mvvmlight.md)
 - [MVVM Basic](./mvvmbasic.md)

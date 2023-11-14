@@ -6,4 +6,3 @@ The following services are supported in WPF apps.
 
 - [Forced Login](./forced-login.md)
 - [Optional Login](./optional-login.md)
-

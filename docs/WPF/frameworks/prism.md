@@ -4,4 +4,4 @@ Prism is a framework for building loosely coupled, maintainable, and testable XA
 
 For more information, visit the [Prism GitHub Page](https://github.com/PrismLibrary/Prism).
 
-Prism also provide a number of [productivity tools](https://prismlibrary.github.io/docs/getting-started/productivity-tools.html) that include snippets, item templates, and tools for working in platforms other than UWP.
+Prism also provide a number of [productivity tools](https://prismlibrary.github.io/docs/getting-started/productivity-tools.html) that include snippets, item templates, and tools.

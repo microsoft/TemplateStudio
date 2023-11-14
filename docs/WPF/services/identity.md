@@ -27,7 +27,6 @@ Once the user has been authenticated, the app will call the Microsoft Graph to r
 
 You can choose between different ways to initialize the IdentityService, restricting hereby the allowed account types.
 
-
 1. InitializeWithAadAndPersonalMsAccounts() **(Default)** - allows Azure Active Directory Accounts and Personal Microsoft Accounts
 2. InitializeWithPersonalMsAccounts() - allows Personal Microsoft Accounts
 3. InitializeWithAadMultipleOrgs() - allows Azure Active Directory Accounts from any organization
@@ -73,7 +72,6 @@ In Forced Login apps unauthorized users cannot log into the app, in Optional Log
 ### IdentityService (Core project)
 
 This class is responsible for obtaining the AccessToken from the cache or via Windows Integrated or Interactive Auth. The class uses the MSAL NuGet library to connect with Azure Active Directory. The Identity service is initialized with a ClientID configured in the appsettings.json. If you haven't done already create a ClientID following the steps on https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app and update the appsettings.json IdentityClientId.
-
 
 ### MicrosoftGraphService (Core project)
 

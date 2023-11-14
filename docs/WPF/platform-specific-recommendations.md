@@ -30,5 +30,4 @@ You will need to install [Visual Studio 2019](https://visualstudio.microsoft.com
 
 ### Learning
 
-- [Channel 9 serie of videos for Desktop and .NET Core](https://channel9.msdn.com/Series/Desktop-and-NET-Core-101)
-
+- [Channel 9 series of videos for Desktop and .NET Core](https://channel9.msdn.com/Series/Desktop-and-NET-Core-101)
