@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Templates.Core;
@@ -15,6 +16,7 @@ using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.ViewModels.NewProject;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -25,41 +27,23 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private bool _hasErrors;
         private bool _isFocused;
         private bool _isTextSelected;
-        private ICommand _setFocusCommand;
-        private ICommand _lostKeyboardFocusCommand;
-
+        private bool _isInitialized;
+        private UserSelectionContext _context;
         public string Name
         {
             get => _name;
             set => SetName(value);
         }
-
         public bool NameEditable
         {
             get => _nameEditable;
             set => SetProperty(ref _nameEditable, value);
         }
-
         public bool HasErrors
         {
             get => _hasErrors;
             set => SetProperty(ref _hasErrors, value);
         }
-
-        public bool IsFocused
-        {
-            get => _isFocused;
-            set
-            {
-                if (_isFocused == value)
-                {
-                    SetProperty(ref _isFocused, false);
-                }
-
-                SetProperty(ref _isFocused, value);
-            }
-        }
-
         public bool IsTextSelected
         {
             get => _isTextSelected;
@@ -73,23 +57,43 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 SetProperty(ref _isTextSelected, value);
             }
         }
-
         public TemplateInfo Template { get; private set; }
-
         public ObservableCollection<TemplateGroupViewModel> Groups { get; } = new ObservableCollection<TemplateGroupViewModel>();
-
-        public ObservableCollection<LicenseViewModel> Licenses { get; } = new ObservableCollection<LicenseViewModel>();
-
-        public ObservableCollection<BasicInfoViewModel> Dependencies { get; } = new ObservableCollection<BasicInfoViewModel>();
-
-        public ObservableCollection<string> RequiredSdks { get; protected set; } = new ObservableCollection<string>();
-
-        public ICommand SetFocusCommand => _setFocusCommand ?? (_setFocusCommand = new RelayCommand(() => IsFocused = true));
-
-        public ICommand LostKeyboardFocusCommand => _lostKeyboardFocusCommand ?? (_lostKeyboardFocusCommand = new RelayCommand<KeyboardFocusChangedEventArgs>(OnLostKeyboardFocus));
-
+        public ObservableCollection<UserSelectionGroup> userSelectionGroups { get; } = new ObservableCollection<UserSelectionGroup>();
+        public bool HasItemsAddedByUser { get; private set; }
         public TemplateSelectionViewModel()
         {
+            userSelectionGroups.Add(new UserSelectionGroup(TemplateType.Page, Resources.ProjectDetailsPagesSectionTitle, true));
+            userSelectionGroups.Add(new UserSelectionGroup(TemplateType.Feature, Resources.ProjectDetailsFeaturesSectionTitle));
+            userSelectionGroups.Add(new UserSelectionGroup(TemplateType.Service, Resources.ProjectDetailsServicesSectionTitle));
+            userSelectionGroups.Add(new UserSelectionGroup(TemplateType.Testing, Resources.ProjectDetailsTestingSectionTitle));
+        }
+        public ObservableCollection<LicenseViewModel> Licenses { get; } = new ObservableCollection<LicenseViewModel>();
+        public ObservableCollection<BasicInfoViewModel> Dependencies { get; } = new ObservableCollection<BasicInfoViewModel>();
+        public ObservableCollection<string> RequiredSdks { get; protected set; } = new ObservableCollection<string>();
+
+        public void Initialize(UserSelectionContext context)
+        {
+            _context = context;
+
+            if (_isInitialized)
+            {
+                userSelectionGroups.ToList().ForEach(g => g.Clear());
+            }
+
+            _isInitialized = true;
+        }
+
+        public UserSelection GetUserSelection() // creates user selection list
+        {
+            return BaseSelectionViewModel.GetUserSelection(userSelectionGroups, _context);
+        }
+
+        public IEnumerable<string> GetPageNames()
+            => BaseSelectionViewModel.GetPageNames(userSelectionGroups);
+        public IEnumerable<string> GetNames()
+        {
+            return BaseSelectionViewModel.GetNames(userSelectionGroups);
         }
 
         public void Focus()
@@ -107,6 +111,130 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 SelectTemplate(group.Items.FirstOrDefault());
             }
         }
+
+        public async Task AddAsync(TemplateOrigin templateOrigin, TemplateInfoViewModel template, string layoutName = null, bool isReadOnly = false)
+        {
+            template.IncreaseSelection(); // for UI?
+
+            // naming
+            var savedTemplate = new SavedTemplateViewModel(template, templateOrigin, isReadOnly);
+            if (!BaseSelectionViewModel.IsTemplateAdded(template, userSelectionGroups) || template.MultipleInstance)
+            {
+                if (!string.IsNullOrEmpty(layoutName))
+                {
+                    savedTemplate.SetName(layoutName, true);
+                }
+                else
+                {
+                    if (template.ItemNameEditable)
+                    {
+                        savedTemplate.SetName(ValidationService.InferTemplateName(template.Name)); // set temp name for template
+                    }
+                    else
+                    {
+                        savedTemplate.SetName(template.Template.DefaultName); // set permanent default name
+                    }
+                }
+                Template = template.Template;
+                BaseSelectionViewModel.AddToGroup(template.TemplateType, savedTemplate, userSelectionGroups);
+                UpdateHasItemsAddedByUser();
+
+                var licenses = GenContext.ToolBox.Repo.GetAllLicences(template.Template.TemplateId, MainViewModel.Instance.Context);
+                LicensesService.SyncLicenses(licenses, Licenses);
+
+                //get dependencies
+                Dependencies.Clear();
+
+                // converts to correct type
+                foreach (var dependency in template.Dependencies)
+                {
+                    Dependencies.Add(dependency);
+                }
+
+                foreach (var dep in Template.Dependencies)
+                {
+                    var dependencyTemplate = MainViewModel.Instance.GetTemplate(dep);
+                    if (dependencyTemplate == null)
+                    {
+                        // for hidden templates not on list
+                        dependencyTemplate = new TemplateInfoViewModel(dep, _context);
+                    }
+                    await AddAsync(templateOrigin, dependencyTemplate);
+                }
+
+
+                // check requiredSdks
+                RequiredSdks.Clear();
+                foreach (var requiredSdk in template.RequiredSdks)
+                {
+                    RequiredSdks.Add(requiredSdk);
+                }
+
+                // what do these do ?
+                OnPropertyChanged(nameof(Licenses));
+                OnPropertyChanged(nameof(Dependencies));
+                OnPropertyChanged(nameof(RequiredSdks));
+                CheckForMissingSdks(template);
+
+                NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
+                WizardStatus.Current.HasValidationErrors = false;
+            }
+            /*if (template.ItemNameEditable)
+            {
+                Focus();
+            }*/
+        }
+
+        private ObservableCollection<SavedTemplateViewModel> GetCollection(TemplateType templateType)
+        {
+            return userSelectionGroups.First(g => g.TemplateType == templateType).Items;
+        }
+        private IEnumerable<SavedTemplateViewModel> AllTemplates
+        {
+            get
+            {
+                foreach (var group in userSelectionGroups)
+                {
+                    foreach (var item in group.Items)
+                    {
+                        yield return item;
+                    }
+                }
+            }
+        }
+        private void UpdateHasItemsAddedByUser()
+        {
+            foreach (var template in AllTemplates)
+            {
+                if (template.TemplateOrigin == TemplateOrigin.UserSelection)
+                {
+                    HasItemsAddedByUser = true;
+                    return;
+                }
+            }
+        }
+
+        public UserSelectionGroup GetGroup(TemplateType templateType) => userSelectionGroups.First(t => t.TemplateType == templateType);
+
+        private void AddToGroup(TemplateType templateType, SavedTemplateViewModel savedTemplate)
+        {
+            bool GenGroupEqual(SavedTemplateViewModel st) => st.GenGroup == savedTemplate.GenGroup;
+            bool GenGroupPrevious(SavedTemplateViewModel st) => st.GenGroup < savedTemplate.GenGroup;
+
+            int index = 0;
+            var group = GetGroup(templateType);
+            if (group.Items.Any(GenGroupEqual))
+            {
+                index = group.Items.IndexOf(group.Items.Last(GenGroupEqual)) + 1;
+            }
+            else if (group.Items.Any())
+            {
+                index = group.Items.IndexOf(group.Items.Last(GenGroupPrevious)) + 1;
+            }
+
+            group.Insert(index, savedTemplate);
+        }
+
 
         public void SelectTemplate(TemplateInfoViewModel template)
         {
@@ -147,7 +275,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
                 OnPropertyChanged(nameof(Licenses));
                 OnPropertyChanged(nameof(Dependencies));
                 OnPropertyChanged(nameof(RequiredSdks));
-                CheckForMissingSdks();
+                CheckForMissingSdks(template);
 
                 NotificationsControl.CleanErrorNotificationsAsync(ErrorCategory.NamingValidation).FireAndForget();
                 WizardStatus.Current.HasValidationErrors = false;
@@ -158,11 +286,11 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             }
         }
 
-        private void CheckForMissingSdks()
+        private void CheckForMissingSdks(TemplateInfoViewModel template)
         {
             var missingVersions = new List<RequiredVersionInfo>();
 
-            foreach (var requiredVersion in Template.RequiredVersions)
+            foreach (var requiredVersion in template.Template.RequiredVersions)
             {
                 var requirementInfo = RequiredVersionService.GetVersionInfo(requiredVersion);
                 var isInstalled = RequiredVersionService.Instance.IsVersionInstalled(requirementInfo);

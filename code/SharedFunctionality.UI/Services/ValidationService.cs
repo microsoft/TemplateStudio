@@ -35,6 +35,8 @@ namespace Microsoft.Templates.UI.Services
 
         public static bool HasAllPagesViewSuffix(bool fromNewTemplate, string newName)
         {
+
+            // in new item instance, throws because names = null after this line (cannot be null)
             var names = _getPageNames?.Invoke();
             if (!names.Any())
             {

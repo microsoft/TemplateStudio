@@ -14,11 +14,14 @@ using Microsoft.Templates.Core.Diagnostics;
 using Microsoft.Templates.Core.Gen;
 using Microsoft.Templates.SharedResources;
 using Microsoft.Templates.UI.Controls;
+using Microsoft.Templates.UI.Extensions;
 using Microsoft.Templates.UI.Mvvm;
 using Microsoft.Templates.UI.Services;
 using Microsoft.Templates.UI.Threading;
 using Microsoft.Templates.UI.ViewModels.Common;
+using Microsoft.Templates.UI.ViewModels.NewProject;
 using Microsoft.Templates.UI.Views.NewItem;
+using Microsoft.Templates.UI.Views.NewProject;
 
 namespace Microsoft.Templates.UI.ViewModels.NewItem
 {
@@ -36,6 +39,7 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         public TemplateType TemplateType { get; set; }
 
         public static MainViewModel Instance { get; private set; }
+        public Dictionary<TemplateType, TemplatesStepViewModel> StepsViewModels { get; } = new Dictionary<TemplateType, TemplatesStepViewModel>();
 
         public TemplateSelectionViewModel TemplateSelection { get; } = new TemplateSelectionViewModel();
 
@@ -75,10 +79,10 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         }
 
         private static IEnumerable<StepData> NewItemSteps
-        {
+        { 
             get
             {
-                yield return StepData.MainStep(NewItemStepTemplateSelection, "1", Resources.NewItemStepOne, () => new TemplateSelectionPage(), true, true);
+                //yield return StepData.MainStep(NewItemStepTemplateSelection, "1", Resources.NewItemStepOne, () => new TemplateSelectionPage(), true, true);
                 yield return StepData.MainStep(NewItemStepChangesSummary, "2", Resources.NewItemStepTwo, () => new ChangesSummaryPage(_output));
             }
         }
@@ -87,8 +91,40 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             TemplateType = templateType;
             WizardStatus.Title = GetNewItemTitle(templateType);
-
+            TemplateSelection.Initialize(context);
             Initialize(context);
+            BuildStepViewModelAsync(templateType);
+        }
+
+        private async Task BuildStepViewModelAsync(TemplateType templateType)
+        {
+            var hasTemplates = DataService.HasTemplatesFromType(templateType, Context);
+            var stepId = templateType.GetNewProjectStepId();
+            var isStepAdded = StepsViewModels.ContainsKey(templateType);
+            if (hasTemplates)
+            {
+                if (!isStepAdded)
+                {
+                    var stepTitle = templateType.GetNewProjectStepTitle();
+                    var pageTitle = templateType.GetStepPageTitle();
+                    var step = new TemplatesStepViewModel(templateType, Context, pageTitle);
+                    step.LoadData();
+                    StepsViewModels.Add(templateType, step);
+                    WizardNavigation.Current.AddNewStep(stepId, stepTitle, () => new TemplatesStepPage(templateType));
+                }
+                else
+                {
+                    var step = StepsViewModels[templateType];
+                    step.ResetData();
+                }
+            }
+
+            // if we want multiple selection pages in the edit menu
+            /*else if (!hasTemplates && isStepAdded)
+            {
+                StepsViewModels.Remove(templateType);
+                await WizardNavigation.Current.RemoveStepAsync(stepId);
+            }*/
         }
 
         private string GetNewItemTitle(TemplateType templateType)
@@ -160,36 +196,13 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         private async Task<NewItemGenerationResult> CleanupAndGenerateNewItemAsync()
         {
             NewItemGenController.Instance.CleanupTempGeneration();
-            var userSelection = CreateUserSelection();
+            var userSelection = TemplateSelection.GetUserSelection();
             await _generationService.GenerateNewItemAsync(TemplateSelection.Template.TemplateType, userSelection);
             return NewItemGenController.Instance.CompareOutputAndProject();
         }
-
-        private UserSelection CreateUserSelection()
-        {
-            var userSelection = new UserSelection(Context) { HomeName = string.Empty };
-            var selectedTemplate = new UserSelectionItem { Name = TemplateSelection.Name, TemplateId = TemplateSelection.Template.TemplateId };
-            userSelection.Add(selectedTemplate, TemplateSelection.Template.TemplateType);
-
-            foreach (var dependencyTemplate in TemplateSelection.Template.Dependencies)
-            {
-                var selectedTemplateDependency = new UserSelectionItem { Name = dependencyTemplate.DefaultName, TemplateId = dependencyTemplate.TemplateId };
-                userSelection.Add(selectedTemplateDependency, dependencyTemplate.TemplateType);
-            }
-
-            return userSelection;
-        }
-
         private void OnFinish(object sender, EventArgs e)
         {
-            var userSelection = new UserSelection(Context);
-            userSelection.Add(
-                new UserSelectionItem()
-                {
-                    Name = TemplateSelection.Name,
-                    TemplateId = TemplateSelection.Template.TemplateId,
-                }, TemplateType);
-            NewItemWizardShell.Current.Result = userSelection;
+            NewItemWizardShell.Current.Result = TemplateSelection.GetUserSelection();
             NewItemWizardShell.Current.Result.ItemGenerationType = ChangesSummary.DoNotMerge ? ItemGenerationType.Generate : ItemGenerationType.GenerateAndMerge;
         }
 
@@ -198,9 +211,26 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
             return TemplateSelection.Dependencies.Select(i => i.DefaultName);
         }
 
+        public TemplateInfoViewModel GetTemplate(TemplateInfo templateInfo)
+        {
+            StepsViewModels[templateInfo.TemplateType].LoadData();
+            var groups = StepsViewModels[templateInfo.TemplateType].Groups;
+            foreach (var group in groups)
+            {
+                var template = group.GetTemplate(templateInfo);
+                if (template != null)
+                {
+                    return template;
+                }
+            }
+
+            return null;
+        }
+
         public override async Task OnTemplatesAvailableAsync()
         {
-            ValidationService.Initialize(GetNames, null);
+            //ValidationService.Initialize(GetNames, null);
+            ValidationService.Initialize(TemplateSelection.GetNames, TemplateSelection.GetPageNames);
             TemplateSelection.LoadData(TemplateType, Context);
             WizardStatus.IsLoading = false;
 
@@ -257,10 +287,18 @@ namespace Microsoft.Templates.UI.ViewModels.NewItem
         {
             if (item is TemplateInfoViewModel template)
             {
-                TemplateSelection.SelectTemplate(template);
+                await AddTemplateAsync(template);
             }
 
             await Task.CompletedTask;
+        }
+
+        private async Task AddTemplateAsync(TemplateInfoViewModel selectedTemplate)
+        {
+            if (!selectedTemplate.Disabled && selectedTemplate.CanBeAdded)
+            {
+                await TemplateSelection.AddAsync(TemplateOrigin.UserSelection, selectedTemplate);
+            }
         }
 
         public override bool IsSelectionEnabled(MetadataType metadataType) => true;
