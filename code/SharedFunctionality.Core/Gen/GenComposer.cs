@@ -22,7 +22,6 @@ namespace Microsoft.Templates.Core.Gen
             {
                 return genQueue;
             }
-
             AddProject(userSelection, genQueue);
             AddTemplates(userSelection.Pages, genQueue, userSelection, newItemGeneration: false);
             AddTemplates(userSelection.Features, genQueue, userSelection, newItemGeneration: false);
@@ -53,7 +52,6 @@ namespace Microsoft.Templates.Core.Gen
             }
 
             genQueue = AddInCompositionTemplates(genQueue, userSelection, false);
-
             return genQueue;
         }
 

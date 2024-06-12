@@ -89,6 +89,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Validators\IBreakingChangeValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Validators\UsesVersionSevenOfMvvmToolkitValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\BaseDialogViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\BaseSelectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\BaseMainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\CompositionTool\CompositionFile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Common\CompositionTool\CompositionToolViewModel.cs" />
