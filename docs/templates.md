@@ -99,4 +99,4 @@ There are also code snippets to add Tags, PrimaryOutputs, Symbols and Post Actio
 - [Templates doc in Core Template Studio](https://github.com/microsoft/CoreTemplateStudio/tree/main/docs/templates.md)
 - [Recording usage Telemetry](./telemetry.md)
 - [Ensuring generated code is accessible](./accessibility.md)
-- [All docs](./readme.md)
+- [All docs](./README.md)

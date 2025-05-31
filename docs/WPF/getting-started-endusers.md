@@ -90,4 +90,4 @@ The final generated code is the result of a project configuration (project type 
 
 - [MahApps.Metro](./mahapps-metro.md)
 - [Adapt the app for specific platforms](./platform-specific-recommendations.md)
-- [All docs](../readme.md)
+- [All docs](../README.md)

@@ -54,4 +54,4 @@ For more info, read:
 - [Getting started with the TS codebase](/CONTRIBUTING.md)
 - [Understanding and authoring Templates](./templates.md)
 - [Recording usage Telemetry](./telemetry.md)
-- [All docs](./readme.md)
+- [All docs](./README.md)

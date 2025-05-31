@@ -33,4 +33,4 @@ Additional navigation scenarios are covered [here](./navigation-advanced.md).
 - [Using and extending the generated app](./getting-started-endusers.md)
 - [Handling app activation](./activation.md)
 - [Adapt the app for specific platforms](./platform-specific-recommendations.md)
-- [All docs](../readme.md)
+- [All docs](../README.md)

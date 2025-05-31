@@ -163,4 +163,4 @@ The minimum supported Windows 10 version and which SDKs should be pre-installed 
 - [Handling app activation](./activation.md)
 - [Handling navigation within the app](./navigation.md)
 - [Adapt the app for specific platforms](./platform-specific-recommendations.md)
-- [All docs](../readme.md)
+- [All docs](../README.md)

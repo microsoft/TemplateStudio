@@ -51,4 +51,4 @@ This project type adds a ShellPage that sets the NavigationService's frame to a 
 
 - [Using and extending the generated app](./readme.md)
 - [Handling app activation](./activation.md)
-- [All docs](../readme.md)
+- [All docs](../README.md)

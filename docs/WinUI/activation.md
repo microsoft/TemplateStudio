@@ -34,4 +34,4 @@ The `HandleActivationAsync` method gets the first `ActivationHandler` that can h
 
 - [Using and extending the generated app](./readme.md)
 - [Handling navigation within the app](./navigation.md)
-- [All docs](../readme.md)
+- [All docs](../README.md)

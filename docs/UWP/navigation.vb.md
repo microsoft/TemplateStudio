@@ -37,4 +37,4 @@ Sample projects that show mixed navigation are available from [the C# version of
 - [Using and extending the generated app](./getting-started-endusers.md)
 - [Handling app activation](./activation.md)
 - [Adapt the app for specific platforms](./platform-specific-recommendations.md)
-- [All docs](../readme.md)
+- [All docs](../README.md)

@@ -21,4 +21,4 @@ For events related to session and project generation see [Core Template Studio -
 - [Getting started with the TS codebase](/CONTRIBUTING.md)
 - [Understanding and authoring Templates](./templates.md)
 - [Ensuring generated code is accessible](./accessibility.md)
-- [All docs](./readme.md)
+- [All docs](./README.md)
