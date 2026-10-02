@@ -1,8 +1,11 @@
 ﻿using Microsoft.Azure.WebJobs;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -12,9 +15,6 @@ namespace Vsts2git
 {
     public static class BuildContent
     {
-        private const long MaxLogDownloadBytes = 100L * 1024 * 1024;
-        private const int LogDownloadTimeoutSeconds = 12000;
-
         public static async Task<string> CopyLogsToBlob(dynamic buildInfo, Binder binder)
         {
             string buildId = buildInfo?.resource?.id?.ToString();
@@ -26,18 +26,13 @@ namespace Vsts2git
                 throw new ConfigurationErrorsException("VsPAT must be configured for build-log downloads.");
             }
 
-            using (var client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false })
-            {
-                Timeout = TimeSpan.FromSeconds(LogDownloadTimeoutSeconds),
-                MaxResponseContentBufferSize = MaxLogDownloadBytes,
-            })
+            using (var client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false }))
             using (var request = new HttpRequestMessage(HttpMethod.Get, logsUri))
             {
                 request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/zip"));
                 request.Headers.Authorization = new AuthenticationHeaderValue(
                     "Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(":" + pat)));
 
-                // Buffering applies the client's size limit and timeout to the complete download before publishing.
                 using (HttpResponseMessage response = await client.SendAsync(request))
                 {
                     response.EnsureSuccessStatusCode();
@@ -97,7 +92,7 @@ namespace Vsts2git
 
             using (var stream = await binder.BindAsync<Stream>(new BlobAttribute(blobPath, FileAccess.Write)))
             {
-                await content.CopyToAsync(stream);
+                await content.CopyToAsync(stream).ContinueWith(copyTask => { stream.Close(); });
             }
             return ConfigurationManager.AppSettings["DiagBlobUrl"] + "/" + blobPath;
         }
