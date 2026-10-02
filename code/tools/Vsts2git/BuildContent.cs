@@ -1,10 +1,8 @@
 ﻿using Microsoft.Azure.WebJobs;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -14,33 +12,86 @@ namespace Vsts2git
 {
     public static class BuildContent
     {
+        internal const long MaxLogDownloadBytes = 100L * 1024 * 1024;
+        internal const int LogDownloadTimeoutSeconds = 12000;
+
         public static async Task<string> CopyLogsToBlob(dynamic buildInfo, Binder binder)
         {
-            string pat = ConfigurationManager.AppSettings["VsPAT"];
-            string url = buildInfo?.resource?.logs?.url;
-            string res = string.Empty;
-            if (!string.IsNullOrEmpty(url))
+            using (HttpClient client = CreateLogDownloadClient())
             {
-                using (HttpClient client = new HttpClient())
-                {
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                return await CopyLogsToBlob(
+                    buildInfo,
+                    binder,
+                    client,
+                    ConfigurationManager.AppSettings["VsProjectUrl"],
+                    ConfigurationManager.AppSettings["VsPAT"]);
+            }
+        }
 
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-                        Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(string.Format("{0}:{1}", "", pat))));
+        internal static HttpClient CreateLogDownloadClient(HttpMessageHandler handler = null)
+        {
+            return new HttpClient(handler ?? new HttpClientHandler { AllowAutoRedirect = false })
+            {
+                Timeout = TimeSpan.FromSeconds(LogDownloadTimeoutSeconds),
+                MaxResponseContentBufferSize = MaxLogDownloadBytes,
+            };
+        }
 
-                    using (HttpResponseMessage response = client.GetAsync(url + "?$format=zip").Result)
-                    {
-                        string fileName = buildInfo?.resource?.buildNumber + "_logs.zip";
-
-                        if (response.StatusCode == HttpStatusCode.OK)
-                        {
-                            res = await UploadContentToBlob(response.Content, fileName, binder);
-                        }
-                    }
-                }
+        internal static Uri GetBuildLogsUri(string projectUrl, string buildId)
+        {
+            if (!int.TryParse(buildId, NumberStyles.None, CultureInfo.InvariantCulture, out int id) || id <= 0)
+            {
+                throw new ArgumentException("The build event must contain a positive integer resource.id.", nameof(buildId));
             }
 
-            return res;
+            if (!Uri.TryCreate(projectUrl, UriKind.Absolute, out Uri projectUri)
+                || projectUri.Scheme != Uri.UriSchemeHttps
+                || !projectUri.IsDefaultPort
+                || projectUri.HostNameType != UriHostNameType.Dns
+                || projectUri.IsLoopback
+                || !string.IsNullOrEmpty(projectUri.UserInfo)
+                || !string.IsNullOrEmpty(projectUri.Query)
+                || !string.IsNullOrEmpty(projectUri.Fragment)
+                || projectUri.AbsolutePath.TrimEnd('/').Length == 0)
+            {
+                throw new ConfigurationErrorsException(
+                    "VsProjectUrl must be a trusted HTTPS Azure DevOps project URL using the default port, without userinfo, a query, or a fragment.");
+            }
+
+            // The webhook's logs.url must never select a destination for the server credential.
+            return new Uri(projectUri.AbsoluteUri.TrimEnd('/') + "/_apis/build/builds/"
+                + id.ToString(CultureInfo.InvariantCulture) + "/logs?api-version=7.1");
+        }
+
+        internal static async Task<string> CopyLogsToBlob(
+            dynamic buildInfo,
+            IBinder binder,
+            HttpClient client,
+            string projectUrl,
+            string pat)
+        {
+            string buildId = buildInfo?.resource?.id?.ToString();
+            Uri logsUri = GetBuildLogsUri(projectUrl, buildId);
+
+            if (string.IsNullOrWhiteSpace(pat))
+            {
+                throw new ConfigurationErrorsException("VsPAT must be configured for build-log downloads.");
+            }
+
+            using (var request = new HttpRequestMessage(HttpMethod.Get, logsUri))
+            {
+                request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/zip"));
+                request.Headers.Authorization = new AuthenticationHeaderValue(
+                    "Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(":" + pat)));
+
+                // Buffering applies the client's size limit and timeout to the complete download before publishing.
+                using (HttpResponseMessage response = await client.SendAsync(request))
+                {
+                    response.EnsureSuccessStatusCode();
+                    string fileName = buildInfo?.resource?.buildNumber + "_logs.zip";
+                    return await UploadContentToBlob(response.Content, fileName, binder);
+                }
+            }
         }
 
         public static StringBuilder GetBuilderWithSummary(dynamic buildInfo)
@@ -61,13 +112,13 @@ namespace Vsts2git
         }
 
 
-        private static async Task<string> UploadContentToBlob(HttpContent content, string blobFileName, Binder binder)
+        private static async Task<string> UploadContentToBlob(HttpContent content, string blobFileName, IBinder binder)
         {
             var blobPath = $"buildlogs/{blobFileName}";
 
             using (var stream = await binder.BindAsync<Stream>(new BlobAttribute(blobPath, FileAccess.Write)))
             {
-                await content.CopyToAsync(stream).ContinueWith(copyTask => { stream.Close(); });
+                await content.CopyToAsync(stream);
             }
             return ConfigurationManager.AppSettings["DiagBlobUrl"] + "/" + blobPath;
         }

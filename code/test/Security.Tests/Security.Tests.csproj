@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>8</LangVersion>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.WebJobs" Version="2.1.0-beta1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Net.Http" />
+    <!-- Exercise the real source without loading the legacy Functions metadata generator. -->
+    <Compile Include="..\..\tools\Vsts2git\BuildContent.cs" Link="Sources\BuildContent.cs" />
+    <Compile Include="..\SharedFunctionality.Tests\BaseLinkTestLogic.cs" Link="Sources\BaseLinkTestLogic.cs" />
+  </ItemGroup>
+</Project>

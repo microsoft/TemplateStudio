@@ -27,6 +27,14 @@ jobs:
     inputs:
       checkLatest: true
 
+  - ${{ if eq(parameters.Moniker, 'Core') }}:
+    - task: DotNetCoreCLI@2
+      displayName: Run security regression tests
+      inputs:
+        command: test
+        projects: code/test/Security.Tests/Security.Tests.csproj
+        arguments: --configuration Release --verbosity minimal
+
   - task: NuGetCommand@2
     displayName: NuGet restore
     inputs:

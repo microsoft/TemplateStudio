@@ -96,6 +96,11 @@ namespace Vsts2git
 
                 return req.CreateResponse(HttpStatusCode.OK, result);
             }
+            catch (ArgumentException)
+            {
+                log.Warning("Invalid build event.");
+                return req.CreateErrorResponse(HttpStatusCode.BadRequest, "The build event is invalid.");
+            }
             catch (Exception ex)
             {
                 log.Error("Unexpected error.", ex);
@@ -224,4 +229,3 @@ namespace Vsts2git
         }
     }
 }
-

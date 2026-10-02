@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace Microsoft.Templates.Test
@@ -44,25 +42,19 @@ namespace Microsoft.Templates.Test
 
                 System.Diagnostics.Debug.WriteLine(url);
 
-                // No longer needed...for some reason 🤷
-                // Ensure using strong SSL certificates (Necessary for github URLs)
-#pragma warning disable RS0030 // Do not used banned APIs - Using as don't know a suitable alternative
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Ssl3;
-#pragma warning restore RS0030 // Do not used banned APIs
-                ServicePointManager.ServerCertificateValidationCallback = (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) => { return true; };
-
-                var req = new HttpClient();
-                var resp = await req.GetAsync(url);
-
-                if (resp.StatusCode == HttpStatusCode.OK)
+                using (var req = new HttpClient())
+                using (var resp = await req.GetAsync(url))
                 {
-                    if (!knownGoodUrls.Contains(url))
+                    if (resp.StatusCode == HttpStatusCode.OK)
                     {
-                        knownGoodUrls.Add(url);
+                        if (!knownGoodUrls.Contains(url))
+                        {
+                            knownGoodUrls.Add(url);
+                        }
                     }
-                }
 
-                return resp.StatusCode;
+                    return resp.StatusCode;
+                }
             }
             catch (Exception exc)
             {
