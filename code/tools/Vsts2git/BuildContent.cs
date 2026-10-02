@@ -12,32 +12,42 @@ namespace Vsts2git
 {
     public static class BuildContent
     {
-        internal const long MaxLogDownloadBytes = 100L * 1024 * 1024;
-        internal const int LogDownloadTimeoutSeconds = 12000;
+        private const long MaxLogDownloadBytes = 100L * 1024 * 1024;
+        private const int LogDownloadTimeoutSeconds = 12000;
 
         public static async Task<string> CopyLogsToBlob(dynamic buildInfo, Binder binder)
         {
-            using (HttpClient client = CreateLogDownloadClient())
-            {
-                return await CopyLogsToBlob(
-                    buildInfo,
-                    binder,
-                    client,
-                    ConfigurationManager.AppSettings["VsProjectUrl"],
-                    ConfigurationManager.AppSettings["VsPAT"]);
-            }
-        }
+            string buildId = buildInfo?.resource?.id?.ToString();
+            Uri logsUri = GetBuildLogsUri(ConfigurationManager.AppSettings["VsProjectUrl"], buildId);
+            string pat = ConfigurationManager.AppSettings["VsPAT"];
 
-        internal static HttpClient CreateLogDownloadClient(HttpMessageHandler handler = null)
-        {
-            return new HttpClient(handler ?? new HttpClientHandler { AllowAutoRedirect = false })
+            if (string.IsNullOrWhiteSpace(pat))
+            {
+                throw new ConfigurationErrorsException("VsPAT must be configured for build-log downloads.");
+            }
+
+            using (var client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false })
             {
                 Timeout = TimeSpan.FromSeconds(LogDownloadTimeoutSeconds),
                 MaxResponseContentBufferSize = MaxLogDownloadBytes,
-            };
+            })
+            using (var request = new HttpRequestMessage(HttpMethod.Get, logsUri))
+            {
+                request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/zip"));
+                request.Headers.Authorization = new AuthenticationHeaderValue(
+                    "Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(":" + pat)));
+
+                // Buffering applies the client's size limit and timeout to the complete download before publishing.
+                using (HttpResponseMessage response = await client.SendAsync(request))
+                {
+                    response.EnsureSuccessStatusCode();
+                    string fileName = buildInfo?.resource?.buildNumber + "_logs.zip";
+                    return await UploadContentToBlob(response.Content, fileName, binder);
+                }
+            }
         }
 
-        internal static Uri GetBuildLogsUri(string projectUrl, string buildId)
+        private static Uri GetBuildLogsUri(string projectUrl, string buildId)
         {
             if (!int.TryParse(buildId, NumberStyles.None, CultureInfo.InvariantCulture, out int id) || id <= 0)
             {
@@ -63,37 +73,6 @@ namespace Vsts2git
                 + id.ToString(CultureInfo.InvariantCulture) + "/logs?api-version=7.1");
         }
 
-        internal static async Task<string> CopyLogsToBlob(
-            dynamic buildInfo,
-            IBinder binder,
-            HttpClient client,
-            string projectUrl,
-            string pat)
-        {
-            string buildId = buildInfo?.resource?.id?.ToString();
-            Uri logsUri = GetBuildLogsUri(projectUrl, buildId);
-
-            if (string.IsNullOrWhiteSpace(pat))
-            {
-                throw new ConfigurationErrorsException("VsPAT must be configured for build-log downloads.");
-            }
-
-            using (var request = new HttpRequestMessage(HttpMethod.Get, logsUri))
-            {
-                request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/zip"));
-                request.Headers.Authorization = new AuthenticationHeaderValue(
-                    "Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(":" + pat)));
-
-                // Buffering applies the client's size limit and timeout to the complete download before publishing.
-                using (HttpResponseMessage response = await client.SendAsync(request))
-                {
-                    response.EnsureSuccessStatusCode();
-                    string fileName = buildInfo?.resource?.buildNumber + "_logs.zip";
-                    return await UploadContentToBlob(response.Content, fileName, binder);
-                }
-            }
-        }
-
         public static StringBuilder GetBuilderWithSummary(dynamic buildInfo)
         {
             DateTime finish = buildInfo?.resource?.finishTime;
@@ -112,7 +91,7 @@ namespace Vsts2git
         }
 
 
-        private static async Task<string> UploadContentToBlob(HttpContent content, string blobFileName, IBinder binder)
+        private static async Task<string> UploadContentToBlob(HttpContent content, string blobFileName, Binder binder)
         {
             var blobPath = $"buildlogs/{blobFileName}";
 

@@ -39,15 +39,5 @@ scope and exposure history. Rotate the PAT and Function key if exposure is
 suspected. A source change alone does not deploy the fix or establish that a
 previous deployment was uncompromised.
 
-The isolated security regression suite does not contact Azure DevOps or GitHub:
-
-```powershell
-dotnet test code\test\Security.Tests\Security.Tests.csproj --configuration Release
-```
-
-The suite compiles the actual build-log and link-checking source files and runs
-on .NET Framework 4.7.2, using in-memory HTTP handlers and loopback-only servers.
-It is included in the main solution and the shared Core CI/nightly test job.
-The legacy Function project itself must still be built with Visual Studio's
-full-framework MSBuild, rather than the old Functions metadata generator being
-loaded into `dotnet build`.
+Build this legacy Function project with Visual Studio's full-framework MSBuild.
+Its Functions metadata generator is not compatible with `dotnet build`.
