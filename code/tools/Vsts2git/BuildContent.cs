@@ -1,7 +1,9 @@
 ﻿using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Host;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -14,33 +16,62 @@ namespace Vsts2git
 {
     public static class BuildContent
     {
-        public static async Task<string> CopyLogsToBlob(dynamic buildInfo, Binder binder)
+        public static async Task<string> CopyLogsToBlob(dynamic buildInfo, Binder binder, TraceWriter log)
         {
+            string buildId = buildInfo?.resource?.id?.ToString();
+            Uri logsUri = GetBuildLogsUri(ConfigurationManager.AppSettings["VsProjectUrl"], buildId);
             string pat = ConfigurationManager.AppSettings["VsPAT"];
-            string url = buildInfo?.resource?.logs?.url;
-            string res = string.Empty;
-            if (!string.IsNullOrEmpty(url))
+
+            if (string.IsNullOrWhiteSpace(pat))
             {
-                using (HttpClient client = new HttpClient())
-                {
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-                        Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(string.Format("{0}:{1}", "", pat))));
-
-                    using (HttpResponseMessage response = client.GetAsync(url + "?$format=zip").Result)
-                    {
-                        string fileName = buildInfo?.resource?.buildNumber + "_logs.zip";
-
-                        if (response.StatusCode == HttpStatusCode.OK)
-                        {
-                            res = await UploadContentToBlob(response.Content, fileName, binder);
-                        }
-                    }
-                }
+                throw new ConfigurationErrorsException("VsPAT must be configured for build-log downloads.");
             }
 
-            return res;
+            using (var client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false }))
+            using (var request = new HttpRequestMessage(HttpMethod.Get, logsUri))
+            {
+                request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/zip"));
+                request.Headers.Authorization = new AuthenticationHeaderValue(
+                    "Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(":" + pat)));
+
+                using (HttpResponseMessage response = await client.SendAsync(request))
+                {
+                    if (response.StatusCode != HttpStatusCode.OK)
+                    {
+                        log.Warning($"Skipping build-log upload: the download returned HTTP {(int)response.StatusCode}.");
+                        return string.Empty;
+                    }
+
+                    string fileName = buildInfo?.resource?.buildNumber + "_logs.zip";
+                    return await UploadContentToBlob(response.Content, fileName, binder);
+                }
+            }
+        }
+
+        private static Uri GetBuildLogsUri(string projectUrl, string buildId)
+        {
+            if (!int.TryParse(buildId, NumberStyles.None, CultureInfo.InvariantCulture, out int id) || id <= 0)
+            {
+                throw new ArgumentException("The build event must contain a positive integer resource.id.", nameof(buildId));
+            }
+
+            if (!Uri.TryCreate(projectUrl, UriKind.Absolute, out Uri projectUri)
+                || projectUri.Scheme != Uri.UriSchemeHttps
+                || !projectUri.IsDefaultPort
+                || projectUri.HostNameType != UriHostNameType.Dns
+                || projectUri.IsLoopback
+                || !string.IsNullOrEmpty(projectUri.UserInfo)
+                || !string.IsNullOrEmpty(projectUri.Query)
+                || !string.IsNullOrEmpty(projectUri.Fragment)
+                || projectUri.AbsolutePath.TrimEnd('/').Length == 0)
+            {
+                throw new ConfigurationErrorsException(
+                    "VsProjectUrl must be a trusted HTTPS Azure DevOps project URL using the default port, without userinfo, a query, or a fragment.");
+            }
+
+            // The webhook's logs.url must never select a destination for the server credential.
+            return new Uri(projectUri.AbsoluteUri.TrimEnd('/') + "/_apis/build/builds/"
+                + id.ToString(CultureInfo.InvariantCulture) + "/logs?api-version=7.1");
         }
 
         public static StringBuilder GetBuilderWithSummary(dynamic buildInfo)

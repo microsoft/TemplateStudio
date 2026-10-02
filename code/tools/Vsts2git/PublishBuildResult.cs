@@ -78,7 +78,7 @@ namespace Vsts2git
 
                 bool.TryParse(queryParams["createIssue"], out var createIssue);
 
-                BuildContent content = await SetupBuildContent(buildInfo, repo, owner, binder);
+                BuildContent content = await SetupBuildContent(buildInfo, repo, owner, binder, log);
                 log.Info($"Content ready for build {buildInfo?.resource?.buildNumber}");
 
                 Result result = new Result();
@@ -103,15 +103,18 @@ namespace Vsts2git
             }
         }
 
-        private static async Task<BuildContent> SetupBuildContent(dynamic buildInfo, string repo, string owner, Binder binder)
+        private static async Task<BuildContent> SetupBuildContent(dynamic buildInfo, string repo, string owner, Binder binder, TraceWriter log)
         {
             string name = $"{buildInfo?.resource?.definition?.id}.md";
             string result = buildInfo?.resource?.result;
             string branch = ConfigurationManager.AppSettings["ContentBranch"];
     
-            string logsUrl = await Vsts2git.BuildContent.CopyLogsToBlob(buildInfo, binder);
+            string logsUrl = await Vsts2git.BuildContent.CopyLogsToBlob(buildInfo, binder, log);
             StringBuilder contentBuilder = Vsts2git.BuildContent.GetBuilderWithSummary(buildInfo);
-            contentBuilder.AppendLine($"Find detailed information in the [build log files]({logsUrl})");
+            if (!string.IsNullOrEmpty(logsUrl))
+            {
+                contentBuilder.AppendLine($"Find detailed information in the [build log files]({logsUrl})");
+            }
 
             string plainContent = contentBuilder.ToString();
             string base64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(plainContent));
@@ -224,4 +227,3 @@ namespace Vsts2git
         }
     }
 }
-

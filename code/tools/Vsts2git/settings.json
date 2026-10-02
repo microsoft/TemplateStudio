@@ -3,6 +3,7 @@
   "Values": {
     "GithubPAT": "",
     "VsPAT": "",
+    "VsProjectUrl": "",
     "CreateIssueUrl": "https://api.github.com/repos/%%OWNER%%/%%REPO%%/issues?access_token=%%ACCESS_TOKEN%%",
     "ContentUrl": "https://api.github.com/repos/%%OWNER%%/%%REPO%%/contents/%%PATH%%?access_token=%%ACCESS_TOKEN%%",
     "ContentBranch": "vsts-builds",
