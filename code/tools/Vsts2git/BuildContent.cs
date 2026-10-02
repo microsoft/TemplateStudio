@@ -1,4 +1,5 @@
 ﻿using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Host;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,7 +16,7 @@ namespace Vsts2git
 {
     public static class BuildContent
     {
-        public static async Task<string> CopyLogsToBlob(dynamic buildInfo, Binder binder)
+        public static async Task<string> CopyLogsToBlob(dynamic buildInfo, Binder binder, TraceWriter log)
         {
             string buildId = buildInfo?.resource?.id?.ToString();
             Uri logsUri = GetBuildLogsUri(ConfigurationManager.AppSettings["VsProjectUrl"], buildId);
@@ -35,7 +36,12 @@ namespace Vsts2git
 
                 using (HttpResponseMessage response = await client.SendAsync(request))
                 {
-                    response.EnsureSuccessStatusCode();
+                    if (response.StatusCode != HttpStatusCode.OK)
+                    {
+                        log.Warning($"Skipping build-log upload: the download returned HTTP {(int)response.StatusCode}.");
+                        return string.Empty;
+                    }
+
                     string fileName = buildInfo?.resource?.buildNumber + "_logs.zip";
                     return await UploadContentToBlob(response.Content, fileName, binder);
                 }

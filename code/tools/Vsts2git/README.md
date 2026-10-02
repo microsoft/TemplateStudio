@@ -25,5 +25,6 @@ The request follows the documented
 [Azure DevOps Build Logs API](https://learn.microsoft.com/en-us/rest/api/azure/devops/build/builds/get-build-logs?view=azure-devops-rest-7.1).
 
 Automatic redirects are disabled so the authenticated download cannot follow a
-response to another destination. Redirect/error responses fail rather than
-being published as a successful download.
+response to another destination. Only HTTP 200 responses are uploaded as logs.
+Other HTTP statuses produce a warning and skip log upload; the build summary can
+still be published without a log-download link.
